@@ -5,7 +5,9 @@
 
 ## 📋 **INFORMAÇÕES GERAIS**
 
-- **Duração:** 9 dias (72 horas)
+- **Duração:** 7,5 dias (60 horas)
+- **Período:** 06/10/2025 a 16/10/2025 (Segunda a Sexta-feira)
+- **Horário:** 08:00 às 16:00 (8 horas/dia)
 - **Modalidade:** Presencial com Hands-on intensivo
 - **Público-alvo:** 30 profissionais (Técnicos de Segurança, Monitoramento, Administradores de Sistemas, Infraestrutura, DevOps)
 - **Nível:** Básico a Intermediário em Linux
@@ -25,7 +27,7 @@
 
 ## 📅 **CRONOGRAMA DETALHADO**
 
-### **DIA 1 - 06/10/2025 (8h)**
+### **DIA 1 - 06/10/2025 (Segunda-feira) - 8h**
 ## 🔧 **MÓDULO 1: FUNDAMENTOS DE LINUX (NIVELAMENTO)**
 
 ### **Manhã (4h) - Introdução e Estrutura do Sistema**
@@ -52,103 +54,111 @@
 
 - **15:00-15:30** | **Coffee Break**
 
-- **15:30-17:00** | **Permissões de Arquivos e Diretórios**
+- **15:30-16:00** | **Permissões de Arquivos e Diretórios**
   - Sistema de permissões (rwx, octal, simbólico)
   - Comandos chmod, chown, chgrp, umask
   - Gestão de usuários e grupos (useradd, usermod, userdel, groupadd, groupmod)
   - Configuração de grupos e permissões associadas
   - **HANDS-ON:** Configuração de permissões e usuários em cenários práticos
 
-- **17:00-18:00** | **Processos e Serviços**
+### **DIA 2 - 07/10/2025 (Terça-feira) - 8h**
+## 🔧 **MÓDULO 1: FUNDAMENTOS DE LINUX (NIVELAMENTO) - Continuação**
+
+### **Manhã (4h) - Processos e Serviços**
+- **08:00-10:00** | **Processos e Serviços**
   - Gerenciamento de processos (ps, top, htop, kill, killall, pkill)
   - Introdução ao systemd (inicialização de serviços, logs)
   - Comandos systemctl, journalctl
-  - **HANDS-ON:** Controle de processos e serviços + Prática Módulo 1
+  - **HANDS-ON:** Controle de processos e serviços
 
----
+- **10:00-10:30** | **Coffee Break**
 
-### **DIA 2 - 07/10/2025 (8h)**
-## 🌐 **MÓDULO 2: FUNDAMENTOS DE REDES E SEGURANÇA DA INFORMAÇÃO (NIVELAMENTO)**
+- **10:30-12:00** | **Prática Módulo 1**
+  - **HANDS-ON:** Consolidação dos conceitos de Linux básico
+  - Exercícios práticos integrados
+  - Resolução de problemas comuns
 
-### **Manhã (4h) - Conceitos Básicos de Redes**
-- **08:00-10:00** | **Modelos de Referência e Endereçamento**
+### **Tarde (4h) - Introdução a Redes**
+- **13:00-15:00** | **Conceitos Básicos de Redes**
   - Modelos de referência OSI e TCP/IP
   - Endereçamento IP e Subnetting
   - Máscara de sub-rede e cálculo de sub-redes
   - Roteamento básico
   - **HANDS-ON:** Cálculos de sub-redes e configuração de IPs
 
-- **10:00-10:30** | **Coffee Break**
+- **15:00-15:30** | **Coffee Break**
 
-- **10:30-12:00** | **Protocolos e Serviços de Rede**
+- **15:30-16:00** | **Protocolos e Serviços de Rede**
   - Protocolos TCP, UDP, ICMP
   - Portas e serviços comuns
   - DNS e resolução de nomes
   - **HANDS-ON:** Análise de tráfego com tcpdump e Wireshark
 
-### **Tarde (4h) - Conceitos Básicos de Segurança da Informação**
-- **13:00-15:00** | **Princípios de Segurança**
+### **DIA 3 - 08/10/2025 (Quarta-feira) - 8h**
+## 🌐 **MÓDULO 2: FUNDAMENTOS DE REDES E SEGURANÇA DA INFORMAÇÃO (NIVELAMENTO)**
+
+### **Manhã (4h) - Conceitos Básicos de Segurança da Informação**
+- **08:00-10:00** | **Princípios de Segurança**
   - Princípios de confidencialidade, integridade e disponibilidade
   - Introdução a políticas de segurança
   - Revisão de permissões de arquivos e diretórios
   - Revisão de controle de acesso baseado em usuário e grupo
   - **HANDS-ON:** Implementação de controles de acesso básicos
 
-- **15:00-15:30** | **Coffee Break**
+- **10:00-10:30** | **Coffee Break**
 
-- **15:30-17:00** | **Auditoria e Compliance**
+- **10:30-12:00** | **Auditoria e Compliance**
   - Logs de sistema e aplicação
   - Ferramentas de auditoria (auditd)
   - Padrões de compliance (ISO 27001, PCI-DSS)
   - **HANDS-ON:** Configuração de auditoria e análise de logs
 
-- **17:00-18:00** | **Prática Módulo 2**
+### **Tarde (4h) - Prática e Introdução a Redes Avançadas**
+- **13:00-15:00** | **Prática Módulo 2**
   - **HANDS-ON:** Cenários práticos de segurança e redes
 
----
+- **15:00-15:30** | **Coffee Break**
 
-### **DIA 3 - 08/10/2025 (8h)**
-## 🔗 **MÓDULO 3: ADMINISTRAÇÃO DE REDES COM LINUX (PARTE 1)**
-
-### **Manhã (4h) - Configuração de Rede Avançada**
-- **08:00-10:00** | **Interfaces e Endereçamento**
+- **15:30-16:00** | **Introdução a Redes Avançadas**
   - Configuração de interfaces de rede
   - Endereçamento IP, subnetting e supernetting
   - Configuração de VLANs
   - **HANDS-ON:** Configuração de rede complexa com VLANs
 
-- **10:00-10:30** | **Coffee Break**
+### **DIA 4 - 09/10/2025 (Quinta-feira) - 8h**
+## 🔗 **MÓDULO 3: ADMINISTRAÇÃO DE REDES COM LINUX (PARTE 1)**
 
-- **10:30-12:00** | **Ferramentas de Rede**
+### **Manhã (4h) - Ferramentas de Rede**
+- **08:00-10:00** | **Ferramentas de Diagnóstico**
   - Diagnóstico de rede (ping, traceroute)
   - Análise de conectividade (netstat, nmap, ifconfig/ip)
   - Transferência de arquivos (scp, sftp)
   - Monitoramento básico de rede (iftop, nload)
   - **HANDS-ON:** Diagnóstico completo de conectividade e transferência
 
-### **Tarde (4h) - Serviços de Rede Básicos**
-- **13:00-15:00** | **Servidores DNS**
+- **10:00-10:30** | **Coffee Break**
+
+- **10:30-12:00** | **Servidores DNS**
   - Instalação e configuração do BIND9
   - Zonas DNS (forward/reverse)
   - Configuração de servidores DNS recursivos
   - **HANDS-ON:** Implementação de servidor DNS completo
 
-- **15:00-15:30** | **Coffee Break**
-
-- **15:30-17:00** | **Servidores Web e Proxy**
+### **Tarde (4h) - Serviços de Rede Básicos**
+- **13:00-15:00** | **Servidores Web e Proxy**
   - Apache HTTP Server (instalação, configuração, virtual hosts)
   - Nginx (configuração, load balancing)
   - Proxy reverso e cache
   - **HANDS-ON:** Configuração de servidor web com proxy
 
-- **17:00-18:00** | **Transferência de Arquivos**
+- **15:00-15:30** | **Coffee Break**
+
+- **15:30-16:00** | **Transferência de Arquivos**
   - SCP, SFTP, RSYNC
   - Servidor FTP (vsftpd)
   - **HANDS-ON:** Configuração de transferência segura
 
----
-
-### **DIA 4 - 09/10/2025 (8h)**
+### **DIA 5 - 10/10/2025 (Sexta-feira) - 8h**
 ## 🔗 **MÓDULO 3: ADMINISTRAÇÃO DE REDES COM LINUX (PARTE 2)**
 
 ### **Manhã (4h) - Servidores de Rede**
@@ -175,17 +185,12 @@
 
 - **15:00-15:30** | **Coffee Break**
 
-- **15:30-17:00** | **Monitoramento de Rede e Sistemas**
+- **15:30-16:00** | **Monitoramento de Rede e Sistemas**
   - Monitoramento de rede e sistemas (Nagios, Zabbix)
   - SNMP e coleta de métricas
   - **HANDS-ON:** Dashboard de monitoramento completo
 
-- **17:00-18:00** | **Prática Módulo 3**
-  - **HANDS-ON:** Cenário completo de infraestrutura de rede
-
----
-
-### **DIA 5 - 10/10/2025 (8h)**
+### **DIA 6 - 13/10/2025 (Segunda-feira) - 8h**
 ## ⚙️ **MÓDULO 4: ADMINISTRAÇÃO DE SISTEMAS COM LINUX**
 
 ### **Manhã (4h) - Gerenciamento de Pacotes e Atualizações**
@@ -212,18 +217,13 @@
 
 - **15:00-15:30** | **Coffee Break**
 
-- **15:30-17:00** | **Virtualização e Contêineres**
+- **15:30-16:00** | **Virtualização e Contêineres**
   - Introdução à virtualização com KVM e QEMU
   - Administração de contêineres com Docker
   - Orquestração de contêineres com Kubernetes
   - **HANDS-ON:** Ambiente virtualizado completo
 
-- **17:00-18:00** | **Prática Módulo 4**
-  - **HANDS-ON:** Cenários de automação e virtualização
-
----
-
-### **DIA 6 - 13/10/2025 (8h)**
+### **DIA 7 - 14/10/2025 (Terça-feira) - 8h**
 ## 🔒 **MÓDULO 5: SEGURANÇA DE REDES COM LINUX (PARTE 1)**
 
 ### **Manhã (4h) - Ferramentas Básicas de Segurança**
@@ -248,17 +248,12 @@
 
 - **15:00-15:30** | **Coffee Break**
 
-- **15:30-17:00** | **Firewalls Avançados**
+- **15:30-16:00** | **Firewalls Avançados**
   - Configuração e administração de iptables e nftables
   - Firewalls avançados (pfSense, Firewalld)
   - **HANDS-ON:** Firewall corporativo completo
 
-- **17:00-18:00** | **Prática de Segurança**
-  - **HANDS-ON:** Cenários de configuração de segurança
-
----
-
-### **DIA 7 - 14/10/2025 (8h)**
+### **DIA 8 - 15/10/2025 (Quarta-feira) - 8h**
 ## 🔒 **MÓDULO 5: SEGURANÇA DE REDES COM LINUX (PARTE 2)**
 
 ### **Manhã (4h) - Hardening de Sistemas**
@@ -284,19 +279,13 @@
 
 - **15:00-15:30** | **Coffee Break**
 
-- **15:30-17:00** | **Ferramentas de Análise Forense**
+- **15:30-16:00** | **Ferramentas de Análise Forense**
   - Ferramentas de análise forense (Autopsy, Sleuth Kit)
   - Preservação de evidências
   - Análise de malware
   - **HANDS-ON:** Investigação forense básica
 
-- **17:00-18:00** | **Prática Módulo 5**
-  - Plano de resposta a incidentes e recuperação de desastres
-  - **HANDS-ON:** Simulação de incidente de segurança
-
----
-
-### **DIA 8 - 15/10/2025 (8h)**
+### **DIA 9 - 16/10/2025 (Quinta-feira) - 8h**
 ## 📊 **MÓDULO 6: OBSERVABILIDADE NO LINUX (PARTE 1)**
 
 ### **Manhã (4h) - Introdução à Observabilidade e Elasticsearch**
@@ -326,21 +315,16 @@
 
 - **15:00-15:30** | **Coffee Break**
 
-- **15:30-17:00** | **Integração ELK**
+- **15:30-16:00** | **Integração ELK**
   - Configuração completa do ELK Stack
   - Exemplos de coleta, análise e visualização de logs
   - Melhores práticas para escalabilidade e desempenho
   - **HANDS-ON:** Stack ELK funcional
 
-- **17:00-18:00** | **Prática e Troubleshooting**
-  - **HANDS-ON:** Resolução de problemas comuns
-
----
-
-### **DIA 9 - 16/10/2025 (8h)**
+### **DIA 10 - 17/10/2025 (Sexta-feira) - 4h**
 ## 📊 **MÓDULO 6: OBSERVABILIDADE NO LINUX (PARTE 2)**
 
-### **Manhã (4h) - Kibana e Visualização**
+### **Manhã (4h) - Kibana e Ferramentas Complementares**
 - **08:00-10:00** | **Kibana**
   - Introdução ao Kibana
   - Instalação e configuração básica
@@ -351,55 +335,62 @@
 
 - **10:00-10:30** | **Coffee Break**
 
-- **10:30-12:00** | **Alertas e Relatórios**
-  - Alertas e relatórios
-  - Configuração de alertas
-  - Watcher para monitoramento proativo
-  - Geração de relatórios
-  - **HANDS-ON:** Sistema de alertas completo
-
-### **Tarde (4h) - Integração ELK e Ferramentas Complementares**
-- **13:00-15:00** | **Integração do ELK Stack**
-  - Configuração completa do ELK Stack
-  - Exemplos de coleta, análise e visualização de logs
-  - Melhores práticas para escalabilidade e desempenho
-  - **HANDS-ON:** Stack ELK funcional completo
-
-- **15:00-15:30** | **Coffee Break**
-
-- **15:30-17:00** | **Ferramentas Complementares de Observabilidade**
+- **10:30-12:00** | **Ferramentas Complementares de Observabilidade**
   - Introdução ao Prometheus e Grafana
   - Integração de métricas com Prometheus
   - Criação de dashboards no Grafana
   - Análise de logs em conjunto com métricas e traces
   - **HANDS-ON:** Dashboards de monitoramento completos
 
-- **17:00-18:00** | **Prática Módulo 6 e Certificação**
+### **Tarde (4h) - Prática Final e Encerramento**
+- **13:00-15:00** | **Prática Módulo 6**
   - **HANDS-ON:** Implementação de observabilidade completa
+  - Consolidação de todos os conceitos aprendidos
+
+- **15:00-15:30** | **Coffee Break**
+
+- **15:30-16:00** | **Encerramento**
   - Apresentação de projetos
-  - Entrega de certificados
+  - Avaliação do treinamento
+  - Fechamento do curso
 
 ---
 
 ## 🛠️ **INFRAESTRUTURA NECESSÁRIA**
 
-### **Por Participante:**
-- 1 Laptop/Desktop com mínimo 8GB RAM
-- 16GB RAM recomendado para VMs
-- 100GB espaço em disco livre
-- Acesso à internet estável
+### **Ambiente AWS:**
+- **Máquinas Virtuais EC2** para cada participante
+- **Instâncias t3.medium** (2 vCPU, 4GB RAM) como padrão
+- **Instâncias t3.large** (2 vCPU, 8GB RAM) para módulos de observabilidade
+- **Storage EBS** de 50GB por instância
+- **VPC isolada** para laboratórios práticos
+- **Security Groups** configurados para acesso SSH e web
 
-### **Software Necessário:**
-- VirtualBox ou VMware Workstation
-- Distribuições Linux (Ubuntu Server, CentOS, Debian)
-- Docker Desktop
-- Visual Studio Code ou editor preferido
-- Navegador web moderno
+### **Distribuições Linux Disponíveis:**
+- **Ubuntu Server 22.04 LTS** (principal)
+- **CentOS 8 Stream** (alternativa)
+- **Amazon Linux 2** (específica AWS)
+- **Debian 11** (opcional)
 
-### **Laboratório Virtual:**
-- 3 VMs por participante (Servidor, Cliente, Monitoramento)
-- Rede isolada para práticas
-- Acesso a repositórios de software
+### **Software Pré-instalado:**
+- **Docker e Docker Compose**
+- **Ansible** para automação
+- **Git** para controle de versão
+- **Python 3** e pip
+- **Node.js** (para ferramentas de observabilidade)
+- **Java 11** (para Elasticsearch)
+
+### **Ferramentas de Desenvolvimento:**
+- **Visual Studio Code** (via browser)
+- **Terminal web** integrado
+- **Navegador web** moderno
+- **Acesso SSH** via terminal local
+
+### **Laboratório Virtual por Participante:**
+- **3 instâncias EC2** (Servidor, Cliente, Monitoramento)
+- **Rede privada** isolada para práticas
+- **Acesso à internet** para downloads e atualizações
+- **Backup automático** das configurações
 
 ---
 
@@ -421,26 +412,9 @@
 - Repositório Git com materiais
 - Vídeos de demonstração
 - Fóruns de discussão
-- Suporte pós-treinamento
 
 ---
 
-## 🎓 **CERTIFICAÇÃO**
-
-- **Certificado de Conclusão:** Para participantes com 80% de presença
-- **Certificado de Excelência:** Para participantes com 90% de presença + projeto final
-- **Badges Digitais:** Competências específicas validadas
-
----
-
-## 📞 **SUPORTE PÓS-TREINAMENTO**
-
-- **30 dias de suporte técnico** via email/chat
-- **Acesso ao repositório** de materiais por 6 meses
-- **Comunidade online** para networking
-- **Sessões de revisão** mensais (opcional)
-
----
 
 ## 🏆 **RESULTADOS ESPERADOS**
 
