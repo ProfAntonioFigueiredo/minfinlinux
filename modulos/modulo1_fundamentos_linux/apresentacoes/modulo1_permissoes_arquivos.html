@@ -1,0 +1,346 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+    <head>
+        <title>Módulo 1: Permissões de Arquivos e Diretórios - MINFIN Angola</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <style type="text/css">
+            body {
+                margin: 0;
+                padding: 0;
+                background-color: #14191C;
+                font-family: Arial, sans-serif;
+            }
+            .container {
+                max-width: 600px;
+                margin: 0 auto;
+                background: #000000;
+            }
+            .header {
+                background: #000000;
+                padding: 20px 0;
+            }
+            .content {
+                padding: 40px 25px;
+                color: #FFFFFF;
+            }
+            .title {
+                font-size: 24px;
+                font-weight: bold;
+                color: #ED145B;
+                text-transform: uppercase;
+                margin-bottom: 20px;
+            }
+            .subtitle {
+                font-size: 19px;
+                color: #D6F0FF;
+                margin-bottom: 15px;
+            }
+            .text {
+                font-size: 17px;
+                line-height: 25px;
+                color: #ACC1CC;
+                margin-bottom: 15px;
+            }
+            .highlight {
+                color: #FFFFFF;
+                font-weight: bold;
+            }
+            .bullet-point {
+                display: flex;
+                align-items: flex-start;
+                margin-bottom: 15px;
+            }
+            .bullet {
+                color: #ED145B;
+                font-size: 19px;
+                margin-right: 10px;
+                margin-top: 2px;
+            }
+            .bullet-text {
+                color: #ACC1CC;
+                font-size: 17px;
+                line-height: 25px;
+            }
+            .section {
+                margin-bottom: 30px;
+            }
+            .code-block {
+                background: #1a1a1a;
+                border: 1px solid #ED145B;
+                border-radius: 5px;
+                padding: 15px;
+                margin: 15px 0;
+                font-family: 'Courier New', monospace;
+                font-size: 14px;
+                color: #00FF00;
+                overflow-x: auto;
+            }
+            .permission-table {
+                background: #1a1a1a;
+                border: 1px solid #ED145B;
+                border-radius: 5px;
+                padding: 15px;
+                margin: 15px 0;
+            }
+            .permission-table th, .permission-table td {
+                padding: 8px;
+                text-align: left;
+                border-bottom: 1px solid #333;
+            }
+            .permission-table th {
+                color: #ED145B;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <div style="text-align: center;">
+                    <h1 style="color: #ED145B; font-size: 28px; margin: 0; text-transform: uppercase;">🔐 PERMISSÕES DE ARQUIVOS</h1>
+                    <p style="color: #ACC1CC; font-size: 16px; margin: 10px 0 0 0;">Ministério das Finanças de Angola - 2025</p>
+                </div>
+            </div>
+            
+            <div class="content">
+                <div class="title">PERMISSÕES DE ARQUIVOS E DIRETÓRIOS</div>
+                
+                <div class="section">
+                    <div class="subtitle">Conceitos Fundamentais</div>
+                    <div class="text">
+                        As permissões no Linux controlam <span class="highlight">quem pode fazer o quê</span> com arquivos e diretórios. 
+                        Cada arquivo possui três tipos de permissões para três categorias de usuários.
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Tipos de Permissões</div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text"><span class="highlight">r (read)</span> - Leitura: visualizar conteúdo</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text"><span class="highlight">w (write)</span> - Escrita: modificar conteúdo</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text"><span class="highlight">x (execute)</span> - Execução: executar arquivo</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Categorias de Usuários</div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text"><span class="highlight">u (user)</span> - Proprietário do arquivo</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text"><span class="highlight">g (group)</span> - Grupo do arquivo</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text"><span class="highlight">o (others)</span> - Outros usuários</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Representação Numérica</div>
+                    <div class="permission-table">
+                        <table style="width: 100%; color: #ACC1CC;">
+                            <tr>
+                                <th>Permissão</th>
+                                <th>Binário</th>
+                                <th>Decimal</th>
+                                <th>Descrição</th>
+                            </tr>
+                            <tr>
+                                <td>---</td>
+                                <td>000</td>
+                                <td>0</td>
+                                <td>Nenhuma permissão</td>
+                            </tr>
+                            <tr>
+                                <td>--x</td>
+                                <td>001</td>
+                                <td>1</td>
+                                <td>Apenas execução</td>
+                            </tr>
+                            <tr>
+                                <td>-w-</td>
+                                <td>010</td>
+                                <td>2</td>
+                                <td>Apenas escrita</td>
+                            </tr>
+                            <tr>
+                                <td>-wx</td>
+                                <td>011</td>
+                                <td>3</td>
+                                <td>Escrita + Execução</td>
+                            </tr>
+                            <tr>
+                                <td>r--</td>
+                                <td>100</td>
+                                <td>4</td>
+                                <td>Apenas leitura</td>
+                            </tr>
+                            <tr>
+                                <td>r-x</td>
+                                <td>101</td>
+                                <td>5</td>
+                                <td>Leitura + Execução</td>
+                            </tr>
+                            <tr>
+                                <td>rw-</td>
+                                <td>110</td>
+                                <td>6</td>
+                                <td>Leitura + Escrita</td>
+                            </tr>
+                            <tr>
+                                <td>rwx</td>
+                                <td>111</td>
+                                <td>7</td>
+                                <td>Todas as permissões</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Comando chmod</div>
+                    <div class="text">
+                        O comando <span class="highlight">chmod</span> altera as permissões de arquivos e diretórios.
+                    </div>
+                    
+                    <div class="code-block">
+# Sintaxe: chmod [opções] permissões arquivo
+
+# Exemplos com notação simbólica:
+chmod u+x arquivo.txt          # Adiciona execução para o usuário
+chmod g-w arquivo.txt          # Remove escrita do grupo
+chmod o+r arquivo.txt          # Adiciona leitura para outros
+chmod u=rwx,g=rx,o=r arquivo.txt  # Define permissões específicas
+
+# Exemplos com notação numérica:
+chmod 755 arquivo.txt          # rwxr-xr-x
+chmod 644 arquivo.txt          # rw-r--r--
+chmod 777 arquivo.txt          # rwxrwxrwx
+chmod 600 arquivo.txt          # rw-------
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Comando chown</div>
+                    <div class="text">
+                        O comando <span class="highlight">chown</span> altera o proprietário e grupo de arquivos.
+                    </div>
+                    
+                    <div class="code-block">
+# Sintaxe: chown [opções] proprietário[:grupo] arquivo
+
+# Exemplos:
+chown usuario arquivo.txt       # Altera proprietário
+chown usuario:grupo arquivo.txt # Altera proprietário e grupo
+chown :grupo arquivo.txt        # Altera apenas o grupo
+chown -R usuario diretorio/     # Recursivo para diretórios
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Comando chgrp</div>
+                    <div class="text">
+                        O comando <span class="highlight">chgrp</span> altera apenas o grupo de arquivos.
+                    </div>
+                    
+                    <div class="code-block">
+# Sintaxe: chgrp [opções] grupo arquivo
+
+# Exemplos:
+chgrp administradores arquivo.txt    # Altera grupo
+chgrp -R usuarios diretorio/         # Recursivo
+chgrp --reference=arquivo1 arquivo2  # Copia grupo de outro arquivo
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Exercícios Práticos</div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">1.</div>
+                        <div class="bullet-text">Criar arquivo e verificar permissões padrão</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">2.</div>
+                        <div class="bullet-text">Alterar permissões usando notação simbólica</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">3.</div>
+                        <div class="bullet-text">Alterar permissões usando notação numérica</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">4.</div>
+                        <div class="bullet-text">Alterar proprietário e grupo de arquivos</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">5.</div>
+                        <div class="bullet-text">Aplicar permissões recursivamente em diretórios</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Comandos de Verificação</div>
+                    <div class="code-block">
+# Verificar permissões detalhadas:
+ls -l arquivo.txt
+
+# Verificar permissões de diretório:
+ls -ld diretorio/
+
+# Verificar permissões recursivamente:
+ls -la diretorio/
+
+# Verificar proprietário e grupo:
+stat arquivo.txt
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Boas Práticas</div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text">Use permissões mínimas necessárias</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text">Evite permissões 777 em produção</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text">Verifique permissões antes de alterar</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text">Use grupos para organizar permissões</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
