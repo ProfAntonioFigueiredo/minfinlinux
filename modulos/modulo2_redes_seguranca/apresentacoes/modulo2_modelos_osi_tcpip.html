@@ -1,0 +1,382 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+    <head>
+        <title>Módulo 2: Modelos OSI e TCP/IP - MINFIN Angola</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <style type="text/css">
+            body {
+                margin: 0;
+                padding: 0;
+                background-color: #14191C;
+                font-family: Arial, sans-serif;
+            }
+            .container {
+                max-width: 600px;
+                margin: 0 auto;
+                background: #000000;
+            }
+            .header {
+                background: #000000;
+                padding: 20px 0;
+            }
+            .content {
+                padding: 40px 25px;
+                color: #FFFFFF;
+            }
+            .title {
+                font-size: 24px;
+                font-weight: bold;
+                color: #ED145B;
+                text-transform: uppercase;
+                margin-bottom: 20px;
+            }
+            .subtitle {
+                font-size: 19px;
+                color: #D6F0FF;
+                margin-bottom: 15px;
+            }
+            .text {
+                font-size: 17px;
+                line-height: 25px;
+                color: #ACC1CC;
+                margin-bottom: 15px;
+            }
+            .highlight {
+                color: #FFFFFF;
+                font-weight: bold;
+            }
+            .bullet-point {
+                display: flex;
+                align-items: flex-start;
+                margin-bottom: 15px;
+            }
+            .bullet {
+                color: #ED145B;
+                font-size: 19px;
+                margin-right: 10px;
+                margin-top: 2px;
+            }
+            .bullet-text {
+                color: #ACC1CC;
+                font-size: 17px;
+                line-height: 25px;
+            }
+            .section {
+                margin-bottom: 30px;
+            }
+            .code-block {
+                background: #1a1a1a;
+                border: 1px solid #ED145B;
+                border-radius: 5px;
+                padding: 15px;
+                margin: 15px 0;
+                font-family: 'Courier New', monospace;
+                font-size: 14px;
+                color: #00FF00;
+                overflow-x: auto;
+            }
+            .layer-table {
+                background: #1a1a1a;
+                border: 1px solid #ED145B;
+                border-radius: 5px;
+                padding: 15px;
+                margin: 15px 0;
+            }
+            .layer-table th, .layer-table td {
+                padding: 8px;
+                text-align: left;
+                border-bottom: 1px solid #333;
+            }
+            .layer-table th {
+                color: #ED145B;
+                font-weight: bold;
+            }
+            .layer-osi {
+                background: #2a1a3a;
+                border-left: 4px solid #ED145B;
+                padding: 10px;
+                margin: 10px 0;
+            }
+            .layer-tcpip {
+                background: #1a2a3a;
+                border-left: 4px solid #D6F0FF;
+                padding: 10px;
+                margin: 10px 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <div style="text-align: center;">
+                    <h1 style="color: #ED145B; font-size: 28px; margin: 0; text-transform: uppercase;">🌐 MODELOS OSI E TCP/IP</h1>
+                    <p style="color: #ACC1CC; font-size: 16px; margin: 10px 0 0 0;">Ministério das Finanças de Angola - 2025</p>
+                </div>
+            </div>
+            
+            <div class="content">
+                <div class="title">MODELOS DE REFERÊNCIA DE REDES</div>
+                
+                <div class="section">
+                    <div class="subtitle">Introdução aos Modelos de Rede</div>
+                    <div class="text">
+                        Os modelos de referência de rede são <span class="highlight">estruturas conceituais</span> que descrevem 
+                        como os dados são transmitidos através de uma rede. Eles dividem o processo de comunicação 
+                        em camadas lógicas, cada uma com responsabilidades específicas.
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Modelo OSI (Open Systems Interconnection)</div>
+                    <div class="text">
+                        O modelo OSI foi criado pela <span class="highlight">ISO (International Organization for Standardization)</span> 
+                        em 1984. É um modelo teórico de 7 camadas que serve como referência para entender 
+                        como os protocolos de rede funcionam.
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">As 7 Camadas do Modelo OSI</div>
+                    
+                    <div class="layer-table">
+                        <table style="width: 100%; color: #ACC1CC;">
+                            <tr>
+                                <th>Camada</th>
+                                <th>Nome</th>
+                                <th>Função Principal</th>
+                                <th>Exemplos</th>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>Aplicação</td>
+                                <td>Interface com usuário</td>
+                                <td>HTTP, FTP, SMTP</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>Apresentação</td>
+                                <td>Codificação, criptografia</td>
+                                <td>SSL, TLS, JPEG</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>Sessão</td>
+                                <td>Controle de sessão</td>
+                                <td>RPC, NetBIOS</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Transporte</td>
+                                <td>Controle de fluxo e erro</td>
+                                <td>TCP, UDP</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Rede</td>
+                                <td>Roteamento e endereçamento</td>
+                                <td>IP, ICMP, ARP</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Enlace</td>
+                                <td>Controle de acesso ao meio</td>
+                                <td>Ethernet, Wi-Fi</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Física</td>
+                                <td>Transmissão de bits</td>
+                                <td>Cabo, fibra óptica</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Modelo TCP/IP</div>
+                    <div class="text">
+                        O modelo TCP/IP é o <span class="highlight">modelo prático</span> usado na Internet. 
+                        Foi desenvolvido pelo Departamento de Defesa dos EUA e tem 4 camadas principais.
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">As 4 Camadas do Modelo TCP/IP</div>
+                    
+                    <div class="layer-table">
+                        <table style="width: 100%; color: #ACC1CC;">
+                            <tr>
+                                <th>Camada</th>
+                                <th>Nome</th>
+                                <th>Função Principal</th>
+                                <th>Protocolos</th>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Aplicação</td>
+                                <td>Serviços de rede</td>
+                                <td>HTTP, FTP, SMTP, DNS</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Transporte</td>
+                                <td>Controle de fluxo e erro</td>
+                                <td>TCP, UDP</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Internet</td>
+                                <td>Roteamento e endereçamento</td>
+                                <td>IP, ICMP, ARP</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Interface de Rede</td>
+                                <td>Acesso ao meio físico</td>
+                                <td>Ethernet, Wi-Fi</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Comparação OSI vs TCP/IP</div>
+                    
+                    <div class="layer-osi">
+                        <div class="subtitle" style="color: #ED145B; margin-bottom: 10px;">📊 Modelo OSI (7 Camadas)</div>
+                        <div class="text">
+                            <span class="highlight">Vantagens:</span> Modelo teórico completo, separação clara de responsabilidades<br>
+                            <span class="highlight">Desvantagens:</span> Complexo demais para implementação prática
+                        </div>
+                    </div>
+                    
+                    <div class="layer-tcpip">
+                        <div class="subtitle" style="color: #D6F0FF; margin-bottom: 10px;">🌐 Modelo TCP/IP (4 Camadas)</div>
+                        <div class="text">
+                            <span class="highlight">Vantagens:</span> Simples, prático, usado na Internet<br>
+                            <span class="highlight">Desvantagens:</span> Menos detalhado que o OSI
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Fluxo de Dados na Rede</div>
+                    <div class="text">
+                        Quando dados são enviados através da rede, eles passam por um processo de 
+                        <span class="highlight">encapsulamento</span> (adicionando cabeçalhos) na origem 
+                        e <span class="highlight">desencapsulamento</span> (removendo cabeçalhos) no destino.
+                    </div>
+                    
+                    <div class="code-block">
+# Exemplo de encapsulamento TCP/IP:
+
+Aplicação: "Hello World"
+    ↓
+Transporte: [TCP Header] + "Hello World"
+    ↓
+Internet: [IP Header] + [TCP Header] + "Hello World"
+    ↓
+Interface: [Ethernet Header] + [IP Header] + [TCP Header] + "Hello World"
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Protocolos por Camada</div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text"><span class="highlight">Aplicação:</span> HTTP, HTTPS, FTP, SMTP, DNS, SSH</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text"><span class="highlight">Transporte:</span> TCP (confiável), UDP (rápido)</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text"><span class="highlight">Internet:</span> IPv4, IPv6, ICMP, ARP</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text"><span class="highlight">Interface:</span> Ethernet, Wi-Fi, PPP</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Comandos de Diagnóstico</div>
+                    
+                    <div class="code-block">
+# Verificar conectividade (Camada 3 - Internet):
+ping google.com
+
+# Verificar rota (Camada 3 - Internet):
+traceroute google.com
+
+# Verificar portas (Camada 4 - Transporte):
+netstat -tuln
+
+# Verificar interfaces (Camada 1-2 - Interface):
+ip addr show
+ifconfig
+
+# Verificar tabela de roteamento (Camada 3 - Internet):
+ip route show
+route -n
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Cenários Práticos</div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">1.</div>
+                        <div class="bullet-text">Diagnosticar problema de conectividade usando camadas</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">2.</div>
+                        <div class="bullet-text">Identificar em qual camada está o problema</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">3.</div>
+                        <div class="bullet-text">Usar ferramentas específicas para cada camada</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">4.</div>
+                        <div class="bullet-text">Analisar cabeçalhos de protocolos</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Boas Práticas</div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text">Sempre diagnosticar de baixo para cima (físico → aplicação)</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text">Use ferramentas específicas para cada camada</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text">Entenda o fluxo de dados para troubleshooting</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text">Documente problemas por camada para referência futura</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

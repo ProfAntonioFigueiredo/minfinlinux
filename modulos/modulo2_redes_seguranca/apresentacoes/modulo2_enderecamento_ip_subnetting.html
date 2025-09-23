@@ -1,0 +1,477 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+    <head>
+        <title>Módulo 2: Endereçamento IP e Subnetting - MINFIN Angola</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <style type="text/css">
+            body {
+                margin: 0;
+                padding: 0;
+                background-color: #14191C;
+                font-family: Arial, sans-serif;
+            }
+            .container {
+                max-width: 600px;
+                margin: 0 auto;
+                background: #000000;
+            }
+            .header {
+                background: #000000;
+                padding: 20px 0;
+            }
+            .content {
+                padding: 40px 25px;
+                color: #FFFFFF;
+            }
+            .title {
+                font-size: 24px;
+                font-weight: bold;
+                color: #ED145B;
+                text-transform: uppercase;
+                margin-bottom: 20px;
+            }
+            .subtitle {
+                font-size: 19px;
+                color: #D6F0FF;
+                margin-bottom: 15px;
+            }
+            .text {
+                font-size: 17px;
+                line-height: 25px;
+                color: #ACC1CC;
+                margin-bottom: 15px;
+            }
+            .highlight {
+                color: #FFFFFF;
+                font-weight: bold;
+            }
+            .bullet-point {
+                display: flex;
+                align-items: flex-start;
+                margin-bottom: 15px;
+            }
+            .bullet {
+                color: #ED145B;
+                font-size: 19px;
+                margin-right: 10px;
+                margin-top: 2px;
+            }
+            .bullet-text {
+                color: #ACC1CC;
+                font-size: 17px;
+                line-height: 25px;
+            }
+            .section {
+                margin-bottom: 30px;
+            }
+            .code-block {
+                background: #1a1a1a;
+                border: 1px solid #ED145B;
+                border-radius: 5px;
+                padding: 15px;
+                margin: 15px 0;
+                font-family: 'Courier New', monospace;
+                font-size: 14px;
+                color: #00FF00;
+                overflow-x: auto;
+            }
+            .ip-table {
+                background: #1a1a1a;
+                border: 1px solid #ED145B;
+                border-radius: 5px;
+                padding: 15px;
+                margin: 15px 0;
+            }
+            .ip-table th, .ip-table td {
+                padding: 8px;
+                text-align: left;
+                border-bottom: 1px solid #333;
+            }
+            .ip-table th {
+                color: #ED145B;
+                font-weight: bold;
+            }
+            .ip-example {
+                background: #2a1a3a;
+                border-left: 4px solid #ED145B;
+                padding: 15px;
+                margin: 15px 0;
+                border-radius: 5px;
+            }
+            .calculation-box {
+                background: #1a2a3a;
+                border: 2px solid #D6F0FF;
+                border-radius: 8px;
+                padding: 20px;
+                margin: 20px 0;
+                text-align: center;
+            }
+            .binary-display {
+                font-family: 'Courier New', monospace;
+                font-size: 16px;
+                color: #00FF00;
+                background: #000;
+                padding: 10px;
+                border-radius: 5px;
+                margin: 10px 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <div style="text-align: center;">
+                    <h1 style="color: #ED145B; font-size: 28px; margin: 0; text-transform: uppercase;">🔢 ENDEREÇAMENTO IP E SUBNETTING</h1>
+                    <p style="color: #ACC1CC; font-size: 16px; margin: 10px 0 0 0;">Ministério das Finanças de Angola - 2025</p>
+                </div>
+            </div>
+            
+            <div class="content">
+                <div class="title">FUNDAMENTOS DE ENDEREÇAMENTO IP</div>
+                
+                <div class="section">
+                    <div class="subtitle">O que é um Endereço IP?</div>
+                    <div class="text">
+                        Um endereço IP (Internet Protocol) é um <span class="highlight">identificador único</span> 
+                        atribuído a cada dispositivo conectado a uma rede. É como um "endereço postal" 
+                        que permite que os dados encontrem o destino correto.
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Versões do Protocolo IP</div>
+                    
+                    <div class="ip-table">
+                        <table style="width: 100%; color: #ACC1CC;">
+                            <tr>
+                                <th>Versão</th>
+                                <th>Formato</th>
+                                <th>Exemplo</th>
+                                <th>Endereços Possíveis</th>
+                            </tr>
+                            <tr>
+                                <td>IPv4</td>
+                                <td>4 octetos (32 bits)</td>
+                                <td>192.168.1.1</td>
+                                <td>4.3 bilhões</td>
+                            </tr>
+                            <tr>
+                                <td>IPv6</td>
+                                <td>8 grupos de 16 bits</td>
+                                <td>2001:db8::1</td>
+                                <td>340 undecilhões</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Estrutura do IPv4</div>
+                    <div class="text">
+                        Um endereço IPv4 é composto por <span class="highlight">32 bits</span> divididos em 
+                        <span class="highlight">4 octetos</span> de 8 bits cada, representados em decimal.
+                    </div>
+                    
+                    <div class="ip-example">
+                        <div class="subtitle" style="color: #ED145B; margin-bottom: 10px;">📊 Exemplo: 192.168.1.1</div>
+                        <div class="binary-display">
+                            11000000.10101000.00000001.00000001
+                        </div>
+                        <div class="text">
+                            <span class="highlight">192</span> = 11000000 (binário)<br>
+                            <span class="highlight">168</span> = 10101000 (binário)<br>
+                            <span class="highlight">1</span> = 00000001 (binário)<br>
+                            <span class="highlight">1</span> = 00000001 (binário)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Classes de Endereços IPv4</div>
+                    
+                    <div class="ip-table">
+                        <table style="width: 100%; color: #ACC1CC;">
+                            <tr>
+                                <th>Classe</th>
+                                <th>Range</th>
+                                <th>Máscara Padrão</th>
+                                <th>Uso</th>
+                            </tr>
+                            <tr>
+                                <td>A</td>
+                                <td>1.0.0.0 - 126.255.255.255</td>
+                                <td>255.0.0.0 (/8)</td>
+                                <td>Redes grandes</td>
+                            </tr>
+                            <tr>
+                                <td>B</td>
+                                <td>128.0.0.0 - 191.255.255.255</td>
+                                <td>255.255.0.0 (/16)</td>
+                                <td>Redes médias</td>
+                            </tr>
+                            <tr>
+                                <td>C</td>
+                                <td>192.0.0.0 - 223.255.255.255</td>
+                                <td>255.255.255.0 (/24)</td>
+                                <td>Redes pequenas</td>
+                            </tr>
+                            <tr>
+                                <td>D</td>
+                                <td>224.0.0.0 - 239.255.255.255</td>
+                                <td>-</td>
+                                <td>Multicast</td>
+                            </tr>
+                            <tr>
+                                <td>E</td>
+                                <td>240.0.0.0 - 255.255.255.255</td>
+                                <td>-</td>
+                                <td>Experimental</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Endereços Especiais</div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text"><span class="highlight">127.0.0.1 (localhost):</span> Loopback - comunicação local</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text"><span class="highlight">0.0.0.0:</span> Qualquer endereço (wildcard)</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text"><span class="highlight">255.255.255.255:</span> Broadcast limitado</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text"><span class="highlight">10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16:</span> Privados (RFC 1918)</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Máscara de Sub-rede</div>
+                    <div class="text">
+                        A máscara de sub-rede define quais bits do endereço IP representam a 
+                        <span class="highlight">rede</span> e quais representam o <span class="highlight">host</span>.
+                    </div>
+                    
+                    <div class="ip-example">
+                        <div class="subtitle" style="color: #ED145B; margin-bottom: 10px;">📊 Exemplo: 192.168.1.1/24</div>
+                        <div class="text">
+                            <span class="highlight">IP:</span> 192.168.1.1<br>
+                            <span class="highlight">Máscara:</span> 255.255.255.0<br>
+                            <span class="highlight">Rede:</span> 192.168.1.0<br>
+                            <span class="highlight">Hosts:</span> 192.168.1.1 - 192.168.1.254<br>
+                            <span class="highlight">Broadcast:</span> 192.168.1.255
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Notação CIDR (Classless Inter-Domain Routing)</div>
+                    <div class="text">
+                        A notação CIDR usa <span class="highlight">/n</span> para indicar quantos bits 
+                        da máscara estão definidos como 1.
+                    </div>
+                    
+                    <div class="ip-table">
+                        <table style="width: 100%; color: #ACC1CC;">
+                            <tr>
+                                <th>CIDR</th>
+                                <th>Máscara</th>
+                                <th>Hosts Possíveis</th>
+                                <th>Exemplo</th>
+                            </tr>
+                            <tr>
+                                <td>/24</td>
+                                <td>255.255.255.0</td>
+                                <td>254</td>
+                                <td>192.168.1.0/24</td>
+                            </tr>
+                            <tr>
+                                <td>/25</td>
+                                <td>255.255.255.128</td>
+                                <td>126</td>
+                                <td>192.168.1.0/25</td>
+                            </tr>
+                            <tr>
+                                <td>/26</td>
+                                <td>255.255.255.192</td>
+                                <td>62</td>
+                                <td>192.168.1.0/26</td>
+                            </tr>
+                            <tr>
+                                <td>/27</td>
+                                <td>255.255.255.224</td>
+                                <td>30</td>
+                                <td>192.168.1.0/27</td>
+                            </tr>
+                            <tr>
+                                <td>/28</td>
+                                <td>255.255.255.240</td>
+                                <td>14</td>
+                                <td>192.168.1.0/28</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Cálculo de Sub-redes</div>
+                    <div class="text">
+                        Para calcular sub-redes, precisamos determinar:
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">1.</div>
+                        <div class="bullet-text">Quantas sub-redes são necessárias</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">2.</div>
+                        <div class="bullet-text">Quantos hosts por sub-rede</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">3.</div>
+                        <div class="bullet-text">Calcular a máscara apropriada</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">4.</div>
+                        <div class="bullet-text">Determinar os ranges de IPs</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Exemplo Prático de Subnetting</div>
+                    
+                    <div class="calculation-box">
+                        <div class="subtitle" style="color: #D6F0FF; margin-bottom: 15px;">🧮 EXEMPLO: Dividir 192.168.1.0/24 em 4 sub-redes</div>
+                        
+                        <div class="text">
+                            <span class="highlight">Rede original:</span> 192.168.1.0/24 (254 hosts)<br>
+                            <span class="highlight">Sub-redes necessárias:</span> 4<br>
+                            <span class="highlight">Bits emprestados:</span> 2 (2² = 4 sub-redes)<br>
+                            <span class="highlight">Nova máscara:</span> /26 (255.255.255.192)<br>
+                            <span class="highlight">Hosts por sub-rede:</span> 62 (2⁶ - 2)
+                        </div>
+                    </div>
+                    
+                    <div class="ip-table">
+                        <table style="width: 100%; color: #ACC1CC;">
+                            <tr>
+                                <th>Sub-rede</th>
+                                <th>Range de IPs</th>
+                                <th>Broadcast</th>
+                                <th>Hosts</th>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>192.168.1.1 - 192.168.1.62</td>
+                                <td>192.168.1.63</td>
+                                <td>62</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>192.168.1.65 - 192.168.1.126</td>
+                                <td>192.168.1.127</td>
+                                <td>62</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>192.168.1.129 - 192.168.1.190</td>
+                                <td>192.168.1.191</td>
+                                <td>62</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>192.168.1.193 - 192.168.1.254</td>
+                                <td>192.168.1.255</td>
+                                <td>62</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Comandos Linux para Endereçamento</div>
+                    
+                    <div class="code-block">
+# Verificar configuração de rede:
+ip addr show
+ifconfig
+
+# Configurar IP estático:
+sudo ip addr add 192.168.1.100/24 dev eth0
+sudo ip route add default via 192.168.1.1
+
+# Testar conectividade:
+ping 192.168.1.1
+ping google.com
+
+# Verificar roteamento:
+ip route show
+traceroute google.com
+
+# Verificar DNS:
+nslookup google.com
+dig google.com
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Ferramentas de Cálculo</div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text"><span class="highlight">Calculadoras online:</span> Subnet-calculator.com</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text"><span class="highlight">Comandos Linux:</span> ipcalc, sipcalc</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text"><span class="highlight">Scripts personalizados:</span> Bash, Python</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Boas Práticas</div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text">Use endereços privados para redes internas</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text">Planeje o crescimento futuro da rede</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text">Documente todas as sub-redes criadas</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text">Use DHCP para facilitar gerenciamento</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
