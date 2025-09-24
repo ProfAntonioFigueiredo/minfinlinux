@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administração de Sistemas - Módulo 4</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .presentation-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+        }
+        
+        .slide {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            padding: 2rem;
+            border-left: 5px solid #7c3aed;
+        }
+        
+        .slide h1 {
+            color: #7c3aed;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .slide h2 {
+            color: #6d28d9;
+            font-size: 1.8rem;
+            margin: 1.5rem 0 1rem 0;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 0.5rem;
+        }
+        
+        .slide h3 {
+            color: #374151;
+            font-size: 1.4rem;
+            margin: 1.2rem 0 0.8rem 0;
+        }
+        
+        .slide h4 {
+            color: #4b5563;
+            font-size: 1.2rem;
+            margin: 1rem 0 0.6rem 0;
+        }
+        
+        .slide p {
+            color: #4b5563;
+            margin-bottom: 1rem;
+        }
+        
+        .info-box {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 1px solid #d8b4fe;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid #7c3aed;
+        }
+        
+        .warning-box {
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+            border: 1px solid #fde68a;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid #f59e0b;
+        }
+        
+        .success-box {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border: 1px solid #bbf7d0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid #22c55e;
+        }
+        
+        .code-example {
+            background: #1f2937;
+            color: #f9fafb;
+            padding: 1.5rem;
+            border-radius: 8px;
+            font-family: 'Fira Code', 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin: 1rem 0;
+            overflow-x: auto;
+            border: 1px solid #374151;
+        }
+        
+        .command {
+            color: #10b981;
+            font-weight: bold;
+        }
+        
+        .comment {
+            color: #6b7280;
+            font-style: italic;
+        }
+        
+        .exercise-integration {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border: 1px solid #93c5fd;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid #3b82f6;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        th {
+            background: #f8fafc;
+            font-weight: 600;
+            color: #374151;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin: 0.5rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+        }
+        
+        .btn i {
+            font-size: 0.8rem;
+        }
+        
+        kbd {
+            background: #f3f4f6;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            padding: 0.2rem 0.4rem;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.8rem;
+            color: #374151;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: Título e Introdução -->
+        <div class="slide">
+            <h1><i class="fas fa-server"></i> Administração de Sistemas</h1>
+            <h2>Gerenciamento Avançado e Automação</h2>
+            
+            <div class="info-box">
+                <strong>🎯 Objetivo:</strong> Dominar o gerenciamento avançado de sistemas Linux, automação de tarefas, virtualização e containers para ambientes corporativos do Ministério das Finanças.
+            </div>
+            
+            <h3>📋 Conteúdo Programático</h3>
+            <ul>
+                <li><strong>Gerenciamento de Pacotes</strong> - APT, YUM, DNF e repositórios</li>
+                <li><strong>Automação de Tarefas</strong> - Cron, systemd timers e scripts</li>
+                <li><strong>Bash Scripting</strong> - Scripts avançados e automação</li>
+                <li><strong>Virtualização</strong> - KVM, QEMU e máquinas virtuais</li>
+                <li><strong>Containers</strong> - Docker e orquestração</li>
+                <li><strong>Monitoramento</strong> - Logs, métricas e alertas</li>
+                <li><strong>Backup e Recuperação</strong> - Estratégias e implementação</li>
+            </ul>
+            
+            <div class="success-box">
+                <strong>⏱️ Duração:</strong> 10 horas | <strong>📊 Nível:</strong> Avançado | <strong>🏛️ Público:</strong> Administradores MINFIN
+            </div>
+        </div>
+
+        <!-- Slide 2: Gerenciamento de Pacotes -->
+        <div class="slide">
+            <h2><i class="fas fa-box"></i> Gerenciamento de Pacotes</h2>
+            
+            <h3>Sistemas de Gerenciamento</h3>
+            <div class="info-box">
+                <strong>📦 Gerenciamento de Pacotes:</strong> Sistemas para instalar, atualizar e remover software de forma controlada e segura.
+            </div>
+            
+            <h3>APT (Advanced Package Tool)</h3>
+            <div class="code-example">
+<span class="command"># Atualizar lista de pacotes</span><br>
+<span class="command">sudo apt update</span><br>
+<span class="command"># Atualizar sistema</span><br>
+<span class="command">sudo apt upgrade</span><br>
+<span class="command"># Instalar pacote</span><br>
+<span class="command">sudo apt install apache2</span><br>
+<span class="command"># Remover pacote</span><br>
+<span class="command">sudo apt remove apache2</span><br>
+<span class="command"># Limpar cache</span><br>
+<span class="command">sudo apt clean</span><br>
+<span class="command"># Buscar pacotes</span><br>
+<span class="command">apt search nginx</span><br>
+<span class="command"># Informações do pacote</span><br>
+<span class="command">apt show nginx</span>
+            </div>
+            
+            <h3>Repositórios Personalizados</h3>
+            <div class="code-example">
+<span class="command"># Adicionar repositório</span><br>
+<span class="command">sudo add-apt-repository ppa:nginx/stable</span><br>
+<span class="command"># Adicionar repositório manualmente</span><br>
+<span class="command">echo "deb http://archive.ubuntu.com/ubuntu/ focal main" | sudo tee /etc/apt/sources.list.d/minfin.list</span><br>
+<span class="command"># Adicionar chave GPG</span><br>
+<span class="command">wget -qO - https://example.com/key.gpg | sudo apt-key add -</span><br>
+<span class="command"># Atualizar após adicionar repositório</span><br>
+<span class="command">sudo apt update</span>
+            </div>
+            
+            <div class="exercise-integration">
+                <h4><i class="fas fa-code"></i> Exercício Prático: Gerenciamento MINFIN</h4>
+                <p>Vamos configurar repositórios e pacotes para o MINFIN:</p>
+                <div class="code-example">
+<span class="command"># 1. Atualizar sistema</span><br>
+<span class="command">sudo apt update && sudo apt upgrade -y</span><br>
+<span class="command"># 2. Instalar pacotes essenciais</span><br>
+<span class="command">sudo apt install -y curl wget git vim htop tree</span><br>
+<span class="command"># 3. Adicionar repositório do Docker</span><br>
+<span class="command">curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg</span><br>
+<span class="command">echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list</span><br>
+<span class="command"># 4. Atualizar e instalar Docker</span><br>
+<span class="command">sudo apt update</span><br>
+<span class="command">sudo apt install -y docker-ce docker-ce-cli containerd.io</span><br>
+<span class="command"># 5. Verificar instalação</span><br>
+<span class="command">docker --version</span>
+                </div>
+                <button class="btn" onclick="executeExercise('package-management')">
+                    <i class="fas fa-play"></i> Executar Gerenciamento
+                </button>
+                <button class="btn" onclick="copyCode('package-management')">
+                    <i class="fas fa-copy"></i> Copiar Código
+                </button>
+            </div>
+        </div>
+
+        <!-- Slide 3: Automação de Tarefas -->
+        <div class="slide">
+            <h2><i class="fas fa-robot"></i> Automação de Tarefas</h2>
+            
+            <h3>Cron - Agendamento de Tarefas</h3>
+            <div class="info-box">
+                <strong>⏰ Cron:</strong> Sistema de agendamento de tarefas que executa comandos em horários específicos.
+            </div>
+            
+            <div class="code-example">
+<span class="command"># Editar crontab do usuário</span><br>
+<span class="command">crontab -e</span><br>
+<span class="command"># Editar crontab do root</span><br>
+<span class="command">sudo crontab -e</span><br>
+<span class="command"># Listar crontab</span><br>
+<span class="command">crontab -l</span><br>
+<span class="command"># Exemplos de agendamento:</span><br>
+<span class="command"># 0 2 * * * /usr/local/bin/backup-minfin.sh</span> <span class="comment"># Diário às 2h</span><br>
+<span class="command"># */15 * * * * /usr/local/bin/monitor-sistema.sh</span> <span class="comment"># A cada 15 min</span><br>
+<span class="command"># 0 9 * * 1 /usr/local/bin/relatorio-semanal.sh</span> <span class="comment"># Segunda às 9h</span>
+            </div>
+            
+            <h3>Systemd Timers</h3>
+            <div class="code-example">
+<span class="command"># Criar timer systemd</span><br>
+<span class="command">sudo nano /etc/systemd/system/backup-minfin.timer</span><br>
+<span class="command"># Conteúdo do timer:</span><br>
+<span class="command"># [Unit]</span><br>
+<span class="command"># Description=Backup MINFIN Timer</span><br>
+<span class="command"># [Timer]</span><br>
+<span class="command"># OnCalendar=daily</span><br>
+<span class="command"># Persistent=true</span><br>
+<span class="command"># [Install]</span><br>
+<span class="command"># WantedBy=timers.target</span><br>
+<span class="command"># Habilitar timer</span><br>
+<span class="command">sudo systemctl enable backup-minfin.timer</span><br>
+<span class="command">sudo systemctl start backup-minfin.timer</span>
+            </div>
+            
+            <div class="exercise-integration">
+                <h4><i class="fas fa-code"></i> Exercício Prático: Automação MINFIN</h4>
+                <p>Vamos criar automações para o Ministério das Finanças:</p>
+                <div class="code-example">
+<span class="command"># 1. Criar script de backup</span><br>
+<span class="command">sudo tee /usr/local/bin/backup-minfin.sh << 'EOF'</span><br>
+<span class="command">#!/bin/bash</span><br>
+<span class="command"># Script de backup MINFIN</span><br>
+<span class="command">BACKUP_DIR="/backup/minfin"</span><br>
+<span class="command">DATE=$(date +%Y%m%d_%H%M%S)</span><br>
+<span class="command">mkdir -p $BACKUP_DIR</span><br>
+<span class="command">tar -czf $BACKUP_DIR/minfin_$DATE.tar.gz /var/www /etc /home</span><br>
+<span class="command">echo "Backup concluído: $DATE" >> /var/log/backup-minfin.log</span><br>
+<span class="command">EOF</span><br>
+<span class="command"># 2. Dar permissão de execução</span><br>
+<span class="command">sudo chmod +x /usr/local/bin/backup-minfin.sh</span><br>
+<span class="command"># 3. Configurar cron</span><br>
+<span class="command">echo "0 2 * * * /usr/local/bin/backup-minfin.sh" | sudo crontab -</span><br>
+<span class="command"># 4. Verificar cron</span><br>
+<span class="command">sudo crontab -l</span>
+                </div>
+                <button class="btn" onclick="executeExercise('automation-setup')">
+                    <i class="fas fa-play"></i> Executar Automação
+                </button>
+                <button class="btn" onclick="copyCode('automation-setup')">
+                    <i class="fas fa-copy"></i> Copiar Código
+                </button>
+            </div>
+        </div>
+
+        <!-- Slide 4: Bash Scripting Avançado -->
+        <div class="slide">
+            <h2><i class="fas fa-code"></i> Bash Scripting Avançado</h2>
+            
+            <h3>Estruturas de Controle</h3>
+            <div class="code-example">
+<span class="command"># Estrutura if-else</span><br>
+<span class="command">if [ -f /etc/passwd ]; then</span><br>
+<span class="command">    echo "Arquivo existe"</span><br>
+<span class="command">else</span><br>
+<span class="command">    echo "Arquivo não existe"</span><br>
+<span class="command">fi</span><br>
+<span class="command"># Loop for</span><br>
+<span class="command">for i in {1..10}; do</span><br>
+<span class="command">    echo "Iteração $i"</span><br>
+<span class="command">done</span><br>
+<span class="command"># Loop while</span><br>
+<span class="command">counter=1</span><br>
+<span class="command">while [ $counter -le 5 ]; do</span><br>
+<span class="command">    echo "Contador: $counter"</span><br>
+<span class="command">    ((counter++))</span><br>
+<span class="command">done</span>
+            </div>
+            
+            <h3>Funções e Parâmetros</h3>
+            <div class="code-example">
+<span class="command"># Definir função</span><br>
+<span class="command">backup_file() {</span><br>
+<span class="command">    local file=$1</span><br>
+<span class="command">    local backup_dir=$2</span><br>
+<span class="command">    if [ -f "$file" ]; then</span><br>
+<span class="command">        cp "$file" "$backup_dir/"</span><br>
+<span class="command">        echo "Backup de $file concluído"</span><br>
+<span class="command">    else</span><br>
+<span class="command">        echo "Arquivo $file não encontrado"</span><br>
+<span class="command">    fi</span><br>
+<span class="command">}</span><br>
+<span class="command"># Chamar função</span><br>
+<span class="command">backup_file "/etc/passwd" "/backup"</span>
+            </div>
+            
+            <div class="exercise-integration">
+                <h4><i class="fas fa-code"></i> Exercício Prático: Script MINFIN</h4>
+                <p>Vamos criar um script completo para o MINFIN:</p>
+                <div class="code-example">
+<span class="command"># 1. Criar script de monitoramento</span><br>
+<span class="command">sudo tee /usr/local/bin/monitor-minfin.sh << 'EOF'</span><br>
+<span class="command">#!/bin/bash</span><br>
+<span class="command"># Script de monitoramento MINFIN</span><br>
+<span class="command">LOG_FILE="/var/log/minfin-monitor.log"</span><br>
+<span class="command">check_service() {</span><br>
+<span class="command">    local service=$1</span><br>
+<span class="command">    if systemctl is-active --quiet $service; then</span><br>
+<span class="command">        echo "$(date): $service está ativo" >> $LOG_FILE</span><br>
+<span class="command">    else</span><br>
+<span class="command">        echo "$(date): $service está inativo" >> $LOG_FILE</span><br>
+<span class="command">        systemctl start $service</span><br>
+<span class="command">    fi</span><br>
+<span class="command">}</span><br>
+<span class="command"># Verificar serviços</span><br>
+<span class="command">check_service "apache2"</span><br>
+<span class="command">check_service "mysql"</span><br>
+<span class="command">check_service "ssh"</span><br>
+<span class="command">EOF</span><br>
+<span class="command"># 2. Dar permissão e testar</span><br>
+<span class="command">sudo chmod +x /usr/local/bin/monitor-minfin.sh</span><br>
+<span class="command">sudo /usr/local/bin/monitor-minfin.sh</span>
+                </div>
+                <button class="btn" onclick="executeExercise('bash-scripting')">
+                    <i class="fas fa-play"></i> Executar Script
+                </button>
+                <button class="btn" onclick="copyCode('bash-scripting')">
+                    <i class="fas fa-copy"></i> Copiar Código
+                </button>
+            </div>
+        </div>
+
+        <!-- Slide 5: Virtualização e Containers -->
+        <div class="slide">
+            <h2><i class="fas fa-cube"></i> Virtualização e Containers</h2>
+            
+            <h3>KVM e QEMU</h3>
+            <div class="info-box">
+                <strong>🖥️ KVM/QEMU:</strong> Solução de virtualização nativa do Linux para criar e gerenciar máquinas virtuais.
+            </div>
+            
+            <div class="code-example">
+<span class="command"># Instalar KVM</span><br>
+<span class="command">sudo apt update && sudo apt install -y qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils</span><br>
+<span class="command"># Adicionar usuário ao grupo</span><br>
+<span class="command">sudo usermod -aG libvirt $USER</span><br>
+<span class="command"># Verificar virtualização</span><br>
+<span class="command">kvm-ok</span><br>
+<span class="command"># Listar VMs</span><br>
+<span class="command">virsh list --all</span><br>
+<span class="command"># Criar VM</span><br>
+<span class="command">virt-install --name minfin-vm --ram 2048 --disk path=/var/lib/libvirt/images/minfin-vm.qcow2,size=20 --cdrom /path/to/ubuntu.iso</span>
+            </div>
+            
+            <h3>Docker e Containers</h3>
+            <div class="code-example">
+<span class="command"># Instalar Docker</span><br>
+<span class="command">sudo apt update && sudo apt install -y docker.io</span><br>
+<span class="command"># Adicionar usuário ao grupo docker</span><br>
+<span class="command">sudo usermod -aG docker $USER</span><br>
+<span class="command"># Iniciar Docker</span><br>
+<span class="command">sudo systemctl start docker</span><br>
+<span class="command">sudo systemctl enable docker</span><br>
+<span class="command"># Executar container</span><br>
+<span class="command">docker run -d --name minfin-web -p 80:80 nginx</span><br>
+<span class="command"># Listar containers</span><br>
+<span class="command">docker ps -a</span><br>
+<span class="command"># Parar container</span><br>
+<span class="command">docker stop minfin-web</span>
+            </div>
+            
+            <div class="exercise-integration">
+                <h4><i class="fas fa-code"></i> Exercício Prático: Containers MINFIN</h4>
+                <p>Vamos configurar containers para o MINFIN:</p>
+                <div class="code-example">
+<span class="command"># 1. Instalar Docker</span><br>
+<span class="command">sudo apt update && sudo apt install -y docker.io</span><br>
+<span class="command"># 2. Configurar Docker</span><br>
+<span class="command">sudo systemctl start docker</span><br>
+<span class="command">sudo systemctl enable docker</span><br>
+<span class="command">sudo usermod -aG docker $USER</span><br>
+<span class="command"># 3. Criar container web</span><br>
+<span class="command">docker run -d --name minfin-web -p 8080:80 nginx</span><br>
+<span class="command"># 4. Criar container de banco de dados</span><br>
+<span class="command">docker run -d --name minfin-db -e MYSQL_ROOT_PASSWORD=minfin2025 mysql:8.0</span><br>
+<span class="command"># 5. Verificar containers</span><br>
+<span class="command">docker ps</span><br>
+<span class="command"># 6. Testar acesso</span><br>
+<span class="command">curl http://localhost:8080</span>
+                </div>
+                <button class="btn" onclick="executeExercise('container-setup')">
+                    <i class="fas fa-play"></i> Executar Containers
+                </button>
+                <button class="btn" onclick="copyCode('container-setup')">
+                    <i class="fas fa-copy"></i> Copiar Código
+                </button>
+            </div>
+        </div>
+
+        <!-- Slide 6: Resumo e Próximos Passos -->
+        <div class="slide">
+            <h2><i class="fas fa-graduation-cap"></i> Resumo do Módulo 4</h2>
+            
+            <h3>Conceitos Dominados</h3>
+            <div class="success-box">
+                <ul>
+                    <li>✅ <strong>Gerenciamento de Pacotes:</strong> APT, repositórios e dependências</li>
+                    <li>✅ <strong>Automação:</strong> Cron, systemd timers e scripts</li>
+                    <li>✅ <strong>Bash Scripting:</strong> Scripts avançados e funções</li>
+                    <li>✅ <strong>Virtualização:</strong> KVM, QEMU e VMs</li>
+                    <li>✅ <strong>Containers:</strong> Docker e orquestração</li>
+                    <li>✅ <strong>Monitoramento:</strong> Logs, métricas e alertas</li>
+                </ul>
+            </div>
+            
+            <h3>Comandos Essenciais para MINFIN</h3>
+            <div class="code-example">
+<span class="command"># Gerenciamento de pacotes</span><br>
+<span class="command">sudo apt update && sudo apt upgrade</span><br>
+<span class="command"># Automação</span><br>
+<span class="command">crontab -e</span><br>
+<span class="command"># Containers</span><br>
+<span class="command">docker run -d --name minfin-app nginx</span><br>
+<span class="command"># Monitoramento</span><br>
+<span class="command">systemctl status apache2</span>
+            </div>
+            
+            <div class="info-box">
+                <strong>🎯 Próximos Módulos:</strong> Módulos 5 e 6 - Segurança de Redes e Observabilidade para completar a formação.
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/exercises.js"></script>
+</body>
+</html>

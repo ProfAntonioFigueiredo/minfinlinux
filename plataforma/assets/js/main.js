@@ -117,8 +117,86 @@ const AppState = {
                     file: '../modulos/modulo2_redes_seguranca/exercicios/exercicio_cenarios_praticos.sh'
                 }
             ]
+        },
+        3: {
+            title: 'Módulo 3: Administração de Redes',
+            description: 'Configuração avançada de redes, servidores DNS, DHCP, Web e serviços',
+            duration: '10 horas',
+            level: 'Avançado',
+            presentations: [
+                {
+                    id: 'redes-completo',
+                    title: 'Administração de Redes - Completo',
+                    file: '../modulos/modulo3_administracao_redes_completo.html'
+                }
+            ],
+            exercises: [
+                {
+                    id: 'configuracao-rede-avancada',
+                    title: 'Configuração de Rede Avançada',
+                    description: 'VLANs, bonding e interfaces múltiplas',
+                    file: '../modulos/modulo3_administracao_redes/exercicios/exercicio_rede_avancada.sh'
+                },
+                {
+                    id: 'servidor-dns',
+                    title: 'Configuração de Servidor DNS',
+                    description: 'BIND9 e resolução de nomes',
+                    file: '../modulos/modulo3_administracao_redes/exercicios/exercicio_dns.sh'
+                },
+                {
+                    id: 'servidor-dhcp',
+                    title: 'Configuração de Servidor DHCP',
+                    description: 'ISC DHCP e pools de IP',
+                    file: '../modulos/modulo3_administracao_redes/exercicios/exercicio_dhcp.sh'
+                },
+                {
+                    id: 'servidor-web',
+                    title: 'Configuração de Servidor Web',
+                    description: 'Apache e Nginx',
+                    file: '../modulos/modulo3_administracao_redes/exercicios/exercicio_web.sh'
+                }
+            ]
+        },
+        4: {
+            title: 'Módulo 4: Administração de Sistemas',
+            description: 'Gerenciamento de pacotes, automação, virtualização e containers',
+            duration: '10 horas',
+            level: 'Avançado',
+            presentations: [
+                {
+                    id: 'sistemas-completo',
+                    title: 'Administração de Sistemas - Completo',
+                    file: '../modulos/modulo4_administracao_sistemas_completo.html'
+                }
+            ],
+            exercises: [
+                {
+                    id: 'gerenciamento-pacotes',
+                    title: 'Gerenciamento de Pacotes',
+                    description: 'APT, repositórios e dependências',
+                    file: '../modulos/modulo4_administracao_sistemas/exercicios/exercicio_pacotes.sh'
+                },
+                {
+                    id: 'automacao-tarefas',
+                    title: 'Automação de Tarefas',
+                    description: 'Cron, systemd timers e scripts',
+                    file: '../modulos/modulo4_administracao_sistemas/exercicios/exercicio_automacao.sh'
+                },
+                {
+                    id: 'bash-scripting',
+                    title: 'Bash Scripting Avançado',
+                    description: 'Scripts, funções e automação',
+                    file: '../modulos/modulo4_administracao_sistemas/exercicios/exercicio_scripting.sh'
+                },
+                {
+                    id: 'containers-docker',
+                    title: 'Containers e Docker',
+                    description: 'Virtualização e containers',
+                    file: '../modulos/modulo4_administracao_sistemas/exercicios/exercicio_containers.sh'
+                }
+            ]
         }
-        // Módulos 3-6 serão adicionados posteriormente
+        // Módulos 5-6 serão adicionados posteriormente
     }
 };
 
