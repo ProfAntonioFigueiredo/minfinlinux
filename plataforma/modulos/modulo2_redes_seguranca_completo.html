@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redes e Segurança - Módulo 2</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .presentation-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+        }
+        
+        .slide {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            padding: 2rem;
+            border-left: 5px solid #dc2626;
+        }
+        
+        .slide h1 {
+            color: #dc2626;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .slide h2 {
+            color: #b91c1c;
+            font-size: 1.8rem;
+            margin: 1.5rem 0 1rem 0;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 0.5rem;
+        }
+        
+        .slide h3 {
+            color: #374151;
+            font-size: 1.4rem;
+            margin: 1.2rem 0 0.8rem 0;
+        }
+        
+        .slide h4 {
+            color: #4b5563;
+            font-size: 1.2rem;
+            margin: 1rem 0 0.6rem 0;
+        }
+        
+        .slide p {
+            color: #4b5563;
+            margin-bottom: 1rem;
+        }
+        
+        .info-box {
+            background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+            border: 1px solid #fecaca;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid #dc2626;
+        }
+        
+        .warning-box {
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+            border: 1px solid #fde68a;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid #f59e0b;
+        }
+        
+        .success-box {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border: 1px solid #bbf7d0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid #22c55e;
+        }
+        
+        .code-example {
+            background: #1f2937;
+            color: #f9fafb;
+            padding: 1.5rem;
+            border-radius: 8px;
+            font-family: 'Fira Code', 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin: 1rem 0;
+            overflow-x: auto;
+            border: 1px solid #374151;
+        }
+        
+        .command {
+            color: #10b981;
+            font-weight: bold;
+        }
+        
+        .comment {
+            color: #6b7280;
+            font-style: italic;
+        }
+        
+        .exercise-integration {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border: 1px solid #93c5fd;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid #3b82f6;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        th {
+            background: #f8fafc;
+            font-weight: 600;
+            color: #374151;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin: 0.5rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+        }
+        
+        .btn i {
+            font-size: 0.8rem;
+        }
+        
+        kbd {
+            background: #f3f4f6;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            padding: 0.2rem 0.4rem;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.8rem;
+            color: #374151;
+        }
+        
+        .network-diagram {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            text-align: center;
+            font-family: 'Fira Code', monospace;
+        }
+        
+        .layer-box {
+            background: #e0f2fe;
+            border: 2px solid #0288d1;
+            border-radius: 6px;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            display: inline-block;
+            min-width: 200px;
+        }
+        
+        .security-level {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin: 0.2rem;
+        }
+        
+        .level-critical { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
+        .level-high { background: #fffbeb; color: #d97706; border: 1px solid #fed7aa; }
+        .level-medium { background: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0; }
+        .level-low { background: #f0f9ff; color: #0284c7; border: 1px solid #bae6fd; }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: Título e Introdução -->
+        <div class="slide">
+            <h1><i class="fas fa-network-wired"></i> Módulo 2: Redes e Segurança</h1>
+            <h2>Fundamentos de Redes e Segurança da Informação</h2>
+            
+            <div class="info-box">
+                <strong>🎯 Objetivo do Módulo:</strong> Capacitar os participantes a compreender e implementar conceitos fundamentais de redes de computadores e segurança da informação, essenciais para administradores de sistemas Linux em ambientes corporativos.
+            </div>
+            
+            <h3>📋 Conteúdo Programático</h3>
+            <ul>
+                <li><strong>Conceitos Básicos de Redes</strong> - Modelos OSI e TCP/IP</li>
+                <li><strong>Endereçamento IP e Subnetting</strong> - Cálculos e configurações</li>
+                <li><strong>Roteamento Básico</strong> - Tabelas de roteamento e protocolos</li>
+                <li><strong>Segurança da Informação</strong> - Princípios e implementação</li>
+                <li><strong>Controles de Acesso</strong> - Permissões e políticas</li>
+                <li><strong>Cenários Práticos</strong> - Implementação em ambientes reais</li>
+            </ul>
+            
+            <div class="success-box">
+                <strong>⏱️ Duração:</strong> 10 horas | <strong>📊 Nível:</strong> Intermediário | <strong>🏛️ Público:</strong> Administradores de Sistemas MINFIN
+            </div>
+        </div>
+
+        <!-- Slide 2: Modelos de Referência OSI e TCP/IP -->
+        <div class="slide">
+            <h2><i class="fas fa-sitemap"></i> Modelos de Referência de Redes</h2>
+            
+            <h3>Modelo OSI (Open Systems Interconnection)</h3>
+            <div class="network-diagram">
+                <h4>🌐 Modelo OSI - 7 Camadas</h4>
+                <div class="layer-box">
+                    <strong>7. Aplicação</strong><br>
+                    <small>HTTP, FTP, SMTP, DNS</small>
+                </div>
+                <div class="layer-box">
+                    <strong>6. Apresentação</strong><br>
+                    <small>SSL/TLS, Criptografia</small>
+                </div>
+                <div class="layer-box">
+                    <strong>5. Sessão</strong><br>
+                    <small>RPC, NetBIOS</small>
+                </div>
+                <div class="layer-box">
+                    <strong>4. Transporte</strong><br>
+                    <small>TCP, UDP</small>
+                </div>
+                <div class="layer-box">
+                    <strong>3. Rede</strong><br>
+                    <small>IP, ICMP, ARP</small>
+                </div>
+                <div class="layer-box">
+                    <strong>2. Enlace</strong><br>
+                    <small>Ethernet, Wi-Fi</small>
+                </div>
+                <div class="layer-box">
+                    <strong>1. Física</strong><br>
+                    <small>Cabo, Fibra, Wireless</small>
+                </div>
+            </div>
+            
+            <h3>Modelo TCP/IP - 4 Camadas</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Camada TCP/IP</th>
+                            <th>Correspondência OSI</th>
+                            <th>Protocolos</th>
+                            <th>Função</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Aplicação</strong></td>
+                            <td>5, 6, 7</td>
+                            <td>HTTP, HTTPS, FTP, SSH, DNS, SMTP</td>
+                            <td>Comunicação entre aplicações</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Transporte</strong></td>
+                            <td>4</td>
+                            <td>TCP, UDP</td>
+                            <td>Controle de fluxo e confiabilidade</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Internet</strong></td>
+                            <td>3</td>
+                            <td>IP, ICMP, ARP</td>
+                            <td>Roteamento e endereçamento</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Interface de Rede</strong></td>
+                            <td>1, 2</td>
+                            <td>Ethernet, Wi-Fi, PPP</td>
+                            <td>Transmissão física dos dados</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="exercise-integration">
+                <h4><i class="fas fa-code"></i> Exercício Prático: Identificando Protocolos</h4>
+                <p>Vamos identificar em qual camada cada protocolo opera:</p>
+                <div class="code-example">
+<span class="command"># Verificar protocolos em uso no sistema</span><br>
+<span class="command">netstat -tuln</span> <span class="comment"># Listar conexões TCP/UDP</span><br>
+<span class="command">ss -tuln</span> <span class="comment"># Versão moderna do netstat</span><br>
+<span class="command"># Verificar tabela de roteamento</span><br>
+<span class="command">ip route show</span> <span class="comment"># Tabela de roteamento IPv4</span><br>
+<span class="command">ip -6 route show</span> <span class="comment"># Tabela de roteamento IPv6</span><br>
+<span class="command"># Verificar interfaces de rede</span><br>
+<span class="command">ip addr show</span> <span class="comment"># Interfaces e endereços IP</span><br>
+<span class="command">ip link show</span> <span class="comment"># Status das interfaces</span>
+                </div>
+                <button class="btn" onclick="executeExercise('protocol-identification')">
+                    <i class="fas fa-play"></i> Executar Comandos
+                </button>
+                <button class="btn" onclick="copyCode('protocol-identification')">
+                    <i class="fas fa-copy"></i> Copiar Código
+                </button>
+            </div>
+        </div>
+
+        <!-- Slide 3: Endereçamento IP e Subnetting -->
+        <div class="slide">
+            <h2><i class="fas fa-map-marked-alt"></i> Endereçamento IP e Subnetting</h2>
+            
+            <h3>Classes de Endereços IP</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Classe</th>
+                            <th>Faixa de Endereços</th>
+                            <th>Máscara Padrão</th>
+                            <th>Uso</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>A</strong></td>
+                            <td>1.0.0.0 - 126.255.255.255</td>
+                            <td>255.0.0.0 (/8)</td>
+                            <td>Redes muito grandes</td>
+                        </tr>
+                        <tr>
+                            <td><strong>B</strong></td>
+                            <td>128.0.0.0 - 191.255.255.255</td>
+                            <td>255.255.0.0 (/16)</td>
+                            <td>Redes médias</td>
+                        </tr>
+                        <tr>
+                            <td><strong>C</strong></td>
+                            <td>192.0.0.0 - 223.255.255.255</td>
+                            <td>255.255.255.0 (/24)</td>
+                            <td>Redes pequenas</td>
+                        </tr>
+                        <tr>
+                            <td><strong>D</strong></td>
+                            <td>224.0.0.0 - 239.255.255.255</td>
+                            <td>-</td>
+                            <td>Multicast</td>
+                        </tr>
+                        <tr>
+                            <td><strong>E</strong></td>
+                            <td>240.0.0.0 - 255.255.255.255</td>
+                            <td>-</td>
+                            <td>Experimental</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <h3>Endereços Privados (RFC 1918)</h3>
+            <div class="info-box">
+                <strong>🏠 Endereços Privados:</strong> Estes endereços são reservados para uso interno e não são roteáveis na internet pública.
+                <ul>
+                    <li><strong>Classe A:</strong> 10.0.0.0/8 (10.0.0.0 - 10.255.255.255)</li>
+                    <li><strong>Classe B:</strong> 172.16.0.0/12 (172.16.0.0 - 172.31.255.255)</li>
+                    <li><strong>Classe C:</strong> 192.168.0.0/16 (192.168.0.0 - 192.168.255.255)</li>
+                </ul>
+            </div>
+            
+            <h3>Subnetting - Divisão de Redes</h3>
+            <div class="warning-box">
+                <strong>📐 Fórmulas Importantes:</strong>
+                <ul>
+                    <li><strong>Número de sub-redes:</strong> 2^n (onde n = bits emprestados)</li>
+                    <li><strong>Hosts por sub-rede:</strong> 2^m - 2 (onde m = bits restantes para hosts)</li>
+                    <li><strong>Máscara de sub-rede:</strong> 255.255.255.0 = /24</li>
+                </ul>
+            </div>
+            
+            <div class="exercise-integration">
+                <h4><i class="fas fa-code"></i> Exercício Prático: Cálculo de Sub-redes</h4>
+                <p>Vamos calcular sub-redes para o Ministério das Finanças:</p>
+                <div class="code-example">
+<span class="command"># Exemplo: Dividir 192.168.1.0/24 em 4 sub-redes</span><br>
+<span class="command"># Rede original: 192.168.1.0/24 (256 endereços)</span><br>
+<span class="command"># Sub-redes necessárias: 4</span><br>
+<span class="command"># Bits emprestados: 2 (2^2 = 4 sub-redes)</span><br>
+<span class="command"># Nova máscara: /26 (255.255.255.192)</span><br>
+<span class="command"># Hosts por sub-rede: 2^6 - 2 = 62 hosts</span><br>
+<span class="command"># Sub-redes resultantes:</span><br>
+<span class="command"># 192.168.1.0/26   (192.168.1.1   - 192.168.1.62)</span><br>
+<span class="command"># 192.168.1.64/26  (192.168.1.65  - 192.168.1.126)</span><br>
+<span class="command"># 192.168.1.128/26 (192.168.1.129 - 192.168.1.190)</span><br>
+<span class="command"># 192.168.1.192/26 (192.168.1.193 - 192.168.1.254)</span>
+                </div>
+                <button class="btn" onclick="executeExercise('subnet-calculation')">
+                    <i class="fas fa-play"></i> Executar Cálculo
+                </button>
+                <button class="btn" onclick="copyCode('subnet-calculation')">
+                    <i class="fas fa-copy"></i> Copiar Código
+                </button>
+            </div>
+        </div>
+
+        <!-- Slide 4: Roteamento Básico -->
+        <div class="slide">
+            <h2><i class="fas fa-route"></i> Roteamento Básico</h2>
+            
+            <h3>Conceitos de Roteamento</h3>
+            <div class="info-box">
+                <strong>🎯 Roteamento:</strong> Processo de determinar o melhor caminho para enviar pacotes de dados de uma rede para outra através de roteadores intermediários.
+            </div>
+            
+            <h3>Tipos de Roteamento</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tipo</th>
+                            <th>Descrição</th>
+                            <th>Vantagens</th>
+                            <th>Desvantagens</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Estático</strong></td>
+                            <td>Rotas configuradas manualmente</td>
+                            <td>Simples, seguro, previsível</td>
+                            <td>Não se adapta a mudanças</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Dinâmico</strong></td>
+                            <td>Rotas aprendidas automaticamente</td>
+                            <td>Adapta-se a mudanças</td>
+                            <td>Mais complexo, consome recursos</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Padrão</strong></td>
+                            <td>Rota para destinos desconhecidos</td>
+                            <td>Simplicidade</td>
+                            <td>Pode não ser otimizada</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <h3>Protocolos de Roteamento</h3>
+            <div class="code-example">
+<span class="command"># Verificar tabela de roteamento</span><br>
+<span class="command">ip route show</span> <span class="comment"># Tabela de roteamento completa</span><br>
+<span class="command">ip route show table main</span> <span class="comment"># Tabela principal</span><br>
+<span class="command"># Adicionar rota estática</span><br>
+<span class="command">sudo ip route add 192.168.100.0/24 via 192.168.1.1</span><br>
+<span class="command"># Adicionar rota padrão</span><br>
+<span class="command">sudo ip route add default via 192.168.1.1</span><br>
+<span class="command"># Remover rota</span><br>
+<span class="command">sudo ip route del 192.168.100.0/24</span><br>
+<span class="command"># Verificar conectividade</span><br>
+<span class="command">ping -c 4 8.8.8.8</span> <span class="comment"># Teste de conectividade</span><br>
+<span class="command">traceroute 8.8.8.8</span> <span class="comment"># Rastrear rota</span>
+            </div>
+            
+            <div class="exercise-integration">
+                <h4><i class="fas fa-code"></i> Exercício Prático: Configuração de Roteamento</h4>
+                <p>Vamos configurar roteamento para o ambiente MINFIN:</p>
+                <div class="code-example">
+<span class="command"># Configurar interface de rede</span><br>
+<span class="command">sudo ip addr add 192.168.1.10/24 dev eth0</span><br>
+<span class="command">sudo ip link set eth0 up</span><br>
+<span class="command"># Configurar rota padrão</span><br>
+<span class="command">sudo ip route add default via 192.168.1.1</span><br>
+<span class="command"># Verificar configuração</span><br>
+<span class="command">ip addr show eth0</span><br>
+<span class="command">ip route show</span><br>
+<span class="command"># Testar conectividade</span><br>
+<span class="command">ping -c 3 192.168.1.1</span><br>
+<span class="command">ping -c 3 8.8.8.8</span>
+                </div>
+                <button class="btn" onclick="executeExercise('routing-config')">
+                    <i class="fas fa-play"></i> Executar Configuração
+                </button>
+                <button class="btn" onclick="copyCode('routing-config')">
+                    <i class="fas fa-copy"></i> Copiar Código
+                </button>
+            </div>
+        </div>
+
+        <!-- Slide 5: Segurança da Informação -->
+        <div class="slide">
+            <h2><i class="fas fa-shield-alt"></i> Segurança da Informação</h2>
+            
+            <h3>Tríade CIA - Princípios Fundamentais</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Princípio</th>
+                            <th>Descrição</th>
+                            <th>Implementação</th>
+                            <th>Nível de Criticidade</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Confidencialidade</strong></td>
+                            <td>Informações acessíveis apenas por autorizados</td>
+                            <td>Criptografia, Controle de Acesso</td>
+                            <td><span class="security-level level-critical">CRÍTICO</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Integridade</strong></td>
+                            <td>Informações não modificadas indevidamente</td>
+                            <td>Hashes, Assinaturas Digitais</td>
+                            <td><span class="security-level level-critical">CRÍTICO</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Disponibilidade</strong></td>
+                            <td>Informações acessíveis quando necessário</td>
+                            <td>Backup, Redundância, Monitoramento</td>
+                            <td><span class="security-level level-high">ALTO</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <h3>Ameaças Comuns e Contramedidas</h3>
+            <div class="warning-box">
+                <strong>⚠️ Principais Ameaças:</strong>
+                <ul>
+                    <li><strong>Malware:</strong> Vírus, worms, trojans, ransomware</li>
+                    <li><strong>Ataques de Rede:</strong> DDoS, man-in-the-middle, sniffing</li>
+                    <li><strong>Engenharia Social:</strong> Phishing, pretexting, baiting</li>
+                    <li><strong>Vulnerabilidades:</strong> Exploits, zero-day, configurações inadequadas</li>
+                </ul>
+            </div>
+            
+            <h3>Controles de Segurança</h3>
+            <div class="code-example">
+<span class="command"># Verificar status de segurança do sistema</span><br>
+<span class="command">sudo ufw status</span> <span class="comment"># Status do firewall</span><br>
+<span class="command">sudo fail2ban-client status</span> <span class="comment"># Status do fail2ban</span><br>
+<span class="command"># Verificar usuários logados</span><br>
+<span class="command">who</span> <span class="comment"># Usuários ativos</span><br>
+<span class="command">last</span> <span class="comment"># Histórico de logins</span><br>
+<span class="command"># Verificar processos suspeitos</span><br>
+<span class="command">ps aux | grep -E "(ssh|telnet|ftp)"</span><br>
+<span class="command"># Verificar conexões de rede</span><br>
+<span class="command">netstat -tuln | grep LISTEN</span><br>
+<span class="command"># Verificar logs de segurança</span><br>
+<span class="command">sudo tail -f /var/log/auth.log</span>
+            </div>
+            
+            <div class="exercise-integration">
+                <h4><i class="fas fa-code"></i> Exercício Prático: Auditoria de Segurança</h4>
+                <p>Vamos realizar uma auditoria básica de segurança:</p>
+                <div class="code-example">
+<span class="command"># Verificar permissões de arquivos sensíveis</span><br>
+<span class="command">ls -la /etc/passwd /etc/shadow /etc/group</span><br>
+<span class="command"># Verificar configurações SSH</span><br>
+<span class="command">sudo grep -E "^(PermitRootLogin|PasswordAuthentication|Port)" /etc/ssh/sshd_config</span><br>
+<span class="command"># Verificar usuários com privilégios</span><br>
+<span class="command">sudo grep -E "^(root|sudo)" /etc/group</span><br>
+<span class="command"># Verificar serviços em execução</span><br>
+<span class="command">systemctl list-units --type=service --state=running</span><br>
+<span class="command"># Verificar espaço em disco</span><br>
+<span class="command">df -h</span><br>
+<span class="command"># Verificar integridade do sistema</span><br>
+<span class="command">sudo debsums -c 2>/dev/null | head -10</span>
+                </div>
+                <button class="btn" onclick="executeExercise('security-audit')">
+                    <i class="fas fa-play"></i> Executar Auditoria
+                </button>
+                <button class="btn" onclick="copyCode('security-audit')">
+                    <i class="fas fa-copy"></i> Copiar Código
+                </button>
+            </div>
+        </div>
+
+        <!-- Slide 6: Políticas de Segurança -->
+        <div class="slide">
+            <h2><i class="fas fa-file-contract"></i> Políticas de Segurança</h2>
+            
+            <h3>Elementos de uma Política de Segurança</h3>
+            <div class="info-box">
+                <strong>📋 Componentes Essenciais:</strong>
+                <ul>
+                    <li><strong>Objetivos e Escopo:</strong> Definição clara do que será protegido</li>
+                    <li><strong>Responsabilidades:</strong> Quem é responsável por cada aspecto</li>
+                    <li><strong>Controles Técnicos:</strong> Implementação de ferramentas e tecnologias</li>
+                    <li><strong>Controles Administrativos:</strong> Procedimentos e processos</li>
+                    <li><strong>Controles Físicos:</strong> Proteção do ambiente físico</li>
+                    <li><strong>Monitoramento:</strong> Como detectar e responder a incidentes</li>
+                </ul>
+            </div>
+            
+            <h3>Implementação de Controles de Acesso</h3>
+            <div class="code-example">
+<span class="command"># Configurar políticas de senha</span><br>
+<span class="command">sudo nano /etc/security/pwquality.conf</span><br>
+<span class="command"># Configurações recomendadas:</span><br>
+<span class="command"># minlen = 12</span><br>
+<span class="command"># dcredit = -1</span><br>
+<span class="command"># ucredit = -1</span><br>
+<span class="command"># lcredit = -1</span><br>
+<span class="command"># ocredit = -1</span><br>
+<span class="command"># minclass = 3</span><br>
+<span class="command"># maxrepeat = 2</span><br>
+<span class="command"># Configurar expiração de senha</span><br>
+<span class="command">sudo chage -M 90 -m 7 -W 7 root</span><br>
+<span class="command"># Configurar bloqueio de conta</span><br>
+<span class="command">sudo chage -I 30 root</span>
+            </div>
+            
+            <h3>Monitoramento e Logs</h3>
+            <div class="code-example">
+<span class="command"># Configurar logrotate para logs de segurança</span><br>
+<span class="command">sudo nano /etc/logrotate.d/security</span><br>
+<span class="command"># Conteúdo do arquivo:</span><br>
+<span class="command"># /var/log/auth.log {</span><br>
+<span class="command">#     daily</span><br>
+<span class="command">#     missingok</span><br>
+<span class="command">#     rotate 30</span><br>
+<span class="command">#     compress</span><br>
+<span class="command">#     delaycompress</span><br>
+<span class="command">#     notifempty</span><br>
+<span class="command">#     create 640 root adm</span><br>
+<span class="command"># }</span><br>
+<span class="command"># Configurar rsyslog para centralização</span><br>
+<span class="command">sudo nano /etc/rsyslog.d/50-minfin.conf</span>
+            </div>
+            
+            <div class="exercise-integration">
+                <h4><i class="fas fa-code"></i> Exercício Prático: Implementação de Políticas</h4>
+                <p>Vamos implementar políticas de segurança para o MINFIN:</p>
+                <div class="code-example">
+<span class="command"># Criar usuário para auditoria</span><br>
+<span class="command">sudo useradd -m -s /bin/bash auditor</span><br>
+<span class="command">sudo usermod -aG sudo auditor</span><br>
+<span class="command"># Configurar sudo para auditoria</span><br>
+<span class="command">echo "auditor ALL=(ALL) NOPASSWD: /usr/bin/tail, /usr/bin/grep, /usr/bin/cat" | sudo tee -a /etc/sudoers.d/auditor</span><br>
+<span class="command"># Criar diretório para relatórios</span><br>
+<span class="command">sudo mkdir -p /var/log/minfin/security</span><br>
+<span class="command">sudo chown auditor:auditor /var/log/minfin/security</span><br>
+<span class="command"># Configurar script de monitoramento</span><br>
+<span class="command">sudo tee /usr/local/bin/security-monitor.sh << 'EOF'</span><br>
+<span class="command">#!/bin/bash</span><br>
+<span class="command"># Script de monitoramento de segurança MINFIN</span><br>
+<span class="command">echo "=== Relatório de Segurança $(date) ===" >> /var/log/minfin/security/daily.log</span><br>
+<span class="command">who >> /var/log/minfin/security/daily.log</span><br>
+<span class="command">last -n 10 >> /var/log/minfin/security/daily.log</span><br>
+<span class="command">echo "=====================================" >> /var/log/minfin/security/daily.log</span><br>
+<span class="command">EOF</span><br>
+<span class="command">sudo chmod +x /usr/local/bin/security-monitor.sh</span>
+                </div>
+                <button class="btn" onclick="executeExercise('policy-implementation')">
+                    <i class="fas fa-play"></i> Executar Implementação
+                </button>
+                <button class="btn" onclick="copyCode('policy-implementation')">
+                    <i class="fas fa-copy"></i> Copiar Código
+                </button>
+            </div>
+        </div>
+
+        <!-- Slide 7: Exercício Final Integrado -->
+        <div class="slide">
+            <h2><i class="fas fa-trophy"></i> Exercício Final: Projeto Integrado MINFIN</h2>
+            
+            <div class="success-box">
+                <strong>🎯 Objetivo:</strong> Implementar uma solução completa de rede e segurança para o Ministério das Finanças, aplicando todos os conceitos aprendidos no módulo.
+            </div>
+            
+            <h3>Cenário: Infraestrutura de Rede Segura</h3>
+            <p>O Ministério das Finanças precisa de uma infraestrutura de rede segura com as seguintes características:</p>
+            <ul>
+                <li><strong>Rede Principal:</strong> 192.168.1.0/24</li>
+                <li><strong>Sub-redes:</strong> 4 departamentos (Finanças, Contabilidade, Auditoria, TI)</li>
+                <li><strong>Segurança:</strong> Firewall, monitoramento, políticas de acesso</li>
+                <li><strong>Serviços:</strong> DHCP, DNS, Web Server</li>
+            </ul>
+            
+            <div class="exercise-integration">
+                <h4><i class="fas fa-code"></i> Implementação Completa</h4>
+                <div class="code-example">
+<span class="command"># 1. Configurar sub-redes</span><br>
+<span class="command"># Sub-rede 1: Finanças - 192.168.1.0/26</span><br>
+<span class="command"># Sub-rede 2: Contabilidade - 192.168.1.64/26</span><br>
+<span class="command"># Sub-rede 3: Auditoria - 192.168.1.128/26</span><br>
+<span class="command"># Sub-rede 4: TI - 192.168.1.192/26</span><br>
+<span class="command"># 2. Configurar interfaces de rede</span><br>
+<span class="command">sudo ip addr add 192.168.1.1/24 dev eth0</span><br>
+<span class="command">sudo ip link set eth0 up</span><br>
+<span class="command"># 3. Configurar roteamento</span><br>
+<span class="command">sudo ip route add 192.168.1.0/26 dev eth0</span><br>
+<span class="command">sudo ip route add 192.168.1.64/26 dev eth0</span><br>
+<span class="command">sudo ip route add 192.168.1.128/26 dev eth0</span><br>
+<span class="command">sudo ip route add 192.168.1.192/26 dev eth0</span><br>
+<span class="command"># 4. Configurar firewall</span><br>
+<span class="command">sudo ufw enable</span><br>
+<span class="command">sudo ufw default deny incoming</span><br>
+<span class="command">sudo ufw default allow outgoing</span><br>
+<span class="command">sudo ufw allow ssh</span><br>
+<span class="command">sudo ufw allow 80/tcp</span><br>
+<span class="command">sudo ufw allow 443/tcp</span><br>
+<span class="command"># 5. Configurar monitoramento</span><br>
+<span class="command">sudo apt update && sudo apt install -y fail2ban</span><br>
+<span class="command">sudo systemctl enable fail2ban</span><br>
+<span class="command">sudo systemctl start fail2ban</span><br>
+<span class="command"># 6. Criar relatório de configuração</span><br>
+<span class="command">echo "=== Configuração de Rede MINFIN $(date) ===" > /tmp/minfin-network-config.txt</span><br>
+<span class="command">ip addr show >> /tmp/minfin-network-config.txt</span><br>
+<span class="command">ip route show >> /tmp/minfin-network-config.txt</span><br>
+<span class="command">sudo ufw status >> /tmp/minfin-network-config.txt</span><br>
+<span class="command">cat /tmp/minfin-network-config.txt</span>
+                </div>
+                <button class="btn" onclick="executeExercise('minfin-integrated')">
+                    <i class="fas fa-play"></i> Executar Projeto
+                </button>
+                <button class="btn" onclick="copyCode('minfin-integrated')">
+                    <i class="fas fa-copy"></i> Copiar Código
+                </button>
+            </div>
+            
+            <div class="info-box">
+                <strong>🎓 Desafio Extra:</strong> Implemente um sistema de detecção de intrusão (IDS) básico usando ferramentas nativas do Linux e configure alertas automáticos para atividades suspeitas na rede.
+            </div>
+        </div>
+
+        <!-- Slide 8: Resumo e Próximos Passos -->
+        <div class="slide">
+            <h2><i class="fas fa-graduation-cap"></i> Resumo do Módulo 2</h2>
+            
+            <h3>Conceitos Dominados</h3>
+            <div class="success-box">
+                <ul>
+                    <li>✅ <strong>Modelos de Rede:</strong> OSI e TCP/IP</li>
+                    <li>✅ <strong>Endereçamento IP:</strong> Classes, sub-redes e cálculos</li>
+                    <li>✅ <strong>Roteamento:</strong> Estático, dinâmico e configuração</li>
+                    <li>✅ <strong>Segurança:</strong> Tríade CIA e implementação</li>
+                    <li>✅ <strong>Políticas:</strong> Desenvolvimento e implementação</li>
+                    <li>✅ <strong>Monitoramento:</strong> Logs e auditoria</li>
+                </ul>
+            </div>
+            
+            <h3>Próximos Módulos</h3>
+            <div class="info-box">
+                <strong>🚀 Preparação para Módulo 3:</strong> Administração de Redes com Linux
+                <ul>
+                    <li>Configuração avançada de interfaces de rede</li>
+                    <li>Servidores DNS, DHCP e Web</li>
+                    <li>Protocolos de rede e serviços</li>
+                    <li>Monitoramento e troubleshooting</li>
+                </ul>
+            </div>
+            
+            <div class="warning-box">
+                <strong>📚 Recursos Adicionais:</strong>
+                <ul>
+                    <li><strong>RFC 1918:</strong> Endereçamento privado</li>
+                    <li><strong>ISO 27001:</strong> Gestão de segurança da informação</li>
+                    <li><strong>NIST Cybersecurity Framework:</strong> Estrutura de segurança</li>
+                    <li><strong>CIS Controls:</strong> Controles de segurança essenciais</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/exercises.js"></script>
+</body>
+</html>

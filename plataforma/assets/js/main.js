@@ -72,6 +72,11 @@ const AppState = {
             level: 'Intermediário',
             presentations: [
                 {
+                    id: 'redes-seguranca-completo',
+                    title: 'Redes e Segurança - Completo',
+                    file: '../modulos/modulo2_redes_seguranca_completo.html'
+                },
+                {
                     id: 'modelos-osi-tcpip',
                     title: 'Modelos OSI e TCP/IP',
                     file: '../modulos/modulo2_redes_seguranca/apresentacoes/modulo2_modelos_osi_tcpip.html'

@@ -574,6 +574,126 @@
 <span class="command">vim</span> <span class="comment"># Editor de texto avançado</span>
             </div>
             
+            <h3>Editor VI/VIM - O Editor Essencial do Linux</h3>
+            <div class="info-box">
+                <strong>🎯 Por que aprender VI/VIM?</strong> O VI é o editor padrão em praticamente todos os sistemas Unix/Linux. Mesmo quando outros editores não estão disponíveis, o VI sempre estará presente. É essencial para administradores de sistemas dominarem este editor.
+            </div>
+            
+            <h4>Modos do VI/VIM</h4>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Modo</th>
+                            <th>Descrição</th>
+                            <th>Como Entrar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Comando</strong></td>
+                            <td>Modo padrão para navegação e comandos</td>
+                            <td>Pressione <kbd>Esc</kbd></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Inserção</strong></td>
+                            <td>Modo para editar texto</td>
+                            <td>Pressione <kbd>i</kbd>, <kbd>a</kbd>, <kbd>o</kbd></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Linha de Comando</strong></td>
+                            <td>Modo para comandos do VI</td>
+                            <td>Digite <kbd>:</kbd> no modo comando</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <h4>Comandos Essenciais do VI/VIM</h4>
+            <div class="code-example">
+<span class="command">vi arquivo.txt</span> <span class="comment"># Abrir arquivo no VI</span><br>
+<span class="command">vim arquivo.txt</span> <span class="comment"># Abrir arquivo no VIM (versão melhorada)</span><br>
+<span class="command">i</span> <span class="comment"># Entrar no modo inserção (antes do cursor)</span><br>
+<span class="command">a</span> <span class="comment"># Entrar no modo inserção (após o cursor)</span><br>
+<span class="command">o</span> <span class="comment"># Criar nova linha e entrar no modo inserção</span><br>
+<span class="command">Esc</span> <span class="comment"># Voltar ao modo comando</span><br>
+<span class="command">:w</span> <span class="comment"># Salvar arquivo</span><br>
+<span class="command">:q</span> <span class="comment"># Sair do VI</span><br>
+<span class="command">:wq</span> <span class="comment"># Salvar e sair</span><br>
+<span class="command">:q!</span> <span class="comment"># Sair sem salvar</span><br>
+<span class="command">:x</span> <span class="comment"># Salvar e sair (equivalente a :wq)</span>
+            </div>
+            
+            <h4>Navegação no VI/VIM</h4>
+            <div class="code-example">
+<span class="command">h</span> <span class="comment"># Mover cursor para esquerda</span><br>
+<span class="command">j</span> <span class="comment"># Mover cursor para baixo</span><br>
+<span class="command">k</span> <span class="comment"># Mover cursor para cima</span><br>
+<span class="command">l</span> <span class="comment"># Mover cursor para direita</span><br>
+<span class="command">0</span> <span class="comment"># Ir para início da linha</span><br>
+<span class="command">$</span> <span class="comment"># Ir para fim da linha</span><br>
+<span class="command">gg</span> <span class="comment"># Ir para início do arquivo</span><br>
+<span class="command">G</span> <span class="comment"># Ir para fim do arquivo</span><br>
+<span class="command">:n</span> <span class="comment"># Ir para linha n (ex: :10 vai para linha 10)</span><br>
+<span class="command">Ctrl+f</span> <span class="comment"># Página para frente</span><br>
+<span class="command">Ctrl+b</span> <span class="comment"># Página para trás</span>
+            </div>
+            
+            <h4>Edição no VI/VIM</h4>
+            <div class="code-example">
+<span class="command">x</span> <span class="comment"># Deletar caractere sob o cursor</span><br>
+<span class="command">dd</span> <span class="comment"># Deletar linha inteira</span><br>
+<span class="command">yy</span> <span class="comment"># Copiar linha inteira</span><br>
+<span class="command">p</span> <span class="comment"># Colar após o cursor</span><br>
+<span class="command">P</span> <span class="comment"># Colar antes do cursor</span><br>
+<span class="command">u</span> <span class="comment"># Desfazer última ação</span><br>
+<span class="command">Ctrl+r</span> <span class="comment"># Refazer ação desfeita</span><br>
+<span class="command">r</span> <span class="comment"># Substituir caractere sob o cursor</span><br>
+<span class="command">cw</span> <span class="comment"># Substituir palavra</span><br>
+<span class="command">cc</span> <span class="comment"># Substituir linha inteira</span>
+            </div>
+            
+            <h4>Busca e Substituição</h4>
+            <div class="code-example">
+<span class="command">/palavra</span> <span class="comment"># Buscar palavra para frente</span><br>
+<span class="command">?palavra</span> <span class="comment"># Buscar palavra para trás</span><br>
+<span class="command">n</span> <span class="comment"># Próxima ocorrência da busca</span><br>
+<span class="command">N</span> <span class="comment"># Ocorrência anterior da busca</span><br>
+<span class="command">:s/antigo/novo/</span> <span class="comment"># Substituir primeira ocorrência na linha</span><br>
+<span class="command">:s/antigo/novo/g</span> <span class="comment"># Substituir todas as ocorrências na linha</span><br>
+<span class="command">:%s/antigo/novo/g</span> <span class="comment"># Substituir em todo o arquivo</span><br>
+<span class="command">:noh</span> <span class="comment"># Remover destaque da busca</span>
+            </div>
+            
+            <div class="exercise-integration">
+                <h4><i class="fas fa-code"></i> Exercício Prático: Dominando o VI/VIM</h4>
+                <p>Vamos praticar os comandos essenciais do VI criando um script de configuração:</p>
+                <div class="code-example">
+<span class="command"># Criar arquivo de configuração</span><br>
+<span class="command">vi ~/minfin-config.txt</span><br>
+<span class="command"># No VI, pressione 'i' para entrar no modo inserção</span><br>
+<span class="command"># Digite o seguinte conteúdo:</span><br>
+<span class="command"># SERVIDOR=192.168.1.100</span><br>
+<span class="command"># PORTA=8080</span><br>
+<span class="command"># USUARIO=admin</span><br>
+<span class="command"># SENHA=minfin2025</span><br>
+<span class="command"># Pressione Esc para sair do modo inserção</span><br>
+<span class="command"># Digite :wq para salvar e sair</span><br>
+<span class="command"># Verificar o arquivo criado</span><br>
+<span class="command">cat ~/minfin-config.txt</span>
+                </div>
+                <button class="btn" onclick="executeExercise('vi-practice')">
+                    <i class="fas fa-play"></i> Executar Exercício
+                </button>
+                <button class="btn" onclick="copyCode('vi-practice')">
+                    <i class="fas fa-copy"></i> Copiar Código
+                </button>
+            </div>
+            
+            <div class="info-box">
+                <strong>💡 Dica Profissional:</strong> Para se tornar proficiente no VI/VIM, pratique diariamente. Comece com comandos básicos e gradualmente incorpore comandos mais avançados. Lembre-se: o VI é um editor modal - sempre saiba em qual modo você está!
+            </div>
+            
             <div class="exercise-integration">
                 <h4><i class="fas fa-code"></i> Exercício Prático: Comandos Básicos</h4>
                 <p>Vamos praticar os comandos básicos criando uma estrutura de diretórios:</p>
