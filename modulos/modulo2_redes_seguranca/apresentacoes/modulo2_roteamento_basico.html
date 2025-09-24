@@ -1,0 +1,457 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+    <head>
+        <title>Módulo 2: Roteamento Básico - MINFIN Angola</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <style type="text/css">
+            body {
+                margin: 0;
+                padding: 0;
+                background-color: #14191C;
+                font-family: Arial, sans-serif;
+            }
+            .container {
+                max-width: 600px;
+                margin: 0 auto;
+                background: #000000;
+            }
+            .header {
+                background: #000000;
+                padding: 20px 0;
+            }
+            .content {
+                padding: 40px 25px;
+                color: #FFFFFF;
+            }
+            .title {
+                font-size: 24px;
+                font-weight: bold;
+                color: #ED145B;
+                text-transform: uppercase;
+                margin-bottom: 20px;
+            }
+            .subtitle {
+                font-size: 19px;
+                color: #D6F0FF;
+                margin-bottom: 15px;
+            }
+            .text {
+                font-size: 17px;
+                line-height: 25px;
+                color: #ACC1CC;
+                margin-bottom: 15px;
+            }
+            .highlight {
+                color: #FFFFFF;
+                font-weight: bold;
+            }
+            .bullet-point {
+                display: flex;
+                align-items: flex-start;
+                margin-bottom: 15px;
+            }
+            .bullet {
+                color: #ED145B;
+                font-size: 19px;
+                margin-right: 10px;
+                margin-top: 2px;
+            }
+            .bullet-text {
+                color: #ACC1CC;
+                font-size: 17px;
+                line-height: 25px;
+            }
+            .section {
+                margin-bottom: 30px;
+            }
+            .code-block {
+                background: #1a1a1a;
+                border: 1px solid #ED145B;
+                border-radius: 5px;
+                padding: 15px;
+                margin: 15px 0;
+                font-family: 'Courier New', monospace;
+                font-size: 14px;
+                color: #00FF00;
+                overflow-x: auto;
+            }
+            .route-table {
+                background: #1a1a1a;
+                border: 1px solid #ED145B;
+                border-radius: 5px;
+                padding: 15px;
+                margin: 15px 0;
+            }
+            .route-table th, .route-table td {
+                padding: 8px;
+                text-align: left;
+                border-bottom: 1px solid #333;
+            }
+            .route-table th {
+                color: #ED145B;
+                font-weight: bold;
+            }
+            .network-diagram {
+                background: #2a1a3a;
+                border: 2px solid #ED145B;
+                border-radius: 10px;
+                padding: 20px;
+                margin: 20px 0;
+                text-align: center;
+            }
+            .device {
+                background: #1a2a3a;
+                border: 1px solid #D6F0FF;
+                border-radius: 5px;
+                padding: 10px;
+                margin: 10px;
+                display: inline-block;
+                min-width: 120px;
+            }
+            .info-box {
+                background: #1a1a1a;
+                border-left: 4px solid #ED145B;
+                padding: 20px;
+                margin: 20px 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <div style="text-align: center;">
+                    <h1 style="color: #ED145B; font-size: 28px; margin: 0; text-transform: uppercase;">🛣️ ROTEAMENTO BÁSICO</h1>
+                    <p style="color: #ACC1CC; font-size: 16px; margin: 10px 0 0 0;">Ministério das Finanças de Angola - 2025</p>
+                </div>
+            </div>
+            
+            <div class="content">
+                <div class="title">FUNDAMENTOS DE ROTEAMENTO</div>
+                
+                <div class="section">
+                    <div class="subtitle">O que é Roteamento?</div>
+                    <div class="text">
+                        Roteamento é o processo de <span class="highlight">determinar o melhor caminho</span> 
+                        para enviar dados de uma rede para outra. É como um "GPS" para pacotes de dados, 
+                        decidindo qual rota seguir para chegar ao destino.
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Componentes do Roteamento</div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text"><span class="highlight">Roteador:</span> Dispositivo que conecta redes diferentes</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text"><span class="highlight">Tabela de Roteamento:</span> Lista de rotas conhecidas</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text"><span class="highlight">Gateway:</span> Ponto de saída para outras redes</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text"><span class="highlight">Métrica:</span> Custo ou distância de uma rota</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Tipos de Roteamento</div>
+                    
+                    <div class="info-box">
+                        <div class="subtitle" style="color: #ED145B; margin-bottom: 10px;">📊 Roteamento Estático</div>
+                        <div class="text">
+                            Rotas <span class="highlight">configuradas manualmente</span> pelo administrador. 
+                            Simples, mas não se adapta a mudanças na rede.
+                        </div>
+                    </div>
+                    
+                    <div class="info-box">
+                        <div class="subtitle" style="color: #D6F0FF; margin-bottom: 10px;">🔄 Roteamento Dinâmico</div>
+                        <div class="text">
+                            Rotas <span class="highlight">aprendidas automaticamente</span> através de protocolos 
+                            como RIP, OSPF, BGP. Adapta-se a mudanças na rede.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Tabela de Roteamento</div>
+                    <div class="text">
+                        A tabela de roteamento contém informações sobre como chegar a diferentes redes. 
+                        Cada entrada tem:
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text"><span class="highlight">Destino:</span> Rede de destino</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text"><span class="highlight">Gateway:</span> Próximo salto</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text"><span class="highlight">Interface:</span> Interface de saída</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text"><span class="highlight">Métrica:</span> Custo da rota</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Exemplo de Tabela de Roteamento</div>
+                    
+                    <div class="route-table">
+                        <table style="width: 100%; color: #ACC1CC;">
+                            <tr>
+                                <th>Destino</th>
+                                <th>Gateway</th>
+                                <th>Interface</th>
+                                <th>Métrica</th>
+                            </tr>
+                            <tr>
+                                <td>192.168.1.0/24</td>
+                                <td>0.0.0.0</td>
+                                <td>eth0</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>10.0.0.0/8</td>
+                                <td>192.168.1.1</td>
+                                <td>eth0</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>0.0.0.0/0</td>
+                                <td>192.168.1.1</td>
+                                <td>eth0</td>
+                                <td>1</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Rota Padrão (Default Route)</div>
+                    <div class="text">
+                        A rota padrão (0.0.0.0/0) é usada quando <span class="highlight">nenhuma rota específica</span> 
+                        é encontrada para o destino. É como o "catch-all" do roteamento.
+                    </div>
+                    
+                    <div class="code-block">
+# Exemplo de rota padrão:
+Destino: 0.0.0.0/0
+Gateway: 192.168.1.1
+Interface: eth0
+Métrica: 1
+
+# Significa: "Para qualquer destino não conhecido, 
+# envie para 192.168.1.1 através da interface eth0"
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Comandos Linux para Roteamento</div>
+                    
+                    <div class="code-block">
+# Ver tabela de roteamento:
+ip route show
+route -n
+
+# Adicionar rota estática:
+sudo ip route add 10.0.0.0/8 via 192.168.1.1
+sudo route add -net 10.0.0.0/8 gw 192.168.1.1
+
+# Adicionar rota padrão:
+sudo ip route add default via 192.168.1.1
+sudo route add default gw 192.168.1.1
+
+# Remover rota:
+sudo ip route del 10.0.0.0/8
+sudo route del -net 10.0.0.0/8
+
+# Verificar conectividade:
+ping 8.8.8.8
+traceroute google.com
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Cenário Prático: Rede Corporativa</div>
+                    
+                    <div class="network-diagram">
+                        <div class="subtitle" style="color: #ED145B; margin-bottom: 15px;">🏢 Topologia de Rede</div>
+                        
+                        <div class="device">
+                            <div style="color: #D6F0FF; font-weight: bold;">Internet</div>
+                            <div style="font-size: 12px; color: #ACC1CC;">ISP</div>
+                        </div>
+                        
+                        <div style="margin: 10px 0; color: #ED145B;">↓</div>
+                        
+                        <div class="device">
+                            <div style="color: #D6F0FF; font-weight: bold;">Roteador Principal</div>
+                            <div style="font-size: 12px; color: #ACC1CC;">192.168.1.1</div>
+                        </div>
+                        
+                        <div style="margin: 10px 0; color: #ED145B;">↓</div>
+                        
+                        <div style="display: flex; justify-content: space-around;">
+                            <div class="device">
+                                <div style="color: #D6F0FF; font-weight: bold;">Rede TI</div>
+                                <div style="font-size: 12px; color: #ACC1CC;">192.168.1.0/24</div>
+                            </div>
+                            
+                            <div class="device">
+                                <div style="color: #D6F0FF; font-weight: bold;">Rede Financeiro</div>
+                                <div style="font-size: 12px; color: #ACC1CC;">192.168.2.0/24</div>
+                            </div>
+                            
+                            <div class="device">
+                                <div style="color: #D6F0FF; font-weight: bold;">Rede RH</div>
+                                <div style="font-size: 12px; color: #ACC1CC;">192.168.3.0/24</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Configuração de Roteamento no Linux</div>
+                    
+                    <div class="code-block">
+# 1. Habilitar roteamento IP:
+echo 1 > /proc/sys/net/ipv4/ip_forward
+
+# 2. Configurar NAT (Network Address Translation):
+sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+sudo iptables -A FORWARD -i eth1 -o eth0 -j ACCEPT
+sudo iptables -A FORWARD -i eth0 -o eth1 -m state --state RELATED,ESTABLISHED -j ACCEPT
+
+# 3. Configurar rotas para sub-redes:
+sudo ip route add 192.168.2.0/24 via 192.168.1.2
+sudo ip route add 192.168.3.0/24 via 192.168.1.3
+
+# 4. Tornar permanente:
+echo 'net.ipv4.ip_forward = 1' >> /etc/sysctl.conf
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Protocolos de Roteamento</div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text"><span class="highlight">RIP (Routing Information Protocol):</span> Simples, para redes pequenas</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text"><span class="highlight">OSPF (Open Shortest Path First):</span> Para redes médias e grandes</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text"><span class="highlight">BGP (Border Gateway Protocol):</span> Para roteamento entre ASs</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text"><span class="highlight">EIGRP (Enhanced Interior Gateway Routing Protocol):</span> Cisco proprietário</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Troubleshooting de Roteamento</div>
+                    
+                    <div class="code-block">
+# Verificar conectividade:
+ping destino
+ping -c 4 8.8.8.8
+
+# Rastrear rota:
+traceroute destino
+traceroute -n google.com
+
+# Verificar tabela de roteamento:
+ip route get destino
+ip route get 8.8.8.8
+
+# Verificar ARP:
+arp -a
+ip neigh show
+
+# Verificar interfaces:
+ip addr show
+ip link show
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Boas Práticas</div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text">Use roteamento dinâmico para redes complexas</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text">Documente todas as rotas estáticas</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text">Monitore a tabela de roteamento regularmente</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text">Use métricas apropriadas para priorizar rotas</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text">Implemente redundância quando possível</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Exercícios Práticos</div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">1.</div>
+                        <div class="bullet-text">Configurar roteamento estático entre sub-redes</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">2.</div>
+                        <div class="bullet-text">Implementar NAT para acesso à Internet</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">3.</div>
+                        <div class="bullet-text">Diagnosticar problemas de conectividade</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">4.</div>
+                        <div class="bullet-text">Configurar roteamento dinâmico com RIP</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,430 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+    <head>
+        <title>Módulo 1: Processos e Serviços - MINFIN Angola</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <style type="text/css">
+            body {
+                margin: 0;
+                padding: 0;
+                background-color: #14191C;
+                font-family: Arial, sans-serif;
+            }
+            .container {
+                max-width: 600px;
+                margin: 0 auto;
+                background: #000000;
+            }
+            .header {
+                background: #000000;
+                padding: 20px 0;
+            }
+            .content {
+                padding: 40px 25px;
+                color: #FFFFFF;
+            }
+            .title {
+                font-size: 24px;
+                font-weight: bold;
+                color: #ED145B;
+                text-transform: uppercase;
+                margin-bottom: 20px;
+            }
+            .subtitle {
+                font-size: 19px;
+                color: #D6F0FF;
+                margin-bottom: 15px;
+            }
+            .text {
+                font-size: 17px;
+                line-height: 25px;
+                color: #ACC1CC;
+                margin-bottom: 15px;
+            }
+            .highlight {
+                color: #FFFFFF;
+                font-weight: bold;
+            }
+            .bullet-point {
+                display: flex;
+                align-items: flex-start;
+                margin-bottom: 15px;
+            }
+            .bullet {
+                color: #ED145B;
+                font-size: 19px;
+                margin-right: 10px;
+                margin-top: 2px;
+            }
+            .bullet-text {
+                color: #ACC1CC;
+                font-size: 17px;
+                line-height: 25px;
+            }
+            .section {
+                margin-bottom: 30px;
+            }
+            .code-block {
+                background: #1a1a1a;
+                border: 1px solid #ED145B;
+                border-radius: 5px;
+                padding: 15px;
+                margin: 15px 0;
+                font-family: 'Courier New', monospace;
+                font-size: 14px;
+                color: #00FF00;
+                overflow-x: auto;
+            }
+            .info-box {
+                background: #1a1a1a;
+                border-left: 4px solid #ED145B;
+                padding: 20px;
+                margin: 20px 0;
+            }
+            .status-table {
+                background: #1a1a1a;
+                border: 1px solid #ED145B;
+                border-radius: 5px;
+                padding: 15px;
+                margin: 15px 0;
+            }
+            .status-table th, .status-table td {
+                padding: 8px;
+                text-align: left;
+                border-bottom: 1px solid #333;
+            }
+            .status-table th {
+                color: #ED145B;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <div style="text-align: center;">
+                    <h1 style="color: #ED145B; font-size: 28px; margin: 0; text-transform: uppercase;">⚙️ PROCESSOS E SERVIÇOS</h1>
+                    <p style="color: #ACC1CC; font-size: 16px; margin: 10px 0 0 0;">Ministério das Finanças de Angola - 2025</p>
+                </div>
+            </div>
+            
+            <div class="content">
+                <div class="title">GERENCIAMENTO DE PROCESSOS E SERVIÇOS</div>
+                
+                <div class="section">
+                    <div class="subtitle">Conceitos Fundamentais</div>
+                    <div class="text">
+                        Um <span class="highlight">processo</span> é um programa em execução no sistema Linux. 
+                        Cada processo possui um identificador único (PID) e consome recursos como CPU, memória e I/O.
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Estados de Processos</div>
+                    <div class="status-table">
+                        <table style="width: 100%; color: #ACC1CC;">
+                            <tr>
+                                <th>Estado</th>
+                                <th>Símbolo</th>
+                                <th>Descrição</th>
+                            </tr>
+                            <tr>
+                                <td>Running</td>
+                                <td>R</td>
+                                <td>Executando ou pronto para executar</td>
+                            </tr>
+                            <tr>
+                                <td>Sleeping</td>
+                                <td>S</td>
+                                <td>Aguardando evento (I/O, sinal)</td>
+                            </tr>
+                            <tr>
+                                <td>Stopped</td>
+                                <td>T</td>
+                                <td>Parado por sinal (SIGSTOP)</td>
+                            </tr>
+                            <tr>
+                                <td>Zombie</td>
+                                <td>Z</td>
+                                <td>Processo filho terminado</td>
+                            </tr>
+                            <tr>
+                                <td>Uninterruptible</td>
+                                <td>D</td>
+                                <td>Sleeping ininterruptível (I/O)</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Comando ps</div>
+                    <div class="text">
+                        O comando <span class="highlight">ps</span> lista processos em execução no sistema.
+                    </div>
+                    
+                    <div class="code-block">
+# Sintaxe: ps [opções]
+
+# Exemplos básicos:
+ps                              # Processos do usuário atual
+ps -e                           # Todos os processos
+ps -f                            # Formato completo
+ps -u usuario                    # Processos de usuário específico
+ps -aux                          # Todos os processos (formato BSD)
+
+# Opções importantes:
+-a    # Todos os processos (exceto líderes de sessão)
+-u    # Mostra usuário
+-x    # Processos sem terminal
+-f    # Formato completo
+-e    # Todos os processos
+-l    # Formato longo
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Comando top</div>
+                    <div class="text">
+                        O comando <span class="highlight">top</span> mostra processos em tempo real com atualização contínua.
+                    </div>
+                    
+                    <div class="code-block">
+# Executar top:
+top
+
+# Comandos dentro do top:
+h       # Ajuda
+q       # Sair
+k       # Matar processo (solicita PID)
+r       # Reniciar prioridade
+u       # Filtrar por usuário
+P       # Ordenar por CPU
+M       # Ordenar por memória
+T       # Ordenar por tempo
+1       # Mostrar todos os CPUs
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Comando kill</div>
+                    <div class="text">
+                        O comando <span class="highlight">kill</span> envia sinais para processos.
+                    </div>
+                    
+                    <div class="code-block">
+# Sintaxe: kill [opções] PID
+
+# Sinais comuns:
+kill -TERM 1234                  # Terminar graciosamente (padrão)
+kill -KILL 1234                  # Forçar terminação
+kill -HUP 1234                   # Recarregar configuração
+kill -STOP 1234                  # Pausar processo
+kill -CONT 1234                  # Continuar processo pausado
+
+# Alternativas:
+killall nome_processo            # Matar por nome
+pkill nome_processo              # Matar por padrão
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Introdução ao systemd</div>
+                    <div class="text">
+                        O <span class="highlight">systemd</span> é o sistema de inicialização e gerenciamento de serviços 
+                        moderno do Linux, responsável por iniciar, parar e gerenciar serviços do sistema.
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Comandos systemctl</div>
+                    
+                    <div class="code-block">
+# Gerenciar serviços:
+systemctl start servico          # Iniciar serviço
+systemctl stop servico           # Parar serviço
+systemctl restart servico        # Reiniciar serviço
+systemctl reload servico         # Recarregar configuração
+systemctl status servico         # Status do serviço
+
+# Habilitar/desabilitar:
+systemctl enable servico         # Habilitar na inicialização
+systemctl disable servico        # Desabilitar na inicialização
+systemctl is-enabled servico     # Verificar se está habilitado
+
+# Listar serviços:
+systemctl list-units             # Serviços ativos
+systemctl list-units --failed    # Serviços com falha
+systemctl list-unit-files        # Todos os arquivos de serviço
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Arquivos de Serviço</div>
+                    <div class="text">
+                        Os serviços systemd são definidos em arquivos <span class="highlight">.service</span> localizados em:
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text"><span class="highlight">/etc/systemd/system/</span> - Serviços do sistema</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text"><span class="highlight">/lib/systemd/system/</span> - Serviços do pacote</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text"><span class="highlight">/run/systemd/system/</span> - Serviços temporários</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Logs do systemd</div>
+                    <div class="text">
+                        O comando <span class="highlight">journalctl</span> visualiza logs do systemd.
+                    </div>
+                    
+                    <div class="code-block">
+# Visualizar logs:
+journalctl                        # Todos os logs
+journalctl -u servico             # Logs de serviço específico
+journalctl -f                     # Seguir logs em tempo real
+journalctl --since "1 hour ago"   # Logs da última hora
+journalctl --since today          # Logs de hoje
+journalctl -p err                 # Apenas erros
+journalctl -n 50                  # Últimas 50 linhas
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Exercícios Práticos</div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">1.</div>
+                        <div class="bullet-text">Listar processos em execução com ps</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">2.</div>
+                        <div class="bullet-text">Monitorar processos com top</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">3.</div>
+                        <div class="bullet-text">Identificar processos por nome</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">4.</div>
+                        <div class="bullet-text">Gerenciar serviços com systemctl</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">5.</div>
+                        <div class="bullet-text">Verificar status de serviços</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">6.</div>
+                        <div class="bullet-text">Visualizar logs com journalctl</div>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <div class="subtitle" style="color: #ED145B; margin-bottom: 10px;">⚠️ IMPORTANTE</div>
+                    <div class="text">
+                        <span class="highlight">Cuidado com kill:</span> Sempre use kill -TERM antes de kill -KILL. 
+                        O sinal KILL não pode ser interceptado e pode causar perda de dados.
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Comandos Úteis</div>
+                    
+                    <div class="code-block">
+# Informações do sistema:
+uptime                            # Tempo de atividade
+w                                 # Usuários logados
+who                               # Usuários logados
+last                              # Últimos logins
+
+# Processos específicos:
+pgrep nome_processo              # Encontrar PID por nome
+pkill nome_processo              # Matar por nome
+pidof nome_processo              # PID de processo
+ps aux | grep nome               # Buscar processo
+
+# Recursos do sistema:
+free -h                          # Uso de memória
+df -h                            # Uso de disco
+iostat                           # Estatísticas de I/O
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Cenário Prático: Servidor Web</div>
+                    <div class="text">
+                        <span class="highlight">Cenário:</span> Gerenciar um servidor web Apache em produção.
+                    </div>
+                    
+                    <div class="code-block">
+# Verificar status do Apache:
+systemctl status apache2
+
+# Iniciar Apache se parado:
+systemctl start apache2
+
+# Habilitar na inicialização:
+systemctl enable apache2
+
+# Verificar processos do Apache:
+ps aux | grep apache
+
+# Monitorar logs em tempo real:
+journalctl -u apache2 -f
+
+# Reiniciar Apache:
+systemctl restart apache2
+
+# Verificar se está rodando:
+systemctl is-active apache2
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Boas Práticas</div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text">Monitore regularmente o uso de recursos</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text">Use systemctl para gerenciar serviços</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text">Verifique logs antes de reiniciar serviços</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text">Use kill -TERM antes de kill -KILL</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text">Configure serviços para inicialização automática</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

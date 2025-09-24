@@ -1,0 +1,349 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+    <head>
+        <title>Módulo 1: Gestão de Usuários e Grupos - MINFIN Angola</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <style type="text/css">
+            body {
+                margin: 0;
+                padding: 0;
+                background-color: #14191C;
+                font-family: Arial, sans-serif;
+            }
+            .container {
+                max-width: 600px;
+                margin: 0 auto;
+                background: #000000;
+            }
+            .header {
+                background: #000000;
+                padding: 20px 0;
+            }
+            .content {
+                padding: 40px 25px;
+                color: #FFFFFF;
+            }
+            .title {
+                font-size: 24px;
+                font-weight: bold;
+                color: #ED145B;
+                text-transform: uppercase;
+                margin-bottom: 20px;
+            }
+            .subtitle {
+                font-size: 19px;
+                color: #D6F0FF;
+                margin-bottom: 15px;
+            }
+            .text {
+                font-size: 17px;
+                line-height: 25px;
+                color: #ACC1CC;
+                margin-bottom: 15px;
+            }
+            .highlight {
+                color: #FFFFFF;
+                font-weight: bold;
+            }
+            .bullet-point {
+                display: flex;
+                align-items: flex-start;
+                margin-bottom: 15px;
+            }
+            .bullet {
+                color: #ED145B;
+                font-size: 19px;
+                margin-right: 10px;
+                margin-top: 2px;
+            }
+            .bullet-text {
+                color: #ACC1CC;
+                font-size: 17px;
+                line-height: 25px;
+            }
+            .section {
+                margin-bottom: 30px;
+            }
+            .code-block {
+                background: #1a1a1a;
+                border: 1px solid #ED145B;
+                border-radius: 5px;
+                padding: 15px;
+                margin: 15px 0;
+                font-family: 'Courier New', monospace;
+                font-size: 14px;
+                color: #00FF00;
+                overflow-x: auto;
+            }
+            .info-box {
+                background: #1a1a1a;
+                border-left: 4px solid #ED145B;
+                padding: 20px;
+                margin: 20px 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <div style="text-align: center;">
+                    <h1 style="color: #ED145B; font-size: 28px; margin: 0; text-transform: uppercase;">👥 GESTÃO DE USUÁRIOS E GRUPOS</h1>
+                    <p style="color: #ACC1CC; font-size: 16px; margin: 10px 0 0 0;">Ministério das Finanças de Angola - 2025</p>
+                </div>
+            </div>
+            
+            <div class="content">
+                <div class="title">CRIAÇÃO E GERENCIAMENTO DE USUÁRIOS E GRUPOS</div>
+                
+                <div class="section">
+                    <div class="subtitle">Conceitos Fundamentais</div>
+                    <div class="text">
+                        O Linux é um sistema <span class="highlight">multi-usuário</span> que permite que múltiplos usuários 
+                        acessem o sistema simultaneamente. Cada usuário possui um identificador único (UID) e pode 
+                        pertencer a um ou mais grupos.
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Arquivos de Configuração</div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text"><span class="highlight">/etc/passwd</span> - Informações dos usuários</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text"><span class="highlight">/etc/shadow</span> - Senhas criptografadas</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text"><span class="highlight">/etc/group</span> - Informações dos grupos</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text"><span class="highlight">/etc/gshadow</span> - Senhas dos grupos</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Criação de Usuários</div>
+                    <div class="text">
+                        O comando <span class="highlight">useradd</span> cria novos usuários no sistema.
+                    </div>
+                    
+                    <div class="code-block">
+# Sintaxe: useradd [opções] nome_usuario
+
+# Exemplos básicos:
+useradd joao                    # Cria usuário simples
+useradd -m joao                 # Cria usuário com diretório home
+useradd -m -s /bin/bash joao    # Cria com shell específico
+useradd -m -g usuarios joao     # Cria com grupo primário
+useradd -m -G admin,dev joao    # Cria com grupos secundários
+
+# Opções importantes:
+-m    # Cria diretório home
+-s    # Define shell padrão
+-g    # Define grupo primário
+-G    # Define grupos secundários
+-d    # Define diretório home personalizado
+-c    # Define comentário/descrição
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Gerenciamento de Usuários</div>
+                    
+                    <div class="code-block">
+# Alterar senha do usuário:
+passwd joao                     # Define nova senha
+passwd -l joao                  # Bloqueia conta
+passwd -u joao                  # Desbloqueia conta
+
+# Modificar usuário existente:
+usermod -l novo_nome joao       # Renomeia usuário
+usermod -d /novo/home joao      # Altera diretório home
+usermod -s /bin/zsh joao        # Altera shell
+usermod -G admin,dev joao       # Altera grupos secundários
+
+# Remover usuário:
+userdel joao                    # Remove usuário
+userdel -r joao                 # Remove usuário e diretório home
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Criação de Grupos</div>
+                    <div class="text">
+                        O comando <span class="highlight">groupadd</span> cria novos grupos no sistema.
+                    </div>
+                    
+                    <div class="code-block">
+# Sintaxe: groupadd [opções] nome_grupo
+
+# Exemplos:
+groupadd administradores       # Cria grupo simples
+groupadd -g 1000 dev           # Cria grupo com GID específico
+groupadd -r sistema            # Cria grupo do sistema
+
+# Opções importantes:
+-g    # Define GID específico
+-r    # Cria grupo do sistema
+-o    # Permite GID duplicado
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Gerenciamento de Grupos</div>
+                    
+                    <div class="code-block">
+# Adicionar usuário ao grupo:
+usermod -a -G administradores joao    # Adiciona joao ao grupo
+gpasswd -a joao administradores        # Alternativa para adicionar
+
+# Remover usuário do grupo:
+gpasswd -d joao administradores        # Remove joao do grupo
+
+# Modificar grupo:
+groupmod -n novo_nome administradores  # Renomeia grupo
+groupmod -g 2000 administradores      # Altera GID
+
+# Remover grupo:
+groupdel administradores              # Remove grupo (deve estar vazio)
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Comandos de Consulta</div>
+                    
+                    <div class="code-block">
+# Informações do usuário atual:
+whoami                            # Nome do usuário atual
+id                                # UID, GID e grupos
+groups                            # Grupos do usuário atual
+
+# Informações de usuários específicos:
+id joao                          # Informações do usuário joao
+groups joao                      # Grupos do usuário joao
+finger joao                      # Informações detalhadas (se instalado)
+
+# Listar usuários:
+cat /etc/passwd                  # Todos os usuários
+getent passwd                    # Usuários (incluindo LDAP)
+cut -d: -f1 /etc/passwd          # Apenas nomes de usuários
+
+# Listar grupos:
+cat /etc/group                   # Todos os grupos
+getent group                     # Grupos (incluindo LDAP)
+cut -d: -f1 /etc/group           # Apenas nomes de grupos
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Exercícios Práticos</div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">1.</div>
+                        <div class="bullet-text">Criar usuário com diretório home e shell específico</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">2.</div>
+                        <div class="bullet-text">Definir senha para o usuário criado</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">3.</div>
+                        <div class="bullet-text">Criar grupos para diferentes departamentos</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">4.</div>
+                        <div class="bullet-text">Adicionar usuários aos grupos criados</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">5.</div>
+                        <div class="bullet-text">Verificar informações de usuários e grupos</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">6.</div>
+                        <div class="bullet-text">Modificar propriedades de usuários existentes</div>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <div class="subtitle" style="color: #ED145B; margin-bottom: 10px;">⚠️ IMPORTANTE</div>
+                    <div class="text">
+                        <span class="highlight">Privilégios de Root:</span> A maioria dos comandos de gerenciamento de usuários 
+                        requer privilégios de administrador (sudo ou root). Sempre verifique as permissões antes de executar.
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Boas Práticas</div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text">Use grupos para organizar usuários por função</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text">Defina senhas seguras para todos os usuários</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text">Remova usuários desnecessários regularmente</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text">Monitore tentativas de login suspeitas</div>
+                    </div>
+                    
+                    <div class="bullet-point">
+                        <div class="bullet">•</div>
+                        <div class="bullet-text">Use UIDs e GIDs consistentes</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="subtitle">Cenário Prático: Empresa</div>
+                    <div class="text">
+                        <span class="highlight">Cenário:</span> Configurar usuários para uma empresa com departamentos 
+                        de TI, Financeiro e RH. Cada departamento deve ter seu próprio grupo com permissões específicas.
+                    </div>
+                    
+                    <div class="code-block">
+# Criar grupos departamentais:
+groupadd ti
+groupadd financeiro
+groupadd rh
+
+# Criar usuários para cada departamento:
+useradd -m -G ti joao.ti
+useradd -m -G financeiro maria.fin
+useradd -m -G rh pedro.rh
+
+# Definir senhas:
+passwd joao.ti
+passwd maria.fin
+passwd pedro.rh
+
+# Verificar configuração:
+id joao.ti
+groups maria.fin
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
