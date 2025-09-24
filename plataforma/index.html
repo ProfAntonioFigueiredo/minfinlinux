@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plataforma de Treinamento Linux - MINFIN Angola</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-linux"></i>
+                    <h1>Linux Training Platform</h1>
+                </div>
+                <nav class="nav">
+                    <ul class="nav-list">
+                        <li><a href="#home" class="nav-link active">Início</a></li>
+                        <li><a href="#modules" class="nav-link">Módulos</a></li>
+                        <li><a href="#exercises" class="nav-link">Exercícios</a></li>
+                        <li><a href="#resources" class="nav-link">Recursos</a></li>
+                        <li><a href="#about" class="nav-link">Sobre</a></li>
+                    </ul>
+                </nav>
+                <div class="header-actions">
+                    <button class="btn btn-outline" id="theme-toggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="btn btn-primary" id="fullscreen-toggle">
+                        <i class="fas fa-expand"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Home Section -->
+        <section id="home" class="section active">
+            <div class="container">
+                <div class="hero">
+                    <div class="hero-content">
+                        <h2 class="hero-title">Treinamento Linux Avançado</h2>
+                        <p class="hero-subtitle">Ministério das Finanças de Angola</p>
+                        <p class="hero-description">
+                            Capacite-se com conhecimentos avançados em administração de sistemas Linux, 
+                            redes, segurança e observabilidade. Uma jornada completa de 60 horas com 
+                            foco prático e casos reais.
+                        </p>
+                        <div class="hero-stats">
+                            <div class="stat">
+                                <span class="stat-number">60</span>
+                                <span class="stat-label">Horas</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">6</span>
+                                <span class="stat-label">Módulos</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">50+</span>
+                                <span class="stat-label">Exercícios</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">100%</span>
+                                <span class="stat-label">Prático</span>
+                            </div>
+                        </div>
+                        <div class="hero-actions">
+                            <button class="btn btn-primary btn-large" onclick="showSection('modules')">
+                                <i class="fas fa-play"></i>
+                                Começar Treinamento
+                            </button>
+                            <button class="btn btn-outline btn-large" onclick="showSection('about')">
+                                <i class="fas fa-info-circle"></i>
+                                Saiba Mais
+                            </button>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        <div class="terminal-window">
+                            <div class="terminal-header">
+                                <div class="terminal-buttons">
+                                    <span class="btn-close"></span>
+                                    <span class="btn-minimize"></span>
+                                    <span class="btn-maximize"></span>
+                                </div>
+                                <div class="terminal-title">Terminal Linux</div>
+                            </div>
+                            <div class="terminal-body">
+                                <div class="terminal-line">
+                                    <span class="prompt">user@ubuntu:~$</span>
+                                    <span class="command">ls -la</span>
+                                </div>
+                                <div class="terminal-output">
+                                    <div>drwxr-xr-x 2 user user 4096 Jan 23 10:30 Documents</div>
+                                    <div>drwxr-xr-x 2 user user 4096 Jan 23 10:30 Downloads</div>
+                                    <div>-rw-r--r-- 1 user user 1024 Jan 23 10:30 config.txt</div>
+                                </div>
+                                <div class="terminal-line">
+                                    <span class="prompt">user@ubuntu:~$</span>
+                                    <span class="cursor">_</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modules Section -->
+        <section id="modules" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Módulos do Treinamento</h2>
+                    <p class="section-subtitle">Explore os 6 módulos completos do curso</p>
+                </div>
+                <div class="modules-grid">
+                    <div class="module-card" data-module="1">
+                        <div class="module-icon">
+                            <i class="fas fa-terminal"></i>
+                        </div>
+                        <div class="module-content">
+                            <h3 class="module-title">Módulo 1: Fundamentos Linux</h3>
+                            <p class="module-description">
+                                Introdução ao Linux, permissões, usuários, grupos, processos e serviços.
+                            </p>
+                            <div class="module-meta">
+                                <span class="module-duration">
+                                    <i class="fas fa-clock"></i>
+                                    10 horas
+                                </span>
+                                <span class="module-level">
+                                    <i class="fas fa-signal"></i>
+                                    Básico
+                                </span>
+                            </div>
+                            <div class="module-actions">
+                                <button class="btn btn-primary" onclick="openModule(1)">
+                                    <i class="fas fa-play"></i>
+                                    Iniciar
+                                </button>
+                                <button class="btn btn-outline" onclick="previewModule(1)">
+                                    <i class="fas fa-eye"></i>
+                                    Preview
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="module-card" data-module="2">
+                        <div class="module-icon">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <div class="module-content">
+                            <h3 class="module-title">Módulo 2: Redes e Segurança</h3>
+                            <p class="module-description">
+                                Fundamentos de redes, modelos OSI/TCP-IP, subnetting e segurança da informação.
+                            </p>
+                            <div class="module-meta">
+                                <span class="module-duration">
+                                    <i class="fas fa-clock"></i>
+                                    10 horas
+                                </span>
+                                <span class="module-level">
+                                    <i class="fas fa-signal"></i>
+                                    Intermediário
+                                </span>
+                            </div>
+                            <div class="module-actions">
+                                <button class="btn btn-primary" onclick="openModule(2)">
+                                    <i class="fas fa-play"></i>
+                                    Iniciar
+                                </button>
+                                <button class="btn btn-outline" onclick="previewModule(2)">
+                                    <i class="fas fa-eye"></i>
+                                    Preview
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="module-card" data-module="3">
+                        <div class="module-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <div class="module-content">
+                            <h3 class="module-title">Módulo 3: Administração de Redes</h3>
+                            <p class="module-description">
+                                Configuração avançada de redes, servidores DNS, DHCP, web e email.
+                            </p>
+                            <div class="module-meta">
+                                <span class="module-duration">
+                                    <i class="fas fa-clock"></i>
+                                    10 horas
+                                </span>
+                                <span class="module-level">
+                                    <i class="fas fa-signal"></i>
+                                    Avançado
+                                </span>
+                            </div>
+                            <div class="module-actions">
+                                <button class="btn btn-primary" onclick="openModule(3)">
+                                    <i class="fas fa-play"></i>
+                                    Iniciar
+                                </button>
+                                <button class="btn btn-outline" onclick="previewModule(3)">
+                                    <i class="fas fa-eye"></i>
+                                    Preview
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="module-card" data-module="4">
+                        <div class="module-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <div class="module-content">
+                            <h3 class="module-title">Módulo 4: Administração de Sistemas</h3>
+                            <p class="module-description">
+                                Gerenciamento de pacotes, automação, virtualização e containers.
+                            </p>
+                            <div class="module-meta">
+                                <span class="module-duration">
+                                    <i class="fas fa-clock"></i>
+                                    10 horas
+                                </span>
+                                <span class="module-level">
+                                    <i class="fas fa-signal"></i>
+                                    Avançado
+                                </span>
+                            </div>
+                            <div class="module-actions">
+                                <button class="btn btn-primary" onclick="openModule(4)">
+                                    <i class="fas fa-play"></i>
+                                    Iniciar
+                                </button>
+                                <button class="btn btn-outline" onclick="previewModule(4)">
+                                    <i class="fas fa-eye"></i>
+                                    Preview
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="module-card" data-module="5">
+                        <div class="module-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="module-content">
+                            <h3 class="module-title">Módulo 5: Segurança de Redes</h3>
+                            <p class="module-description">
+                                Firewalls, hardening, monitoramento de segurança e resposta a incidentes.
+                            </p>
+                            <div class="module-meta">
+                                <span class="module-duration">
+                                    <i class="fas fa-clock"></i>
+                                    10 horas
+                                </span>
+                                <span class="module-level">
+                                    <i class="fas fa-signal"></i>
+                                    Avançado
+                                </span>
+                            </div>
+                            <div class="module-actions">
+                                <button class="btn btn-primary" onclick="openModule(5)">
+                                    <i class="fas fa-play"></i>
+                                    Iniciar
+                                </button>
+                                <button class="btn btn-outline" onclick="previewModule(5)">
+                                    <i class="fas fa-eye"></i>
+                                    Preview
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="module-card" data-module="6">
+                        <div class="module-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="module-content">
+                            <h3 class="module-title">Módulo 6: Observabilidade</h3>
+                            <p class="module-description">
+                                ELK Stack, Prometheus, Grafana e monitoramento completo de infraestrutura.
+                            </p>
+                            <div class="module-meta">
+                                <span class="module-duration">
+                                    <i class="fas fa-clock"></i>
+                                    10 horas
+                                </span>
+                                <span class="module-level">
+                                    <i class="fas fa-signal"></i>
+                                    Avançado
+                                </span>
+                            </div>
+                            <div class="module-actions">
+                                <button class="btn btn-primary" onclick="openModule(6)">
+                                    <i class="fas fa-play"></i>
+                                    Iniciar
+                                </button>
+                                <button class="btn btn-outline" onclick="previewModule(6)">
+                                    <i class="fas fa-eye"></i>
+                                    Preview
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Module Viewer -->
+        <section id="module-viewer" class="section module-viewer">
+            <div class="container">
+                <div class="module-viewer-header">
+                    <button class="btn btn-outline" onclick="showSection('modules')">
+                        <i class="fas fa-arrow-left"></i>
+                        Voltar aos Módulos
+                    </button>
+                    <div class="module-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="module-progress"></div>
+                        </div>
+                        <span class="progress-text" id="progress-text">0% Concluído</span>
+                    </div>
+                </div>
+                <div class="module-content-area">
+                    <div class="module-sidebar">
+                        <div class="module-info">
+                            <h2 id="current-module-title">Módulo 1: Fundamentos Linux</h2>
+                            <p id="current-module-description">Introdução ao Linux e conceitos básicos</p>
+                        </div>
+                        <nav class="module-nav">
+                            <ul id="module-nav-list">
+                                <!-- Dynamic content -->
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="module-main">
+                        <div class="module-tabs">
+                            <button class="tab-btn active" data-tab="presentation">
+                                <i class="fas fa-presentation"></i>
+                                Apresentação
+                            </button>
+                            <button class="tab-btn" data-tab="exercise">
+                                <i class="fas fa-code"></i>
+                                Exercícios
+                            </button>
+                            <button class="tab-btn" data-tab="resources">
+                                <i class="fas fa-book"></i>
+                                Recursos
+                            </button>
+                        </div>
+                        <div class="module-content">
+                            <div id="presentation-content" class="tab-content active">
+                                <!-- Dynamic presentation content -->
+                            </div>
+                            <div id="exercise-content" class="tab-content">
+                                <!-- Dynamic exercise content -->
+                            </div>
+                            <div id="resources-content" class="tab-content">
+                                <!-- Dynamic resources content -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exercises Section -->
+        <section id="exercises" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Exercícios Práticos</h2>
+                    <p class="section-subtitle">Pratique com exercícios hands-on em ambiente Ubuntu 24.04 LTS</p>
+                </div>
+                <div class="exercises-grid">
+                    <!-- Dynamic exercise cards -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Resources Section -->
+        <section id="resources" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Recursos de Aprendizado</h2>
+                    <p class="section-subtitle">Materiais complementares e ferramentas</p>
+                </div>
+                <div class="resources-grid">
+                    <div class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fas fa-download"></i>
+                        </div>
+                        <h3>Scripts de Instalação</h3>
+                        <p>Scripts automatizados para configuração do ambiente Ubuntu</p>
+                        <button class="btn btn-primary" onclick="downloadScripts()">
+                            <i class="fas fa-download"></i>
+                            Baixar Scripts
+                        </button>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <h3>Documentação</h3>
+                        <p>Guias completos e manuais de referência</p>
+                        <button class="btn btn-primary" onclick="openDocumentation()">
+                            <i class="fas fa-external-link-alt"></i>
+                            Abrir Docs
+                        </button>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fas fa-terminal"></i>
+                        </div>
+                        <h3>Terminal Online</h3>
+                        <p>Terminal Linux virtual para prática imediata</p>
+                        <button class="btn btn-primary" onclick="openTerminal()">
+                            <i class="fas fa-play"></i>
+                            Abrir Terminal
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Sobre o Treinamento</h2>
+                    <p class="section-subtitle">Ministério das Finanças de Angola</p>
+                </div>
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3>Objetivo do Treinamento</h3>
+                        <p>
+                            Capacitar os participantes a administrarem redes e sistemas complexos utilizando Linux, 
+                            implementando e gerenciando políticas de segurança para proteger redes e dados corporativos.
+                        </p>
+                        <h3>Público-Alvo</h3>
+                        <p>
+                            Profissionais que já possuem nível intermediário de conhecimentos em Linux e desejam 
+                            aprofundar suas habilidades em administração de redes, administração de sistemas e 
+                            segurança de redes utilizando o sistema operacional Linux.
+                        </p>
+                        <h3>Metodologia</h3>
+                        <ul>
+                            <li>60% Prático - 40% Teórico</li>
+                            <li>Exercícios hands-on em ambiente real</li>
+                            <li>Casos práticos do Ministério das Finanças</li>
+                            <li>Ambiente Ubuntu 24.04 LTS</li>
+                        </ul>
+                    </div>
+                    <div class="about-stats">
+                        <div class="stat-card">
+                            <i class="fas fa-clock"></i>
+                            <h4>60 Horas</h4>
+                            <p>Total de carga horária</p>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-users"></i>
+                            <h4>60 Alunos</h4>
+                            <p>Capacidade máxima</p>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-certificate"></i>
+                            <h4>Certificação</h4>
+                            <p>Ao final do curso</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Code Copy Modal -->
+    <div id="code-copy-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Copiar Código</h3>
+                <button class="modal-close" onclick="closeCodeModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="code-block">
+                    <pre><code id="code-to-copy"></code></pre>
+                </div>
+                <div class="code-actions">
+                    <button class="btn btn-primary" onclick="copyCode()">
+                        <i class="fas fa-copy"></i>
+                        Copiar Código
+                    </button>
+                    <button class="btn btn-outline" onclick="downloadCode()">
+                        <i class="fas fa-download"></i>
+                        Baixar Script
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/modules.js"></script>
+    <script src="assets/js/exercises.js"></script>
+    <script src="assets/js/utils.js"></script>
+</body>
+</html>
