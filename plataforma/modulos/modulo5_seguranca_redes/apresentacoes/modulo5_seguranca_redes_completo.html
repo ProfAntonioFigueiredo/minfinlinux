@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Segurança de Redes - Módulo 5</title>
+    <link rel="stylesheet" href="../../../assets/css/main.css">
+    <link rel="stylesheet" href="../../../assets/css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .presentation-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+        }
+        
+        .slide {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            padding: 2rem;
+            border-left: 5px solid #dc2626;
+        }
+        
+        .slide h1 {
+            color: #dc2626;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .slide h2 {
+            color: #b91c1c;
+            font-size: 1.8rem;
+            margin: 1.5rem 0 1rem 0;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 0.5rem;
+        }
+        
+        .slide h3 {
+            color: #374151;
+            font-size: 1.4rem;
+            margin: 1.2rem 0 0.8rem 0;
+        }
+        
+        .slide h4 {
+            color: #4b5563;
+            font-size: 1.2rem;
+            margin: 1rem 0 0.6rem 0;
+        }
+        
+        .slide p {
+            color: #4b5563;
+            margin-bottom: 1rem;
+        }
+        
+        .info-box {
+            background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+            border: 1px solid #fecaca;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid #dc2626;
+        }
+        
+        .warning-box {
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+            border: 1px solid #fde68a;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid #f59e0b;
+        }
+        
+        .success-box {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border: 1px solid #bbf7d0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid #22c55e;
+        }
+        
+        .code-example {
+            background: #1f2937;
+            color: #f9fafb;
+            padding: 1.5rem;
+            border-radius: 8px;
+            font-family: 'Fira Code', 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin: 1rem 0;
+            overflow-x: auto;
+            border: 1px solid #374151;
+        }
+        
+        .command {
+            color: #10b981;
+            font-weight: bold;
+        }
+        
+        .comment {
+            color: #6b7280;
+            font-style: italic;
+        }
+        
+        .exercise-integration {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border: 1px solid #93c5fd;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid #3b82f6;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        th {
+            background: #f8fafc;
+            font-weight: 600;
+            color: #374151;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin: 0.5rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+        }
+        
+        .btn i {
+            font-size: 0.8rem;
+        }
+        
+        kbd {
+            background: #f3f4f6;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            padding: 0.2rem 0.4rem;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.8rem;
+            color: #374151;
+        }
+        
+        .security-level {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin: 0.2rem;
+        }
+        
+        .level-critical { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
+        .level-high { background: #fffbeb; color: #d97706; border: 1px solid #fed7aa; }
+        .level-medium { background: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0; }
+        .level-low { background: #f0f9ff; color: #0284c7; border: 1px solid #bae6fd; }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: Título e Introdução -->
+        <div class="slide">
+            <h1><i class="fas fa-shield-alt"></i> Segurança de Redes com Linux</h1>
+            <h2>Proteção Avançada de Infraestrutura</h2>
+            
+            <div class="info-box">
+                <strong>🎯 Objetivo:</strong> Implementar medidas robustas de segurança de rede, firewalls, detecção de intrusões e resposta a incidentes para proteger a infraestrutura crítica do Ministério das Finanças.
+            </div>
+            
+            <h3>📋 Conteúdo Programático</h3>
+            <ul>
+                <li><strong>Ferramentas de Segurança</strong> - SSH, backup e recuperação</li>
+                <li><strong>Configuração de Firewalls</strong> - UFW, iptables e nftables</li>
+                <li><strong>Hardening de Sistemas</strong> - SELinux, AppArmor e políticas</li>
+                <li><strong>Monitoramento de Segurança</strong> - Snort, Suricata e detecção</li>
+                <li><strong>Análise Forense</strong> - Autopsy, Sleuth Kit e investigação</li>
+                <li><strong>Resposta a Incidentes</strong> - Planos e recuperação</li>
+                <li><strong>Auditoria de Segurança</strong> - Compliance e relatórios</li>
+            </ul>
+            
+            <div class="success-box">
+                <strong>⏱️ Duração:</strong> 10 horas | <strong>📊 Nível:</strong> Avançado | <strong>🏛️ Público:</strong> Administradores MINFIN
+            </div>
+        </div>
+
+        <!-- Slide 2: Ferramentas Básicas de Segurança -->
+        <div class="slide">
+            <h2><i class="fas fa-tools"></i> Ferramentas Básicas de Segurança</h2>
+            
+            <h3>SSH - Secure Shell</h3>
+            <div class="info-box">
+                <strong>🔐 SSH:</strong> Protocolo essencial para acesso remoto seguro. Configuração adequada é fundamental para proteger servidores críticos.
+            </div>
+            
+            <div class="code-example">
+<span class="command"># Configurar SSH para máxima segurança</span><br>
+<span class="command">sudo nano /etc/ssh/sshd_config</span><br>
+<span class="command"># Configurações recomendadas:</span><br>
+<span class="command"># Port 2222</span><br>
+<span class="command"># PermitRootLogin no</span><br>
+<span class="command"># PasswordAuthentication no</span><br>
+<span class="command"># PubkeyAuthentication yes</span><br>
+<span class="command"># MaxAuthTries 3</span><br>
+<span class="command"># ClientAliveInterval 300</span><br>
+<span class="command"># ClientAliveCountMax 2</span><br>
+<span class="command"># Restart SSH service</span><br>
+<span class="command">sudo systemctl restart ssh</span>
+            </div>
+            
+            <h3>Backup e Recuperação</h3>
+            <div class="code-example">
+<span class="command"># Backup completo do sistema</span><br>
+<span class="command">sudo tar -czf /backup/minfin-$(date +%Y%m%d).tar.gz /etc /home /var/www</span><br>
+<span class="command"># Backup incremental com rsync</span><br>
+<span class="command">rsync -av --delete /var/www/ /backup/www/</span><br>
+<span class="command"># Backup de banco de dados</span><br>
+<span class="command">mysqldump -u root -p --all-databases > /backup/mysql-$(date +%Y%m%d).sql</span><br>
+<span class="command"># Verificar integridade do backup</span><br>
+<span class="command">sha256sum /backup/minfin-*.tar.gz > /backup/checksums.txt</span>
+            </div>
+            
+            <div class="exercise-integration">
+                <h4><i class="fas fa-code"></i> Exercício Prático: Configuração SSH MINFIN</h4>
+                <p>Vamos configurar SSH com máxima segurança para o MINFIN:</p>
+                <div class="code-example">
+<span class="command"># 1. Gerar chaves SSH</span><br>
+<span class="command">ssh-keygen -t rsa -b 4096 -C "minfin@admin.gov.ao"</span><br>
+<span class="command"># 2. Configurar SSH server</span><br>
+<span class="command">sudo cp /etc/ssh/sshd_config /etc/ssh/sshd_config.backup</span><br>
+<span class="command"># 3. Aplicar configurações de segurança</span><br>
+<span class="command">sudo tee -a /etc/ssh/sshd_config << 'EOF'</span><br>
+<span class="command"># Configurações de segurança MINFIN</span><br>
+<span class="command">Port 2222</span><br>
+<span class="command">PermitRootLogin no</span><br>
+<span class="command">PasswordAuthentication no</span><br>
+<span class="command">PubkeyAuthentication yes</span><br>
+<span class="command">MaxAuthTries 3</span><br>
+<span class="command">ClientAliveInterval 300</span><br>
+<span class="command">ClientAliveCountMax 2</span><br>
+<span class="command">AllowUsers minfin_admin minfin_ti</span><br>
+<span class="command">EOF</span><br>
+<span class="command"># 4. Reiniciar SSH</span><br>
+<span class="command">sudo systemctl restart ssh</span><br>
+<span class="command"># 5. Testar conexão</span><br>
+<span class="command">ssh -p 2222 minfin_admin@localhost</span>
+                </div>
+                <button class="btn" onclick="executeExercise('ssh-security')">
+                    <i class="fas fa-play"></i> Executar Configuração
+                </button>
+                <button class="btn" onclick="copyCode('ssh-security')">
+                    <i class="fas fa-copy"></i> Copiar Código
+                </button>
+            </div>
+        </div>
+
+        <!-- Slide 3: Configuração de Firewalls -->
+        <div class="slide">
+            <h2><i class="fas fa-fire"></i> Configuração de Firewalls</h2>
+            
+            <h3>UFW - Uncomplicated Firewall</h3>
+            <div class="info-box">
+                <strong>🔥 UFW:</strong> Interface simplificada para iptables, ideal para configurações básicas de firewall em servidores Ubuntu.
+            </div>
+            
+            <div class="code-example">
+<span class="command"># Configurar UFW básico</span><br>
+<span class="command">sudo ufw enable</span><br>
+<span class="command">sudo ufw default deny incoming</span><br>
+<span class="command">sudo ufw default allow outgoing</span><br>
+<span class="command"># Permitir SSH</span><br>
+<span class="command">sudo ufw allow 2222/tcp</span><br>
+<span class="command"># Permitir HTTP/HTTPS</span><br>
+<span class="command">sudo ufw allow 80/tcp</span><br>
+<span class="command">sudo ufw allow 443/tcp</span><br>
+<span class="command"># Verificar status</span><br>
+<span class="command">sudo ufw status verbose</span>
+            </div>
+            
+            <h3>iptables - Firewall Avançado</h3>
+            <div class="code-example">
+<span class="command"># Configurar iptables para MINFIN</span><br>
+<span class="command"># Limpar regras existentes</span><br>
+<span class="command">sudo iptables -F</span><br>
+<span class="command">sudo iptables -X</span><br>
+<span class="command"># Política padrão</span><br>
+<span class="command">sudo iptables -P INPUT DROP</span><br>
+<span class="command">sudo iptables -P FORWARD DROP</span><br>
+<span class="command">sudo iptables -P OUTPUT ACCEPT</span><br>
+<span class="command"># Permitir loopback</span><br>
+<span class="command">sudo iptables -A INPUT -i lo -j ACCEPT</span><br>
+<span class="command"># Permitir conexões estabelecidas</span><br>
+<span class="command">sudo iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT</span><br>
+<span class="command"># Permitir SSH</span><br>
+<span class="command">sudo iptables -A INPUT -p tcp --dport 2222 -j ACCEPT</span><br>
+<span class="command"># Permitir HTTP/HTTPS</span><br>
+<span class="command">sudo iptables -A INPUT -p tcp --dport 80 -j ACCEPT</span><br>
+<span class="command">sudo iptables -A INPUT -p tcp --dport 443 -j ACCEPT</span>
+            </div>
+            
+            <div class="exercise-integration">
+                <h4><i class="fas fa-code"></i> Exercício Prático: Firewall MINFIN</h4>
+                <p>Vamos configurar firewall robusto para o Ministério das Finanças:</p>
+                <div class="code-example">
+<span class="command"># 1. Configurar UFW</span><br>
+<span class="command">sudo ufw --force enable</span><br>
+<span class="command">sudo ufw default deny incoming</span><br>
+<span class="command">sudo ufw default allow outgoing</span><br>
+<span class="command"># 2. Regras específicas MINFIN</span><br>
+<span class="command">sudo ufw allow 2222/tcp comment 'SSH MINFIN'</span><br>
+<span class="command">sudo ufw allow 80/tcp comment 'HTTP'</span><br>
+<span class="command">sudo ufw allow 443/tcp comment 'HTTPS'</span><br>
+<span class="command">sudo ufw allow from 192.168.1.0/24 to any port 22 comment 'SSH Rede Interna'</span><br>
+<span class="command"># 3. Configurar iptables avançado</span><br>
+<span class="command">sudo iptables -A INPUT -p tcp --dport 22 -m recent --name SSH --set</span><br>
+<span class="command">sudo iptables -A INPUT -p tcp --dport 22 -m recent --name SSH --rcheck --seconds 60 --hitcount 4 -j DROP</span><br>
+<span class="command"># 4. Salvar configuração</span><br>
+<span class="command">sudo iptables-save > /etc/iptables/rules.v4</span><br>
+<span class="command"># 5. Verificar status</span><br>
+<span class="command">sudo ufw status numbered</span><br>
+<span class="command">sudo iptables -L -n -v</span>
+                </div>
+                <button class="btn" onclick="executeExercise('firewall-config')">
+                    <i class="fas fa-play"></i> Executar Firewall
+                </button>
+                <button class="btn" onclick="copyCode('firewall-config')">
+                    <i class="fas fa-copy"></i> Copiar Código
+                </button>
+            </div>
+        </div>
+
+        <!-- Slide 4: Hardening de Sistemas -->
+        <div class="slide">
+            <h2><i class="fas fa-lock"></i> Hardening de Sistemas</h2>
+            
+            <h3>SELinux - Security Enhanced Linux</h3>
+            <div class="info-box">
+                <strong>🛡️ SELinux:</strong> Sistema de controle de acesso obrigatório que implementa políticas de segurança granulares para proteger o sistema.
+            </div>
+            
+            <div class="code-example">
+<span class="command"># Verificar status do SELinux</span><br>
+<span class="command">sestatus</span><br>
+<span class="command"># Configurar SELinux</span><br>
+<span class="command">sudo nano /etc/selinux/config</span><br>
+<span class="command"># Configuração recomendada:</span><br>
+<span class="command"># SELINUX=enforcing</span><br>
+<span class="command"># SELINUXTYPE=targeted</span><br>
+<span class="command"># Verificar contexto de arquivos</span><br>
+<span class="command">ls -Z /var/www/</span><br>
+<span class="command"># Configurar contexto para Apache</span><br>
+<span class="command">sudo setsebool -P httpd_can_network_connect 1</span><br>
+<span class="command">sudo setsebool -P httpd_can_network_connect_db 1</span>
+            </div>
+            
+            <h3>AppArmor - Application Armor</h3>
+            <div class="code-example">
+<span class="command"># Verificar status do AppArmor</span><br>
+<span class="command">sudo aa-status</span><br>
+<span class="command"># Instalar AppArmor</span><br>
+<span class="command">sudo apt install apparmor apparmor-utils</span><br>
+<span class="command"># Habilitar perfis</span><br>
+<span class="command">sudo aa-enforce /usr/sbin/apache2</span><br>
+<span class="command"># Verificar perfis ativos</span><br>
+<span class="command">sudo aa-status | grep apache2</span><br>
+<span class="command"># Gerar perfil para aplicação</span><br>
+<span class="command">sudo aa-genprof /usr/sbin/nginx</span>
+            </div>
+            
+            <div class="exercise-integration">
+                <h4><i class="fas fa-code"></i> Exercício Prático: Hardening MINFIN</h4>
+                <p>Vamos implementar hardening completo para o MINFIN:</p>
+                <div class="code-example">
+<span class="command"># 1. Instalar ferramentas de hardening</span><br>
+<span class="command">sudo apt update && sudo apt install -y apparmor apparmor-utils ufw fail2ban</span><br>
+<span class="command"># 2. Configurar AppArmor</span><br>
+<span class="command">sudo systemctl enable apparmor</span><br>
+<span class="command">sudo systemctl start apparmor</span><br>
+<span class="command"># 3. Configurar fail2ban</span><br>
+<span class="command">sudo systemctl enable fail2ban</span><br>
+<span class="command">sudo systemctl start fail2ban</span><br>
+<span class="command"># 4. Configurar jail local</span><br>
+<span class="command">sudo tee /etc/fail2ban/jail.local << 'EOF'</span><br>
+<span class="command">[sshd]</span><br>
+<span class="command">enabled = true</span><br>
+<span class="command">port = 2222</span><br>
+<span class="command">filter = sshd</span><br>
+<span class="command">logpath = /var/log/auth.log</span><br>
+<span class="command">maxretry = 3</span><br>
+<span class="command">bantime = 3600</span><br>
+<span class="command">EOF</span><br>
+<span class="command"># 5. Reiniciar fail2ban</span><br>
+<span class="command">sudo systemctl restart fail2ban</span><br>
+<span class="command"># 6. Verificar status</span><br>
+<span class="command">sudo aa-status</span><br>
+<span class="command">sudo fail2ban-client status</span>
+                </div>
+                <button class="btn" onclick="executeExercise('hardening-config')">
+                    <i class="fas fa-play"></i> Executar Hardening
+                </button>
+                <button class="btn" onclick="copyCode('hardening-config')">
+                    <i class="fas fa-copy"></i> Copiar Código
+                </button>
+            </div>
+        </div>
+
+        <!-- Slide 5: Monitoramento e Resposta a Incidentes -->
+        <div class="slide">
+            <h2><i class="fas fa-search"></i> Monitoramento e Resposta a Incidentes</h2>
+            
+            <h3>Snort - Detecção de Intrusões</h3>
+            <div class="info-box">
+                <strong>🔍 Snort:</strong> Sistema de detecção de intrusões em tempo real que monitora tráfego de rede e detecta atividades suspeitas.
+            </div>
+            
+            <div class="code-example">
+<span class="command"># Instalar Snort</span><br>
+<span class="command">sudo apt update && sudo apt install -y snort</span><br>
+<span class="command"># Configurar Snort</span><br>
+<span class="command">sudo nano /etc/snort/snort.conf</span><br>
+<span class="command"># Configurar interface de rede</span><br>
+<span class="command">sudo snort -i eth0 -c /etc/snort/snort.conf -T</span><br>
+<span class="command"># Executar Snort em modo de detecção</span><br>
+<span class="command">sudo snort -i eth0 -c /etc/snort/snort.conf -l /var/log/snort</span><br>
+<span class="command"># Verificar logs</span><br>
+<span class="command">sudo tail -f /var/log/snort/alert</span>
+            </div>
+            
+            <h3>Análise Forense</h3>
+            <div class="code-example">
+<span class="command"># Instalar ferramentas forenses</span><br>
+<span class="command">sudo apt install -y autopsy sleuthkit</span><br>
+<span class="command"># Criar imagem forense</span><br>
+<span class="command">sudo dd if=/dev/sda of=/forensic/minfin-image.dd bs=4M</span><br>
+<span class="command"># Verificar integridade</span><br>
+<span class="command">md5sum /forensic/minfin-image.dd > /forensic/minfin-image.md5</span><br>
+<span class="command"># Analisar com Sleuth Kit</span><br>
+<span class="command">fls /forensic/minfin-image.dd</span><br>
+<span class="command"># Buscar arquivos específicos</span><br>
+<span class="command">find /forensic/minfin-image.dd -name "*.log" -type f</span>
+            </div>
+            
+            <div class="exercise-integration">
+                <h4><i class="fas fa-code"></i> Exercício Prático: Monitoramento MINFIN</h4>
+                <p>Vamos implementar sistema completo de monitoramento:</p>
+                <div class="code-example">
+<span class="command"># 1. Instalar ferramentas de monitoramento</span><br>
+<span class="command">sudo apt update && sudo apt install -y snort aide rkhunter chkrootkit</span><br>
+<span class="command"># 2. Configurar AIDE (detecção de mudanças)</span><br>
+<span class="command">sudo aideinit</span><br>
+<span class="command">sudo mv /var/lib/aide/aide.db.new /var/lib/aide/aide.db</span><br>
+<span class="command"># 3. Executar verificação de integridade</span><br>
+<span class="command">sudo aide --check</span><br>
+<span class="command"># 4. Configurar rkhunter (detecção de rootkits)</span><br>
+<span class="command">sudo rkhunter --update</span><br>
+<span class="command">sudo rkhunter --checkall</span><br>
+<span class="command"># 5. Configurar chkrootkit</span><br>
+<span class="command">sudo chkrootkit</span><br>
+<span class="command"># 6. Criar script de monitoramento</span><br>
+<span class="command">sudo tee /usr/local/bin/minfin-security-check.sh << 'EOF'</span><br>
+<span class="command">#!/bin/bash</span><br>
+<span class="command">echo "=== Verificação de Segurança MINFIN $(date) ===" >> /var/log/minfin-security.log</span><br>
+<span class="command">sudo aide --check >> /var/log/minfin-security.log</span><br>
+<span class="command">sudo rkhunter --checkall >> /var/log/minfin-security.log</span><br>
+<span class="command">sudo chkrootkit >> /var/log/minfin-security.log</span><br>
+<span class="command">EOF</span><br>
+<span class="command">sudo chmod +x /usr/local/bin/minfin-security-check.sh</span>
+                </div>
+                <button class="btn" onclick="executeExercise('monitoring-setup')">
+                    <i class="fas fa-play"></i> Executar Monitoramento
+                </button>
+                <button class="btn" onclick="copyCode('monitoring-setup')">
+                    <i class="fas fa-copy"></i> Copiar Código
+                </button>
+            </div>
+        </div>
+
+        <!-- Slide 6: Resumo e Próximos Passos -->
+        <div class="slide">
+            <h2><i class="fas fa-graduation-cap"></i> Resumo do Módulo 5</h2>
+            
+            <h3>Conceitos Dominados</h3>
+            <div class="success-box">
+                <ul>
+                    <li>✅ <strong>SSH Seguro:</strong> Configuração e chaves públicas</li>
+                    <li>✅ <strong>Backup e Recuperação:</strong> Estratégias e implementação</li>
+                    <li>✅ <strong>Firewalls:</strong> UFW, iptables e nftables</li>
+                    <li>✅ <strong>Hardening:</strong> SELinux, AppArmor e políticas</li>
+                    <li>✅ <strong>Monitoramento:</strong> Snort, detecção de intrusões</li>
+                    <li>✅ <strong>Análise Forense:</strong> Ferramentas e investigação</li>
+                </ul>
+            </div>
+            
+            <h3>Comandos Essenciais para MINFIN</h3>
+            <div class="code-example">
+<span class="command"># Segurança SSH</span><br>
+<span class="command">sudo nano /etc/ssh/sshd_config</span><br>
+<span class="command"># Firewall</span><br>
+<span class="command">sudo ufw enable && sudo ufw status</span><br>
+<span class="command"># Monitoramento</span><br>
+<span class="command">sudo aide --check</span><br>
+<span class="command">sudo rkhunter --checkall</span><br>
+<span class="command"># Backup</span><br>
+<span class="command">sudo tar -czf /backup/minfin-$(date +%Y%m%d).tar.gz /etc /home</span>
+            </div>
+            
+            <div class="info-box">
+                <strong>🎯 Próximo Módulo:</strong> Módulo 6 - Observabilidade no Linux - ELK Stack, Prometheus e Grafana para monitoramento completo.
+            </div>
+        </div>
+    </div>
+
+    <script src="../../../assets/js/main.js"></script>
+    <script src="../../../assets/js/exercises.js"></script>
+</body>
+</html>

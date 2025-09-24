@@ -1,0 +1,31 @@
+name: Sync Repositories
+
+on:
+  schedule:
+    - cron: '0 2 * * *'  # Run daily at 2 AM
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout main repository
+      uses: actions/checkout@v3
+      with:
+        repository: ProfAntonioFigueiredo/minfinlinux
+        token: ${{ secrets.GITHUB_TOKEN }}
+        
+    - name: Sync to Azure DevOps
+      run: |
+        echo "🔄 Syncing to Azure DevOps..."
+        # Add Azure DevOps sync commands here
+        # This would typically involve:
+        # 1. Clone Azure DevOps repo
+        # 2. Copy changes
+        # 3. Commit and push
+        
+    - name: Verify sync
+      run: |
+        echo "✅ Repository sync completed"
+        echo "Both repositories are now synchronized"

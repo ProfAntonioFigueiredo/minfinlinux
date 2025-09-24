@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Observabilidade no Linux - Módulo 6</title>
+    <link rel="stylesheet" href="../../../assets/css/main.css">
+    <link rel="stylesheet" href="../../../assets/css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .presentation-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+        }
+        
+        .slide {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            padding: 2rem;
+            border-left: 5px solid #7c2d12;
+        }
+        
+        .slide h1 {
+            color: #7c2d12;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .slide h2 {
+            color: #a16207;
+            font-size: 1.8rem;
+            margin: 1.5rem 0 1rem 0;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 0.5rem;
+        }
+        
+        .slide h3 {
+            color: #374151;
+            font-size: 1.4rem;
+            margin: 1.2rem 0 0.8rem 0;
+        }
+        
+        .slide h4 {
+            color: #4b5563;
+            font-size: 1.2rem;
+            margin: 1rem 0 0.6rem 0;
+        }
+        
+        .slide p {
+            color: #4b5563;
+            margin-bottom: 1rem;
+        }
+        
+        .info-box {
+            background: linear-gradient(135deg, #fef7ed 0%, #fed7aa 100%);
+            border: 1px solid #fdba74;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid #7c2d12;
+        }
+        
+        .warning-box {
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+            border: 1px solid #fde68a;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid #f59e0b;
+        }
+        
+        .success-box {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border: 1px solid #bbf7d0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid #22c55e;
+        }
+        
+        .code-example {
+            background: #1f2937;
+            color: #f9fafb;
+            padding: 1.5rem;
+            border-radius: 8px;
+            font-family: 'Fira Code', 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin: 1rem 0;
+            overflow-x: auto;
+            border: 1px solid #374151;
+        }
+        
+        .command {
+            color: #10b981;
+            font-weight: bold;
+        }
+        
+        .comment {
+            color: #6b7280;
+            font-style: italic;
+        }
+        
+        .exercise-integration {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border: 1px solid #93c5fd;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid #3b82f6;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        th {
+            background: #f8fafc;
+            font-weight: 600;
+            color: #374151;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #7c2d12 0%, #a16207 100%);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin: 0.5rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(124, 45, 18, 0.3);
+        }
+        
+        .btn i {
+            font-size: 0.8rem;
+        }
+        
+        kbd {
+            background: #f3f4f6;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            padding: 0.2rem 0.4rem;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.8rem;
+            color: #374151;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: Título e Introdução -->
+        <div class="slide">
+            <h1><i class="fas fa-chart-line"></i> Observabilidade no Linux</h1>
+            <h2>ELK Stack, Prometheus e Grafana</h2>
+            
+            <div class="info-box">
+                <strong>🎯 Objetivo:</strong> Implementar soluções completas de observabilidade para monitorar, analisar e visualizar logs, métricas e traces em tempo real na infraestrutura do Ministério das Finanças.
+            </div>
+            
+            <h3>📋 Conteúdo Programático</h3>
+            <ul>
+                <li><strong>Introdução à Observabilidade</strong> - Logs, métricas e traces</li>
+                <li><strong>Elasticsearch</strong> - Indexação e busca de dados</li>
+                <li><strong>Logstash</strong> - Processamento e transformação de logs</li>
+                <li><strong>Kibana</strong> - Visualização e dashboards</li>
+                <li><strong>Prometheus</strong> - Coleta de métricas</li>
+                <li><strong>Grafana</strong> - Visualização de métricas</li>
+                <li><strong>Integração Completa</strong> - Stack unificado</li>
+            </ul>
+            
+            <div class="success-box">
+                <strong>⏱️ Duração:</strong> 10 horas | <strong>📊 Nível:</strong> Avançado | <strong>🏛️ Público:</strong> Administradores MINFIN
+            </div>
+        </div>
+
+        <!-- Slide 2: Introdução à Observabilidade -->
+        <div class="slide">
+            <h2><i class="fas fa-eye"></i> Introdução à Observabilidade</h2>
+            
+            <h3>Os Três Pilares da Observabilidade</h3>
+            <div class="info-box">
+                <strong>📊 Observabilidade:</strong> Capacidade de entender o estado interno de um sistema através de suas saídas externas. Baseada em três pilares fundamentais.
+            </div>
+            
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Pilar</th>
+                            <th>Descrição</th>
+                            <th>Ferramentas</th>
+                            <th>Uso no MINFIN</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Logs</strong></td>
+                            <td>Registros de eventos em ordem cronológica</td>
+                            <td>ELK Stack, rsyslog</td>
+                            <td>Auditoria, troubleshooting</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Métricas</strong></td>
+                            <td>Medidas numéricas ao longo do tempo</td>
+                            <td>Prometheus, Grafana</td>
+                            <td>Performance, capacidade</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Traces</strong></td>
+                            <td>Rastreamento de requisições</td>
+                            <td>Jaeger, Zipkin</td>
+                            <td>Análise de fluxo, latência</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <h3>Benefícios para o MINFIN</h3>
+            <div class="code-example">
+<span class="command"># Monitoramento de aplicações críticas</span><br>
+<span class="command"># - Sistemas de pagamento</span><br>
+<span class="command"># - Bases de dados financeiras</span><br>
+<span class="command"># - Serviços de rede</span><br>
+<span class="command"># - Segurança e compliance</span><br>
+<span class="command"># - Performance e disponibilidade</span><br>
+<span class="command"># - Detecção proativa de problemas</span>
+            </div>
+            
+            <div class="exercise-integration">
+                <h4><i class="fas fa-code"></i> Exercício Prático: Configuração Inicial</h4>
+                <p>Vamos preparar o ambiente de observabilidade para o MINFIN:</p>
+                <div class="code-example">
+<span class="command"># 1. Instalar dependências</span><br>
+<span class="command">sudo apt update && sudo apt install -y openjdk-11-jdk curl wget</span><br>
+<span class="command"># 2. Configurar Java</span><br>
+<span class="command">export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64</span><br>
+<span class="command">echo 'export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64' >> ~/.bashrc</span><br>
+<span class="command"># 3. Verificar versão Java</span><br>
+<span class="command">java -version</span><br>
+<span class="command"># 4. Criar usuário para ELK</span><br>
+<span class="command">sudo useradd -r -m -s /bin/bash elk</span><br>
+<span class="command"># 5. Criar diretórios de trabalho</span><br>
+<span class="command">sudo mkdir -p /opt/elk/{elasticsearch,logstash,kibana}</span><br>
+<span class="command">sudo chown -R elk:elk /opt/elk</span>
+                </div>
+                <button class="btn" onclick="executeExercise('observability-setup')">
+                    <i class="fas fa-play"></i> Executar Configuração
+                </button>
+                <button class="btn" onclick="copyCode('observability-setup')">
+                    <i class="fas fa-copy"></i> Copiar Código
+                </button>
+            </div>
+        </div>
+
+        <!-- Slide 3: Elasticsearch -->
+        <div class="slide">
+            <h2><i class="fas fa-database"></i> Elasticsearch</h2>
+            
+            <h3>Instalação e Configuração</h3>
+            <div class="info-box">
+                <strong>🔍 Elasticsearch:</strong> Motor de busca e análise distribuído, ideal para indexação e busca de grandes volumes de dados de logs.
+            </div>
+            
+            <div class="code-example">
+<span class="command"># Instalar Elasticsearch</span><br>
+<span class="command">wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -</span><br>
+<span class="command">echo "deb https://artifacts.elastic.co/packages/8.x/apt stable main" | sudo tee /etc/apt/sources.list.d/elastic-8.x.list</span><br>
+<span class="command">sudo apt update && sudo apt install -y elasticsearch</span><br>
+<span class="command"># Configurar Elasticsearch</span><br>
+<span class="command">sudo nano /etc/elasticsearch/elasticsearch.yml</span><br>
+<span class="command"># Configurações recomendadas:</span><br>
+<span class="command"># cluster.name: minfin-cluster</span><br>
+<span class="command"># node.name: minfin-node-1</span><br>
+<span class="command"># network.host: 0.0.0.0</span><br>
+<span class="command"># http.port: 9200</span><br>
+<span class="command"># discovery.type: single-node</span><br>
+<span class="command"># Iniciar Elasticsearch</span><br>
+<span class="command">sudo systemctl start elasticsearch</span><br>
+<span class="command">sudo systemctl enable elasticsearch</span>
+            </div>
+            
+            <h3>Configuração de Segurança</h3>
+            <div class="code-example">
+<span class="command"># Configurar autenticação</span><br>
+<span class="command">sudo /usr/share/elasticsearch/bin/elasticsearch-setup-passwords auto</span><br>
+<span class="command"># Configurar certificados SSL</span><br>
+<span class="command">sudo /usr/share/elasticsearch/bin/elasticsearch-certutil ca</span><br>
+<span class="command">sudo /usr/share/elasticsearch/bin/elasticsearch-certutil cert --ca elastic-stack-ca.p12</span><br>
+<span class="command"># Configurar HTTPS</span><br>
+<span class="command"># xpack.security.enabled: true</span><br>
+<span class="command"># xpack.security.transport.ssl.enabled: true</span><br>
+<span class="command"># xpack.security.http.ssl.enabled: true</span>
+            </div>
+            
+            <div class="exercise-integration">
+                <h4><i class="fas fa-code"></i> Exercício Prático: Elasticsearch MINFIN</h4>
+                <p>Vamos configurar Elasticsearch para o Ministério das Finanças:</p>
+                <div class="code-example">
+<span class="command"># 1. Instalar Elasticsearch</span><br>
+<span class="command">wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -</span><br>
+<span class="command">echo "deb https://artifacts.elastic.co/packages/8.x/apt stable main" | sudo tee /etc/apt/sources.list.d/elastic-8.x.list</span><br>
+<span class="command">sudo apt update && sudo apt install -y elasticsearch</span><br>
+<span class="command"># 2. Configurar para MINFIN</span><br>
+<span class="command">sudo tee /etc/elasticsearch/elasticsearch.yml << 'EOF'</span><br>
+<span class="command">cluster.name: minfin-cluster</span><br>
+<span class="command">node.name: minfin-node-1</span><br>
+<span class="command">network.host: 0.0.0.0</span><br>
+<span class="command">http.port: 9200</span><br>
+<span class="command">discovery.type: single-node</span><br>
+<span class="command">xpack.security.enabled: false</span><br>
+<span class="command">EOF</span><br>
+<span class="command"># 3. Configurar JVM</span><br>
+<span class="command">sudo tee /etc/elasticsearch/jvm.options << 'EOF'</span><br>
+<span class="command">-Xms1g</span><br>
+<span class="command">-Xmx1g</span><br>
+<span class="command">EOF</span><br>
+<span class="command"># 4. Iniciar serviço</span><br>
+<span class="command">sudo systemctl start elasticsearch</span><br>
+<span class="command">sudo systemctl enable elasticsearch</span><br>
+<span class="command"># 5. Testar funcionamento</span><br>
+<span class="command">curl -X GET "localhost:9200/"</span>
+                </div>
+                <button class="btn" onclick="executeExercise('elasticsearch-config')">
+                    <i class="fas fa-play"></i> Executar Elasticsearch
+                </button>
+                <button class="btn" onclick="copyCode('elasticsearch-config')">
+                    <i class="fas fa-copy"></i> Copiar Código
+                </button>
+            </div>
+        </div>
+
+        <!-- Slide 4: Logstash -->
+        <div class="slide">
+            <h2><i class="fas fa-cogs"></i> Logstash</h2>
+            
+            <h3>Processamento de Logs</h3>
+            <div class="info-box">
+                <strong>⚙️ Logstash:</strong> Pipeline de processamento de dados que coleta, transforma e envia logs para o Elasticsearch.
+            </div>
+            
+            <div class="code-example">
+<span class="command"># Instalar Logstash</span><br>
+<span class="command">sudo apt install -y logstash</span><br>
+<span class="command"># Configurar pipeline</span><br>
+<span class="command">sudo nano /etc/logstash/conf.d/minfin-logs.conf</span><br>
+<span class="command"># Configuração básica:</span><br>
+<span class="command"># input {</span><br>
+<span class="command">#   file {</span><br>
+<span class="command">#     path => "/var/log/syslog"</span><br>
+<span class="command">#     type => "syslog"</span><br>
+<span class="command">#   }</span><br>
+<span class="command"># }</span><br>
+<span class="command"># filter {</span><br>
+<span class="command">#   if [type] == "syslog" {</span><br>
+<span class="command">#     grok {</span><br>
+<span class="command">#       match => { "message" => "%{SYSLOGTIMESTAMP:timestamp} %{IPORHOST:host} %{PROG:program}: %{GREEDYDATA:message}" }</span><br>
+<span class="command">#     }</span><br>
+<span class="command">#   }</span><br>
+<span class="command"># }</span><br>
+<span class="command"># output {</span><br>
+<span class="command">#   elasticsearch {</span><br>
+<span class="command">#     hosts => ["localhost:9200"]</span><br>
+<span class="command">#     index => "minfin-logs-%{+YYYY.MM.dd}"</span><br>
+<span class="command">#   }</span><br>
+<span class="command"># }</span>
+            </div>
+            
+            <h3>Configuração Avançada</h3>
+            <div class="code-example">
+<span class="command"># Configurar múltiplas fontes de logs</span><br>
+<span class="command"># input {</span><br>
+<span class="command">#   file {</span><br>
+<span class="command">#     path => "/var/log/apache2/access.log"</span><br>
+<span class="command">#     type => "apache_access"</span><br>
+<span class="command">#   }</span><br>
+<span class="command">#   file {</span><br>
+<span class="command">#     path => "/var/log/mysql/error.log"</span><br>
+<span class="command">#     type => "mysql_error"</span><br>
+<span class="command">#   }</span><br>
+<span class="command">#   beats {</span><br>
+<span class="command">#     port => 5044</span><br>
+<span class="command">#   }</span><br>
+<span class="command"># }</span><br>
+<span class="command"># Iniciar Logstash</span><br>
+<span class="command">sudo systemctl start logstash</span><br>
+<span class="command">sudo systemctl enable logstash</span>
+            </div>
+            
+            <div class="exercise-integration">
+                <h4><i class="fas fa-code"></i> Exercício Prático: Logstash MINFIN</h4>
+                <p>Vamos configurar Logstash para processar logs do MINFIN:</p>
+                <div class="code-example">
+<span class="command"># 1. Instalar Logstash</span><br>
+<span class="command">sudo apt install -y logstash</span><br>
+<span class="command"># 2. Configurar pipeline MINFIN</span><br>
+<span class="command">sudo tee /etc/logstash/conf.d/minfin-logs.conf << 'EOF'</span><br>
+<span class="command">input {</span><br>
+<span class="command">  file {</span><br>
+<span class="command">    path => "/var/log/syslog"</span><br>
+<span class="command">    type => "syslog"</span><br>
+<span class="command">  }</span><br>
+<span class="command">  file {</span><br>
+<span class="command">    path => "/var/log/auth.log"</span><br>
+<span class="command">    type => "auth"</span><br>
+<span class="command">  }</span><br>
+<span class="command">  file {</span><br>
+<span class="command">    path => "/var/log/apache2/access.log"</span><br>
+<span class="command">    type => "apache_access"</span><br>
+<span class="command">  }</span><br>
+<span class="command">}</span><br>
+<span class="command">filter {</span><br>
+<span class="command">  if [type] == "syslog" {</span><br>
+<span class="command">    grok {</span><br>
+<span class="command">      match => { "message" => "%{SYSLOGTIMESTAMP:timestamp} %{IPORHOST:host} %{PROG:program}: %{GREEDYDATA:message}" }</span><br>
+<span class="command">    }</span><br>
+<span class="command">  }</span><br>
+<span class="command">  if [type] == "apache_access" {</span><br>
+<span class="command">    grok {</span><br>
+<span class="command">      match => { "message" => "%{COMBINEDAPACHELOG}" }</span><br>
+<span class="command">    }</span><br>
+<span class="command">  }</span><br>
+<span class="command">}</span><br>
+<span class="command">output {</span><br>
+<span class="command">  elasticsearch {</span><br>
+<span class="command">    hosts => ["localhost:9200"]</span><br>
+<span class="command">    index => "minfin-logs-%{+YYYY.MM.dd}"</span><br>
+<span class="command">  }</span><br>
+<span class="command">}</span><br>
+<span class="command">EOF</span><br>
+<span class="command"># 3. Iniciar Logstash</span><br>
+<span class="command">sudo systemctl start logstash</span><br>
+<span class="command">sudo systemctl enable logstash</span><br>
+<span class="command"># 4. Verificar status</span><br>
+<span class="command">sudo systemctl status logstash</span>
+                </div>
+                <button class="btn" onclick="executeExercise('logstash-config')">
+                    <i class="fas fa-play"></i> Executar Logstash
+                </button>
+                <button class="btn" onclick="copyCode('logstash-config')">
+                    <i class="fas fa-copy"></i> Copiar Código
+                </button>
+            </div>
+        </div>
+
+        <!-- Slide 5: Kibana -->
+        <div class="slide">
+            <h2><i class="fas fa-chart-bar"></i> Kibana</h2>
+            
+            <h3>Visualização de Dados</h3>
+            <div class="info-box">
+                <strong>📊 Kibana:</strong> Interface web para visualização e análise de dados do Elasticsearch. Permite criar dashboards interativos e relatórios.
+            </div>
+            
+            <div class="code-example">
+<span class="command"># Instalar Kibana</span><br>
+<span class="command">sudo apt install -y kibana</span><br>
+<span class="command"># Configurar Kibana</span><br>
+<span class="command">sudo nano /etc/kibana/kibana.yml</span><br>
+<span class="command"># Configurações básicas:</span><br>
+<span class="command"># server.port: 5601</span><br>
+<span class="command"># server.host: "0.0.0.0"</span><br>
+<span class="command"># elasticsearch.hosts: ["http://localhost:9200"]</span><br>
+<span class="command"># server.name: "minfin-kibana"</span><br>
+<span class="command"># Iniciar Kibana</span><br>
+<span class="command">sudo systemctl start kibana</span><br>
+<span class="command">sudo systemctl enable kibana</span>
+            </div>
+            
+            <h3>Dashboards para MINFIN</h3>
+            <div class="code-example">
+<span class="command"># Criar índice padrão</span><br>
+<span class="command">curl -X PUT "localhost:9200/minfin-logs-*" -H 'Content-Type: application/json' -d'{</span><br>
+<span class="command">  "mappings": {</span><br>
+<span class="command">    "properties": {</span><br>
+<span class="command">      "timestamp": { "type": "date" },</span><br>
+<span class="command">      "host": { "type": "keyword" },</span><br>
+<span class="command">      "program": { "type": "keyword" },</span><br>
+<span class="command">      "message": { "type": "text" }</span><br>
+<span class="command">    }</span><br>
+<span class="command">  }</span><br>
+<span class="command">}'</span><br>
+<span class="command"># Configurar index pattern</span><br>
+<span class="command"># Acesse: http://localhost:5601</span><br>
+<span class="command"># Management > Index Patterns > Create index pattern</span><br>
+<span class="command"># Pattern: minfin-logs-*</span>
+            </div>
+            
+            <div class="exercise-integration">
+                <h4><i class="fas fa-code"></i> Exercício Prático: Kibana MINFIN</h4>
+                <p>Vamos configurar Kibana para visualizar dados do MINFIN:</p>
+                <div class="code-example">
+<span class="command"># 1. Instalar Kibana</span><br>
+<span class="command">sudo apt install -y kibana</span><br>
+<span class="command"># 2. Configurar para MINFIN</span><br>
+<span class="command">sudo tee /etc/kibana/kibana.yml << 'EOF'</span><br>
+<span class="command">server.port: 5601</span><br>
+<span class="command">server.host: "0.0.0.0"</span><br>
+<span class="command">elasticsearch.hosts: ["http://localhost:9200"]</span><br>
+<span class="command">server.name: "minfin-kibana"</span><br>
+<span class="command">xpack.security.enabled: false</span><br>
+<span class="command">EOF</span><br>
+<span class="command"># 3. Iniciar Kibana</span><br>
+<span class="command">sudo systemctl start kibana</span><br>
+<span class="command">sudo systemctl enable kibana</span><br>
+<span class="command"># 4. Aguardar inicialização</span><br>
+<span class="command">sleep 30</span><br>
+<span class="command"># 5. Testar acesso</span><br>
+<span class="command">curl -X GET "localhost:5601"</span><br>
+<span class="command"># 6. Acessar interface web</span><br>
+<span class="command">echo "Acesse: http://localhost:5601"</span>
+                </div>
+                <button class="btn" onclick="executeExercise('kibana-config')">
+                    <i class="fas fa-play"></i> Executar Kibana
+                </button>
+                <button class="btn" onclick="copyCode('kibana-config')">
+                    <i class="fas fa-copy"></i> Copiar Código
+                </button>
+            </div>
+        </div>
+
+        <!-- Slide 6: Prometheus e Grafana -->
+        <div class="slide">
+            <h2><i class="fas fa-chart-pie"></i> Prometheus e Grafana</h2>
+            
+            <h3>Prometheus - Coleta de Métricas</h3>
+            <div class="info-box">
+                <strong>📈 Prometheus:</strong> Sistema de monitoramento e alertas que coleta métricas de sistemas e aplicações em tempo real.
+            </div>
+            
+            <div class="code-example">
+<span class="command"># Instalar Prometheus</span><br>
+<span class="command">wget https://github.com/prometheus/prometheus/releases/download/v2.40.0/prometheus-2.40.0.linux-amd64.tar.gz</span><br>
+<span class="command">tar xvfz prometheus-2.40.0.linux-amd64.tar.gz</span><br>
+<span class="command">sudo mv prometheus-2.40.0.linux-amd64 /opt/prometheus</span><br>
+<span class="command"># Configurar Prometheus</span><br>
+<span class="command">sudo nano /opt/prometheus/prometheus.yml</span><br>
+<span class="command"># Configuração básica:</span><br>
+<span class="command"># global:</span><br>
+<span class="command">#   scrape_interval: 15s</span><br>
+<span class="command"># scrape_configs:</span><br>
+<span class="command">#   - job_name: 'prometheus'</span><br>
+<span class="command">#     static_configs:</span><br>
+<span class="command">#       - targets: ['localhost:9090']</span>
+            </div>
+            
+            <h3>Grafana - Visualização</h3>
+            <div class="code-example">
+<span class="command"># Instalar Grafana</span><br>
+<span class="command">wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-key add -</span><br>
+<span class="command">echo "deb https://packages.grafana.com/oss/deb stable main" | sudo tee /etc/apt/sources.list.d/grafana.list</span><br>
+<span class="command">sudo apt update && sudo apt install -y grafana</span><br>
+<span class="command"># Iniciar Grafana</span><br>
+<span class="command">sudo systemctl start grafana-server</span><br>
+<span class="command">sudo systemctl enable grafana-server</span><br>
+<span class="command"># Acessar: http://localhost:3000</span><br>
+<span class="command"># Login: admin/admin</span>
+            </div>
+            
+            <div class="exercise-integration">
+                <h4><i class="fas fa-code"></i> Exercício Prático: Prometheus + Grafana</h4>
+                <p>Vamos configurar monitoramento completo para o MINFIN:</p>
+                <div class="code-example">
+<span class="command"># 1. Instalar Prometheus</span><br>
+<span class="command">wget https://github.com/prometheus/prometheus/releases/download/v2.40.0/prometheus-2.40.0.linux-amd64.tar.gz</span><br>
+<span class="command">tar xvfz prometheus-2.40.0.linux-amd64.tar.gz</span><br>
+<span class="command">sudo mv prometheus-2.40.0.linux-amd64 /opt/prometheus</span><br>
+<span class="command"># 2. Configurar Prometheus</span><br>
+<span class="command">sudo tee /opt/prometheus/prometheus.yml << 'EOF'</span><br>
+<span class="command">global:</span><br>
+<span class="command">  scrape_interval: 15s</span><br>
+<span class="command">scrape_configs:</span><br>
+<span class="command">  - job_name: 'prometheus'</span><br>
+<span class="command">    static_configs:</span><br>
+<span class="command">      - targets: ['localhost:9090']</span><br>
+<span class="command">  - job_name: 'minfin-node'</span><br>
+<span class="command">    static_configs:</span><br>
+<span class="command">      - targets: ['localhost:9100']</span><br>
+<span class="command">EOF</span><br>
+<span class="command"># 3. Instalar Node Exporter</span><br>
+<span class="command">wget https://github.com/prometheus/node_exporter/releases/download/v1.5.0/node_exporter-1.5.0.linux-amd64.tar.gz</span><br>
+<span class="command">tar xvfz node_exporter-1.5.0.linux-amd64.tar.gz</span><br>
+<span class="command">sudo mv node_exporter-1.5.0.linux-amd64/node_exporter /usr/local/bin/</span><br>
+<span class="command"># 4. Iniciar Node Exporter</span><br>
+<span class="command">sudo useradd --no-create-home --shell /bin/false node_exporter</span><br>
+<span class="command">sudo chown node_exporter:node_exporter /usr/local/bin/node_exporter</span><br>
+<span class="command"># 5. Instalar Grafana</span><br>
+<span class="command">wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-key add -</span><br>
+<span class="command">echo "deb https://packages.grafana.com/oss/deb stable main" | sudo tee /etc/apt/sources.list.d/grafana.list</span><br>
+<span class="command">sudo apt update && sudo apt install -y grafana</span><br>
+<span class="command"># 6. Iniciar serviços</span><br>
+<span class="command">sudo systemctl start grafana-server</span><br>
+<span class="command">sudo systemctl enable grafana-server</span><br>
+<span class="command"># 7. Testar acesso</span><br>
+<span class="command">curl http://localhost:9090</span><br>
+<span class="command">curl http://localhost:3000</span>
+                </div>
+                <button class="btn" onclick="executeExercise('prometheus-grafana')">
+                    <i class="fas fa-play"></i> Executar Monitoramento
+                </button>
+                <button class="btn" onclick="copyCode('prometheus-grafana')">
+                    <i class="fas fa-copy"></i> Copiar Código
+                </button>
+            </div>
+        </div>
+
+        <!-- Slide 7: Resumo e Próximos Passos -->
+        <div class="slide">
+            <h2><i class="fas fa-graduation-cap"></i> Resumo do Módulo 6</h2>
+            
+            <h3>Conceitos Dominados</h3>
+            <div class="success-box">
+                <ul>
+                    <li>✅ <strong>Observabilidade:</strong> Logs, métricas e traces</li>
+                    <li>✅ <strong>Elasticsearch:</strong> Indexação e busca de dados</li>
+                    <li>✅ <strong>Logstash:</strong> Processamento de logs</li>
+                    <li>✅ <strong>Kibana:</strong> Visualização e dashboards</li>
+                    <li>✅ <strong>Prometheus:</strong> Coleta de métricas</li>
+                    <li>✅ <strong>Grafana:</strong> Visualização de métricas</li>
+                </ul>
+            </div>
+            
+            <h3>Stack Completo para MINFIN</h3>
+            <div class="code-example">
+<span class="command"># ELK Stack</span><br>
+<span class="command"># Elasticsearch: http://localhost:9200</span><br>
+<span class="command"># Kibana: http://localhost:5601</span><br>
+<span class="command"># Logstash: Processamento de logs</span><br>
+<span class="command"># Prometheus: http://localhost:9090</span><br>
+<span class="command"># Grafana: http://localhost:3000</span><br>
+<span class="command"># Node Exporter: http://localhost:9100</span>
+            </div>
+            
+            <div class="info-box">
+                <strong>🎯 Formação Completa:</strong> Todos os 6 módulos implementados! Agora você domina Linux, Redes, Segurança e Observabilidade para ambientes corporativos.
+            </div>
+        </div>
+    </div>
+
+    <script src="../../../assets/js/main.js"></script>
+    <script src="../../../assets/js/exercises.js"></script>
+</body>
+</html>

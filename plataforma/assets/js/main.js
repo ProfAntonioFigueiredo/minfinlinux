@@ -195,8 +195,85 @@ const AppState = {
                     file: 'modulos/modulo4_administracao_sistemas/exercicios/exercicio_containers.sh'
                 }
             ]
+        },
+        5: {
+            title: 'Módulo 5: Segurança de Redes',
+            description: 'Ferramentas de segurança, firewalls, hardening e monitoramento',
+            duration: '10 horas',
+            level: 'Avançado',
+            presentations: [
+                {
+                    id: 'seguranca-completo',
+                    title: 'Segurança de Redes - Completo',
+                    file: 'modulos/modulo5_seguranca_redes/apresentacoes/modulo5_seguranca_redes_completo.html'
+                }
+            ],
+            exercises: [
+                {
+                    id: 'ssh-seguro',
+                    title: 'Configuração SSH Seguro',
+                    description: 'SSH com chaves públicas e máxima segurança',
+                    file: 'modulos/modulo5_seguranca_redes/exercicios/exercicio_ssh_seguro.sh'
+                },
+                {
+                    id: 'firewall-avancado',
+                    title: 'Firewall Avançado',
+                    description: 'UFW, iptables e nftables',
+                    file: 'modulos/modulo5_seguranca_redes/exercicios/exercicio_firewall_avancado.sh'
+                },
+                {
+                    id: 'hardening-sistemas',
+                    title: 'Hardening de Sistemas',
+                    description: 'SELinux, AppArmor e políticas de segurança',
+                    file: 'modulos/modulo5_seguranca_redes/exercicios/exercicio_hardening.sh'
+                },
+                {
+                    id: 'monitoramento-seguranca',
+                    title: 'Monitoramento de Segurança',
+                    description: 'Snort, detecção de intrusões e análise forense',
+                    file: 'modulos/modulo5_seguranca_redes/exercicios/exercicio_monitoramento.sh'
+                }
+            ]
+        },
+        6: {
+            title: 'Módulo 6: Observabilidade',
+            description: 'ELK Stack, Prometheus, Grafana e monitoramento completo',
+            duration: '10 horas',
+            level: 'Avançado',
+            presentations: [
+                {
+                    id: 'observabilidade-completo',
+                    title: 'Observabilidade - Completo',
+                    file: 'modulos/modulo6_observabilidade/apresentacoes/modulo6_observabilidade_completo.html'
+                }
+            ],
+            exercises: [
+                {
+                    id: 'elasticsearch-setup',
+                    title: 'Configuração Elasticsearch',
+                    description: 'Indexação e busca de dados',
+                    file: 'modulos/modulo6_observabilidade/exercicios/exercicio_elasticsearch.sh'
+                },
+                {
+                    id: 'logstash-pipeline',
+                    title: 'Pipeline Logstash',
+                    description: 'Processamento e transformação de logs',
+                    file: 'modulos/modulo6_observabilidade/exercicios/exercicio_logstash.sh'
+                },
+                {
+                    id: 'kibana-dashboards',
+                    title: 'Dashboards Kibana',
+                    description: 'Visualização e análise de dados',
+                    file: 'modulos/modulo6_observabilidade/exercicios/exercicio_kibana.sh'
+                },
+                {
+                    id: 'prometheus-grafana',
+                    title: 'Prometheus + Grafana',
+                    description: 'Coleta e visualização de métricas',
+                    file: 'modulos/modulo6_observabilidade/exercicios/exercicio_prometheus_grafana.sh'
+                }
+            ]
         }
-        // Módulos 5-6 serão adicionados posteriormente
     }
 };
 
