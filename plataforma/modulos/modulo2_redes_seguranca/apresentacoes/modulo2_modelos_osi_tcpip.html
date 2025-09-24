@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelos OSI e TCP/IP - Módulo 2</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .presentation-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+        }
+        
+        .slide {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            padding: 2rem;
+            border-left: 5px solid #dc2626;
+        }
+        
+        .slide h1 {
+            color: #dc2626;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .slide h2 {
+            color: #b91c1c;
+            font-size: 1.8rem;
+            margin: 1.5rem 0 1rem 0;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 0.5rem;
+        }
+        
+        .slide h3 {
+            color: #374151;
+            font-size: 1.4rem;
+            margin: 1.2rem 0 0.8rem 0;
+        }
+        
+        .slide h4 {
+            color: #4b5563;
+            font-size: 1.2rem;
+            margin: 1rem 0 0.6rem 0;
+        }
+        
+        .slide p {
+            color: #4b5563;
+            margin-bottom: 1rem;
+        }
+        
+        .info-box {
+            background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+            border: 1px solid #fecaca;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid #dc2626;
+        }
+        
+        .warning-box {
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+            border: 1px solid #fde68a;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid #f59e0b;
+        }
+        
+        .success-box {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border: 1px solid #bbf7d0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid #22c55e;
+        }
+        
+        .code-example {
+            background: #1f2937;
+            color: #f9fafb;
+            padding: 1.5rem;
+            border-radius: 8px;
+            font-family: 'Fira Code', 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin: 1rem 0;
+            overflow-x: auto;
+            border: 1px solid #374151;
+        }
+        
+        .command {
+            color: #10b981;
+            font-weight: bold;
+        }
+        
+        .comment {
+            color: #6b7280;
+            font-style: italic;
+        }
+        
+        .exercise-integration {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border: 1px solid #93c5fd;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid #3b82f6;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        th {
+            background: #f8fafc;
+            font-weight: 600;
+            color: #374151;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin: 0.5rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+        }
+        
+        .btn i {
+            font-size: 0.8rem;
+        }
+        
+        kbd {
+            background: #f3f4f6;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            padding: 0.2rem 0.4rem;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.8rem;
+            color: #374151;
+        }
+        
+        .network-diagram {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            text-align: center;
+            font-family: 'Fira Code', monospace;
+        }
+        
+        .layer-box {
+            background: #e0f2fe;
+            border: 2px solid #0288d1;
+            border-radius: 6px;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            display: inline-block;
+            min-width: 200px;
+        }
+        
+        .protocol-box {
+            background: #f0fdf4;
+            border: 2px solid #16a34a;
+            border-radius: 6px;
+            padding: 0.5rem 1rem;
+            margin: 0.2rem;
+            display: inline-block;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: Título e Introdução -->
+        <div class="slide">
+            <h1><i class="fas fa-sitemap"></i> Modelos OSI e TCP/IP</h1>
+            <h2>Fundamentos de Arquitetura de Redes</h2>
+            
+            <div class="info-box">
+                <strong>🎯 Objetivo:</strong> Compreender os modelos de referência de redes OSI e TCP/IP, essenciais para administradores de sistemas que trabalham com infraestrutura de rede.
+            </div>
+            
+            <h3>📋 Conteúdo Programático</h3>
+            <ul>
+                <li><strong>Modelo OSI</strong> - 7 camadas e suas funções</li>
+                <li><strong>Modelo TCP/IP</strong> - 4 camadas e protocolos</li>
+                <li><strong>Comparação dos Modelos</strong> - Diferenças e semelhanças</li>
+                <li><strong>Protocolos por Camada</strong> - Exemplos práticos</li>
+                <li><strong>Encapsulamento</strong> - Como os dados trafegam</li>
+                <li><strong>Implementação Linux</strong> - Comandos e ferramentas</li>
+            </ul>
+            
+            <div class="success-box">
+                <strong>⏱️ Duração:</strong> 2 horas | <strong>📊 Nível:</strong> Intermediário | <strong>🏛️ Público:</strong> Administradores MINFIN
+            </div>
+        </div>
+
+        <!-- Slide 2: Modelo OSI - 7 Camadas -->
+        <div class="slide">
+            <h2><i class="fas fa-layer-group"></i> Modelo OSI - 7 Camadas</h2>
+            
+            <h3>Visão Geral do Modelo OSI</h3>
+            <div class="info-box">
+                <strong>📚 OSI (Open Systems Interconnection):</strong> Modelo conceitual criado pela ISO para padronizar a comunicação entre sistemas de computadores. Divide a comunicação em 7 camadas distintas.
+            </div>
+            
+            <div class="network-diagram">
+                <h4>🌐 Modelo OSI - 7 Camadas</h4>
+                <div class="layer-box">
+                    <strong>7. Aplicação</strong><br>
+                    <small>HTTP, FTP, SMTP, DNS, SSH</small><br>
+                    <em>Interface com aplicações</em>
+                </div>
+                <div class="layer-box">
+                    <strong>6. Apresentação</strong><br>
+                    <small>SSL/TLS, Criptografia, Compressão</small><br>
+                    <em>Formatação e segurança dos dados</em>
+                </div>
+                <div class="layer-box">
+                    <strong>5. Sessão</strong><br>
+                    <small>RPC, NetBIOS, SQL</small><br>
+                    <em>Controle de sessão e diálogo</em>
+                </div>
+                <div class="layer-box">
+                    <strong>4. Transporte</strong><br>
+                    <small>TCP, UDP</small><br>
+                    <em>Controle de fluxo e confiabilidade</em>
+                </div>
+                <div class="layer-box">
+                    <strong>3. Rede</strong><br>
+                    <small>IP, ICMP, ARP, OSPF</small><br>
+                    <em>Roteamento e endereçamento</em>
+                </div>
+                <div class="layer-box">
+                    <strong>2. Enlace</strong><br>
+                    <small>Ethernet, Wi-Fi, PPP</small><br>
+                    <em>Controle de acesso ao meio</em>
+                </div>
+                <div class="layer-box">
+                    <strong>1. Física</strong><br>
+                    <small>Cabo, Fibra, Wireless</small><br>
+                    <em>Transmissão física dos bits</em>
+                </div>
+            </div>
+            
+            <h3>Funções de Cada Camada</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Camada</th>
+                            <th>Função Principal</th>
+                            <th>Unidade de Dados</th>
+                            <th>Exemplo de Protocolo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>7. Aplicação</strong></td>
+                            <td>Interface com aplicações do usuário</td>
+                            <td>Dados</td>
+                            <td>HTTP, FTP, SMTP</td>
+                        </tr>
+                        <tr>
+                            <td><strong>6. Apresentação</strong></td>
+                            <td>Formatação, criptografia, compressão</td>
+                            <td>Dados</td>
+                            <td>SSL/TLS, JPEG, MPEG</td>
+                        </tr>
+                        <tr>
+                            <td><strong>5. Sessão</strong></td>
+                            <td>Controle de sessão e diálogo</td>
+                            <td>Dados</td>
+                            <td>RPC, NetBIOS</td>
+                        </tr>
+                        <tr>
+                            <td><strong>4. Transporte</strong></td>
+                            <td>Controle de fluxo e confiabilidade</td>
+                            <td>Segmentos</td>
+                            <td>TCP, UDP</td>
+                        </tr>
+                        <tr>
+                            <td><strong>3. Rede</strong></td>
+                            <td>Roteamento e endereçamento</td>
+                            <td>Pacotes</td>
+                            <td>IP, ICMP, ARP</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2. Enlace</strong></td>
+                            <td>Controle de acesso ao meio</td>
+                            <td>Quadros</td>
+                            <td>Ethernet, Wi-Fi</td>
+                        </tr>
+                        <tr>
+                            <td><strong>1. Física</strong></td>
+                            <td>Transmissão física dos bits</td>
+                            <td>Bits</td>
+                            <td>Cabo, Fibra, Wireless</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="exercise-integration">
+                <h4><i class="fas fa-code"></i> Exercício Prático: Identificando Camadas</h4>
+                <p>Vamos identificar em qual camada cada protocolo opera:</p>
+                <div class="code-example">
+<span class="command"># Verificar protocolos em uso no sistema</span><br>
+<span class="command">netstat -tuln</span> <span class="comment"># Listar conexões TCP/UDP</span><br>
+<span class="command">ss -tuln</span> <span class="comment"># Versão moderna do netstat</span><br>
+<span class="command"># Verificar tabela de roteamento (Camada 3)</span><br>
+<span class="command">ip route show</span> <span class="comment"># Tabela de roteamento IPv4</span><br>
+<span class="command">ip -6 route show</span> <span class="comment"># Tabela de roteamento IPv6</span><br>
+<span class="command"># Verificar interfaces de rede (Camada 2)</span><br>
+<span class="command">ip addr show</span> <span class="comment"># Interfaces e endereços IP</span><br>
+<span class="command">ip link show</span> <span class="comment"># Status das interfaces</span><br>
+<span class="command"># Verificar protocolos de aplicação (Camada 7)</span><br>
+<span class="command">ps aux | grep -E "(ssh|apache|nginx|mysql)"</span>
+                </div>
+                <button class="btn" onclick="executeExercise('layer-identification')">
+                    <i class="fas fa-play"></i> Executar Comandos
+                </button>
+                <button class="btn" onclick="copyCode('layer-identification')">
+                    <i class="fas fa-copy"></i> Copiar Código
+                </button>
+            </div>
+        </div>
+
+        <!-- Slide 3: Modelo TCP/IP - 4 Camadas -->
+        <div class="slide">
+            <h2><i class="fas fa-network-wired"></i> Modelo TCP/IP - 4 Camadas</h2>
+            
+            <h3>Visão Geral do Modelo TCP/IP</h3>
+            <div class="info-box">
+                <strong>🌐 TCP/IP:</strong> Modelo prático usado na internet. Mais simples que o OSI, com 4 camadas que cobrem as funcionalidades das 7 camadas do OSI.
+            </div>
+            
+            <div class="network-diagram">
+                <h4>🌐 Modelo TCP/IP - 4 Camadas</h4>
+                <div class="layer-box">
+                    <strong>Aplicação</strong><br>
+                    <small>HTTP, HTTPS, FTP, SSH, DNS, SMTP, POP3, IMAP</small><br>
+                    <em>Corresponde às camadas 5, 6, 7 do OSI</em>
+                </div>
+                <div class="layer-box">
+                    <strong>Transporte</strong><br>
+                    <small>TCP, UDP</small><br>
+                    <em>Corresponde à camada 4 do OSI</em>
+                </div>
+                <div class="layer-box">
+                    <strong>Internet</strong><br>
+                    <small>IP, ICMP, ARP, OSPF, BGP</small><br>
+                    <em>Corresponde à camada 3 do OSI</em>
+                </div>
+                <div class="layer-box">
+                    <strong>Interface de Rede</strong><br>
+                    <small>Ethernet, Wi-Fi, PPP, Frame Relay</small><br>
+                    <em>Corresponde às camadas 1 e 2 do OSI</em>
+                </div>
+            </div>
+            
+            <h3>Comparação OSI vs TCP/IP</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Camada TCP/IP</th>
+                            <th>Correspondência OSI</th>
+                            <th>Protocolos Principais</th>
+                            <th>Função</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Aplicação</strong></td>
+                            <td>5, 6, 7</td>
+                            <td>HTTP, HTTPS, FTP, SSH, DNS, SMTP</td>
+                            <td>Comunicação entre aplicações</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Transporte</strong></td>
+                            <td>4</td>
+                            <td>TCP, UDP</td>
+                            <td>Controle de fluxo e confiabilidade</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Internet</strong></td>
+                            <td>3</td>
+                            <td>IP, ICMP, ARP</td>
+                            <td>Roteamento e endereçamento</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Interface de Rede</strong></td>
+                            <td>1, 2</td>
+                            <td>Ethernet, Wi-Fi, PPP</td>
+                            <td>Transmissão física dos dados</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="exercise-integration">
+                <h4><i class="fas fa-code"></i> Exercício Prático: Análise TCP/IP</h4>
+                <p>Vamos analisar o stack TCP/IP do sistema:</p>
+                <div class="code-example">
+<span class="command"># 1. Verificar interfaces de rede (Interface de Rede)</span><br>
+<span class="command">ip link show</span><br>
+<span class="command"># 2. Verificar endereços IP (Internet)</span><br>
+<span class="command">ip addr show</span><br>
+<span class="command"># 3. Verificar tabela de roteamento (Internet)</span><br>
+<span class="command">ip route show</span><br>
+<span class="command"># 4. Verificar conexões TCP/UDP (Transporte)</span><br>
+<span class="command">ss -tuln</span><br>
+<span class="command"># 5. Verificar serviços de aplicação (Aplicação)</span><br>
+<span class="command">systemctl list-units --type=service --state=running | grep -E "(ssh|apache|nginx|mysql)"</span><br>
+<span class="command"># 6. Testar conectividade (Todas as camadas)</span><br>
+<span class="command">ping -c 3 8.8.8.8</span>
+                </div>
+                <button class="btn" onclick="executeExercise('tcpip-analysis')">
+                    <i class="fas fa-play"></i> Executar Análise
+                </button>
+                <button class="btn" onclick="copyCode('tcpip-analysis')">
+                    <i class="fas fa-copy"></i> Copiar Código
+                </button>
+            </div>
+        </div>
+
+        <!-- Slide 4: Protocolos por Camada -->
+        <div class="slide">
+            <h2><i class="fas fa-list"></i> Protocolos por Camada</h2>
+            
+            <h3>Camada de Aplicação (7)</h3>
+            <div class="protocol-box">HTTP - HyperText Transfer Protocol</div>
+            <div class="protocol-box">HTTPS - HTTP Secure</div>
+            <div class="protocol-box">FTP - File Transfer Protocol</div>
+            <div class="protocol-box">SSH - Secure Shell</div>
+            <div class="protocol-box">DNS - Domain Name System</div>
+            <div class="protocol-box">SMTP - Simple Mail Transfer Protocol</div>
+            <div class="protocol-box">POP3 - Post Office Protocol</div>
+            <div class="protocol-box">IMAP - Internet Message Access Protocol</div>
+            
+            <h3>Camada de Transporte (4)</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Protocolo</th>
+                            <th>Tipo</th>
+                            <th>Características</th>
+                            <th>Uso Comum</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>TCP</strong></td>
+                            <td>Orientado a conexão</td>
+                            <td>Confiável, ordenado, controle de fluxo</td>
+                            <td>Web, email, transferência de arquivos</td>
+                        </tr>
+                        <tr>
+                            <td><strong>UDP</strong></td>
+                            <td>Não orientado a conexão</td>
+                            <td>Rápido, sem garantias</td>
+                            <td>DNS, streaming, jogos online</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <h3>Camada de Rede (3)</h3>
+            <div class="protocol-box">IP - Internet Protocol</div>
+            <div class="protocol-box">ICMP - Internet Control Message Protocol</div>
+            <div class="protocol-box">ARP - Address Resolution Protocol</div>
+            <div class="protocol-box">OSPF - Open Shortest Path First</div>
+            <div class="protocol-box">BGP - Border Gateway Protocol</div>
+            
+            <h3>Camada de Enlace (2)</h3>
+            <div class="protocol-box">Ethernet</div>
+            <div class="protocol-box">Wi-Fi (802.11)</div>
+            <div class="protocol-box">PPP - Point-to-Point Protocol</div>
+            <div class="protocol-box">Frame Relay</div>
+            
+            <div class="exercise-integration">
+                <h4><i class="fas fa-code"></i> Exercício Prático: Identificação de Protocolos</h4>
+                <p>Vamos identificar protocolos em uso no sistema MINFIN:</p>
+                <div class="code-example">
+<span class="command"># 1. Verificar protocolos de transporte</span><br>
+<span class="command">ss -tuln | head -10</span><br>
+<span class="command"># 2. Verificar protocolos de rede</span><br>
+<span class="command">ip route show</span><br>
+<span class="command"># 3. Verificar protocolos de enlace</span><br>
+<span class="command">ip link show</span><br>
+<span class="command"># 4. Verificar protocolos de aplicação</span><br>
+<span class="command">netstat -tuln | grep -E ":(80|443|22|25|53|21)"</span><br>
+<span class="command"># 5. Testar protocolos específicos</span><br>
+<span class="command">nslookup google.com</span> <span class="comment"># DNS</span><br>
+<span class="command">curl -I http://google.com</span> <span class="comment"># HTTP</span><br>
+<span class="command">ssh -o ConnectTimeout=5 localhost</span> <span class="comment"># SSH</span>
+                </div>
+                <button class="btn" onclick="executeExercise('protocol-identification')">
+                    <i class="fas fa-play"></i> Executar Identificação
+                </button>
+                <button class="btn" onclick="copyCode('protocol-identification')">
+                    <i class="fas fa-copy"></i> Copiar Código
+                </button>
+            </div>
+        </div>
+
+        <!-- Slide 5: Encapsulamento de Dados -->
+        <div class="slide">
+            <h2><i class="fas fa-box"></i> Encapsulamento de Dados</h2>
+            
+            <h3>Processo de Encapsulamento</h3>
+            <div class="info-box">
+                <strong>📦 Encapsulamento:</strong> Processo pelo qual os dados são envolvidos com cabeçalhos e rodapés de cada camada conforme descem pelo stack de protocolos.
+            </div>
+            
+            <div class="network-diagram">
+                <h4>🔄 Processo de Encapsulamento</h4>
+                <div style="text-align: left; font-family: 'Fira Code', monospace;">
+                    <div style="background: #e0f2fe; padding: 0.5rem; margin: 0.2rem; border-radius: 4px;">
+                        <strong>Camada 7:</strong> Dados da aplicação
+                    </div>
+                    <div style="background: #f0fdf4; padding: 0.5rem; margin: 0.2rem; border-radius: 4px;">
+                        <strong>Camada 6:</strong> Cabeçalho de Apresentação + Dados
+                    </div>
+                    <div style="background: #fef3c7; padding: 0.5rem; margin: 0.2rem; border-radius: 4px;">
+                        <strong>Camada 5:</strong> Cabeçalho de Sessão + Dados
+                    </div>
+                    <div style="background: #fecaca; padding: 0.5rem; margin: 0.2rem; border-radius: 4px;">
+                        <strong>Camada 4:</strong> Cabeçalho TCP/UDP + Dados
+                    </div>
+                    <div style="background: #dbeafe; padding: 0.5rem; margin: 0.2rem; border-radius: 4px;">
+                        <strong>Camada 3:</strong> Cabeçalho IP + Dados
+                    </div>
+                    <div style="background: #e9d5ff; padding: 0.5rem; margin: 0.2rem; border-radius: 4px;">
+                        <strong>Camada 2:</strong> Cabeçalho Ethernet + Dados + FCS
+                    </div>
+                    <div style="background: #f3f4f6; padding: 0.5rem; margin: 0.2rem; border-radius: 4px;">
+                        <strong>Camada 1:</strong> Bits transmitidos fisicamente
+                    </div>
+                </div>
+            </div>
+            
+            <h3>Desencapsulamento</h3>
+            <div class="warning-box">
+                <strong>🔄 Desencapsulamento:</strong> Processo inverso, onde cada camada remove seu cabeçalho e passa os dados para a camada superior.
+            </div>
+            
+            <div class="exercise-integration">
+                <h4><i class="fas fa-code"></i> Exercício Prático: Análise de Pacotes</h4>
+                <p>Vamos analisar o encapsulamento usando ferramentas do Linux:</p>
+                <div class="code-example">
+<span class="command"># 1. Instalar ferramentas de análise</span><br>
+<span class="command">sudo apt update && sudo apt install -y tcpdump wireshark-common</span><br>
+<span class="command"># 2. Capturar pacotes (requer privilégios)</span><br>
+<span class="command">sudo tcpdump -i any -c 5</span><br>
+<span class="command"># 3. Verificar interfaces de rede</span><br>
+<span class="command">ip addr show</span><br>
+<span class="command"># 4. Verificar tabela ARP (Camada 2-3)</span><br>
+<span class="command">arp -a</span><br>
+<span class="command"># 5. Verificar conexões TCP (Camada 4)</span><br>
+<span class="command">ss -tuln</span><br>
+<span class="command"># 6. Testar conectividade completa</span><br>
+<span class="command">ping -c 3 8.8.8.8</span>
+                </div>
+                <button class="btn" onclick="executeExercise('packet-analysis')">
+                    <i class="fas fa-play"></i> Executar Análise
+                </button>
+                <button class="btn" onclick="copyCode('packet-analysis')">
+                    <i class="fas fa-copy"></i> Copiar Código
+                </button>
+            </div>
+        </div>
+
+        <!-- Slide 6: Implementação no Linux -->
+        <div class="slide">
+            <h2><i class="fas fa-linux"></i> Implementação no Linux</h2>
+            
+            <h3>Comandos para Análise de Redes</h3>
+            <div class="code-example">
+<span class="command"># Verificar interfaces de rede</span><br>
+<span class="command">ip addr show</span><br>
+<span class="command">ifconfig</span> <span class="comment"># Comando tradicional</span><br>
+<span class="command"># Verificar roteamento</span><br>
+<span class="command">ip route show</span><br>
+<span class="command">route -n</span> <span class="comment"># Comando tradicional</span><br>
+<span class="command"># Verificar conexões</span><br>
+<span class="command">ss -tuln</span><br>
+<span class="command">netstat -tuln</span> <span class="comment"># Comando tradicional</span><br>
+<span class="command"># Verificar ARP</span><br>
+<span class="command">ip neigh show</span><br>
+<span class="command">arp -a</span> <span class="comment"># Comando tradicional</span>
+            </div>
+            
+            <h3>Ferramentas de Diagnóstico</h3>
+            <div class="code-example">
+<span class="command"># Teste de conectividade</span><br>
+<span class="command">ping -c 4 8.8.8.8</span><br>
+<span class="command"># Rastreamento de rota</span><br>
+<span class="command">traceroute 8.8.8.8</span><br>
+<span class="command"># Verificar DNS</span><br>
+<span class="command">nslookup google.com</span><br>
+<span class="command">dig google.com</span><br>
+<span class="command"># Verificar portas abertas</span><br>
+<span class="command">nmap -sT localhost</span><br>
+<span class="command"># Monitorar tráfego</span><br>
+<span class="command">iftop</span> <span class="comment"># Instalar: sudo apt install iftop</span>
+            </div>
+            
+            <div class="exercise-integration">
+                <h4><i class="fas fa-code"></i> Exercício Prático: Diagnóstico Completo</h4>
+                <p>Vamos realizar um diagnóstico completo da rede MINFIN:</p>
+                <div class="code-example">
+<span class="command"># 1. Verificar configuração de rede</span><br>
+<span class="command">ip addr show</span><br>
+<span class="command">ip route show</span><br>
+<span class="command"># 2. Testar conectividade local</span><br>
+<span class="command">ping -c 3 127.0.0.1</span><br>
+<span class="command"># 3. Testar conectividade externa</span><br>
+<span class="command">ping -c 3 8.8.8.8</span><br>
+<span class="command"># 4. Verificar resolução DNS</span><br>
+<span class="command">nslookup google.com</span><br>
+<span class="command"># 5. Verificar serviços em execução</span><br>
+<span class="command">ss -tuln | grep LISTEN</span><br>
+<span class="command"># 6. Criar relatório de rede</span><br>
+<span class="command">echo "=== Relatório de Rede MINFIN $(date) ===" > /tmp/rede-minfin.txt</span><br>
+<span class="command">ip addr show >> /tmp/rede-minfin.txt</span><br>
+<span class="command">ip route show >> /tmp/rede-minfin.txt</span><br>
+<span class="command">ss -tuln >> /tmp/rede-minfin.txt</span><br>
+<span class="command">cat /tmp/rede-minfin.txt</span>
+                </div>
+                <button class="btn" onclick="executeExercise('network-diagnosis')">
+                    <i class="fas fa-play"></i> Executar Diagnóstico
+                </button>
+                <button class="btn" onclick="copyCode('network-diagnosis')">
+                    <i class="fas fa-copy"></i> Copiar Código
+                </button>
+            </div>
+        </div>
+
+        <!-- Slide 7: Resumo e Próximos Passos -->
+        <div class="slide">
+            <h2><i class="fas fa-graduation-cap"></i> Resumo do Módulo</h2>
+            
+            <h3>Conceitos Dominados</h3>
+            <div class="success-box">
+                <ul>
+                    <li>✅ <strong>Modelo OSI:</strong> 7 camadas e suas funções</li>
+                    <li>✅ <strong>Modelo TCP/IP:</strong> 4 camadas e protocolos</li>
+                    <li>✅ <strong>Comparação:</strong> Diferenças entre os modelos</li>
+                    <li>✅ <strong>Protocolos:</strong> Identificação por camada</li>
+                    <li>✅ <strong>Encapsulamento:</strong> Como os dados trafegam</li>
+                    <li>✅ <strong>Linux:</strong> Comandos e ferramentas</li>
+                </ul>
+            </div>
+            
+            <h3>Comandos Essenciais para MINFIN</h3>
+            <div class="code-example">
+<span class="command"># Análise de rede</span><br>
+<span class="command">ip addr show</span><br>
+<span class="command">ip route show</span><br>
+<span class="command">ss -tuln</span><br>
+<span class="command"># Diagnóstico</span><br>
+<span class="command">ping -c 4 destino</span><br>
+<span class="command">traceroute destino</span><br>
+<span class="command">nslookup dominio</span>
+            </div>
+            
+            <div class="info-box">
+                <strong>🎯 Próximo Módulo:</strong> Endereçamento IP e Subnetting - Cálculos de sub-redes e configuração de endereços IP.
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/exercises.js"></script>
+</body>
+</html>

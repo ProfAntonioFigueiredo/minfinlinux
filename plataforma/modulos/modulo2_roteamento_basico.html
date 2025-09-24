@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roteamento Básico - Módulo 2</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .presentation-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+        }
+        
+        .slide {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            padding: 2rem;
+            border-left: 5px solid #dc2626;
+        }
+        
+        .slide h1 {
+            color: #dc2626;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .slide h2 {
+            color: #b91c1c;
+            font-size: 1.8rem;
+            margin: 1.5rem 0 1rem 0;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 0.5rem;
+        }
+        
+        .slide h3 {
+            color: #374151;
+            font-size: 1.4rem;
+            margin: 1.2rem 0 0.8rem 0;
+        }
+        
+        .slide h4 {
+            color: #4b5563;
+            font-size: 1.2rem;
+            margin: 1rem 0 0.6rem 0;
+        }
+        
+        .slide p {
+            color: #4b5563;
+            margin-bottom: 1rem;
+        }
+        
+        .info-box {
+            background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+            border: 1px solid #fecaca;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid #dc2626;
+        }
+        
+        .warning-box {
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+            border: 1px solid #fde68a;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid #f59e0b;
+        }
+        
+        .success-box {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border: 1px solid #bbf7d0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid #22c55e;
+        }
+        
+        .code-example {
+            background: #1f2937;
+            color: #f9fafb;
+            padding: 1.5rem;
+            border-radius: 8px;
+            font-family: 'Fira Code', 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin: 1rem 0;
+            overflow-x: auto;
+            border: 1px solid #374151;
+        }
+        
+        .command {
+            color: #10b981;
+            font-weight: bold;
+        }
+        
+        .comment {
+            color: #6b7280;
+            font-style: italic;
+        }
+        
+        .exercise-integration {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border: 1px solid #93c5fd;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid #3b82f6;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        th {
+            background: #f8fafc;
+            font-weight: 600;
+            color: #374151;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin: 0.5rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+        }
+        
+        .btn i {
+            font-size: 0.8rem;
+        }
+        
+        kbd {
+            background: #f3f4f6;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            padding: 0.2rem 0.4rem;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.8rem;
+            color: #374151;
+        }
+        
+        .routing-diagram {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            text-align: center;
+            font-family: 'Fira Code', monospace;
+        }
+        
+        .router-box {
+            background: #e0f2fe;
+            border: 2px solid #0288d1;
+            border-radius: 6px;
+            padding: 1rem;
+            margin: 0.5rem;
+            display: inline-block;
+            min-width: 150px;
+        }
+        
+        .network-box {
+            background: #f0fdf4;
+            border: 2px solid #16a34a;
+            border-radius: 6px;
+            padding: 0.5rem 1rem;
+            margin: 0.2rem;
+            display: inline-block;
+            font-size: 0.9rem;
+        }
+        
+        .route-type {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin: 0.2rem;
+        }
+        
+        .type-static { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
+        .type-dynamic { background: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0; }
+        .type-default { background: #fef3c7; color: #d97706; border: 1px solid #fed7aa; }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: Título e Introdução -->
+        <div class="slide">
+            <h1><i class="fas fa-route"></i> Roteamento Básico</h1>
+            <h2>Fundamentos de Roteamento de Redes</h2>
+            
+            <div class="info-box">
+                <strong>🎯 Objetivo:</strong> Compreender os conceitos de roteamento, configuração de rotas e protocolos de roteamento, essencial para administradores de sistemas que trabalham com infraestrutura de rede.
+            </div>
+            
+            <h3>📋 Conteúdo Programático</h3>
+            <ul>
+                <li><strong>Conceitos de Roteamento</strong> - O que é e como funciona</li>
+                <li><strong>Tipos de Roteamento</strong> - Estático, dinâmico e padrão</li>
+                <li><strong>Tabela de Roteamento</strong> - Estrutura e funcionamento</li>
+                <li><strong>Protocolos de Roteamento</strong> - RIP, OSPF, BGP</li>
+                <li><strong>Configuração Linux</strong> - Comandos e ferramentas</li>
+                <li><strong>Cenários Práticos</strong> - Implementação MINFIN</li>
+            </ul>
+            
+            <div class="success-box">
+                <strong>⏱️ Duração:</strong> 2 horas | <strong>📊 Nível:</strong> Intermediário | <strong>🏛️ Público:</strong> Administradores MINFIN
+            </div>
+        </div>
+
+        <!-- Slide 2: Conceitos de Roteamento -->
+        <div class="slide">
+            <h2><i class="fas fa-project-diagram"></i> Conceitos de Roteamento</h2>
+            
+            <h3>O que é Roteamento?</h3>
+            <div class="info-box">
+                <strong>🔄 Roteamento:</strong> Processo de determinar o melhor caminho para enviar pacotes de dados de uma rede para outra através de roteadores intermediários.
+            </div>
+            
+            <h3>Componentes do Roteamento</h3>
+            <div class="routing-diagram">
+                <h4>🌐 Topologia de Rede MINFIN</h4>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin: 2rem 0;">
+                    <div class="network-box">Rede A<br>192.168.1.0/24</div>
+                    <div class="router-box">Roteador 1<br>192.168.1.1</div>
+                    <div class="router-box">Roteador 2<br>192.168.2.1</div>
+                    <div class="network-box">Rede B<br>192.168.2.0/24</div>
+                </div>
+                <div style="margin: 1rem 0;">
+                    <strong>Fluxo de Dados:</strong> Rede A → Roteador 1 → Roteador 2 → Rede B
+                </div>
+            </div>
+            
+            <h3>Funções do Roteador</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Função</th>
+                            <th>Descrição</th>
+                            <th>Exemplo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Decisão de Rota</strong></td>
+                            <td>Determinar melhor caminho</td>
+                            <td>Escolher rota mais rápida</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Encaminhamento</strong></td>
+                            <td>Enviar pacotes para destino</td>
+                            <td>Encaminhar para próximo salto</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Descoberta de Rota</strong></td>
+                            <td>Aprender rotas disponíveis</td>
+                            <td>Protocolos de roteamento</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Manutenção de Tabela</strong></td>
+                            <td>Atualizar tabela de roteamento</td>
+                            <td>Adicionar/remover rotas</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="exercise-integration">
+                <h4><i class="fas fa-code"></i> Exercício Prático: Análise de Roteamento</h4>
+                <p>Vamos analisar o roteamento do sistema:</p>
+                <div class="code-example">
+<span class="command"># Verificar tabela de roteamento</span><br>
+<span class="command">ip route show</span><br>
+<span class="command"># Verificar rota padrão</span><br>
+<span class="command">ip route show default</span><br>
+<span class="command"># Verificar rotas específicas</span><br>
+<span class="command">ip route show 192.168.0.0/16</span><br>
+<span class="command"># Verificar gateway</span><br>
+<span class="command">ip route show | grep default</span><br>
+<span class="command"># Testar conectividade</span><br>
+<span class="command">ping -c 3 8.8.8.8</span><br>
+<span class="command"># Rastrear rota</span><br>
+<span class="command">traceroute 8.8.8.8</span>
+                </div>
+                <button class="btn" onclick="executeExercise('routing-analysis')">
+                    <i class="fas fa-play"></i> Executar Análise
+                </button>
+                <button class="btn" onclick="copyCode('routing-analysis')">
+                    <i class="fas fa-copy"></i> Copiar Código
+                </button>
+            </div>
+        </div>
+
+        <!-- Slide 3: Tipos de Roteamento -->
+        <div class="slide">
+            <h2><i class="fas fa-list"></i> Tipos de Roteamento</h2>
+            
+            <h3>Roteamento Estático</h3>
+            <div class="info-box">
+                <strong>📝 Roteamento Estático:</strong> Rotas configuradas manualmente pelo administrador. Simples, seguro e previsível, mas não se adapta a mudanças na rede.
+            </div>
+            
+            <div class="code-example">
+<span class="command"># Adicionar rota estática</span><br>
+<span class="command">sudo ip route add 192.168.100.0/24 via 192.168.1.1</span><br>
+<span class="command"># Adicionar rota padrão</span><br>
+<span class="command">sudo ip route add default via 192.168.1.1</span><br>
+<span class="command"># Remover rota</span><br>
+<span class="command">sudo ip route del 192.168.100.0/24</span><br>
+<span class="command"># Verificar rotas</span><br>
+<span class="command">ip route show</span>
+            </div>
+            
+            <h3>Roteamento Dinâmico</h3>
+            <div class="warning-box">
+                <strong>🔄 Roteamento Dinâmico:</strong> Rotas aprendidas automaticamente através de protocolos de roteamento. Adapta-se a mudanças, mas consome mais recursos e é mais complexo.
+            </div>
+            
+            <h3>Comparação dos Tipos</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Característica</th>
+                            <th>Estático</th>
+                            <th>Dinâmico</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Configuração</strong></td>
+                            <td>Manual</td>
+                            <td>Automática</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Adaptação</strong></td>
+                            <td>Não</td>
+                            <td>Sim</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Recursos</strong></td>
+                            <td>Mínimos</td>
+                            <td>Altos</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Segurança</strong></td>
+                            <td>Alta</td>
+                            <td>Média</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Manutenção</strong></td>
+                            <td>Alta</td>
+                            <td>Baixa</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Uso</strong></td>
+                            <td>Redes pequenas</td>
+                            <td>Redes grandes</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="exercise-integration">
+                <h4><i class="fas fa-code"></i> Exercício Prático: Configuração de Rotas</h4>
+                <p>Vamos configurar rotas para o MINFIN:</p>
+                <div class="code-example">
+<span class="command"># 1. Verificar rotas atuais</span><br>
+<span class="command">ip route show</span><br>
+<span class="command"># 2. Adicionar rota para rede de TI</span><br>
+<span class="command">sudo ip route add 192.168.10.0/24 via 192.168.1.1</span><br>
+<span class="command"># 3. Adicionar rota para rede de Finanças</span><br>
+<span class="command">sudo ip route add 192.168.20.0/24 via 192.168.1.1</span><br>
+<span class="command"># 4. Verificar rotas adicionadas</span><br>
+<span class="command">ip route show</span><br>
+<span class="command"># 5. Testar conectividade</span><br>
+<span class="command">ping -c 3 192.168.10.1</span><br>
+<span class="command"># 6. Remover rota de teste</span><br>
+<span class="command">sudo ip route del 192.168.10.0/24</span>
+                </div>
+                <button class="btn" onclick="executeExercise('route-configuration')">
+                    <i class="fas fa-play"></i> Executar Configuração
+                </button>
+                <button class="btn" onclick="copyCode('route-configuration')">
+                    <i class="fas fa-copy"></i> Copiar Código
+                </button>
+            </div>
+        </div>
+
+        <!-- Slide 4: Tabela de Roteamento -->
+        <div class="slide">
+            <h2><i class="fas fa-table"></i> Tabela de Roteamento</h2>
+            
+            <h3>Estrutura da Tabela de Roteamento</h3>
+            <div class="info-box">
+                <strong>📊 Tabela de Roteamento:</strong> Banco de dados que contém informações sobre como alcançar diferentes redes. Cada entrada contém destino, gateway, interface e métrica.
+            </div>
+            
+            <h3>Campos da Tabela de Roteamento</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Campo</th>
+                            <th>Descrição</th>
+                            <th>Exemplo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Destino</strong></td>
+                            <td>Rede de destino</td>
+                            <td>192.168.1.0/24</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Gateway</strong></td>
+                            <td>Próximo salto</td>
+                            <td>192.168.1.1</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Interface</strong></td>
+                            <td>Interface de saída</td>
+                            <td>eth0</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Métrica</strong></td>
+                            <td>Custo da rota</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Escopo</strong></td>
+                            <td>Alcance da rota</td>
+                            <td>global</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <h3>Tipos de Rotas</h3>
+            <div style="margin: 1rem 0;">
+                <span class="route-type type-static">Estática</span>
+                <span class="route-type type-dynamic">Dinâmica</span>
+                <span class="route-type type-default">Padrão</span>
+            </div>
+            
+            <div class="code-example">
+<span class="command"># Verificar tabela de roteamento completa</span><br>
+<span class="command">ip route show</span><br>
+<span class="command"># Verificar apenas rotas padrão</span><br>
+<span class="command">ip route show default</span><br>
+<span class="command"># Verificar rotas para rede específica</span><br>
+<span class="command">ip route show 192.168.0.0/16</span><br>
+<span class="command"># Verificar tabela de roteamento com métricas</span><br>
+<span class="command">ip route show table all</span><br>
+<span class="command"># Verificar cache de roteamento</span><br>
+<span class="command">ip route show cache</span>
+            </div>
+            
+            <div class="exercise-integration">
+                <h4><i class="fas fa-code"></i> Exercício Prático: Análise de Tabela</h4>
+                <p>Vamos analisar a tabela de roteamento do MINFIN:</p>
+                <div class="code-example">
+<span class="command"># 1. Verificar tabela completa</span><br>
+<span class="command">ip route show</span><br>
+<span class="command"># 2. Verificar rotas por interface</span><br>
+<span class="command">ip route show dev eth0</span><br>
+<span class="command"># 3. Verificar rotas por protocolo</span><br>
+<span class="command">ip route show proto static</span><br>
+<span class="command"># 4. Verificar métricas</span><br>
+<span class="command">ip route show | grep metric</span><br>
+<span class="command"># 5. Criar relatório de roteamento</span><br>
+<span class="command">echo "=== Tabela de Roteamento MINFIN $(date) ===" > /tmp/roteamento-minfin.txt</span><br>
+<span class="command">ip route show >> /tmp/roteamento-minfin.txt</span><br>
+<span class="command">echo "=== Rotas por Interface ===" >> /tmp/roteamento-minfin.txt</span><br>
+<span class="command">ip route show dev eth0 >> /tmp/roteamento-minfin.txt</span><br>
+<span class="command">cat /tmp/roteamento-minfin.txt</span>
+                </div>
+                <button class="btn" onclick="executeExercise('routing-table-analysis')">
+                    <i class="fas fa-play"></i> Executar Análise
+                </button>
+                <button class="btn" onclick="copyCode('routing-table-analysis')">
+                    <i class="fas fa-copy"></i> Copiar Código
+                </button>
+            </div>
+        </div>
+
+        <!-- Slide 5: Protocolos de Roteamento -->
+        <div class="slide">
+            <h2><i class="fas fa-exchange-alt"></i> Protocolos de Roteamento</h2>
+            
+            <h3>Classificação dos Protocolos</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tipo</th>
+                            <th>Protocolo</th>
+                            <th>Algoritmo</th>
+                            <th>Uso</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td rowspan="2"><strong>IGP</strong><br>(Interior)</td>
+                            <td>RIP</td>
+                            <td>Distance Vector</td>
+                            <td>Redes pequenas</td>
+                        </tr>
+                        <tr>
+                            <td>OSPF</td>
+                            <td>Link State</td>
+                            <td>Redes médias/grandes</td>
+                        </tr>
+                        <tr>
+                            <td><strong>EGP</strong><br>(Exterior)</td>
+                            <td>BGP</td>
+                            <td>Path Vector</td>
+                            <td>Internet</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <h3>RIP (Routing Information Protocol)</h3>
+            <div class="info-box">
+                <strong>🔄 RIP:</strong> Protocolo de roteamento por vetor de distância. Simples, mas limitado a 15 saltos. Usado em redes pequenas.
+            </div>
+            
+            <h3>OSPF (Open Shortest Path First)</h3>
+            <div class="warning-box">
+                <strong>🌐 OSPF:</strong> Protocolo de roteamento por estado de enlace. Mais complexo, mas eficiente para redes grandes. Usado em redes corporativas.
+            </div>
+            
+            <h3>BGP (Border Gateway Protocol)</h3>
+            <div class="success-box">
+                <strong>🌍 BGP:</strong> Protocolo de roteamento entre sistemas autônomos. Usado na internet para roteamento entre provedores.
+            </div>
+            
+            <div class="exercise-integration">
+                <h4><i class="fas fa-code"></i> Exercício Prático: Configuração de Protocolos</h4>
+                <p>Vamos configurar protocolos de roteamento para o MINFIN:</p>
+                <div class="code-example">
+<span class="command"># 1. Verificar protocolos em uso</span><br>
+<span class="command">ip route show proto static</span><br>
+<span class="command">ip route show proto kernel</span><br>
+<span class="command"># 2. Instalar ferramentas de roteamento</span><br>
+<span class="command">sudo apt update && sudo apt install -y quagga</span><br>
+<span class="command"># 3. Configurar RIP (exemplo)</span><br>
+<span class="command"># sudo nano /etc/quagga/ripd.conf</span><br>
+<span class="command"># 4. Verificar status dos protocolos</span><br>
+<span class="command">sudo systemctl status ripd</span><br>
+<span class="command"># 5. Testar conectividade</span><br>
+<span class="command">ping -c 3 8.8.8.8</span><br>
+<span class="command"># 6. Verificar rotas aprendidas</span><br>
+<span class="command">ip route show proto rip</span>
+                </div>
+                <button class="btn" onclick="executeExercise('routing-protocols')">
+                    <i class="fas fa-play"></i> Executar Configuração
+                </button>
+                <button class="btn" onclick="copyCode('routing-protocols')">
+                    <i class="fas fa-copy"></i> Copiar Código
+                </button>
+            </div>
+        </div>
+
+        <!-- Slide 6: Configuração Avançada -->
+        <div class="slide">
+            <h2><i class="fas fa-cogs"></i> Configuração Avançada</h2>
+            
+            <h3>Configuração Persistente de Rotas</h3>
+            <div class="code-example">
+<span class="command"># Editar configuração de rede</span><br>
+<span class="command">sudo nano /etc/netplan/01-network-manager-all.yaml</span><br>
+<span class="command"># Exemplo de configuração com rotas:</span><br>
+<span class="command"># network:</span><br>
+<span class="command">#   version: 2</span><br>
+<span class="command">#   ethernets:</span><br>
+<span class="command">#     eth0:</span><br>
+<span class="command">#       addresses: [192.168.1.10/24]</span><br>
+<span class="command">#       gateway4: 192.168.1.1</span><br>
+<span class="command">#       routes:</span><br>
+<span class="command">#         - to: 192.168.10.0/24</span><br>
+<span class="command">#           via: 192.168.1.1</span><br>
+<span class="command">#         - to: 192.168.20.0/24</span><br>
+<span class="command">#           via: 192.168.1.1</span><br>
+<span class="command"># Aplicar configuração</span><br>
+<span class="command">sudo netplan apply</span>
+            </div>
+            
+            <h3>Monitoramento de Roteamento</h3>
+            <div class="code-example">
+<span class="command"># Monitorar mudanças na tabela de roteamento</span><br>
+<span class="command">ip monitor route</span><br>
+<span class="command"># Verificar estatísticas de roteamento</span><br>
+<span class="command">cat /proc/net/route</span><br>
+<span class="command"># Verificar cache de roteamento</span><br>
+<span class="command">ip route show cache</span><br>
+<span class="command"># Verificar métricas de roteamento</span><br>
+<span class="command">ip route show table all</span>
+            </div>
+            
+            <h3>Script de Monitoramento MINFIN</h3>
+            <div class="code-example">
+<span class="command"># Criar script de monitoramento</span><br>
+<span class="command">sudo tee /usr/local/bin/minfin-routing-monitor.sh << 'EOF'</span><br>
+<span class="command">#!/bin/bash</span><br>
+<span class="command"># Script de monitoramento de roteamento MINFIN</span><br>
+<span class="command">LOG_FILE="/var/log/minfin-routing.log"</span><br>
+<span class="command">echo "=== Monitor de Roteamento MINFIN $(date) ===" >> $LOG_FILE</span><br>
+<span class="command">echo "Tabela de roteamento:" >> $LOG_FILE</span><br>
+<span class="command">ip route show >> $LOG_FILE</span><br>
+<span class="command">echo "Rotas por interface:" >> $LOG_FILE</span><br>
+<span class="command">ip route show dev eth0 >> $LOG_FILE</span><br>
+<span class="command">echo "Conectividade:" >> $LOG_FILE</span><br>
+<span class="command">ping -c 3 8.8.8.8 >> $LOG_FILE 2>&1</span><br>
+<span class="command">echo "=================================" >> $LOG_FILE</span><br>
+<span class="command">EOF</span><br>
+<span class="command">sudo chmod +x /usr/local/bin/minfin-routing-monitor.sh</span>
+            </div>
+            
+            <div class="exercise-integration">
+                <h4><i class="fas fa-code"></i> Exercício Prático: Sistema Completo</h4>
+                <p>Vamos implementar um sistema completo de roteamento:</p>
+                <div class="code-example">
+<span class="command"># 1. Executar monitoramento</span><br>
+<span class="command">sudo /usr/local/bin/minfin-routing-monitor.sh</span><br>
+<span class="command"># 2. Verificar log</span><br>
+<span class="command">sudo tail -20 /var/log/minfin-routing.log</span><br>
+<span class="command"># 3. Configurar monitoramento automático</span><br>
+<span class="command">echo "*/5 * * * * /usr/local/bin/minfin-routing-monitor.sh" | sudo crontab -</span><br>
+<span class="command"># 4. Verificar crontab</span><br>
+<span class="command">sudo crontab -l</span><br>
+<span class="command"># 5. Testar conectividade completa</span><br>
+<span class="command">ping -c 3 8.8.8.8</span><br>
+<span class="command">traceroute 8.8.8.8</span>
+                </div>
+                <button class="btn" onclick="executeExercise('complete-routing-system')">
+                    <i class="fas fa-play"></i> Executar Sistema
+                </button>
+                <button class="btn" onclick="copyCode('complete-routing-system')">
+                    <i class="fas fa-copy"></i> Copiar Código
+                </button>
+            </div>
+        </div>
+
+        <!-- Slide 7: Resumo e Próximos Passos -->
+        <div class="slide">
+            <h2><i class="fas fa-graduation-cap"></i> Resumo do Módulo</h2>
+            
+            <h3>Conceitos Dominados</h3>
+            <div class="success-box">
+                <ul>
+                    <li>✅ <strong>Conceitos de Roteamento:</strong> O que é e como funciona</li>
+                    <li>✅ <strong>Tipos de Roteamento:</strong> Estático, dinâmico e padrão</li>
+                    <li>✅ <strong>Tabela de Roteamento:</strong> Estrutura e funcionamento</li>
+                    <li>✅ <strong>Protocolos:</strong> RIP, OSPF, BGP</li>
+                    <li>✅ <strong>Configuração Linux:</strong> Comandos e ferramentas</li>
+                    <li>✅ <strong>Monitoramento:</strong> Scripts e alertas</li>
+                </ul>
+            </div>
+            
+            <h3>Comandos Essenciais para MINFIN</h3>
+            <div class="code-example">
+<span class="command"># Configuração de rotas</span><br>
+<span class="command">ip route add DESTINO via GATEWAY</span><br>
+<span class="command">ip route add default via GATEWAY</span><br>
+<span class="command"># Verificação</span><br>
+<span class="command">ip route show</span><br>
+<span class="command"># Teste de conectividade</span><br>
+<span class="command">ping -c 3 destino</span><br>
+<span class="command">traceroute destino</span>
+            </div>
+            
+            <div class="info-box">
+                <strong>🎯 Próximo Módulo:</strong> Segurança da Informação - Princípios de segurança, políticas e implementação de controles.
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/exercises.js"></script>
+</body>
+</html>
