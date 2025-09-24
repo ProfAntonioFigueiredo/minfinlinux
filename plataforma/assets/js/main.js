@@ -20,22 +20,22 @@ const AppState = {
                 {
                     id: 'intro-linux',
                     title: 'Introdução Completa ao Linux',
-                    file: '../modulos/modulo1_introducao_completa.html'
+                    file: 'modulos/modulo1_fundamentos_linux/apresentacoes/modulo1_introducao_completa.html'
                 },
                 {
                     id: 'permissoes',
                     title: 'Permissões de Arquivos e Diretórios',
-                    file: '../modulos/modulo1_permissoes_completo.html'
+                    file: 'modulos/modulo1_fundamentos_linux/apresentacoes/modulo1_permissoes_completo.html'
                 },
                 {
                     id: 'usuarios-grupos',
                     title: 'Gestão de Usuários e Grupos',
-                    file: '../modulos/modulo1_fundamentos_linux/apresentacoes/modulo1_gestao_usuarios_grupos.html'
+                    file: 'modulos/modulo1_fundamentos_linux/apresentacoes/modulo1_gestao_usuarios_grupos.html'
                 },
                 {
                     id: 'processos-servicos',
                     title: 'Processos e Serviços',
-                    file: '../modulos/modulo1_fundamentos_linux/apresentacoes/modulo1_processos_servicos.html'
+                    file: 'modulos/modulo1_fundamentos_linux/apresentacoes/modulo1_processos_servicos.html'
                 }
             ],
             exercises: [
@@ -43,25 +43,25 @@ const AppState = {
                     id: 'exercicio-permissoes',
                     title: 'Exercício: Permissões de Arquivos',
                     description: 'Prática com chmod, chown, chgrp',
-                    file: '../modulos/modulo1_fundamentos_linux/exercicios/exercicio_permissoes_arquivos.sh'
+                    file: 'modulos/modulo1_fundamentos_linux/exercicios/exercicio_permissoes_arquivos.sh'
                 },
                 {
                     id: 'exercicio-usuarios',
                     title: 'Exercício: Usuários e Grupos',
                     description: 'Criação e gerenciamento de usuários',
-                    file: '../modulos/modulo1_fundamentos_linux/exercicios/exercicio_usuarios_grupos.sh'
+                    file: 'modulos/modulo1_fundamentos_linux/exercicios/exercicio_usuarios_grupos.sh'
                 },
                 {
                     id: 'exercicio-processos',
                     title: 'Exercício: Processos e Serviços',
                     description: 'Gerenciamento com ps, top, kill, systemd',
-                    file: '../modulos/modulo1_fundamentos_linux/exercicios/exercicio_processos_servicos.sh'
+                    file: 'modulos/modulo1_fundamentos_linux/exercicios/exercicio_processos_servicos.sh'
                 },
                 {
                     id: 'comandos-basicos',
                     title: 'Comandos Básicos do Linux',
                     description: 'Navegação, manipulação de arquivos e diretórios',
-                    file: '../exercicios/comandos_basicos_linux.sh'
+                    file: 'exercicios/comandos_basicos_linux.sh'
                 }
             ]
         },
@@ -74,27 +74,27 @@ const AppState = {
                 {
                     id: 'redes-seguranca-completo',
                     title: 'Redes e Segurança - Completo',
-                    file: '../modulos/modulo2_redes_seguranca_completo.html'
+                    file: 'modulos/modulo2_redes_seguranca/apresentacoes/modulo2_redes_seguranca_completo.html'
                 },
                 {
                     id: 'modelos-osi-tcpip',
                     title: 'Modelos OSI e TCP/IP',
-                    file: '../modulos/modulo2_redes_seguranca/apresentacoes/modulo2_modelos_osi_tcpip.html'
+                    file: 'modulos/modulo2_redes_seguranca/apresentacoes/modulo2_modelos_osi_tcpip.html'
                 },
                 {
                     id: 'enderecamento-ip',
                     title: 'Endereçamento IP e Subnetting',
-                    file: '../modulos/modulo2_redes_seguranca/apresentacoes/modulo2_enderecamento_ip_subnetting.html'
+                    file: 'modulos/modulo2_redes_seguranca/apresentacoes/modulo2_enderecamento_ip_subnetting.html'
                 },
                 {
                     id: 'roteamento-basico',
                     title: 'Roteamento Básico',
-                    file: '../modulos/modulo2_redes_seguranca/apresentacoes/modulo2_roteamento_basico.html'
+                    file: 'modulos/modulo2_redes_seguranca/apresentacoes/modulo2_roteamento_basico.html'
                 },
                 {
                     id: 'seguranca-informacao',
                     title: 'Segurança da Informação',
-                    file: '../modulos/modulo2_redes_seguranca/apresentacoes/modulo2_seguranca_informacao.html'
+                    file: 'modulos/modulo2_redes_seguranca/apresentacoes/modulo2_seguranca_informacao.html'
                 }
             ],
             exercises: [
@@ -102,19 +102,19 @@ const AppState = {
                     id: 'exercicio-subredes',
                     title: 'Exercício: Cálculo de Sub-redes',
                     description: 'Prática com cálculos de subnetting',
-                    file: '../modulos/modulo2_redes_seguranca/exercicios/exercicio_calculo_subredes.sh'
+                    file: 'modulos/modulo2_redes_seguranca/exercicios/exercicio_calculo_subredes.sh'
                 },
                 {
                     id: 'exercicio-controles',
                     title: 'Exercício: Controles de Acesso',
                     description: 'Implementação de controles de segurança',
-                    file: '../modulos/modulo2_redes_seguranca/exercicios/exercicio_controles_acesso.sh'
+                    file: 'modulos/modulo2_redes_seguranca/exercicios/exercicio_controles_acesso.sh'
                 },
                 {
                     id: 'exercicio-cenarios',
                     title: 'Exercício: Cenários Práticos',
                     description: 'Cenários reais de redes e segurança',
-                    file: '../modulos/modulo2_redes_seguranca/exercicios/exercicio_cenarios_praticos.sh'
+                    file: 'modulos/modulo2_redes_seguranca/exercicios/exercicio_cenarios_praticos.sh'
                 }
             ]
         },
@@ -127,7 +127,7 @@ const AppState = {
                 {
                     id: 'redes-completo',
                     title: 'Administração de Redes - Completo',
-                    file: '../modulos/modulo3_administracao_redes_completo.html'
+                    file: 'modulos/modulo3_administracao_redes/apresentacoes/modulo3_administracao_redes_completo.html'
                 }
             ],
             exercises: [
@@ -135,25 +135,25 @@ const AppState = {
                     id: 'configuracao-rede-avancada',
                     title: 'Configuração de Rede Avançada',
                     description: 'VLANs, bonding e interfaces múltiplas',
-                    file: '../modulos/modulo3_administracao_redes/exercicios/exercicio_rede_avancada.sh'
+                    file: 'modulos/modulo3_administracao_redes/exercicios/exercicio_rede_avancada.sh'
                 },
                 {
                     id: 'servidor-dns',
                     title: 'Configuração de Servidor DNS',
                     description: 'BIND9 e resolução de nomes',
-                    file: '../modulos/modulo3_administracao_redes/exercicios/exercicio_dns.sh'
+                    file: 'modulos/modulo3_administracao_redes/exercicios/exercicio_dns.sh'
                 },
                 {
                     id: 'servidor-dhcp',
                     title: 'Configuração de Servidor DHCP',
                     description: 'ISC DHCP e pools de IP',
-                    file: '../modulos/modulo3_administracao_redes/exercicios/exercicio_dhcp.sh'
+                    file: 'modulos/modulo3_administracao_redes/exercicios/exercicio_dhcp.sh'
                 },
                 {
                     id: 'servidor-web',
                     title: 'Configuração de Servidor Web',
                     description: 'Apache e Nginx',
-                    file: '../modulos/modulo3_administracao_redes/exercicios/exercicio_web.sh'
+                    file: 'modulos/modulo3_administracao_redes/exercicios/exercicio_web.sh'
                 }
             ]
         },
@@ -166,7 +166,7 @@ const AppState = {
                 {
                     id: 'sistemas-completo',
                     title: 'Administração de Sistemas - Completo',
-                    file: '../modulos/modulo4_administracao_sistemas_completo.html'
+                    file: 'modulos/modulo4_administracao_sistemas/apresentacoes/modulo4_administracao_sistemas_completo.html'
                 }
             ],
             exercises: [
@@ -174,25 +174,25 @@ const AppState = {
                     id: 'gerenciamento-pacotes',
                     title: 'Gerenciamento de Pacotes',
                     description: 'APT, repositórios e dependências',
-                    file: '../modulos/modulo4_administracao_sistemas/exercicios/exercicio_pacotes.sh'
+                    file: 'modulos/modulo4_administracao_sistemas/exercicios/exercicio_pacotes.sh'
                 },
                 {
                     id: 'automacao-tarefas',
                     title: 'Automação de Tarefas',
                     description: 'Cron, systemd timers e scripts',
-                    file: '../modulos/modulo4_administracao_sistemas/exercicios/exercicio_automacao.sh'
+                    file: 'modulos/modulo4_administracao_sistemas/exercicios/exercicio_automacao.sh'
                 },
                 {
                     id: 'bash-scripting',
                     title: 'Bash Scripting Avançado',
                     description: 'Scripts, funções e automação',
-                    file: '../modulos/modulo4_administracao_sistemas/exercicios/exercicio_scripting.sh'
+                    file: 'modulos/modulo4_administracao_sistemas/exercicios/exercicio_scripting.sh'
                 },
                 {
                     id: 'containers-docker',
                     title: 'Containers e Docker',
                     description: 'Virtualização e containers',
-                    file: '../modulos/modulo4_administracao_sistemas/exercicios/exercicio_containers.sh'
+                    file: 'modulos/modulo4_administracao_sistemas/exercicios/exercicio_containers.sh'
                 }
             ]
         }
