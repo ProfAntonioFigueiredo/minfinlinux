@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introdução Completa ao Linux - Módulo 1</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .presentation-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+        }
+        
+        .slide {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            padding: 2rem;
+            border-left: 5px solid #2563eb;
+        }
+        
+        .slide h1 {
+            color: #2563eb;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .slide h2 {
+            color: #1d4ed8;
+            font-size: 1.8rem;
+            margin: 1.5rem 0 1rem 0;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 0.5rem;
+        }
+        
+        .slide h3 {
+            color: #374151;
+            font-size: 1.4rem;
+            margin: 1.2rem 0 0.8rem 0;
+        }
+        
+        .slide p {
+            color: #4b5563;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+            border: 1px solid #3b82f6;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .info-box {
+            background: #f0f9ff;
+            border-left: 4px solid #0ea5e9;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+        }
+        
+        .warning-box {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+        }
+        
+        .success-box {
+            background: #d1fae5;
+            border-left: 4px solid #10b981;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+        }
+        
+        .code-example {
+            background: #1f2937;
+            color: #f9fafb;
+            padding: 1.5rem;
+            border-radius: 8px;
+            font-family: 'Fira Code', 'Monaco', 'Consolas', monospace;
+            margin: 1rem 0;
+            overflow-x: auto;
+        }
+        
+        .command {
+            color: #10b981;
+            font-weight: bold;
+        }
+        
+        .comment {
+            color: #6b7280;
+            font-style: italic;
+        }
+        
+        .image-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .image-caption {
+            font-style: italic;
+            color: #6b7280;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .exercise-integration {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .exercise-integration h4 {
+            color: #2563eb;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .exercise-integration .btn {
+            background: #2563eb;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem 0.5rem 0.5rem 0;
+            transition: background 0.3s;
+        }
+        
+        .exercise-integration .btn:hover {
+            background: #1d4ed8;
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #2563eb;
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-left: 2rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -1.5rem;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            background: #2563eb;
+            border-radius: 50%;
+        }
+        
+        .timeline-item h4 {
+            color: #2563eb;
+            margin-bottom: 0.5rem;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .comparison-table th,
+        .comparison-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .comparison-table th {
+            background: #f8fafc;
+            font-weight: 600;
+            color: #374151;
+        }
+        
+        .comparison-table tr:hover {
+            background: #f9fafb;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .feature-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .feature-card i {
+            font-size: 2.5rem;
+            color: #2563eb;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card h4 {
+            color: #374151;
+            margin-bottom: 0.5rem;
+        }
+        
+        .feature-card p {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .presentation-container {
+                padding: 1rem;
+            }
+            
+            .slide {
+                padding: 1.5rem;
+            }
+            
+            .slide h1 {
+                font-size: 2rem;
+            }
+            
+            .slide h2 {
+                font-size: 1.5rem;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: Título e Introdução -->
+        <div class="slide">
+            <h1><i class="fas fa-linux"></i> Introdução Completa ao Linux</h1>
+            <div class="highlight-box">
+                <h2>🎯 Objetivos de Aprendizagem</h2>
+                <ul>
+                    <li>Compreender a história e evolução do Linux</li>
+                    <li>Conhecer as principais distribuições Linux</li>
+                    <li>Entender a estrutura de diretórios do Linux</li>
+                    <li>Dominar comandos básicos essenciais</li>
+                    <li>Praticar com exercícios hands-on</li>
+                </ul>
+            </div>
+            
+            <div class="info-box">
+                <strong>📚 Duração Estimada:</strong> 2 horas de teoria + 1 hora de prática<br>
+                <strong>🎓 Nível:</strong> Iniciante<br>
+                <strong>💻 Ambiente:</strong> Ubuntu 24.04 LTS
+            </div>
+        </div>
+
+        <!-- Slide 2: História do Linux -->
+        <div class="slide">
+            <h2>📜 História e Evolução do Linux</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>1969 - Unix</h4>
+                    <p>Desenvolvido por Ken Thompson e Dennis Ritchie nos laboratórios Bell da AT&T. Base para todos os sistemas Unix-like modernos.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <h4>1983 - GNU Project</h4>
+                    <p>Richard Stallman inicia o projeto GNU (GNU's Not Unix) para criar um sistema operacional livre e de código aberto.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <h4>1991 - Linux Kernel</h4>
+                    <p>Linus Torvalds, estudante finlandês de 21 anos, cria o kernel Linux como um projeto pessoal.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <h4>1992 - Primeira Distribuição</h4>
+                    <p>Aparecem as primeiras distribuições Linux, combinando o kernel com software GNU.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <h4>Hoje - Dominância</h4>
+                    <p>Linux roda em 100% dos supercomputadores, 70% dos smartphones (Android), e é amplamente usado em servidores.</p>
+                </div>
+            </div>
+            
+            <div class="image-container">
+                <img src="https://via.placeholder.com/800x400/2563eb/ffffff?text=Timeline+do+Linux" alt="Timeline da evolução do Linux">
+                <div class="image-caption">Evolução cronológica do Linux desde 1969 até os dias atuais</div>
+            </div>
+        </div>
+
+        <!-- Slide 3: O que é Linux -->
+        <div class="slide">
+            <h2>🐧 O que é Linux?</h2>
+            
+            <div class="highlight-box">
+                <h3>Definição Técnica</h3>
+                <p><strong>Linux</strong> é um kernel (núcleo) de sistema operacional do tipo Unix, desenvolvido sob a licença GPL (GNU General Public License), que permite que seja usado, modificado e distribuído livremente.</p>
+            </div>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <i class="fas fa-code"></i>
+                    <h4>Código Aberto</h4>
+                    <p>Todo o código fonte está disponível para inspeção, modificação e distribuição</p>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h4>Seguro</h4>
+                    <p>Arquitetura robusta com controle de permissões e isolamento de processos</p>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <h4>Performance</h4>
+                    <p>Otimizado para máxima eficiência e baixo consumo de recursos</p>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="fas fa-cogs"></i>
+                    <h4>Flexível</h4>
+                    <p>Altamente customizável para diferentes necessidades e hardware</p>
+                </div>
+            </div>
+            
+            <div class="info-box">
+                <strong>💡 Curiosidade:</strong> O nome "Linux" é uma combinação do nome do criador (Linus) com "Unix". Linus originalmente queria chamá-lo de "Freax" (Free + Unix + X).
+            </div>
+        </div>
+
+        <!-- Slide 4: Distribuições Linux -->
+        <div class="slide">
+            <h2>📦 Distribuições Linux</h2>
+            
+            <p>Uma <strong>distribuição Linux</strong> (ou "distro") é um sistema operacional completo que inclui o kernel Linux, ferramentas GNU, software adicional e um gerenciador de pacotes.</p>
+            
+            <h3>Principais Famílias de Distribuições</h3>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Família</th>
+                        <th>Distribuições</th>
+                        <th>Gerenciador de Pacotes</th>
+                        <th>Uso Principal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Debian</strong></td>
+                        <td>Ubuntu, Linux Mint, Debian</td>
+                        <td>APT (apt-get)</td>
+                        <td>Desktop, Servidor</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Red Hat</strong></td>
+                        <td>RHEL, CentOS, Fedora</td>
+                        <td>RPM (yum/dnf)</td>
+                        <td>Empresarial, Servidor</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Arch</strong></td>
+                        <td>Arch Linux, Manjaro</td>
+                        <td>Pacman</td>
+                        <td>Usuários Avançados</td>
+                    </tr>
+                    <tr>
+                        <td><strong>SUSE</strong></td>
+                        <td>openSUSE, SLES</td>
+                        <td>Zypper</td>
+                        <td>Empresarial</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="image-container">
+                <img src="https://via.placeholder.com/800x500/10b981/ffffff?text=Distribuições+Linux+Principais" alt="Árvore de distribuições Linux">
+                <div class="image-caption">Árvore genealógica das principais distribuições Linux</div>
+            </div>
+            
+            <div class="exercise-integration">
+                <h4><i class="fas fa-code"></i> Exercício Prático: Explorando Distribuições</h4>
+                <p>Vamos verificar qual distribuição Linux estamos usando e explorar suas características:</p>
+                <div class="code-example">
+<span class="command">lsb_release -a</span> <span class="comment"># Informações detalhadas da distribuição</span>
+<span class="command">cat /etc/os-release</span> <span class="comment"># Arquivo de identificação do sistema</span>
+<span class="command">uname -a</span> <span class="comment"># Informações do kernel e sistema</span>
+<span class="command">hostnamectl</span> <span class="comment"># Informações do hostname e sistema</span>
+                </div>
+                <button class="btn" onclick="executeExercise('distro-info')">
+                    <i class="fas fa-play"></i> Executar Comandos
+                </button>
+                <button class="btn" onclick="copyCode('distro-info')">
+                    <i class="fas fa-copy"></i> Copiar Código
+                </button>
+            </div>
+        </div>
+
+        <!-- Slide 5: Estrutura de Diretórios -->
+        <div class="slide">
+            <h2>📁 Estrutura de Diretórios do Linux</h2>
+            
+            <p>O Linux segue o padrão <strong>FHS (Filesystem Hierarchy Standard)</strong>, que define onde os arquivos e diretórios devem estar localizados.</p>
+            
+            <div class="image-container">
+                <img src="https://via.placeholder.com/600x400/3b82f6/ffffff?text=Estrutura+de+Diretórios+Linux" alt="Estrutura de diretórios Linux">
+                <div class="image-caption">Hierarquia padrão de diretórios no Linux</div>
+            </div>
+            
+            <h3>Principais Diretórios e Suas Funções</h3>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Diretório</th>
+                        <th>Função</th>
+                        <th>Exemplo de Conteúdo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>/</code></td>
+                        <td>Diretório raiz</td>
+                        <td>Ponto de montagem principal</td>
+                    </tr>
+                    <tr>
+                        <td><code>/bin</code></td>
+                        <td>Comandos essenciais</td>
+                        <td>ls, cp, mv, rm, mkdir</td>
+                    </tr>
+                    <tr>
+                        <td><code>/etc</code></td>
+                        <td>Arquivos de configuração</td>
+                        <td>passwd, hosts, network</td>
+                    </tr>
+                    <tr>
+                        <td><code>/home</code></td>
+                        <td>Diretórios dos usuários</td>
+                        <td>/home/usuario1, /home/usuario2</td>
+                    </tr>
+                    <tr>
+                        <td><code>/var</code></td>
+                        <td>Dados variáveis</td>
+                        <td>logs, cache, spool</td>
+                    </tr>
+                    <tr>
+                        <td><code>/usr</code></td>
+                        <td>Programas e bibliotecas</td>
+                        <td>bin, lib, share, local</td>
+                    </tr>
+                    <tr>
+                        <td><code>/tmp</code></td>
+                        <td>Arquivos temporários</td>
+                        <td>Arquivos de cache e temporários</td>
+                    </tr>
+                    <tr>
+                        <td><code>/root</code></td>
+                        <td>Diretório do root</td>
+                        <td>Arquivos pessoais do administrador</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="exercise-integration">
+                <h4><i class="fas fa-code"></i> Exercício Prático: Explorando a Estrutura</h4>
+                <p>Vamos navegar e explorar a estrutura de diretórios:</p>
+                <div class="code-example">
+<span class="command">pwd</span> <span class="comment"># Mostra o diretório atual</span>
+<span class="command">ls -la /</span> <span class="comment"># Lista conteúdo do diretório raiz</span>
+<span class="command">tree -L 2 /</span> <span class="comment"># Mostra árvore de diretórios (2 níveis)</span>
+<span class="command">ls -la /etc | head -10</span> <span class="comment"># Primeiros 10 arquivos de /etc</span>
+<span class="command">du -sh /* 2>/dev/null | sort -hr</span> <span class="comment"># Tamanho dos diretórios principais</span>
+                </div>
+                <button class="btn" onclick="executeExercise('directory-structure')">
+                    <i class="fas fa-play"></i> Executar Comandos
+                </button>
+                <button class="btn" onclick="copyCode('directory-structure')">
+                    <i class="fas fa-copy"></i> Copiar Código
+                </button>
+            </div>
+        </div>
+
+        <!-- Slide 6: Comandos Básicos Essenciais -->
+        <div class="slide">
+            <h2>⌨️ Comandos Básicos Essenciais</h2>
+            
+            <div class="highlight-box">
+                <h3>🎯 Comandos que Todo Administrador Linux Deve Dominar</h3>
+                <p>Estes são os comandos fundamentais que você usará diariamente na administração de sistemas Linux.</p>
+            </div>
+            
+            <h3>Navegação e Localização</h3>
+            <div class="code-example">
+<span class="command">pwd</span> <span class="comment"># Print Working Directory - mostra diretório atual</span>
+<span class="command">ls</span> <span class="comment"># List - lista arquivos e diretórios</span>
+<span class="command">ls -la</span> <span class="comment"># Lista detalhada com arquivos ocultos</span>
+<span class="command">cd</span> <span class="comment"># Change Directory - muda de diretório</span>
+<span class="command">cd ~</span> <span class="comment"># Vai para o diretório home</span>
+<span class="command">cd ..</span> <span class="comment"># Vai para o diretório pai</span>
+<span class="command">cd -</span> <span class="comment"># Volta ao diretório anterior</span>
+            </div>
+            
+            <h3>Manipulação de Arquivos e Diretórios</h3>
+            <div class="code-example">
+<span class="command">mkdir</span> <span class="comment"># Make Directory - cria diretórios</span>
+<span class="command">mkdir -p</span> <span class="comment"># Cria diretórios e subdiretórios</span>
+<span class="command">rmdir</span> <span class="comment"># Remove Directory - remove diretórios vazios</span>
+<span class="command">touch</span> <span class="comment"># Cria arquivos vazios ou atualiza timestamp</span>
+<span class="command">cp</span> <span class="comment"># Copy - copia arquivos e diretórios</span>
+<span class="command">cp -r</span> <span class="comment"># Copia recursivamente (diretórios)</span>
+<span class="command">mv</span> <span class="comment"># Move - move/renomeia arquivos e diretórios</span>
+<span class="command">rm</span> <span class="comment"># Remove - remove arquivos</span>
+<span class="command">rm -rf</span> <span class="comment"># Remove recursivamente e forçadamente</span>
+            </div>
+            
+            <h3>Visualização e Edição</h3>
+            <div class="code-example">
+<span class="command">cat</span> <span class="comment"># ConCATenate - mostra conteúdo de arquivos</span>
+<span class="command">less</span> <span class="comment"># Visualizador de arquivos (navegável)</span>
+<span class="command">more</span> <span class="comment"># Visualizador de arquivos (página por página)</span>
+<span class="command">head</span> <span class="comment"># Mostra primeiras linhas</span>
+<span class="command">tail</span> <span class="comment"># Mostra últimas linhas</span>
+<span class="command">tail -f</span> <span class="comment"># Segue arquivo em tempo real</span>
+<span class="command">nano</span> <span class="comment"># Editor de texto simples</span>
+<span class="command">vim</span> <span class="comment"># Editor de texto avançado</span>
+            </div>
+            
+            <div class="exercise-integration">
+                <h4><i class="fas fa-code"></i> Exercício Prático: Comandos Básicos</h4>
+                <p>Vamos praticar os comandos básicos criando uma estrutura de diretórios:</p>
+                <div class="code-example">
+<span class="command"># Criar estrutura de diretórios para projeto</span>
+<span class="command">mkdir -p ~/projeto-linux/{docs,scripts,logs,backup}</span>
+<span class="command">cd ~/projeto-linux</span>
+<span class="command">pwd</span>
+<span class="command">ls -la</span>
+<span class="command"># Criar alguns arquivos de teste</span>
+<span class="command">touch docs/README.txt scripts/backup.sh logs/error.log</span>
+<span class="command">echo "Projeto Linux - Ministério das Finanças" > docs/README.txt</span>
+<span class="command"># Verificar estrutura criada</span>
+<span class="command">tree ~/projeto-linux</span>
+                </div>
+                <button class="btn" onclick="executeExercise('basic-commands')">
+                    <i class="fas fa-play"></i> Executar Comandos
+                </button>
+                <button class="btn" onclick="copyCode('basic-commands')">
+                    <i class="fas fa-copy"></i> Copiar Código
+                </button>
+            </div>
+        </div>
+
+        <!-- Slide 7: Sistema de Arquivos -->
+        <div class="slide">
+            <h2>💾 Sistema de Arquivos Linux</h2>
+            
+            <p>O Linux suporta diversos tipos de sistemas de arquivos, cada um otimizado para diferentes necessidades.</p>
+            
+            <h3>Tipos de Sistemas de Arquivos</h3>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Sistema de Arquivos</th>
+                        <th>Uso Principal</th>
+                        <th>Características</th>
+                        <th>Limitações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>ext4</strong></td>
+                        <td>Uso geral (padrão)</td>
+                        <td>Estável, rápido, journaling</td>
+                        <td>Máx: 1EB, 4TB por arquivo</td>
+                    </tr>
+                    <tr>
+                        <td><strong>XFS</strong></td>
+                        <td>Alto desempenho</td>
+                        <td>Excelente para arquivos grandes</td>
+                        <td>Máx: 8EB, 8EB por arquivo</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Btrfs</strong></td>
+                        <td>Recursos avançados</td>
+                        <td>Snapshots, RAID, compressão</td>
+                        <td>Ainda em desenvolvimento</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ZFS</strong></td>
+                        <td>Servidores enterprise</td>
+                        <td>Integridade de dados, snapshots</td>
+                        <td>Licença proprietária</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>Comandos para Gerenciamento de Disco</h3>
+            <div class="code-example">
+<span class="command">df -h</span> <span class="comment"># Mostra uso de disco em formato legível</span>
+<span class="command">du -sh *</span> <span class="comment"># Tamanho de diretórios no diretório atual</span>
+<span class="command">lsblk</span> <span class="comment"># Lista dispositivos de bloco</span>
+<span class="command">fdisk -l</span> <span class="comment"># Lista partições (requer sudo)</span>
+<span class="command">mount</span> <span class="comment"># Mostra sistemas de arquivos montados</span>
+<span class="command">umount</span> <span class="comment"># Desmonta sistema de arquivos</span>
+            </div>
+            
+            <div class="exercise-integration">
+                <h4><i class="fas fa-code"></i> Exercício Prático: Análise de Disco</h4>
+                <p>Vamos analisar o uso de disco e identificar arquivos grandes:</p>
+                <div class="code-example">
+<span class="command"># Verificar uso geral do disco</span>
+<span class="command">df -h</span>
+<span class="command"># Encontrar os 10 maiores diretórios</span>
+<span class="command">du -h /home | sort -hr | head -10</span>
+<span class="command"># Encontrar arquivos maiores que 100MB</span>
+<span class="command">find /home -type f -size +100M -exec ls -lh {} \; 2>/dev/null</span>
+<span class="command"># Verificar sistemas de arquivos montados</span>
+<span class="command">mount | grep -E '^/dev'</span>
+                </div>
+                <button class="btn" onclick="executeExercise('disk-analysis')">
+                    <i class="fas fa-play"></i> Executar Comandos
+                </button>
+                <button class="btn" onclick="copyCode('disk-analysis')">
+                    <i class="fas fa-copy"></i> Copiar Código
+                </button>
+            </div>
+        </div>
+
+        <!-- Slide 8: Próximos Passos -->
+        <div class="slide">
+            <h2>🚀 Próximos Passos no Aprendizado</h2>
+            
+            <div class="success-box">
+                <h3>✅ O que você aprendeu hoje:</h3>
+                <ul>
+                    <li>História e evolução do Linux</li>
+                    <li>Principais distribuições e suas características</li>
+                    <li>Estrutura de diretórios do Linux</li>
+                    <li>Comandos básicos essenciais</li>
+                    <li>Sistemas de arquivos Linux</li>
+                </ul>
+            </div>
+            
+            <h3>📚 Próximos Tópicos do Módulo 1:</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <i class="fas fa-lock"></i>
+                    <h4>Permissões de Arquivos</h4>
+                    <p>chmod, chown, chgrp e controle de acesso</p>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="fas fa-users"></i>
+                    <h4>Usuários e Grupos</h4>
+                    <p>Gerenciamento de contas e permissões</p>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="fas fa-cogs"></i>
+                    <h4>Processos e Serviços</h4>
+                    <p>ps, top, kill, systemd e monitoramento</p>
+                </div>
+            </div>
+            
+            <div class="exercise-integration">
+                <h4><i class="fas fa-trophy"></i> Exercício Final: Projeto Prático</h4>
+                <p>Vamos criar um projeto completo aplicando tudo que aprendemos:</p>
+                <div class="code-example">
+<span class="command"># Projeto: Sistema de Backup do Ministério das Finanças</span>
+<span class="command">mkdir -p ~/minfin-backup/{scripts,logs,backups,config}</span>
+<span class="command">cd ~/minfin-backup</span>
+<span class="command"># Criar script de backup</span>
+<span class="command">cat > scripts/backup.sh << 'EOF'</span>
+<span class="command">#!/bin/bash</span>
+<span class="command"># Script de backup para MINFIN Angola</span>
+<span class="command">echo "Iniciando backup em $(date)"</span>
+<span class="command"># Adicionar lógica de backup aqui</span>
+<span class="command">EOF</span>
+<span class="command">chmod +x scripts/backup.sh</span>
+<span class="command"># Criar arquivo de configuração</span>
+<span class="command">echo "BACKUP_DIR=/home/backup" > config/backup.conf</span>
+<span class="command">echo "LOG_FILE=/var/log/backup.log" >> config/backup.conf</span>
+<span class="command"># Verificar estrutura final</span>
+<span class="command">tree ~/minfin-backup</span>
+                </div>
+                <button class="btn" onclick="executeExercise('final-project')">
+                    <i class="fas fa-play"></i> Executar Projeto
+                </button>
+                <button class="btn" onclick="copyCode('final-project')">
+                    <i class="fas fa-copy"></i> Copiar Código
+                </button>
+            </div>
+            
+            <div class="info-box">
+                <strong>🎯 Desafio Extra:</strong> Tente criar uma estrutura de diretórios para um sistema de gestão de documentos do Ministério das Finanças, incluindo pastas para diferentes departamentos, tipos de documentos e níveis de confidencialidade.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Funções para integração com exercícios
+        function executeExercise(exerciseId) {
+            // Implementar execução de exercício
+            console.log('Executando exercício:', exerciseId);
+            alert('Exercício executado! Verifique o terminal.');
+        }
+        
+        function copyCode(exerciseId) {
+            // Implementar cópia de código
+            console.log('Copiando código do exercício:', exerciseId);
+            alert('Código copiado para a área de transferência!');
+        }
+    </script>
+</body>
+</html>

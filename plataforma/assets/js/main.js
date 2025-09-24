@@ -19,13 +19,13 @@ const AppState = {
             presentations: [
                 {
                     id: 'intro-linux',
-                    title: 'Introdução ao Linux',
-                    file: '../modulos/modulo1_fundamentos_linux/apresentacoes/modulo1_introducao_linux.html'
+                    title: 'Introdução Completa ao Linux',
+                    file: '../modulos/modulo1_introducao_completa.html'
                 },
                 {
                     id: 'permissoes',
                     title: 'Permissões de Arquivos e Diretórios',
-                    file: '../modulos/modulo1_fundamentos_linux/apresentacoes/modulo1_permissoes_arquivos.html'
+                    file: '../modulos/modulo1_permissoes_completo.html'
                 },
                 {
                     id: 'usuarios-grupos',

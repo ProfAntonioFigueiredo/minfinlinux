@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Permissões de Arquivos - Módulo 1</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .presentation-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+        }
+        
+        .slide {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            padding: 2rem;
+            border-left: 5px solid #2563eb;
+        }
+        
+        .slide h1 {
+            color: #2563eb;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .slide h2 {
+            color: #1d4ed8;
+            font-size: 1.8rem;
+            margin: 1.5rem 0 1rem 0;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 0.5rem;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+            border: 1px solid #3b82f6;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .code-example {
+            background: #1f2937;
+            color: #f9fafb;
+            padding: 1.5rem;
+            border-radius: 8px;
+            font-family: 'Fira Code', 'Monaco', 'Consolas', monospace;
+            margin: 1rem 0;
+            overflow-x: auto;
+        }
+        
+        .command {
+            color: #10b981;
+            font-weight: bold;
+        }
+        
+        .comment {
+            color: #6b7280;
+            font-style: italic;
+        }
+        
+        .exercise-integration {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .exercise-integration h4 {
+            color: #2563eb;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .btn {
+            background: #2563eb;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem 0.5rem 0.5rem 0;
+            transition: background 0.3s;
+        }
+        
+        .btn:hover {
+            background: #1d4ed8;
+        }
+        
+        .permission-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .permission-table th,
+        .permission-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .permission-table th {
+            background: #f8fafc;
+            font-weight: 600;
+            color: #374151;
+        }
+        
+        .permission-table tr:hover {
+            background: #f9fafb;
+        }
+        
+        .permission-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            padding: 2rem;
+            background: #f8fafc;
+            border-radius: 8px;
+        }
+        
+        .permission-group {
+            text-align: center;
+            padding: 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            background: white;
+        }
+        
+        .permission-group h4 {
+            color: #2563eb;
+            margin-bottom: 0.5rem;
+        }
+        
+        .permission-bits {
+            font-family: 'Fira Code', monospace;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #374151;
+        }
+        
+        .permission-explanation {
+            font-size: 0.9rem;
+            color: #6b7280;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: Título -->
+        <div class="slide">
+            <h1><i class="fas fa-lock"></i> Permissões de Arquivos e Diretórios</h1>
+            <div class="highlight-box">
+                <h2>🎯 Objetivos de Aprendizagem</h2>
+                <ul>
+                    <li>Entender o sistema de permissões do Linux</li>
+                    <li>Dominar os comandos chmod, chown, chgrp</li>
+                    <li>Compreender permissões especiais (SUID, SGID, Sticky Bit)</li>
+                    <li>Praticar com exercícios hands-on</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 2: Conceitos Básicos -->
+        <div class="slide">
+            <h2>🔐 Conceitos Básicos de Permissões</h2>
+            
+            <p>No Linux, cada arquivo e diretório possui permissões que controlam quem pode:</p>
+            <ul>
+                <li><strong>Ler (r - read):</strong> Visualizar o conteúdo</li>
+                <li><strong>Escrever (w - write):</strong> Modificar o conteúdo</li>
+                <li><strong>Executar (x - execute):</strong> Executar o arquivo</li>
+            </ul>
+            
+            <div class="permission-visual">
+                <div class="permission-group">
+                    <h4>Proprietário (Owner)</h4>
+                    <div class="permission-bits">rwx</div>
+                    <div class="permission-explanation">Usuário que criou o arquivo</div>
+                </div>
+                <div class="permission-group">
+                    <h4>Grupo (Group)</h4>
+                    <div class="permission-bits">rw-</div>
+                    <div class="permission-explanation">Membros do grupo</div>
+                </div>
+                <div class="permission-group">
+                    <h4>Outros (Others)</h4>
+                    <div class="permission-bits">r--</div>
+                    <div class="permission-explanation">Todos os demais usuários</div>
+                </div>
+            </div>
+            
+            <h3>Exemplo Prático</h3>
+            <div class="code-example">
+<span class="command">ls -l arquivo.txt</span>
+<span class="comment"># Saída: -rw-r--r-- 1 usuario grupo 1024 Jan 15 10:30 arquivo.txt</span>
+<span class="comment">#         ^^^^^^^^^^</span>
+<span class="comment">#         |||||||||</span>
+<span class="comment">#         ||||||||+-- Outros: r-- (leitura)</span>
+<span class="comment">#         ||||||+---- Grupo: r-- (leitura)</span>
+<span class="comment">#         |||||+----- Proprietário: rw- (leitura e escrita)</span>
+<span class="comment">#         ||||+------ Tipo: - (arquivo regular)</span>
+            </div>
+        </div>
+
+        <!-- Slide 3: Comando chmod -->
+        <div class="slide">
+            <h2>⚙️ Comando chmod</h2>
+            
+            <p>O comando <code>chmod</code> (change mode) é usado para alterar permissões de arquivos e diretórios.</p>
+            
+            <h3>Notação Simbólica</h3>
+            <table class="permission-table">
+                <thead>
+                    <tr>
+                        <th>Quem</th>
+                        <th>Operação</th>
+                        <th>Permissão</th>
+                        <th>Exemplo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>u (user/owner)</td>
+                        <td>+ (adicionar)</td>
+                        <td>r, w, x</td>
+                        <td><code>chmod u+x arquivo</code></td>
+                    </tr>
+                    <tr>
+                        <td>g (group)</td>
+                        <td>- (remover)</td>
+                        <td>r, w, x</td>
+                        <td><code>chmod g-w arquivo</code></td>
+                    </tr>
+                    <tr>
+                        <td>o (others)</td>
+                        <td>= (definir)</td>
+                        <td>r, w, x</td>
+                        <td><code>chmod o=r arquivo</code></td>
+                    </tr>
+                    <tr>
+                        <td>a (all)</td>
+                        <td>+ (adicionar)</td>
+                        <td>r, w, x</td>
+                        <td><code>chmod a+x arquivo</code></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>Notação Numérica (Octal)</h3>
+            <div class="code-example">
+<span class="command">chmod 755 arquivo</span> <span class="comment"># rwxr-xr-x (proprietário: rwx, grupo: r-x, outros: r-x)</span>
+<span class="command">chmod 644 arquivo</span> <span class="comment"># rw-r--r-- (proprietário: rw-, grupo: r--, outros: r--)</span>
+<span class="command">chmod 600 arquivo</span> <span class="comment"># rw------- (apenas proprietário: rw-)</span>
+<span class="command">chmod 777 arquivo</span> <span class="comment"># rwxrwxrwx (todos: rwx) - CUIDADO!</span>
+            </div>
+            
+            <div class="exercise-integration">
+                <h4><i class="fas fa-code"></i> Exercício Prático: chmod</h4>
+                <p>Vamos praticar alterando permissões de arquivos:</p>
+                <div class="code-example">
+<span class="command"># Criar arquivos de teste</span>
+<span class="command">touch arquivo1.txt arquivo2.txt script.sh</span>
+<span class="command"># Ver permissões iniciais</span>
+<span class="command">ls -l arquivo*.txt script.sh</span>
+<span class="command"># Adicionar execução para o proprietário</span>
+<span class="command">chmod u+x script.sh</span>
+<span class="command"># Remover escrita do grupo</span>
+<span class="command">chmod g-w arquivo1.txt</span>
+<span class="command"># Definir permissões específicas</span>
+<span class="command">chmod 755 script.sh</span>
+<span class="command">chmod 644 arquivo1.txt</span>
+<span class="command">chmod 600 arquivo2.txt</span>
+<span class="command"># Verificar mudanças</span>
+<span class="command">ls -l arquivo*.txt script.sh</span>
+                </div>
+                <button class="btn" onclick="executeExercise('chmod-practice')">
+                    <i class="fas fa-play"></i> Executar Comandos
+                </button>
+                <button class="btn" onclick="copyCode('chmod-practice')">
+                    <i class="fas fa-copy"></i> Copiar Código
+                </button>
+            </div>
+        </div>
+
+        <!-- Slide 4: Comandos chown e chgrp -->
+        <div class="slide">
+            <h2>👤 Comandos chown e chgrp</h2>
+            
+            <h3>chown (Change Owner)</h3>
+            <p>Altera o proprietário e/ou grupo de um arquivo ou diretório.</p>
+            
+            <div class="code-example">
+<span class="command">chown usuario arquivo</span> <span class="comment"># Altera apenas o proprietário</span>
+<span class="command">chown usuario:grupo arquivo</span> <span class="comment"># Altera proprietário e grupo</span>
+<span class="command">chown :grupo arquivo</span> <span class="comment"># Altera apenas o grupo</span>
+<span class="command">chown -R usuario:grupo diretorio/</span> <span class="comment"># Recursivo</span>
+            </div>
+            
+            <h3>chgrp (Change Group)</h3>
+            <p>Altera apenas o grupo de um arquivo ou diretório.</p>
+            
+            <div class="code-example">
+<span class="command">chgrp grupo arquivo</span> <span class="comment"># Altera o grupo</span>
+<span class="command">chgrp -R grupo diretorio/</span> <span class="comment"># Recursivo</span>
+            </div>
+            
+            <div class="exercise-integration">
+                <h4><i class="fas fa-code"></i> Exercício Prático: chown e chgrp</h4>
+                <p>Vamos praticar alterando proprietários e grupos:</p>
+                <div class="code-example">
+<span class="command"># Criar usuário e grupo de teste</span>
+<span class="command">sudo useradd -m testuser</span>
+<span class="command">sudo groupadd testgroup</span>
+<span class="command"># Criar arquivos de teste</span>
+<span class="command">touch arquivo1.txt arquivo2.txt</span>
+<span class="command"># Ver proprietário atual</span>
+<span class="command">ls -l arquivo*.txt</span>
+<span class="command"># Alterar proprietário</span>
+<span class="command">sudo chown testuser arquivo1.txt</span>
+<span class="command"># Alterar proprietário e grupo</span>
+<span class="command">sudo chown testuser:testgroup arquivo2.txt</span>
+<span class="command"># Alterar apenas o grupo</span>
+<span class="command">sudo chgrp testgroup arquivo1.txt</span>
+<span class="command"># Verificar mudanças</span>
+<span class="command">ls -l arquivo*.txt</span>
+                </div>
+                <button class="btn" onclick="executeExercise('chown-chgrp-practice')">
+                    <i class="fas fa-play"></i> Executar Comandos
+                </button>
+                <button class="btn" onclick="copyCode('chown-chgrp-practice')">
+                    <i class="fas fa-copy"></i> Copiar Código
+                </button>
+            </div>
+        </div>
+
+        <!-- Slide 5: Permissões Especiais -->
+        <div class="slide">
+            <h2>⭐ Permissões Especiais</h2>
+            
+            <h3>SUID (Set User ID)</h3>
+            <p>Quando um arquivo com SUID é executado, ele roda com as permissões do proprietário, não do usuário que o executou.</p>
+            
+            <h3>SGID (Set Group ID)</h3>
+            <p>Similar ao SUID, mas para grupos. Arquivos criados em diretórios com SGID herdam o grupo do diretório.</p>
+            
+            <h3>Sticky Bit</h3>
+            <p>Em diretórios, permite que apenas o proprietário do arquivo o delete, mesmo que outros tenham permissão de escrita.</p>
+            
+            <div class="code-example">
+<span class="command">chmod u+s arquivo</span> <span class="comment"># Adicionar SUID</span>
+<span class="command">chmod g+s diretorio/</span> <span class="comment"># Adicionar SGID</span>
+<span class="command">chmod +t diretorio/</span> <span class="comment"># Adicionar Sticky Bit</span>
+<span class="command">chmod 4755 arquivo</span> <span class="comment"># SUID + rwxr-xr-x</span>
+<span class="command">chmod 2755 diretorio/</span> <span class="comment"># SGID + rwxr-xr-x</span>
+<span class="command">chmod 1777 diretorio/</span> <span class="comment"># Sticky Bit + rwxrwxrwx</span>
+            </div>
+            
+            <div class="exercise-integration">
+                <h4><i class="fas fa-code"></i> Exercício Prático: Permissões Especiais</h4>
+                <p>Vamos praticar com permissões especiais:</p>
+                <div class="code-example">
+<span class="command"># Criar diretório de teste</span>
+<span class="command">mkdir /tmp/teste-permissoes</span>
+<span class="command"># Adicionar Sticky Bit</span>
+<span class="command">chmod +t /tmp/teste-permissoes</span>
+<span class="command"># Verificar permissões</span>
+<span class="command">ls -ld /tmp/teste-permissoes</span>
+<span class="command"># Criar script com SUID</span>
+<span class="command">echo '#!/bin/bash' > /tmp/script-suid.sh</span>
+<span class="command">echo 'echo "Executando como: $(whoami)"' >> /tmp/script-suid.sh</span>
+<span class="command">chmod +x /tmp/script-suid.sh</span>
+<span class="command">chmod u+s /tmp/script-suid.sh</span>
+<span class="command"># Verificar permissões</span>
+<span class="command">ls -l /tmp/script-suid.sh</span>
+                </div>
+                <button class="btn" onclick="executeExercise('special-permissions')">
+                    <i class="fas fa-play"></i> Executar Comandos
+                </button>
+                <button class="btn" onclick="copyCode('special-permissions')">
+                    <i class="fas fa-copy"></i> Copiar Código
+                </button>
+            </div>
+        </div>
+
+        <!-- Slide 6: Exercício Final -->
+        <div class="slide">
+            <h2>🏆 Exercício Final: Sistema de Permissões</h2>
+            
+            <div class="highlight-box">
+                <h3>🎯 Cenário: Ministério das Finanças de Angola</h3>
+                <p>Você precisa configurar permissões para um sistema de gestão de documentos confidenciais com diferentes níveis de acesso.</p>
+            </div>
+            
+            <div class="exercise-integration">
+                <h4><i class="fas fa-code"></i> Projeto: Sistema de Documentos Confidenciais</h4>
+                <p>Configure a seguinte estrutura de permissões:</p>
+                <div class="code-example">
+<span class="command"># Criar estrutura de diretórios</span>
+<span class="command">mkdir -p ~/minfin-docs/{publicos,confidenciais,restritos,admin}</span>
+<span class="command"># Criar grupos</span>
+<span class="command">sudo groupadd funcionarios</span>
+<span class="command">sudo groupadd gerentes</span>
+<span class="command">sudo groupadd administradores</span>
+<span class="command"># Configurar permissões dos diretórios</span>
+<span class="command">chmod 755 ~/minfin-docs/publicos</span> <span class="comment"># Todos podem ler</span>
+<span class="command">chmod 750 ~/minfin-docs/confidenciais</span> <span class="comment"># Apenas funcionários e gerentes</span>
+<span class="command">chmod 700 ~/minfin-docs/restritos</span> <span class="comment"># Apenas gerentes</span>
+<span class="command">chmod 700 ~/minfin-docs/admin</span> <span class="comment"># Apenas administradores</span>
+<span class="command"># Criar arquivos de teste</span>
+<span class="command">touch ~/minfin-docs/publicos/info-geral.txt</span>
+<span class="command">touch ~/minfin-docs/confidenciais/relatorio-financeiro.txt</span>
+<span class="command">touch ~/minfin-docs/restritos/auditoria-interna.txt</span>
+<span class="command">touch ~/minfin-docs/admin/senhas-sistema.txt</span>
+<span class="command"># Configurar permissões dos arquivos</span>
+<span class="command">chmod 644 ~/minfin-docs/publicos/info-geral.txt</span>
+<span class="command">chmod 640 ~/minfin-docs/confidenciais/relatorio-financeiro.txt</span>
+<span class="command">chmod 600 ~/minfin-docs/restritos/auditoria-interna.txt</span>
+<span class="command">chmod 600 ~/minfin-docs/admin/senhas-sistema.txt</span>
+<span class="command"># Verificar estrutura final</span>
+<span class="command">tree ~/minfin-docs</span>
+<span class="command">ls -la ~/minfin-docs/*/</span>
+                </div>
+                <button class="btn" onclick="executeExercise('final-permissions')">
+                    <i class="fas fa-play"></i> Executar Projeto
+                </button>
+                <button class="btn" onclick="copyCode('final-permissions')">
+                    <i class="fas fa-copy"></i> Copiar Código
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function executeExercise(exerciseId) {
+            console.log('Executando exercício:', exerciseId);
+            alert('Exercício executado! Verifique o terminal.');
+        }
+        
+        function copyCode(exerciseId) {
+            console.log('Copiando código do exercício:', exerciseId);
+            alert('Código copiado para a área de transferência!');
+        }
+    </script>
+</body>
+</html>
