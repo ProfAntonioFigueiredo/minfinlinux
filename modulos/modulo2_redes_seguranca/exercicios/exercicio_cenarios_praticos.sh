@@ -14,6 +14,7 @@ echo "🕐 Data/Hora: $(date)"
 echo ""
 
 # Criar diretório de trabalho
+echo "📁 Comando: Criando diretório de trabalho para cenários práticos"
 echo "📁 Criando diretório de trabalho para cenários práticos:"
 mkdir -p exercicios_cenarios
 cd exercicios_cenarios
@@ -57,6 +58,7 @@ echo "==================================================="
 echo "🎯 Situação: Configurar rede para 3 departamentos"
 echo ""
 
+echo "📊 Comando: Requisitos"
 echo "📊 Requisitos:"
 echo "• TI: 50 hosts (192.168.10.0/26)"
 echo "• Financeiro: 25 hosts (192.168.20.0/27)"

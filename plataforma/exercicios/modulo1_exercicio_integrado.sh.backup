@@ -23,7 +23,6 @@ echo "🕐 Data/Hora: $(date)"
 echo ""
 
 # Criar diretório de trabalho
-echo "📁 Comando: Criando diretório de trabalho para exercício integrado"
 echo "📁 Criando diretório de trabalho para exercício integrado:"
 mkdir -p ~/exercicio_integrado_modulo1
 cd ~/exercicio_integrado_modulo1
@@ -38,7 +37,6 @@ echo "🔍 PARTE 1: EXPLORAÇÃO DO SISTEMA"
 echo "================================="
 echo ""
 
-echo "📊 Comando: 1.1 - Informações do Sistema"
 echo "📊 1.1 - Informações do Sistema:"
 echo "Sistema: $(lsb_release -d | cut -f2)"
 echo "Kernel: $(uname -r)"
@@ -46,14 +44,12 @@ echo "Arquitetura: $(uname -m)"
 echo "Uptime: $(uptime -p)"
 echo ""
 
-echo "📊 Comando: 1.2 - Estrutura de Diretórios"
 echo "📊 1.2 - Estrutura de Diretórios:"
 echo "Diretório atual: $(pwd)"
 echo "Conteúdo do diretório raiz:"
 ls -la / | head -10
 echo ""
 
-echo "📊 Comando: 1.3 - Uso de Disco"
 echo "📊 1.3 - Uso de Disco:"
 df -h | head -5
 echo ""
@@ -66,7 +62,6 @@ echo "🏗️  PARTE 2: CRIAÇÃO DE ESTRUTURA DE PROJETO"
 echo "============================================"
 echo ""
 
-echo "📁 Comando: 2.1 - Criando estrutura para projeto do Ministério das Finanças"
 echo "📁 2.1 - Criando estrutura para projeto do Ministério das Finanças:"
 mkdir -p minfin_sistema/{documentos,scripts,logs,backups,config,relatorios}
 mkdir -p minfin_sistema/documentos/{publicos,confidenciais,restritos}
@@ -74,7 +69,6 @@ mkdir -p minfin_sistema/relatorios/{mensais,trimestrais,anuais}
 echo "✅ Estrutura de diretórios criada"
 echo ""
 
-echo "📁 Comando: 2.2 - Verificando estrutura criada"
 echo "📁 2.2 - Verificando estrutura criada:"
 tree minfin_sistema || find minfin_sistema -type d | sort
 echo ""
@@ -87,7 +81,6 @@ echo "📝 PARTE 3: MANIPULAÇÃO DE ARQUIVOS"
 echo "==================================="
 echo ""
 
-echo "📄 Comando: 3.1 - Criando arquivos de configuração"
 echo "📄 3.1 - Criando arquivos de configuração:"
 cat > minfin_sistema/config/sistema.conf << 'EOF'
 # Configuração do Sistema MINFIN Angola
@@ -113,7 +106,6 @@ EOF
 echo "✅ Arquivo de configuração criado"
 echo ""
 
-echo "📄 Comando: 3.2 - Criando script de backup"
 echo "📄 3.2 - Criando script de backup:"
 cat > minfin_sistema/scripts/backup.sh << 'EOF'
 #!/bin/bash
@@ -147,7 +139,6 @@ chmod +x minfin_sistema/scripts/backup.sh
 echo "✅ Script de backup criado e executável"
 echo ""
 
-echo "📄 Comando: 3.3 - Criando relatório de exemplo"
 echo "📄 3.3 - Criando relatório de exemplo:"
 cat > minfin_sistema/relatorios/mensais/relatorio_janeiro_2025.txt << 'EOF'
 RELATÓRIO MENSAL - JANEIRO 2025
@@ -233,7 +224,6 @@ echo "👥 PARTE 5: USUÁRIOS E GRUPOS"
 echo "============================="
 echo ""
 
-echo "👤 Comando: 5.1 - Criando grupos de trabalho"
 echo "👤 5.1 - Criando grupos de trabalho:"
 sudo groupadd minfin_funcionarios 2>/dev/null || echo "Grupo minfin_funcionarios já existe"
 sudo groupadd minfin_gerentes 2>/dev/null || echo "Grupo minfin_gerentes já existe"
@@ -242,7 +232,6 @@ sudo groupadd minfin_administradores 2>/dev/null || echo "Grupo minfin_administr
 echo "✅ Grupos criados"
 echo ""
 
-echo "👤 Comando: 5.2 - Criando usuários de teste"
 echo "👤 5.2 - Criando usuários de teste:"
 sudo useradd -m -s /bin/bash -g minfin_funcionarios minfin_func1 2>/dev/null || echo "Usuário minfin_func1 já existe"
 sudo useradd -m -s /bin/bash -g minfin_gerentes minfin_gerente1 2>/dev/null || echo "Usuário minfin_gerente1 já existe"
@@ -256,7 +245,6 @@ echo "minfin_admin1:123456" | sudo chpasswd 2>/dev/null
 echo "✅ Usuários de teste criados"
 echo ""
 
-echo "👤 Comando: 5.3 - Verificando usuários e grupos"
 echo "👤 5.3 - Verificando usuários e grupos:"
 echo "Grupos criados:"
 getent group minfin_* 2>/dev/null || echo "Nenhum grupo minfin encontrado"
@@ -273,31 +261,23 @@ echo "⚙️  PARTE 6: PROCESSOS E SERVIÇOS"
 echo "================================="
 echo ""
 
-echo "🔧 Comando: 6.1 - Informações do sistema"
-echo ""
-6.1 - Informações do sistema
+echo "🔧 6.1 - Informações do sistema:"
 echo "Uptime: $(uptime)"
 echo "Usuários logados:"
 w | head -5
 echo ""
 
-echo "🔧 Comando: 6.2 - Processos em execução"
-echo ""
-6.2 - Processos em execução
+echo "🔧 6.2 - Processos em execução:"
 echo "Top 5 processos por uso de CPU:"
 ps aux --sort=-%cpu | head -6
 echo ""
 
-echo "🔧 Comando: 6.3 - Serviços do sistema"
-echo ""
-6.3 - Serviços do sistema
+echo "🔧 6.3 - Serviços do sistema:"
 echo "Serviços ativos:"
 systemctl list-units --type=service --state=active | head -10
 echo ""
 
-echo "🔧 Comando: 6.4 - Criando serviço de monitoramento"
-echo ""
-6.4 - Criando serviço de monitoramento
+echo "🔧 6.4 - Criando serviço de monitoramento:"
 cat > minfin_sistema/scripts/monitor.sh << 'EOF'
 #!/bin/bash
 # Script de Monitoramento - MINFIN Angola
@@ -339,24 +319,20 @@ echo "🧪 PARTE 7: TESTE E VALIDAÇÃO"
 echo "============================="
 echo ""
 
-echo "✅ Comando: 7.1 - Executando script de backup"
 echo "✅ 7.1 - Executando script de backup:"
 cd minfin_sistema
 ./scripts/backup.sh
 echo ""
 
-echo "✅ Comando: 7.2 - Executando script de monitoramento"
 echo "✅ 7.2 - Executando script de monitoramento:"
 ./scripts/monitor.sh
 echo ""
 
-echo "✅ Comando: 7.3 - Verificando estrutura final"
 echo "✅ 7.3 - Verificando estrutura final:"
 echo "Estrutura completa do projeto:"
 tree . || find . -type f | sort
 echo ""
 
-echo "✅ Comando: 7.4 - Verificando permissões finais"
 echo "✅ 7.4 - Verificando permissões finais:"
 echo "Permissões dos scripts:"
 ls -la scripts/
@@ -384,7 +360,6 @@ echo "✅ Sistema de monitoramento implementado"
 echo "✅ Backup automático configurado"
 echo ""
 
-echo "📁 Comando: ESTRUTURA CRIADA"
 echo "📁 ESTRUTURA CRIADA:"
 echo "==================="
 echo "minfin_sistema/"
@@ -422,7 +397,6 @@ echo "• Usuários: minfin_func1, minfin_gerente1, minfin_admin1"
 echo "• Senha padrão: 123456"
 echo ""
 
-echo "📈 Comando: ESTATÍSTICAS"
 echo "📈 ESTATÍSTICAS:"
 echo "==============="
 echo "• Arquivos criados: $(find . -type f | wc -l)"

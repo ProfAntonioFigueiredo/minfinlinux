@@ -24,6 +24,7 @@ echo ""
 # Exercício 1: Verificar usuário atual e informações do sistema
 echo "📝 EXERCÍCIO 1: Informações do usuário atual"
 echo "-------------------------------------------"
+echo "👤 Comando: Usuário atual"
 echo "👤 Usuário atual:"
 whoami
 echo ""
@@ -39,14 +40,17 @@ echo ""
 # Exercício 2: Listar usuários do sistema
 echo "📝 EXERCÍCIO 2: Listando usuários do sistema"
 echo "-------------------------------------------"
+echo "📋 Comando: Todos os usuários do sistema"
 echo "📋 Todos os usuários do sistema:"
 cut -d: -f1 /etc/passwd | head -10
 echo ""
 
+echo "📋 Comando: Usuários com shell de login"
 echo "📋 Usuários com shell de login:"
 grep -E "/(bash|sh)$" /etc/passwd | cut -d: -f1
 echo ""
 
+echo "📋 Comando: Usuários do sistema (UID < 1000)"
 echo "📋 Usuários do sistema (UID < 1000):"
 awk -F: '$3 < 1000 {print $1}' /etc/passwd
 echo ""
@@ -54,10 +58,12 @@ echo ""
 # Exercício 3: Listar grupos do sistema
 echo "📝 EXERCÍCIO 3: Listando grupos do sistema"
 echo "----------------------------------------"
+echo "📋 Comando: Todos os grupos do sistema"
 echo "📋 Todos os grupos do sistema:"
 cut -d: -f1 /etc/group | head -10
 echo ""
 
+echo "📋 Comando: Grupos do sistema (GID < 1000)"
 echo "📋 Grupos do sistema (GID < 1000):"
 awk -F: '$3 < 1000 {print $1}' /etc/group
 echo ""
@@ -90,6 +96,7 @@ else
 fi
 
 echo ""
+echo "📋 Comando: Verificando grupos criados"
 echo "📋 Verificando grupos criados:"
 getent group ti financeiro rh
 echo ""
@@ -128,14 +135,17 @@ echo ""
 # Exercício 6: Verificar informações dos usuários criados
 echo "📝 EXERCÍCIO 6: Verificando informações dos usuários"
 echo "--------------------------------------------------"
+echo "👤 Comando: Informações do usuário joao.ti"
 echo "👤 Informações do usuário joao.ti:"
 id joao.ti
 echo ""
 
+echo "👤 Comando: Informações do usuário maria.fin"
 echo "👤 Informações do usuário maria.fin:"
 id maria.fin
 echo ""
 
+echo "👤 Comando: Informações do usuário pedro.rh"
 echo "👤 Informações do usuário pedro.rh:"
 id pedro.rh
 echo ""
@@ -143,7 +153,9 @@ echo ""
 # Exercício 7: Adicionar usuários a grupos secundários
 echo "📝 EXERCÍCIO 7: Adicionando usuários a grupos secundários"
 echo "-------------------------------------------------------"
-echo "🔧 Adicionando joao.ti ao grupo administradores:"
+echo "🔧 Comando: Adicionando joao.ti ao grupo administradores"
+echo ""
+Adicionando joao.ti ao grupo administradores
 if getent group administradores > /dev/null 2>&1; then
     usermod -a -G administradores joao.ti
     echo "✅ joao.ti adicionado ao grupo administradores"
@@ -153,7 +165,9 @@ else
     echo "✅ Grupo administradores criado e joao.ti adicionado"
 fi
 
-echo "🔧 Adicionando maria.fin ao grupo contadores:"
+echo "🔧 Comando: Adicionando maria.fin ao grupo contadores"
+echo ""
+Adicionando maria.fin ao grupo contadores
 if getent group contadores > /dev/null 2>&1; then
     usermod -a -G contadores maria.fin
     echo "✅ maria.fin adicionado ao grupo contadores"
@@ -183,15 +197,21 @@ echo ""
 # Exercício 9: Modificar propriedades dos usuários
 echo "📝 EXERCÍCIO 9: Modificando propriedades dos usuários"
 echo "---------------------------------------------------"
-echo "🔧 Alterando shell do joao.ti para zsh:"
+echo "🔧 Comando: Alterando shell do joao.ti para zsh"
+echo ""
+Alterando shell do joao.ti para zsh
 usermod -s /bin/zsh joao.ti
 echo "✅ Shell alterado para zsh"
 
-echo "🔧 Adicionando comentário ao maria.fin:"
+echo "🔧 Comando: Adicionando comentário ao maria.fin"
+echo ""
+Adicionando comentário ao maria.fin
 usermod -c "Maria Santos - Departamento Financeiro" maria.fin
 echo "✅ Comentário adicionado"
 
-echo "🔧 Alterando diretório home do pedro.rh:"
+echo "🔧 Comando: Alterando diretório home do pedro.rh"
+echo ""
+Alterando diretório home do pedro.rh
 usermod -d /home/pedro_rh pedro.rh
 echo "✅ Diretório home alterado"
 
@@ -200,14 +220,17 @@ echo ""
 # Exercício 10: Verificar modificações
 echo "📝 EXERCÍCIO 10: Verificando modificações"
 echo "----------------------------------------"
+echo "📋 Comando: Informações atualizadas do joao.ti"
 echo "📋 Informações atualizadas do joao.ti:"
 getent passwd joao.ti
 echo ""
 
+echo "📋 Comando: Informações atualizadas do maria.fin"
 echo "📋 Informações atualizadas do maria.fin:"
 getent passwd maria.fin
 echo ""
 
+echo "📋 Comando: Informações atualizadas do pedro.rh"
 echo "📋 Informações atualizadas do pedro.rh:"
 getent passwd pedro.rh
 echo ""
@@ -215,18 +238,24 @@ echo ""
 # Exercício 11: Trabalhar com senhas
 echo "📝 EXERCÍCIO 11: Gerenciamento de senhas"
 echo "--------------------------------------"
-echo "🔧 Verificando status das senhas:"
+echo "🔧 Comando: Verificando status das senhas"
+echo ""
+Verificando status das senhas
 passwd -S joao.ti
 passwd -S maria.fin
 passwd -S pedro.rh
 echo ""
 
-echo "🔧 Bloqueando conta do pedro.rh temporariamente:"
+echo "🔧 Comando: Bloqueando conta do pedro.rh temporariamente"
+echo ""
+Bloqueando conta do pedro.rh temporariamente
 passwd -l pedro.rh
 passwd -S pedro.rh
 echo ""
 
-echo "🔧 Desbloqueando conta do pedro.rh:"
+echo "🔧 Comando: Desbloqueando conta do pedro.rh"
+echo ""
+Desbloqueando conta do pedro.rh
 passwd -u pedro.rh
 passwd -S pedro.rh
 echo ""

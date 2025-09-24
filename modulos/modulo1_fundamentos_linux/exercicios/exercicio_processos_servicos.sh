@@ -26,6 +26,7 @@ echo "👥 Usuários logados:"
 w
 echo ""
 
+echo "📊 Comando: Últimos logins"
 echo "📊 Últimos logins:"
 last | head -5
 echo ""
@@ -33,18 +34,22 @@ echo ""
 # Exercício 2: Listar processos com ps
 echo "📝 EXERCÍCIO 2: Listando processos com ps"
 echo "---------------------------------------"
+echo "📋 Comando: Processos do usuário atual"
 echo "📋 Processos do usuário atual:"
 ps
 echo ""
 
+echo "📋 Comando: Todos os processos (formato simples)"
 echo "📋 Todos os processos (formato simples):"
 ps -e | head -10
 echo ""
 
+echo "📋 Comando: Processos com formato completo"
 echo "📋 Processos com formato completo:"
 ps -f | head -10
 echo ""
 
+echo "📋 Comando: Todos os processos com formato BSD"
 echo "📋 Todos os processos com formato BSD:"
 ps -aux | head -10
 echo ""
@@ -52,18 +57,22 @@ echo ""
 # Exercício 3: Buscar processos específicos
 echo "📝 EXERCÍCIO 3: Buscando processos específicos"
 echo "---------------------------------------------"
+echo "🔍 Comando: Processos bash em execução"
 echo "🔍 Processos bash em execução:"
 ps -aux | grep bash | grep -v grep
 echo ""
 
+echo "🔍 Comando: Processos do sistema (systemd)"
 echo "🔍 Processos do sistema (systemd):"
 ps -aux | grep systemd | head -5
 echo ""
 
+echo "🔍 Comando: Processos ordenados por uso de CPU"
 echo "🔍 Processos ordenados por uso de CPU:"
 ps -aux --sort=-%cpu | head -5
 echo ""
 
+echo "🔍 Comando: Processos ordenados por uso de memória"
 echo "🔍 Processos ordenados por uso de memória:"
 ps -aux --sort=-%mem | head -5
 echo ""
@@ -71,14 +80,17 @@ echo ""
 # Exercício 4: Usar pgrep e pidof
 echo "📝 EXERCÍCIO 4: Usando pgrep e pidof"
 echo "----------------------------------"
+echo "🔍 Comando: PIDs de processos bash"
 echo "🔍 PIDs de processos bash:"
 pgrep bash
 echo ""
 
+echo "🔍 Comando: PID do processo bash (primeiro)"
 echo "🔍 PID do processo bash (primeiro):"
 pidof bash
 echo ""
 
+echo "🔍 Comando: PIDs de processos systemd"
 echo "🔍 PIDs de processos systemd:"
 pgrep systemd
 echo ""
@@ -86,10 +98,12 @@ echo ""
 # Exercício 5: Monitorar com top (modo não-interativo)
 echo "📝 EXERCÍCIO 5: Monitoramento com top"
 echo "-----------------------------------"
+echo "📊 Comando: Top 5 processos por CPU (5 segundos)"
 echo "📊 Top 5 processos por CPU (5 segundos):"
 timeout 5s top -b -n 1 | head -12
 echo ""
 
+echo "📊 Comando: Top 5 processos por memória"
 echo "📊 Top 5 processos por memória:"
 top -b -n 1 -o %MEM | head -12
 echo ""
@@ -97,34 +111,44 @@ echo ""
 # Exercício 6: Gerenciar serviços com systemctl
 echo "📝 EXERCÍCIO 6: Gerenciando serviços com systemctl"
 echo "------------------------------------------------"
+echo "📋 Comando: Serviços ativos"
 echo "📋 Serviços ativos:"
 systemctl list-units --type=service --state=active | head -10
 echo ""
 
+echo "📋 Comando: Serviços com falha"
 echo "📋 Serviços com falha:"
 systemctl list-units --type=service --state=failed
 echo ""
 
+echo "📋 Comando: Status de serviços comuns"
 echo "📋 Status de serviços comuns:"
-echo "🔧 Status do SSH:"
+echo "🔧 Comando: Status do SSH"
+echo ""
+Status do SSH
 systemctl status ssh --no-pager -l
 echo ""
 
-echo "🔧 Status do NetworkManager:"
+echo "🔧 Comando: Status do NetworkManager"
+echo ""
+Status do NetworkManager
 systemctl status NetworkManager --no-pager -l
 echo ""
 
 # Exercício 7: Trabalhar com logs do systemd
 echo "📝 EXERCÍCIO 7: Trabalhando com logs do systemd"
 echo "----------------------------------------------"
+echo "📋 Comando: Últimas 10 linhas do journal"
 echo "📋 Últimas 10 linhas do journal:"
 journalctl -n 10 --no-pager
 echo ""
 
+echo "📋 Comando: Logs de erro do sistema"
 echo "📋 Logs de erro do sistema:"
 journalctl -p err --no-pager | head -5
 echo ""
 
+echo "📋 Comando: Logs de hoje"
 echo "📋 Logs de hoje:"
 journalctl --since today --no-pager | head -5
 echo ""
@@ -132,7 +156,9 @@ echo ""
 # Exercício 8: Criar e gerenciar um serviço simples
 echo "📝 EXERCÍCIO 8: Criando serviço simples"
 echo "-------------------------------------"
-echo "🔧 Criando script de serviço de teste:"
+echo "🔧 Comando: Criando script de serviço de teste"
+echo ""
+Criando script de serviço de teste
 mkdir -p /tmp/servico_teste
 cat > /tmp/servico_teste/teste.sh << 'EOF'
 #!/bin/bash
@@ -146,17 +172,23 @@ chmod +x /tmp/servico_teste/teste.sh
 echo "✅ Script criado: /tmp/servico_teste/teste.sh"
 echo ""
 
-echo "🔧 Iniciando serviço em background:"
+echo "🔧 Comando: Iniciando serviço em background"
+echo ""
+Iniciando serviço em background
 nohup /tmp/servico_teste/teste.sh > /dev/null 2>&1 &
 SERVICO_PID=$!
 echo "✅ Serviço iniciado com PID: $SERVICO_PID"
 echo ""
 
-echo "🔧 Verificando se o serviço está rodando:"
+echo "🔧 Comando: Verificando se o serviço está rodando"
+echo ""
+Verificando se o serviço está rodando
 ps -p $SERVICO_PID
 echo ""
 
-echo "🔧 Verificando logs do serviço:"
+echo "🔧 Comando: Verificando logs do serviço"
+echo ""
+Verificando logs do serviço
 sleep 2
 tail -3 /tmp/servico_teste.log
 echo ""
@@ -164,12 +196,16 @@ echo ""
 # Exercício 9: Gerenciar o processo criado
 echo "📝 EXERCÍCIO 9: Gerenciando o processo criado"
 echo "-------------------------------------------"
-echo "🔧 Enviando sinal TERM para o serviço:"
+echo "🔧 Comando: Enviando sinal TERM para o serviço"
+echo ""
+Enviando sinal TERM para o serviço
 kill -TERM $SERVICO_PID
 sleep 1
 echo ""
 
-echo "🔧 Verificando se o processo foi terminado:"
+echo "🔧 Comando: Verificando se o processo foi terminado"
+echo ""
+Verificando se o processo foi terminado
 if ps -p $SERVICO_PID > /dev/null 2>&1; then
     echo "⚠️  Processo ainda ativo, forçando terminação:"
     kill -KILL $SERVICO_PID
@@ -182,6 +218,7 @@ echo ""
 # Exercício 10: Monitorar recursos do sistema
 echo "📝 EXERCÍCIO 10: Monitorando recursos do sistema"
 echo "----------------------------------------------"
+echo "💾 Comando: Uso de memória"
 echo "💾 Uso de memória:"
 free -h
 echo ""
@@ -201,29 +238,39 @@ echo ""
 # Exercício 11: Trabalhar com sinais
 echo "📝 EXERCÍCIO 11: Trabalhando com sinais"
 echo "--------------------------------------"
-echo "🔧 Criando processo para demonstração de sinais:"
+echo "🔧 Comando: Criando processo para demonstração de sinais"
+echo ""
+Criando processo para demonstração de sinais
 sleep 30 &
 SLEEP_PID=$!
 echo "✅ Processo sleep criado com PID: $SLEEP_PID"
 echo ""
 
-echo "🔧 Verificando processo:"
+echo "🔧 Comando: Verificando processo"
+echo ""
+Verificando processo
 ps -p $SLEEP_PID
 echo ""
 
-echo "🔧 Enviando sinal STOP (pausar):"
+echo "🔧 Comando: Enviando sinal STOP (pausar)"
+echo ""
+Enviando sinal STOP (pausar)
 kill -STOP $SLEEP_PID
 sleep 1
 ps -p $SLEEP_PID
 echo ""
 
-echo "🔧 Enviando sinal CONT (continuar):"
+echo "🔧 Comando: Enviando sinal CONT (continuar)"
+echo ""
+Enviando sinal CONT (continuar)
 kill -CONT $SLEEP_PID
 sleep 1
 ps -p $SLEEP_PID
 echo ""
 
-echo "🔧 Terminando processo:"
+echo "🔧 Comando: Terminando processo"
+echo ""
+Terminando processo
 kill -TERM $SLEEP_PID
 sleep 1
 ps -p $SLEEP_PID 2>/dev/null || echo "✅ Processo terminado"

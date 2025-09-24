@@ -21,6 +21,7 @@ echo "📍 Diretório atual: $(pwd)"
 echo ""
 
 # Criar diretório de trabalho
+echo "📁 Comando: Criando diretório de trabalho para exercícios de segurança"
 echo "📁 Criando diretório de trabalho para exercícios de segurança:"
 mkdir -p exercicios_seguranca
 cd exercicios_seguranca
@@ -77,11 +78,13 @@ groupadd -g 1003 rh
 groupadd -g 1004 administracao
 groupadd -g 1005 auditores
 
+echo "✅ Comando: Grupos criados"
 echo "✅ Grupos criados:"
 getent group ti financeiro rh administracao auditores
 echo ""
 
 # Criar usuários para cada departamento
+echo "👤 Comando: Criando usuários departamentais"
 echo "👤 Criando usuários departamentais:"
 useradd -m -s /bin/bash -g ti -G auditores joao.ti
 useradd -m -s /bin/bash -g financeiro maria.fin
@@ -102,6 +105,7 @@ echo ""
 # Exercício 3: Implementar controle de acesso baseado em grupos
 echo "📝 EXERCÍCIO 3: Controle de acesso baseado em grupos"
 echo "--------------------------------------------------"
+echo "📁 Comando: Criando estrutura de diretórios departamentais"
 echo "📁 Criando estrutura de diretórios departamentais:"
 echo ""
 
@@ -112,6 +116,7 @@ mkdir -p /home/departamentos/financeiro/{relatorios,contas,auditoria}
 mkdir -p /home/departamentos/rh/{funcionarios,folha,treinamentos}
 mkdir -p /home/departamentos/administracao/{documentos,reunioes,estrategia}
 
+echo "📋 Comando: Estrutura de diretórios criada"
 echo "📋 Estrutura de diretórios criada:"
 tree /home/departamentos 2>/dev/null || find /home/departamentos -type d | sort
 echo ""
@@ -145,6 +150,7 @@ echo ""
 # Exercício 4: Implementar auditoria de acesso
 echo "📝 EXERCÍCIO 4: Auditoria de acesso"
 echo "----------------------------------"
+echo "📊 Comando: Configurando logging de auditoria"
 echo "📊 Configurando logging de auditoria:"
 echo ""
 
@@ -262,6 +268,7 @@ echo ""
 # Exercício 7: Implementar backup de configurações de segurança
 echo "📝 EXERCÍCIO 7: Backup de configurações de segurança"
 echo "--------------------------------------------------"
+echo "💾 Comando: Criando backup das configurações de segurança"
 echo "💾 Criando backup das configurações de segurança:"
 echo ""
 
@@ -316,6 +323,7 @@ echo "---------------------------------------------"
 echo "🧪 Testando os controles de acesso implementados:"
 echo ""
 
+echo "📊 Comando: Verificando grupos e usuários"
 echo "📊 Verificando grupos e usuários:"
 echo "Grupos criados:"
 getent group ti financeiro rh administracao auditores
@@ -325,14 +333,17 @@ echo "Usuários criados:"
 getent passwd joao.ti maria.fin pedro.rh ana.admin carlos.auditor
 echo ""
 
+echo "📊 Comando: Verificando permissões dos diretórios"
 echo "📊 Verificando permissões dos diretórios:"
 ls -la /home/departamentos/
 echo ""
 
+echo "📊 Comando: Verificando regras de auditoria"
 echo "📊 Verificando regras de auditoria:"
 auditctl -l
 echo ""
 
+echo "📊 Comando: Verificando configurações de segurança"
 echo "📊 Verificando configurações de segurança:"
 echo "Política de senhas:"
 grep -v "^#" /etc/security/pwquality.conf | grep -v "^$"
@@ -357,11 +368,13 @@ echo "📄 Arquivo sensível criado: /home/departamentos/financeiro/dados_sensiv
 echo ""
 
 # Simular tentativa de acesso não autorizado
+echo "🔍 Comando: Tentativa de acesso não autorizado (como usuário TI)"
 echo "🔍 Tentativa de acesso não autorizado (como usuário TI):"
 sudo -u joao.ti cat /home/departamentos/financeiro/dados_sensiveis.txt 2>&1 || echo "❌ Acesso negado - Controle de segurança funcionando!"
 echo ""
 
 # Verificar logs de auditoria
+echo "📊 Comando: Verificando logs de auditoria"
 echo "📊 Verificando logs de auditoria:"
 if [ -f /var/log/audit/audit.log ]; then
     tail -5 /var/log/audit/audit.log | grep "financeiro_access" || echo "ℹ️  Logs de auditoria em /var/log/audit/audit.log"
@@ -373,6 +386,7 @@ echo ""
 # Exercício 10: Relatório de segurança
 echo "📝 EXERCÍCIO 10: Relatório de segurança"
 echo "-------------------------------------"
+echo "📋 Comando: Gerando relatório de configurações de segurança"
 echo "📋 Gerando relatório de configurações de segurança:"
 echo ""
 

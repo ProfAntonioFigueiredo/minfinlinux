@@ -30,14 +30,26 @@ echo ""
 # Exercício 1: Criar arquivos e verificar permissões padrão
 echo "📝 EXERCÍCIO 1: Verificando permissões padrão"
 echo "--------------------------------------------"
-touch arquivo_teste.txt
-mkdir diretorio_teste
-echo "Conteúdo de teste" > arquivo_teste.txt
+echo ""
 
+echo "🔧 Comando: touch arquivo_teste.txt"
+touch arquivo_teste.txt
+echo ""
+
+echo "🔧 Comando: mkdir diretorio_teste"
+mkdir diretorio_teste
+echo ""
+
+echo "🔧 Comando: echo 'Conteúdo de teste' > arquivo_teste.txt"
+echo "Conteúdo de teste" > arquivo_teste.txt
+echo ""
+
+echo "📋 Comando: ls -l arquivo_teste.txt"
 echo "📋 Permissões do arquivo:"
 ls -l arquivo_teste.txt
 echo ""
 
+echo "📋 Comando: ls -ld diretorio_teste"
 echo "📋 Permissões do diretório:"
 ls -ld diretorio_teste
 echo ""

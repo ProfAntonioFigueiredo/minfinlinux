@@ -56,6 +56,12 @@ const AppState = {
                     title: 'Exercício: Processos e Serviços',
                     description: 'Gerenciamento com ps, top, kill, systemd',
                     file: '../modulos/modulo1_fundamentos_linux/exercicios/exercicio_processos_servicos.sh'
+                },
+                {
+                    id: 'comandos-basicos',
+                    title: 'Comandos Básicos do Linux',
+                    description: 'Navegação, manipulação de arquivos e diretórios',
+                    file: '../exercicios/comandos_basicos_linux.sh'
                 }
             ]
         },

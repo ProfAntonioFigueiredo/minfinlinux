@@ -15,6 +15,7 @@ echo "🕐 Data/Hora: $(date)"
 echo ""
 
 # Criar diretório de trabalho
+echo "📁 Comando: Criando diretório de trabalho para exercícios de sub-redes"
 echo "📁 Criando diretório de trabalho para exercícios de sub-redes:"
 mkdir -p exercicios_subredes
 cd exercicios_subredes
@@ -42,6 +43,7 @@ decimal_to_binary() {
 }
 
 # Converter cada octeto para binário
+echo "📊 Comando: Conversão para binário"
 echo "📊 Conversão para binário:"
 echo "192 = $(decimal_to_binary 192)"
 echo "168 = $(decimal_to_binary 168)"
@@ -49,6 +51,7 @@ echo "1   = $(decimal_to_binary 1)"
 echo "100 = $(decimal_to_binary 100)"
 echo ""
 
+echo "📋 Comando: Análise do endereço"
 echo "📋 Análise do endereço:"
 echo "• Endereço IP: 192.168.1.100"
 echo "• Máscara: 255.255.255.0 (/24)"
@@ -63,6 +66,7 @@ echo "-----------------------------------"
 echo "🎯 Cenário: Dividir 192.168.1.0/24 em 4 sub-redes"
 echo ""
 
+echo "📊 Comando: Cálculos"
 echo "📊 Cálculos:"
 echo "• Rede original: 192.168.1.0/24"
 echo "• Sub-redes necessárias: 4"
@@ -71,6 +75,7 @@ echo "• Nova máscara: /26 (255.255.255.192)"
 echo "• Hosts por sub-rede: 62 (2⁶ - 2)"
 echo ""
 
+echo "📋 Comando: Sub-redes resultantes"
 echo "📋 Sub-redes resultantes:"
 echo "1. 192.168.1.0/26   - Hosts: 192.168.1.1   - 192.168.1.62   (Broadcast: 192.168.1.63)"
 echo "2. 192.168.1.64/26  - Hosts: 192.168.1.65  - 192.168.1.126  (Broadcast: 192.168.1.127)"
@@ -88,6 +93,7 @@ echo "• RH: 100 hosts"
 echo "• Administração: 50 hosts"
 echo ""
 
+echo "📊 Comando: Cálculos para cada departamento"
 echo "📊 Cálculos para cada departamento:"
 echo ""
 
@@ -163,7 +169,9 @@ check_ip_in_subnet "192.168.1.50" "192.168.1.0" "26"
 # Exercício 5: Configuração prática de rede
 echo "📝 EXERCÍCIO 5: Configuração prática de rede"
 echo "-------------------------------------------"
-echo "🔧 Simulando configuração de interfaces de rede:"
+echo "🔧 Comando: Simulando configuração de interfaces de rede"
+echo ""
+Simulando configuração de interfaces de rede
 echo ""
 
 # Criar arquivo de configuração de exemplo
@@ -189,6 +197,7 @@ echo "📄 Arquivo de configuração criado: config_rede_exemplo.txt"
 echo ""
 
 # Mostrar conteúdo do arquivo
+echo "📋 Comando: Conteúdo do arquivo de configuração"
 echo "📋 Conteúdo do arquivo de configuração:"
 cat config_rede_exemplo.txt
 echo ""
@@ -196,29 +205,35 @@ echo ""
 # Exercício 6: Comandos de diagnóstico de rede
 echo "📝 EXERCÍCIO 6: Comandos de diagnóstico de rede"
 echo "---------------------------------------------"
+echo "🔍 Comando: Comandos úteis para diagnóstico de rede"
 echo "🔍 Comandos úteis para diagnóstico de rede:"
 echo ""
 
+echo "📊 Comando: Verificar configuração de rede"
 echo "📊 Verificar configuração de rede:"
 echo "ip addr show"
 echo "ifconfig"
 echo ""
 
+echo "📊 Comando: Testar conectividade"
 echo "📊 Testar conectividade:"
 echo "ping -c 4 8.8.8.8"
 echo "ping -c 4 google.com"
 echo ""
 
+echo "📊 Comando: Verificar roteamento"
 echo "📊 Verificar roteamento:"
 echo "ip route show"
 echo "traceroute google.com"
 echo ""
 
+echo "📊 Comando: Verificar DNS"
 echo "📊 Verificar DNS:"
 echo "nslookup google.com"
 echo "dig google.com"
 echo ""
 
+echo "📊 Comando: Verificar portas abertas"
 echo "📊 Verificar portas abertas:"
 echo "netstat -tuln"
 echo "ss -tuln"
@@ -230,6 +245,7 @@ echo "------------------------------------------"
 echo "🏢 Cenário: Empresa com 3 departamentos"
 echo ""
 
+echo "📋 Comando: Requisitos"
 echo "📋 Requisitos:"
 echo "• TI: 200 hosts"
 echo "• Financeiro: 100 hosts"
@@ -237,6 +253,7 @@ echo "• RH: 50 hosts"
 echo "• Rede base: 172.16.0.0/16"
 echo ""
 
+echo "📊 Comando: Solução proposta"
 echo "📊 Solução proposta:"
 echo ""
 
@@ -298,12 +315,14 @@ echo "-------------------------------------"
 echo "🛠️ Ferramentas úteis para cálculo de sub-redes:"
 echo ""
 
+echo "📊 Comando: Comandos Linux"
 echo "📊 Comandos Linux:"
 echo "• ipcalc - Calcular sub-redes"
 echo "• sipcalc - Calculadora de sub-redes avançada"
 echo "• nmap - Escanear redes"
 echo ""
 
+echo "📊 Comando: Exemplo com ipcalc (se disponível)"
 echo "📊 Exemplo com ipcalc (se disponível):"
 if command -v ipcalc >/dev/null 2>&1; then
     echo "ipcalc 192.168.1.0/24"
