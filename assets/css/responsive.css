@@ -1,0 +1,639 @@
+/* =============================================================================
+   PLATAFORMA DE TREINAMENTO LINUX - CSS RESPONSIVO
+   Ministério das Finanças de Angola
+   ============================================================================= */
+
+/* Breakpoints */
+/* xs: 0px - 575px (mobile) */
+/* sm: 576px - 767px (mobile landscape) */
+/* md: 768px - 991px (tablet) */
+/* lg: 992px - 1199px (desktop) */
+/* xl: 1200px - 1399px (large desktop) */
+/* xxl: 1400px+ (extra large desktop) */
+
+/* Mobile First Approach */
+
+/* Extra Small Devices (Mobile Portrait) */
+@media (max-width: 575px) {
+    .container {
+        padding: 0 var(--spacing-md);
+    }
+    
+    /* Header */
+    .header-content {
+        flex-direction: column;
+        gap: var(--spacing-md);
+        padding: var(--spacing-md) 0;
+    }
+    
+    .logo {
+        font-size: 1.25rem;
+    }
+    
+    .logo i {
+        font-size: 1.5rem;
+    }
+    
+    .nav-list {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        width: 100%;
+    }
+    
+    .nav-link {
+        text-align: center;
+        padding: var(--spacing-md);
+    }
+    
+    .header-actions {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    /* Hero */
+    .hero {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-xl);
+        text-align: center;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.25rem;
+    }
+    
+    .hero-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-md);
+    }
+    
+    .hero-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn-large {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    /* Terminal */
+    .terminal-window {
+        font-size: 0.75rem;
+    }
+    
+    .terminal-body {
+        padding: var(--spacing-md);
+    }
+    
+    /* Sections */
+    .section {
+        padding: var(--spacing-xl) 0;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    /* Modules Grid */
+    .modules-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+    
+    .module-card {
+        padding: var(--spacing-lg);
+    }
+    
+    .module-actions {
+        flex-direction: column;
+    }
+    
+    .module-actions .btn {
+        width: 100%;
+    }
+    
+    /* Module Viewer */
+    .module-content-area {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+    
+    .module-sidebar {
+        order: 2;
+    }
+    
+    .module-main {
+        order: 1;
+    }
+    
+    .module-tabs {
+        flex-direction: column;
+    }
+    
+    .tab-btn {
+        padding: var(--spacing-md);
+        text-align: left;
+    }
+    
+    .tab-content {
+        padding: var(--spacing-lg);
+        min-height: 400px;
+    }
+    
+    /* Progress Bar */
+    .module-progress {
+        flex-direction: column;
+        gap: var(--spacing-md);
+        align-items: flex-start;
+    }
+    
+    .progress-bar {
+        width: 100%;
+    }
+    
+    /* Modal */
+    .modal-content {
+        width: 95%;
+        margin: var(--spacing-md);
+    }
+    
+    .modal-body {
+        padding: var(--spacing-md);
+    }
+    
+    .code-actions {
+        flex-direction: column;
+    }
+    
+    .code-actions .btn {
+        width: 100%;
+    }
+}
+
+/* Small Devices (Mobile Landscape) */
+@media (min-width: 576px) and (max-width: 767px) {
+    .container {
+        padding: 0 var(--spacing-lg);
+    }
+    
+    /* Header */
+    .header-content {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    
+    .nav-list {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: var(--spacing-md);
+    }
+    
+    /* Hero */
+    .hero {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-2xl);
+    }
+    
+    .hero-title {
+        font-size: 3rem;
+    }
+    
+    .hero-stats {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .hero-actions {
+        flex-direction: row;
+        justify-content: center;
+    }
+    
+    /* Modules Grid */
+    .modules-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+    
+    /* Module Viewer */
+    .module-content-area {
+        grid-template-columns: 1fr;
+    }
+    
+    .module-tabs {
+        flex-direction: row;
+    }
+}
+
+/* Medium Devices (Tablet) */
+@media (min-width: 768px) and (max-width: 991px) {
+    .container {
+        padding: 0 var(--spacing-lg);
+    }
+    
+    /* Header */
+    .header-content {
+        flex-direction: row;
+    }
+    
+    .nav-list {
+        gap: var(--spacing-lg);
+    }
+    
+    /* Hero */
+    .hero {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--spacing-2xl);
+    }
+    
+    .hero-title {
+        font-size: 3.25rem;
+    }
+    
+    /* Modules Grid */
+    .modules-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-lg);
+    }
+    
+    /* Module Viewer */
+    .module-content-area {
+        grid-template-columns: 250px 1fr;
+    }
+    
+    .module-sidebar {
+        padding: var(--spacing-lg);
+    }
+}
+
+/* Large Devices (Desktop) */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .container {
+        padding: 0 var(--spacing-xl);
+    }
+    
+    /* Hero */
+    .hero-title {
+        font-size: 3.5rem;
+    }
+    
+    /* Modules Grid */
+    .modules-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-xl);
+    }
+    
+    /* Module Viewer */
+    .module-content-area {
+        grid-template-columns: 280px 1fr;
+    }
+}
+
+/* Extra Large Devices (Large Desktop) */
+@media (min-width: 1200px) and (max-width: 1399px) {
+    .container {
+        padding: 0 var(--spacing-xl);
+    }
+    
+    /* Modules Grid */
+    .modules-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--spacing-xl);
+    }
+    
+    /* Module Viewer */
+    .module-content-area {
+        grid-template-columns: 300px 1fr;
+    }
+}
+
+/* Extra Extra Large Devices (Extra Large Desktop) */
+@media (min-width: 1400px) {
+    .container {
+        padding: 0 var(--spacing-2xl);
+    }
+    
+    /* Hero */
+    .hero-title {
+        font-size: 4rem;
+    }
+    
+    /* Modules Grid */
+    .modules-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--spacing-2xl);
+    }
+    
+    /* Module Viewer */
+    .module-content-area {
+        grid-template-columns: 320px 1fr;
+    }
+}
+
+/* High DPI Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .terminal-window {
+        box-shadow: var(--shadow-xl);
+    }
+    
+    .module-card {
+        box-shadow: var(--shadow-lg);
+    }
+}
+
+/* Landscape Orientation */
+@media (orientation: landscape) and (max-height: 600px) {
+    .hero {
+        min-height: auto;
+        padding: var(--spacing-xl) 0;
+    }
+    
+    .section {
+        padding: var(--spacing-xl) 0;
+    }
+    
+    .module-content-area {
+        min-height: 400px;
+    }
+    
+    .tab-content {
+        min-height: 300px;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .header,
+    .header-actions,
+    .module-viewer-header,
+    .module-tabs,
+    .btn,
+    .modal {
+        display: none !important;
+    }
+    
+    .main {
+        margin-top: 0;
+    }
+    
+    .section {
+        display: block !important;
+        page-break-inside: avoid;
+    }
+    
+    .module-content-area {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+    
+    .module-sidebar {
+        order: 2;
+        border: 1px solid #ccc;
+        margin-top: var(--spacing-lg);
+    }
+    
+    .module-main {
+        order: 1;
+    }
+    
+    .tab-content {
+        display: block !important;
+    }
+    
+    .code-block {
+        background: #f5f5f5 !important;
+        color: #333 !important;
+        border: 1px solid #ccc;
+    }
+    
+    .terminal-window {
+        background: #f5f5f5 !important;
+        color: #333 !important;
+    }
+    
+    .terminal-body {
+        color: #333 !important;
+    }
+    
+    .prompt,
+    .command,
+    .terminal-output {
+        color: #333 !important;
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .cursor {
+        animation: none;
+    }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    :root {
+        --primary-color: #0000ff;
+        --text-primary: #000000;
+        --text-secondary: #333333;
+        --bg-primary: #ffffff;
+        --bg-secondary: #f0f0f0;
+        --bg-tertiary: #e0e0e0;
+    }
+    
+    .btn {
+        border: 2px solid currentColor;
+    }
+    
+    .module-card {
+        border: 2px solid var(--text-primary);
+    }
+    
+    .terminal-window {
+        border: 2px solid var(--text-primary);
+    }
+}
+
+/* Dark Mode Preference */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-primary: #0f172a;
+        --bg-secondary: #1e293b;
+        --bg-tertiary: #334155;
+        --text-primary: #f8fafc;
+        --text-secondary: #cbd5e1;
+        --text-muted: #64748b;
+    }
+}
+
+/* Focus Visible */
+@media (prefers-reduced-motion: no-preference) {
+    .btn:focus-visible,
+    .nav-link:focus-visible,
+    .tab-btn:focus-visible {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
+        transform: scale(1.05);
+    }
+}
+
+/* Hover Support */
+@media (hover: hover) {
+    .module-card:hover {
+        transform: translateY(-4px);
+    }
+    
+    .btn:hover {
+        transform: translateY(-1px);
+    }
+}
+
+/* No Hover Support */
+@media (hover: none) {
+    .module-card:hover {
+        transform: none;
+    }
+    
+    .btn:hover {
+        transform: none;
+    }
+    
+    .module-card:active {
+        transform: scale(0.98);
+    }
+    
+    .btn:active {
+        transform: scale(0.98);
+    }
+}
+
+/* Touch Devices */
+@media (pointer: coarse) {
+    .btn {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    .nav-link {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .tab-btn {
+        min-height: 44px;
+    }
+    
+    .module-nav a {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+    }
+}
+
+/* Specific Mobile Optimizations */
+@media (max-width: 767px) {
+    /* Improve touch targets */
+    .btn {
+        padding: var(--spacing-md) var(--spacing-lg);
+        font-size: 1rem;
+    }
+    
+    /* Better spacing for mobile */
+    .hero-stats {
+        margin: var(--spacing-xl) 0;
+    }
+    
+    .stat {
+        padding: var(--spacing-md);
+    }
+    
+    .stat-number {
+        font-size: 1.5rem;
+    }
+    
+    /* Optimize terminal for mobile */
+    .terminal-window {
+        font-size: 0.75rem;
+        line-height: 1.4;
+    }
+    
+    .terminal-line {
+        word-break: break-all;
+    }
+    
+    /* Better module cards for mobile */
+    .module-card {
+        margin-bottom: var(--spacing-lg);
+    }
+    
+    .module-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.25rem;
+    }
+    
+    .module-title {
+        font-size: 1.125rem;
+    }
+    
+    .module-description {
+        font-size: 0.875rem;
+    }
+}
+
+/* Tablet Specific */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .hero-title {
+        font-size: 3.25rem;
+    }
+    
+    .modules-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .module-content-area {
+        grid-template-columns: 250px 1fr;
+    }
+}
+
+/* Desktop Specific */
+@media (min-width: 1025px) {
+    .hero-title {
+        font-size: 3.5rem;
+    }
+    
+    .modules-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .module-content-area {
+        grid-template-columns: 300px 1fr;
+    }
+}
+
+/* Ultra-wide Screens */
+@media (min-width: 1920px) {
+    .container {
+        max-width: 1600px;
+    }
+    
+    .hero-title {
+        font-size: 4.5rem;
+    }
+    
+    .modules-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .module-content-area {
+        grid-template-columns: 350px 1fr;
+    }
+}
