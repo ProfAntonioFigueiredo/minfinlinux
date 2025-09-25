@@ -515,6 +515,77 @@
                 <strong>🎯 Próximos Módulos:</strong> Módulos 5 e 6 - Segurança de Redes e Observabilidade para completar a formação.
             </div>
         </div>
+
+        <!-- Conteúdo Adicional - GNU-Linux Administração de Sistemas -->
+        <div class="slide">
+            <h2><i class="fas fa-plus-circle"></i> Conteúdo Adicional GNU-Linux - Administração de Sistemas</h2>
+            <div class="info-box">
+                <strong>📚 Material Complementar:</strong> Conteúdo adicional do curso GNU-Linux 
+                sobre backup, shell scripting e instalação de banco de dados MySQL.
+            </div>
+            
+            <div class="exercise-integration">
+                <h4><i class="fas fa-file-powerpoint"></i> Backup e Recuperação</h4>
+                <div class="code-example">
+                    <h5>Estratégias de Backup</h5>
+                    <ul>
+                        <li><strong>Backup Completo:</strong> Cópia de todos os dados</li>
+                        <li><strong>Backup Incremental:</strong> Apenas mudanças desde último backup</li>
+                        <li><strong>Backup Diferencial:</strong> Mudanças desde backup completo</li>
+                    </ul>
+                    
+                    <h5>Ferramentas de Backup</h5>
+                    <span class="command">tar -czf backup_$(date +%Y%m%d).tar.gz /home/</span> # Backup com tar<br>
+                    <span class="command">rsync -av /home/ /backup/home/</span> # Sincronização<br>
+                    <span class="command">dd if=/dev/sda of=/backup/disk.img</span> # Cópia bit a bit<br>
+                    <span class="command">duplicity /home file:///backup/</span> # Backup criptografado<br>
+                </div>
+            </div>
+            
+            <div class="exercise-integration">
+                <h4><i class="fas fa-file-powerpoint"></i> Shell Scripting Avançado</h4>
+                <div class="code-example">
+                    <h5>Estruturas Básicas</h5>
+                    <span class="command">#!/bin/bash</span> # Shebang obrigatório<br>
+                    <span class="command">VARIAVEL="valor"</span> # Declaração de variáveis<br>
+                    <span class="command">echo $VARIAVEL</span> # Usar variável<br>
+                    
+                    <h5>Condicionais e Loops</h5>
+                    <span class="command">if [ condição ]; then</span><br>
+                    <span class="command">  echo "Verdadeiro"</span><br>
+                    <span class="command">else</span><br>
+                    <span class="command">  echo "Falso"</span><br>
+                    <span class="command">fi</span><br>
+                    
+                    <h5>Funções</h5>
+                    <span class="command">function nome_funcao() {</span><br>
+                    <span class="command">  echo "Executando função"</span><br>
+                    <span class="command">}</span>
+                </div>
+            </div>
+            
+            <div class="exercise-integration">
+                <h4><i class="fas fa-file-powerpoint"></i> Instalação MySQL</h4>
+                <div class="code-example">
+                    <h5>Instalação e Configuração</h5>
+                    <span class="command">apt install mysql-server</span> # Instalar MySQL<br>
+                    <span class="command">systemctl start mysql</span> # Iniciar serviço<br>
+                    <span class="command">systemctl enable mysql</span> # Habilitar na inicialização<br>
+                    <span class="command">mysql_secure_installation</span> # Configuração segura<br>
+                    
+                    <h5>Comandos Básicos MySQL</h5>
+                    <span class="command">mysql -u root -p</span> # Conectar como root<br>
+                    <span class="command">CREATE DATABASE minfin_db;</span> # Criar banco<br>
+                    <span class="command">CREATE USER 'usuario'@'localhost' IDENTIFIED BY 'senha';</span><br>
+                    <span class="command">GRANT ALL PRIVILEGES ON minfin_db.* TO 'usuario'@'localhost';</span><br>
+                    <span class="command">FLUSH PRIVILEGES;</span> # Aplicar permissões<br>
+                </div>
+            </div>
+            
+            <div class="info-box">
+                <strong>📁 Material Disponível:</strong> 2 apresentações PowerPoint com conteúdo detalhado sobre estratégias de backup, shell scripting avançado e instalação/configuração de MySQL.
+            </div>
+        </div>
     </div>
 
     <script src="../assets/js/main.js"></script>

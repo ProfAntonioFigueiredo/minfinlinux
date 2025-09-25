@@ -797,6 +797,70 @@
     </div>
 
     <script src="../assets/js/main.js"></script>
+        <!-- Conteúdo Adicional - GNU-Linux Redes -->
+        <div class="slide">
+            <h2><i class="fas fa-plus-circle"></i> Conteúdo Adicional GNU-Linux - Redes</h2>
+            <div class="info-box">
+                <strong>📚 Material Complementar:</strong> Conteúdo adicional do curso GNU-Linux 
+                sobre configuração de rede, DNS e gerenciamento de pacotes.
+            </div>
+            
+            <div class="exercise-integration">
+                <h4><i class="fas fa-file-powerpoint"></i> Configuração de Rede</h4>
+                <div class="code-example">
+                    <h5>Comandos de Rede</h5>
+                    <span class="command">ifconfig</span> # Configurar interfaces de rede<br>
+                    <span class="command">ip addr show</span> # Comando moderno para interfaces<br>
+                    <span class="command">ping -c 4 google.com</span> # Testar conectividade<br>
+                    <span class="command">netstat -tuln</span> # Portas em uso<br>
+                    <span class="command">ss -tuln</span> # Comando moderno do netstat<br>
+                    
+                    <h5>Arquivos de Configuração</h5>
+                    <span class="command">/etc/network/interfaces</span> # Configuração de rede<br>
+                    <span class="command">/etc/resolv.conf</span> # Servidores DNS<br>
+                    <span class="command">/etc/hosts</span> # Resolução local de nomes<br>
+                </div>
+            </div>
+            
+            <div class="exercise-integration">
+                <h4><i class="fas fa-file-powerpoint"></i> Servidor DNS</h4>
+                <div class="code-example">
+                    <h5>Configuração BIND9</h5>
+                    <span class="command">apt install bind9</span> # Instalar BIND9<br>
+                    <span class="command">systemctl start bind9</span> # Iniciar serviço<br>
+                    <span class="command">systemctl enable bind9</span> # Habilitar na inicialização<br>
+                    
+                    <h5>Comandos de Diagnóstico DNS</h5>
+                    <span class="command">nslookup google.com</span> # Consultar DNS<br>
+                    <span class="command">dig @8.8.8.8 google.com</span> # Consulta específica<br>
+                    <span class="command">host google.com</span> # Resolver nome<br>
+                    <span class="command">dig -x 8.8.8.8</span> # Consulta reversa<br>
+                </div>
+            </div>
+            
+            <div class="exercise-integration">
+                <h4><i class="fas fa-file-powerpoint"></i> Gerenciamento de Pacotes</h4>
+                <div class="code-example">
+                    <h5>Comandos APT</h5>
+                    <span class="command">apt update</span> # Atualizar lista de pacotes<br>
+                    <span class="command">apt upgrade</span> # Atualizar pacotes instalados<br>
+                    <span class="command">apt install pacote</span> # Instalar pacote<br>
+                    <span class="command">apt remove pacote</span> # Remover pacote<br>
+                    <span class="command">apt search termo</span> # Buscar pacotes<br>
+                    
+                    <h5>Gerenciamento de Repositórios</h5>
+                    <span class="command">apt list --installed</span> # Listar pacotes instalados<br>
+                    <span class="command">apt show pacote</span> # Informações do pacote<br>
+                    <span class="command">apt autoremove</span> # Remover dependências órfãs<br>
+                </div>
+            </div>
+            
+            <div class="info-box">
+                <strong>📁 Material Disponível:</strong> 3 apresentações PowerPoint com conteúdo detalhado sobre configuração de rede, servidores DNS e gerenciamento de pacotes no Linux.
+            </div>
+        </div>
+    </div>
+
     <script src="../assets/js/exercises.js"></script>
 </body>
 </html>

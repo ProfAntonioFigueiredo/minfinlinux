@@ -1,0 +1,224 @@
+{
+  "modulo1_fundamentos": {
+    "aulas": [
+      {
+        "nome": "FIAP - Linux 09 - Armazenamento",
+        "arquivo": "/Users/imac/LinuxAvançado/Administracao de Sistemas GNU-LinuxFundamentos e Pratica/Semestre 1/FIAP - Linux 09 - Armazenamento.pptx",
+        "modulo": "modulo1_fundamentos",
+        "conteudo": "\n        # Conteúdo de FIAP - Linux 09 - Armazenamento.pptx\n        \n        ## Tópicos Abordados\n        - Conceitos fundamentais\n        - Comandos práticos\n        - Exemplos de uso\n        - Exercícios práticos\n        \n        ## Objetivos de Aprendizagem\n        - Compreender os conceitos\n        - Praticar comandos\n        - Aplicar em cenários reais\n        ",
+        "tamanho": 635205,
+        "modificacao": 1758736909.4392033,
+        "tipo": "aula"
+      },
+      {
+        "nome": "FIAP - Linux 08 - Processos",
+        "arquivo": "/Users/imac/LinuxAvançado/Administracao de Sistemas GNU-LinuxFundamentos e Pratica/Semestre 1/FIAP - Linux 08 - Processos.pptx",
+        "modulo": "modulo1_fundamentos",
+        "conteudo": "\n            # Gerenciamento de Processos\n            \n            ## Comandos de Processo\n            - `ps` - Listar processos\n            - `top` - Monitorar processos em tempo real\n            - `kill` - Terminar processos\n            - `killall` - Terminar por nome\n            \n            ## Sinais de Processo\n            - SIGTERM (15) - Terminação suave\n            - SIGKILL (9) - Terminação forçada\n            ",
+        "tamanho": 7946823,
+        "modificacao": 1758736854.0581207,
+        "tipo": "aula"
+      },
+      {
+        "nome": "FIAP - Linux 07 - Permissões",
+        "arquivo": "/Users/imac/LinuxAvançado/Administracao de Sistemas GNU-LinuxFundamentos e Pratica/Semestre 1/FIAP - Linux 07 - Permissões.pptx",
+        "modulo": "modulo1_fundamentos",
+        "conteudo": "\n        # Conteúdo de FIAP - Linux 07 - Permissões.pptx\n        \n        ## Tópicos Abordados\n        - Conceitos fundamentais\n        - Comandos práticos\n        - Exemplos de uso\n        - Exercícios práticos\n        \n        ## Objetivos de Aprendizagem\n        - Compreender os conceitos\n        - Praticar comandos\n        - Aplicar em cenários reais\n        ",
+        "tamanho": 4166555,
+        "modificacao": 1758736809.6157913,
+        "tipo": "aula"
+      },
+      {
+        "nome": "FIAP - Linux 04 - Visualizadores e Fluxos",
+        "arquivo": "/Users/imac/LinuxAvançado/Administracao de Sistemas GNU-LinuxFundamentos e Pratica/Semestre 1/FIAP - Linux 04 - Visualizadores e Fluxos.pptx",
+        "modulo": "modulo1_fundamentos",
+        "conteudo": "\n        # Conteúdo de FIAP - Linux 04 - Visualizadores e Fluxos.pptx\n        \n        ## Tópicos Abordados\n        - Conceitos fundamentais\n        - Comandos práticos\n        - Exemplos de uso\n        - Exercícios práticos\n        \n        ## Objetivos de Aprendizagem\n        - Compreender os conceitos\n        - Praticar comandos\n        - Aplicar em cenários reais\n        ",
+        "tamanho": 3291367,
+        "modificacao": 1758736701.4090462,
+        "tipo": "aula"
+      },
+      {
+        "nome": "FIAP - Linux 01 - Conceitos",
+        "arquivo": "/Users/imac/LinuxAvançado/Administracao de Sistemas GNU-LinuxFundamentos e Pratica/Semestre 1/FIAP - Linux 01 - Conceitos.pptx",
+        "modulo": "modulo1_fundamentos",
+        "conteudo": "\n            # Conceitos Fundamentais do Linux\n            \n            ## O que é Linux?\n            - Sistema operacional baseado em Unix\n            - Código aberto e gratuito\n            - Multiplataforma e multiusuário\n            \n            ## Características Principais\n            - Estabilidade e confiabilidade\n            - Segurança robusta\n            - Flexibilidade e customização\n            - Comunidade ativa\n            ",
+        "tamanho": 4091002,
+        "modificacao": 1758810663.8868828,
+        "tipo": "aula"
+      },
+      {
+        "nome": "FIAP - Linux 05 - Concatenação e Filtros",
+        "arquivo": "/Users/imac/LinuxAvançado/Administracao de Sistemas GNU-LinuxFundamentos e Pratica/Semestre 1/FIAP - Linux 05 - Concatenação e Filtros.pptx",
+        "modulo": "modulo1_fundamentos",
+        "conteudo": "\n        # Conteúdo de FIAP - Linux 05 - Concatenação e Filtros.pptx\n        \n        ## Tópicos Abordados\n        - Conceitos fundamentais\n        - Comandos práticos\n        - Exemplos de uso\n        - Exercícios práticos\n        \n        ## Objetivos de Aprendizagem\n        - Compreender os conceitos\n        - Praticar comandos\n        - Aplicar em cenários reais\n        ",
+        "tamanho": 6923868,
+        "modificacao": 1758736735.0761719,
+        "tipo": "aula"
+      },
+      {
+        "nome": "FIAP - Linux 03 - Comandos Básicos pt2",
+        "arquivo": "/Users/imac/LinuxAvançado/Administracao de Sistemas GNU-LinuxFundamentos e Pratica/Semestre 1/FIAP - Linux 03 - Comandos Básicos pt2.pptx",
+        "modulo": "modulo1_fundamentos",
+        "conteudo": "\n            # Comandos Básicos do Linux\n            \n            ## Navegação\n            - `ls` - Listar arquivos e diretórios\n            - `cd` - Mudar diretório\n            - `pwd` - Mostrar diretório atual\n            \n            ## Manipulação de Arquivos\n            - `cp` - Copiar arquivos\n            - `mv` - Mover/renomear arquivos\n            - `rm` - Remover arquivos\n            - `mkdir` - Criar diretórios\n            ",
+        "tamanho": 2194432,
+        "modificacao": 1758736641.1354065,
+        "tipo": "aula"
+      },
+      {
+        "nome": "FIAP - Linux 02 - Comandos Básicos pt1",
+        "arquivo": "/Users/imac/LinuxAvançado/Administracao de Sistemas GNU-LinuxFundamentos e Pratica/Semestre 1/FIAP - Linux 02 - Comandos Básicos pt1.pptx",
+        "modulo": "modulo1_fundamentos",
+        "conteudo": "\n            # Comandos Básicos do Linux\n            \n            ## Navegação\n            - `ls` - Listar arquivos e diretórios\n            - `cd` - Mudar diretório\n            - `pwd` - Mostrar diretório atual\n            \n            ## Manipulação de Arquivos\n            - `cp` - Copiar arquivos\n            - `mv` - Mover/renomear arquivos\n            - `rm` - Remover arquivos\n            - `mkdir` - Criar diretórios\n            ",
+        "tamanho": 2145556,
+        "modificacao": 1758736600.7728024,
+        "tipo": "aula"
+      },
+      {
+        "nome": "~$FIAP - Linux 02 - Comandos Básicos pt1",
+        "arquivo": "/Users/imac/LinuxAvançado/Administracao de Sistemas GNU-LinuxFundamentos e Pratica/Semestre 1/~$FIAP - Linux 02 - Comandos Básicos pt1.pptx",
+        "modulo": "modulo1_fundamentos",
+        "conteudo": "\n            # Comandos Básicos do Linux\n            \n            ## Navegação\n            - `ls` - Listar arquivos e diretórios\n            - `cd` - Mudar diretório\n            - `pwd` - Mostrar diretório atual\n            \n            ## Manipulação de Arquivos\n            - `cp` - Copiar arquivos\n            - `mv` - Mover/renomear arquivos\n            - `rm` - Remover arquivos\n            - `mkdir` - Criar diretórios\n            ",
+        "tamanho": 165,
+        "modificacao": 1758799377.4153056,
+        "tipo": "aula"
+      },
+      {
+        "nome": "FIAP - Linux 06 - Usuários e Grupos",
+        "arquivo": "/Users/imac/LinuxAvançado/Administracao de Sistemas GNU-LinuxFundamentos e Pratica/Semestre 1/FIAP - Linux 06 - Usuários e Grupos.pptx",
+        "modulo": "modulo1_fundamentos",
+        "conteudo": "\n        # Conteúdo de FIAP - Linux 06 - Usuários e Grupos.pptx\n        \n        ## Tópicos Abordados\n        - Conceitos fundamentais\n        - Comandos práticos\n        - Exemplos de uso\n        - Exercícios práticos\n        \n        ## Objetivos de Aprendizagem\n        - Compreender os conceitos\n        - Praticar comandos\n        - Aplicar em cenários reais\n        ",
+        "tamanho": 762873,
+        "modificacao": 1758736776.2005672,
+        "tipo": "aula"
+      },
+      {
+        "nome": "~$FIAP - Linux 01 - Conceitos",
+        "arquivo": "/Users/imac/LinuxAvançado/Administracao de Sistemas GNU-LinuxFundamentos e Pratica/Semestre 1/~$FIAP - Linux 01 - Conceitos.pptx",
+        "modulo": "modulo1_fundamentos",
+        "conteudo": "\n            # Conceitos Fundamentais do Linux\n            \n            ## O que é Linux?\n            - Sistema operacional baseado em Unix\n            - Código aberto e gratuito\n            - Multiplataforma e multiusuário\n            \n            ## Características Principais\n            - Estabilidade e confiabilidade\n            - Segurança robusta\n            - Flexibilidade e customização\n            - Comunidade ativa\n            ",
+        "tamanho": 165,
+        "modificacao": 1758813089.8519766,
+        "tipo": "aula"
+      },
+      {
+        "nome": "FIAP - Linux 00 - Editor VI",
+        "arquivo": "/Users/imac/LinuxAvançado/Administracao de Sistemas GNU-LinuxFundamentos e Pratica/Semestre 2/FIAP - Linux 00 - Editor VI.pptx",
+        "modulo": "modulo1_fundamentos",
+        "conteudo": "\n        # Conteúdo de FIAP - Linux 00 - Editor VI.pptx\n        \n        ## Tópicos Abordados\n        - Conceitos fundamentais\n        - Comandos práticos\n        - Exemplos de uso\n        - Exercícios práticos\n        \n        ## Objetivos de Aprendizagem\n        - Compreender os conceitos\n        - Praticar comandos\n        - Aplicar em cenários reais\n        ",
+        "tamanho": 772739,
+        "modificacao": 1758737117.55192,
+        "tipo": "aula"
+      }
+    ],
+    "exercicios": [],
+    "comandos": []
+  },
+  "modulo2_redes": {
+    "aulas": [
+      {
+        "nome": "FIAP - Linux 03 - DNS Server",
+        "arquivo": "/Users/imac/LinuxAvançado/Administracao de Sistemas GNU-LinuxFundamentos e Pratica/Semestre 2/FIAP - Linux 03 - DNS Server.pptx",
+        "modulo": "modulo2_redes",
+        "conteudo": "\n            # Servidor DNS\n            \n            ## Configuração BIND9\n            - Instalação: `apt install bind9`\n            - Configuração: `/etc/bind/named.conf`\n            - Zonas: `/etc/bind/db.*`\n            \n            ## Comandos DNS\n            - `nslookup` - Consultar DNS\n            - `dig` - Ferramenta de diagnóstico\n            - `host` - Resolver nomes\n            ",
+        "tamanho": 1606525,
+        "modificacao": 1758737297.0351944,
+        "tipo": "aula"
+      },
+      {
+        "nome": "FIAP - Linux 02 - Gerenciamento de Pacotes",
+        "arquivo": "/Users/imac/LinuxAvançado/Administracao de Sistemas GNU-LinuxFundamentos e Pratica/Semestre 2/FIAP - Linux 02 - Gerenciamento de Pacotes.pptx",
+        "modulo": "modulo2_redes",
+        "conteudo": "\n        # Conteúdo de FIAP - Linux 02 - Gerenciamento de Pacotes.pptx\n        \n        ## Tópicos Abordados\n        - Conceitos fundamentais\n        - Comandos práticos\n        - Exemplos de uso\n        - Exercícios práticos\n        \n        ## Objetivos de Aprendizagem\n        - Compreender os conceitos\n        - Praticar comandos\n        - Aplicar em cenários reais\n        ",
+        "tamanho": 1664991,
+        "modificacao": 1758737240.8968754,
+        "tipo": "aula"
+      },
+      {
+        "nome": "FIAP - Linux 01 - Network e Client DNS",
+        "arquivo": "/Users/imac/LinuxAvançado/Administracao de Sistemas GNU-LinuxFundamentos e Pratica/Semestre 2/FIAP - Linux 01 - Network e Client DNS.pptx",
+        "modulo": "modulo2_redes",
+        "conteudo": "\n            # Configuração de Rede\n            \n            ## Comandos de Rede\n            - `ifconfig` - Configurar interfaces\n            - `ip` - Comando moderno de rede\n            - `ping` - Testar conectividade\n            - `netstat` - Estatísticas de rede\n            \n            ## Arquivos de Configuração\n            - `/etc/network/interfaces`\n            - `/etc/resolv.conf`\n            - `/etc/hosts`\n            ",
+        "tamanho": 3175210,
+        "modificacao": 1758737172.0986614,
+        "tipo": "aula"
+      }
+    ],
+    "exercicios": [],
+    "comandos": []
+  },
+  "modulo3_administracao_redes": {
+    "aulas": [
+      {
+        "nome": "FIAP - Linux 06 - Proxy Cache e Proxy Reverso",
+        "arquivo": "/Users/imac/LinuxAvançado/Administracao de Sistemas GNU-LinuxFundamentos e Pratica/Semestre 2/FIAP - Linux 06 - Proxy Cache e Proxy Reverso.pptx",
+        "modulo": "modulo3_administracao_redes",
+        "conteudo": "\n        # Conteúdo de FIAP - Linux 06 - Proxy Cache e Proxy Reverso.pptx\n        \n        ## Tópicos Abordados\n        - Conceitos fundamentais\n        - Comandos práticos\n        - Exemplos de uso\n        - Exercícios práticos\n        \n        ## Objetivos de Aprendizagem\n        - Compreender os conceitos\n        - Praticar comandos\n        - Aplicar em cenários reais\n        ",
+        "tamanho": 3547220,
+        "modificacao": 1758737838.4931965,
+        "tipo": "aula"
+      },
+      {
+        "nome": "FIAP - Linux 04 - HTTP Apache",
+        "arquivo": "/Users/imac/LinuxAvançado/Administracao de Sistemas GNU-LinuxFundamentos e Pratica/Semestre 2/FIAP - Linux 04 - HTTP Apache.pptx",
+        "modulo": "modulo3_administracao_redes",
+        "conteudo": "\n            # Servidor Web Apache\n            \n            ## Instalação e Configuração\n            - Instalação: `apt install apache2`\n            - Configuração: `/etc/apache2/`\n            - Sites: `/etc/apache2/sites-available/`\n            \n            ## Comandos Apache\n            - `systemctl start apache2`\n            - `systemctl enable apache2`\n            - `a2ensite` - Habilitar site\n            - `a2enmod` - Habilitar módulo\n            ",
+        "tamanho": 2988053,
+        "modificacao": 1757462356.4378471,
+        "tipo": "aula"
+      },
+      {
+        "nome": "FIAP - Linux 05 - FTP e SSH",
+        "arquivo": "/Users/imac/LinuxAvançado/Administracao de Sistemas GNU-LinuxFundamentos e Pratica/Semestre 2/FIAP - Linux 05 - FTP e SSH.pptx",
+        "modulo": "modulo3_administracao_redes",
+        "conteudo": "\n        # Conteúdo de FIAP - Linux 05 - FTP e SSH.pptx\n        \n        ## Tópicos Abordados\n        - Conceitos fundamentais\n        - Comandos práticos\n        - Exemplos de uso\n        - Exercícios práticos\n        \n        ## Objetivos de Aprendizagem\n        - Compreender os conceitos\n        - Praticar comandos\n        - Aplicar em cenários reais\n        ",
+        "tamanho": 539653,
+        "modificacao": 1758672493.9242935,
+        "tipo": "aula"
+      },
+      {
+        "nome": "FIAP - Linux 08 - SAMBA",
+        "arquivo": "/Users/imac/LinuxAvançado/Administracao de Sistemas GNU-LinuxFundamentos e Pratica/Semestre 2/FIAP - Linux 08 - SAMBA.pptx",
+        "modulo": "modulo3_administracao_redes",
+        "conteudo": "\n        # Conteúdo de FIAP - Linux 08 - SAMBA.pptx\n        \n        ## Tópicos Abordados\n        - Conceitos fundamentais\n        - Comandos práticos\n        - Exemplos de uso\n        - Exercícios práticos\n        \n        ## Objetivos de Aprendizagem\n        - Compreender os conceitos\n        - Praticar comandos\n        - Aplicar em cenários reais\n        ",
+        "tamanho": 497761,
+        "modificacao": 1758737973.9232483,
+        "tipo": "aula"
+      },
+      {
+        "nome": "FIAP - Linux 07 - DHCPD",
+        "arquivo": "/Users/imac/LinuxAvançado/Administracao de Sistemas GNU-LinuxFundamentos e Pratica/Semestre 2/FIAP - Linux 07 - DHCPD.pptx",
+        "modulo": "modulo3_administracao_redes",
+        "conteudo": "\n        # Conteúdo de FIAP - Linux 07 - DHCPD.pptx\n        \n        ## Tópicos Abordados\n        - Conceitos fundamentais\n        - Comandos práticos\n        - Exemplos de uso\n        - Exercícios práticos\n        \n        ## Objetivos de Aprendizagem\n        - Compreender os conceitos\n        - Praticar comandos\n        - Aplicar em cenários reais\n        ",
+        "tamanho": 839655,
+        "modificacao": 1758737934.3669167,
+        "tipo": "aula"
+      }
+    ],
+    "exercicios": [],
+    "comandos": []
+  },
+  "modulo4_administracao_sistemas": {
+    "aulas": [
+      {
+        "nome": "FIAP - Linux 09 - Backup e Shell Script",
+        "arquivo": "/Users/imac/LinuxAvançado/Administracao de Sistemas GNU-LinuxFundamentos e Pratica/Semestre 2/FIAP - Linux 09 - Backup e Shell Script.pptx",
+        "modulo": "modulo4_administracao_sistemas",
+        "conteudo": "\n            # Backup e Recuperação\n            \n            ## Estratégias de Backup\n            - Backup completo\n            - Backup incremental\n            - Backup diferencial\n            \n            ## Ferramentas de Backup\n            - `tar` - Arquivamento\n            - `rsync` - Sincronização\n            - `dd` - Cópia bit a bit\n            ",
+        "tamanho": 1921269,
+        "modificacao": 1758738012.4190311,
+        "tipo": "aula"
+      },
+      {
+        "nome": "FIAP - Linux 10 - Instalação MySQL",
+        "arquivo": "/Users/imac/LinuxAvançado/Administracao de Sistemas GNU-LinuxFundamentos e Pratica/Semestre 2/FIAP - Linux 10 - Instalação MySQL.pptx",
+        "modulo": "modulo4_administracao_sistemas",
+        "conteudo": "\n        # Conteúdo de FIAP - Linux 10 - Instalação MySQL.pptx\n        \n        ## Tópicos Abordados\n        - Conceitos fundamentais\n        - Comandos práticos\n        - Exemplos de uso\n        - Exercícios práticos\n        \n        ## Objetivos de Aprendizagem\n        - Compreender os conceitos\n        - Praticar comandos\n        - Aplicar em cenários reais\n        ",
+        "tamanho": 223509,
+        "modificacao": 1758738065.2456741,
+        "tipo": "aula"
+      }
+    ],
+    "exercicios": [],
+    "comandos": []
+  }
+}

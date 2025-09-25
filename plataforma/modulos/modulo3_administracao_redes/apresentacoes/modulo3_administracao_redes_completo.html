@@ -530,6 +530,99 @@
                 <strong>🎯 Próximo Módulo:</strong> Módulo 4 - Administração de Sistemas - Gerenciamento de pacotes, automação e virtualização.
             </div>
         </div>
+
+        <!-- Conteúdo Adicional - GNU-Linux Administração de Redes -->
+        <div class="slide">
+            <h2><i class="fas fa-plus-circle"></i> Conteúdo Adicional GNU-Linux - Administração de Redes</h2>
+            <div class="info-box">
+                <strong>📚 Material Complementar:</strong> Conteúdo adicional do curso GNU-Linux 
+                sobre servidores web, FTP, SSH, proxies e compartilhamento de arquivos.
+            </div>
+            
+            <div class="exercise-integration">
+                <h4><i class="fas fa-file-powerpoint"></i> Servidor Web Apache</h4>
+                <div class="code-example">
+                    <h5>Instalação e Configuração</h5>
+                    <span class="command">apt install apache2</span> # Instalar Apache<br>
+                    <span class="command">systemctl start apache2</span> # Iniciar serviço<br>
+                    <span class="command">systemctl enable apache2</span> # Habilitar na inicialização<br>
+                    <span class="command">a2ensite site-exemplo</span> # Habilitar site<br>
+                    <span class="command">a2enmod rewrite</span> # Habilitar módulo<br>
+                    
+                    <h5>Configuração de Sites</h5>
+                    <span class="command">/etc/apache2/sites-available/</span> # Configurações de sites<br>
+                    <span class="command">/var/www/html/</span> # Diretório padrão<br>
+                    <span class="command">apache2ctl configtest</span> # Testar configuração<br>
+                </div>
+            </div>
+            
+            <div class="exercise-integration">
+                <h4><i class="fas fa-file-powerpoint"></i> FTP e SSH</h4>
+                <div class="code-example">
+                    <h5>Configuração FTP</h5>
+                    <span class="command">apt install vsftpd</span> # Instalar servidor FTP<br>
+                    <span class="command">systemctl start vsftpd</span> # Iniciar serviço<br>
+                    <span class="command">/etc/vsftpd.conf</span> # Arquivo de configuração<br>
+                    
+                    <h5>Configuração SSH</h5>
+                    <span class="command">apt install openssh-server</span> # Instalar SSH<br>
+                    <span class="command">systemctl start ssh</span> # Iniciar serviço<br>
+                    <span class="command">ssh-keygen -t rsa</span> # Gerar chaves<br>
+                    <span class="command">ssh-copy-id user@server</span> # Copiar chave pública<br>
+                </div>
+            </div>
+            
+            <div class="exercise-integration">
+                <h4><i class="fas fa-file-powerpoint"></i> Proxy Cache e Reverso</h4>
+                <div class="code-example">
+                    <h5>Proxy Cache (Squid)</h5>
+                    <span class="command">apt install squid</span> # Instalar Squid<br>
+                    <span class="command">systemctl start squid</span> # Iniciar serviço<br>
+                    <span class="command">/etc/squid/squid.conf</span> # Configuração<br>
+                    
+                    <h5>Proxy Reverso (Nginx)</h5>
+                    <span class="command">apt install nginx</span> # Instalar Nginx<br>
+                    <span class="command">systemctl start nginx</span> # Iniciar serviço<br>
+                    <span class="command">/etc/nginx/sites-available/</span> # Configurações<br>
+                </div>
+            </div>
+            
+            <div class="exercise-integration">
+                <h4><i class="fas fa-file-powerpoint"></i> Servidor DHCP</h4>
+                <div class="code-example">
+                    <h5>Configuração ISC DHCP</h5>
+                    <span class="command">apt install isc-dhcp-server</span> # Instalar DHCP<br>
+                    <span class="command">systemctl start isc-dhcp-server</span> # Iniciar serviço<br>
+                    <span class="command">/etc/dhcp/dhcpd.conf</span> # Configuração<br>
+                    
+                    <h5>Configuração de Pool</h5>
+                    <span class="command">subnet 192.168.1.0 netmask 255.255.255.0 {</span><br>
+                    <span class="command">  range 192.168.1.100 192.168.1.200;</span><br>
+                    <span class="command">  option routers 192.168.1.1;</span><br>
+                    <span class="command">}</span>
+                </div>
+            </div>
+            
+            <div class="exercise-integration">
+                <h4><i class="fas fa-file-powerpoint"></i> Compartilhamento SAMBA</h4>
+                <div class="code-example">
+                    <h5>Configuração SAMBA</h5>
+                    <span class="command">apt install samba</span> # Instalar SAMBA<br>
+                    <span class="command">systemctl start smbd</span> # Iniciar serviço<br>
+                    <span class="command">systemctl start nmbd</span> # Iniciar NetBIOS<br>
+                    <span class="command">/etc/samba/smb.conf</span> # Configuração<br>
+                    
+                    <h5>Gerenciamento de Usuários</h5>
+                    <span class="command">smbpasswd -a usuario</span> # Adicionar usuário<br>
+                    <span class="command">smbpasswd -e usuario</span> # Habilitar usuário<br>
+                    <span class="command">smbclient -L localhost</span> # Listar compartilhamentos<br>
+                </div>
+            </div>
+            
+            <div class="info-box">
+                <strong>📁 Material Disponível:</strong> 5 apresentações PowerPoint com conteúdo detalhado sobre servidores web, FTP, SSH, proxies, DHCP e compartilhamento de arquivos.
+            </div>
+        </div>
     </div>
 
     <script src="../assets/js/main.js"></script>
