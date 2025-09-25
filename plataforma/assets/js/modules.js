@@ -219,17 +219,17 @@ Object.assign(ModuleManager, {
     },
 
     // Abrir apresentação
-    async openPresentation(file, title) {
+    openPresentation(file, title) {
         try {
-            const response = await fetch(file);
-            if (!response.ok) throw new Error('Arquivo não encontrado');
+            // Abrir apresentação em nova aba
+            const url = file.startsWith('http') ? file : `${window.location.origin}/${file}`;
+            window.open(url, '_blank');
             
-            const content = await response.text();
-            
-            // Criar modal para apresentação
-            this.showPresentationModal(content, title);
+            // Log para debug
+            console.log('Abrindo apresentação:', url);
         } catch (error) {
-            Utils.showNotification('Erro ao carregar apresentação: ' + error.message, 'error');
+            Utils.showNotification('Erro ao abrir apresentação: ' + error.message, 'error');
+            console.error('Erro ao abrir apresentação:', error);
         }
     },
 
