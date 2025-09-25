@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Journaling</title><meta name="generator" content="DocBook XSL Stylesheets V1.79.1" /><link rel="home" href="index.html" title="Guia Foca Linux" /><link rel="up" href="ch05.html" title="Capítulo 5. Discos e Partições" /><link rel="prev" href="ch05s03.html" title="Partição EXT2 (Linux Native)" /><link rel="next" href="ch05s05.html" title="Partição EXT3 (Linux Native)" /></head><body text="black" link="#0000FF" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Journaling</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch05s03.html">Anterior</a> </td><th width="60%" align="center">Capítulo 5. Discos e Partições</th><td width="20%" align="right"> <a accesskey="n" href="ch05s05.html">Próximo</a></td></tr></table><hr /></div><div xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format" class="breadcrumbs"><span class="breadcrumb-link"><a href="index.html">Guia Foca Linux</a></span> &gt; <span class="breadcrumb-link"><a href="ch05.html">Discos e Partições</a></span> &gt; <span class="breadcrumb-node">Journaling</span></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="disc-journal"></a>Journaling</h2></div></div></div>
+<p>
+O sistema de journaling grava qualquer operação que será feita no disco em uma
+área especial chamada "journal", assim se acontecer algum problema durante
+alterações no disco, ele pode voltar ao estado anterior do arquivo, ou
+finalizar a operação.
+</p>
+<p>
+Desta forma, o journal acrescenta ao sistema de arquivos o suporte a alta
+disponibilidade e maior tolerância a falhas.  Após uma falha de energia, por
+exemplo, o journal é analisado durante a montagem do sistema de arquivos e
+todas as operações que estavam sendo feitas no disco são verificadas.
+Dependendo do estado da operação, elas podem ser desfeitas ou finalizadas.  O
+retorno do servidor é praticamente imediato (sem precisar a enorme espera da
+execução do fsck em partições maiores que 10Gb), garantindo o rápido retorno
+dos serviços da máquina.
+</p>
+<p>
+Outra situação que pode ser evitada é com inconsistências no sistema de
+arquivos do servidor após a situação acima, fazendo o servidor ficar em estado
+'single user' e esperando pela intervenção do administrador.  Este capítulo do
+guia explica a utilização de journaling usando o sistema de arquivos
+<span class="emphasis"><em>ext3</em></span> e <span class="emphasis"><em>reiserfs</em></span> (veja <a class="xref" href="ch05s05.html" title="Partição EXT3 (Linux Native)">“Partição EXT3 (Linux Native)”</a> para detalhes).
+</p>
+</div><HR xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format"></HR><p class="copyright">Copyright © 1999-2020 - Gleydson Mazioli da Silva</p><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch05s03.html">Anterior</a> </td><td width="20%" align="center"><a accesskey="u" href="ch05.html">Subir</a></td><td width="40%" align="right"> <a accesskey="n" href="ch05s05.html">Próximo</a></td></tr><tr><td width="40%" align="left" valign="top">Partição EXT2 (Linux Native) </td><td width="20%" align="center"><a accesskey="h" href="index.html">Voltar ao Índice</a></td><td width="40%" align="right" valign="top"> Partição EXT3 (Linux Native)</td></tr></table></div></body></html>

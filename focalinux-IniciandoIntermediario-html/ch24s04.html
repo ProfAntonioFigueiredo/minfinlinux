@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Convertendo músicas no formato wav para mp3</title><meta name="generator" content="DocBook XSL Stylesheets V1.79.1" /><link rel="home" href="index.html" title="Guia Foca Linux" /><link rel="up" href="ch24.html" title="Capítulo 24. Executando tarefas diversas no Linux" /><link rel="prev" href="ch24s03.html" title="Assistindo DVDs" /><link rel="next" href="ch24s05.html" title="Convertendo músicas do formato mp3 para cdr" /></head><body text="black" link="#0000FF" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Convertendo músicas no formato wav para mp3</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch24s03.html">Anterior</a> </td><th width="60%" align="center">Capítulo 24. Executando tarefas diversas no Linux</th><td width="20%" align="right"> <a accesskey="n" href="ch24s05.html">Próximo</a></td></tr></table><hr /></div><div xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format" class="breadcrumbs"><span class="breadcrumb-link"><a href="index.html">Guia Foca Linux</a></span> &gt; <span class="breadcrumb-link"><a href="ch24.html">Executando tarefas diversas no Linux</a></span> &gt; <span class="breadcrumb-node">Convertendo músicas no formato wav para mp3</span></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="tasks-wavtomp3"></a>Convertendo músicas no formato wav para mp3</h2></div></div></div>
+<p>
+A conversão é explicada aqui usando o programa <span class="command"><strong>bladeenc</strong></span>.
+Você pode baixa-lo de <a class="ulink" href="http://bladeenc.mp3.no/" target="_top">http://bladeenc.mp3.no/</a>.  O
+<span class="command"><strong>bladeenc</strong></span> foi o escolhido por apresentar a melhor performance
+e qualidade para conversão da músicas, que é importante para quem tem máquinas
+menos potentes e processamento leve é valioso para você :-)
+</p>
+<p>
+A conversão é feita da seguinte forma:
+</p>
+<pre class="screen">
+bladeenc -progress=4 -del *.wav
+</pre>
+<p>
+A opção <code class="literal">-del</code> diz para apagar os arquivos
+<code class="filename">.wav</code> a medida que são convertidos e
+<code class="literal">-progress=4</code> para mostrar uma barra de progresso total e
+outra do arquivo que está sendo processado.
+</p>
+</div><HR xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format"></HR><p class="copyright">Copyright © 1999-2020 - Gleydson Mazioli da Silva</p><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch24s03.html">Anterior</a> </td><td width="20%" align="center"><a accesskey="u" href="ch24.html">Subir</a></td><td width="40%" align="right"> <a accesskey="n" href="ch24s05.html">Próximo</a></td></tr><tr><td width="40%" align="left" valign="top">Assistindo DVDs </td><td width="20%" align="center"><a accesskey="h" href="index.html">Voltar ao Índice</a></td><td width="40%" align="right" valign="top"> Convertendo músicas do formato mp3 para cdr</td></tr></table></div></body></html>

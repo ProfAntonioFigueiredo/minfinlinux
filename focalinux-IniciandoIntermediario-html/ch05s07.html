@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Partição Linux Swap (Memória Virtual)</title><meta name="generator" content="DocBook XSL Stylesheets V1.79.1" /><link rel="home" href="index.html" title="Guia Foca Linux" /><link rel="up" href="ch05.html" title="Capítulo 5. Discos e Partições" /><link rel="prev" href="ch05s06.html" title="Sistema de arquivos reiserfs" /><link rel="next" href="ch05s08.html" title="O sistema de arquivos /proc" /></head><body text="black" link="#0000FF" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Partição Linux Swap (Memória Virtual)</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch05s06.html">Anterior</a> </td><th width="60%" align="center">Capítulo 5. Discos e Partições</th><td width="20%" align="right"> <a accesskey="n" href="ch05s08.html">Próximo</a></td></tr></table><hr /></div><div xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format" class="breadcrumbs"><span class="breadcrumb-link"><a href="index.html">Guia Foca Linux</a></span> &gt; <span class="breadcrumb-link"><a href="ch05.html">Discos e Partições</a></span> &gt; <span class="breadcrumb-node">Partição Linux Swap (Memória Virtual)</span></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="disc-swap"></a>Partição Linux Swap (Memória Virtual)</h2></div></div></div>
+<p>
+Este tipo de partição é usado para oferecer o suporte a <span class="emphasis"><em>memória
+virtual</em></span> ao <span class="command"><strong>GNU/Linux</strong></span> em adição a
+<span class="emphasis"><em>memória RAM</em></span> instalada no sistema.  Este tipo de partição é
+identificado pelo tipo 82 nos programas de particionamento de disco para
+<span class="command"><strong>Linux</strong></span>.  Para detalhes de como criar uma partição
+<code class="literal">Linux Swap</code> veja <a class="xref" href="ch05s07.html#disc-swap-criando-p" title="Criando sistema de arquivos Swap em uma partição">“Criando sistema de arquivos Swap em uma partição”</a>.
+</p>
+<p>
+Somente os dados na memória RAM são processados pelo processador, por ser mais
+rápida.  Desta forma quando você está executando um programa e a memória RAM
+começa a encher, o <span class="command"><strong>GNU/Linux</strong></span> move automaticamente os dados
+que não estão sendo usados para a partição Swap e libera a memória RAM para a
+continuar carregando os dados necessários pelo.  Quando os dados movidos para a
+partição Swap são solicitados, o <span class="command"><strong>GNU/Linux</strong></span> move os dados da
+partição Swap para a Memória.  Por este motivo a partição Swap também é chamada
+<code class="literal">de Troca</code> ou <code class="literal">memória virtual</code>.
+</p>
+<p>
+A partição swap é otimizada para permitir alta velocidade para mover dados da
+memória RAM para ela e vice versa.  Note também que é possível criar o sistema
+de arquivos <span class="emphasis"><em>Swap</em></span> em um arquivo ao invés de uma partição
+(veja <a class="xref" href="ch05s07.html#disc-swap-criando-a" title="Criando um sistema de arquivos Swap em um arquivo">“Criando um sistema de arquivos Swap em um arquivo”</a>).
+</p>
+
+
+<div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="disc-swap-criando-p"></a>Criando sistema de arquivos Swap em uma partição</h3></div></div></div>
+<p>
+O programa usado para formatar uma partição Swap é o <span class="command"><strong>mkswap</strong></span>.
+Seu uso é simples:
+</p>
+<p>
+<code class="literal">mkswap /dev/sda?</code>
+</p>
+<p>
+ Novamente veja <a class="xref" href="ch05s12.html" title="Identificação de discos e partições em sistemas Linux">“Identificação de discos e partições em sistemas Linux”</a>  caso não souber 
+identificar seus discos e partições.  O nome do dispositivo da partição 
+<code class="literal">Swap</code> pode ser visualizado através de seu programa de particionamento, 
+você pode usar o comando <code class="literal">fdisk -l /dev/sda</code> para listar as partições 
+no primeiro disco rígido e assim verificar qual dispositivo corresponde a partição
+Swap.
+</p>
+<p>
+A opção <code class="literal">-c</code> também pode ser usada com o
+<span class="command"><strong>mkswap</strong></span> para checar se existem agrupamentos danificados na
+partição.  A opção <code class="literal">-v1</code> permite a criação da swap usando mais
+de 128Mb (esta opção é a padrão).
+</p>
+<p>
+Com a partição Swap formatada, use o comando: <code class="literal">swapon
+/dev/sda?</code> para ativar a partição Swap (lembre-se de substituir ?
+pelo número de sua partição Swap).
+</p>
+
+
+<p>
+Observações:
+</p>
+<p>
+Versões antigas do kernel do <span class="command"><strong>GNU/Linux</strong></span> 2.0.xx e anteriores
+somente suportavam partições Swap de até 128MB.  Nos novos kernels foi
+introduzida uma nova versão da swap.  Para converter a swap antiga para uma
+nova versão reformate-a usando <span class="command"><strong>mkswap -v1 /dev/sda?</strong></span> (onde
+<code class="filename">/dev/sda?</code> especifica sua partição swap, obtida com o
+<code class="literal">fdisk -l /dev/sda</code>).
+</p>
+<p>
+Se utilizar mais que 1 partição <code class="literal">Swap</code>, pode ser útil o uso da
+opção <code class="literal">-p NUM</code> que especifica a prioridade em que a partição
+Swap será usada.  Pode ser usado um valor de prioridade entre 0 e 32767,
+partições com número maior serão usadas primeiro, sendo que na montagem
+automática através de "mount -a" podem ser designados números negativos.
+</p>
+<p>
+Procure usar o número maior para partições mais rápidas (elas serão acessadas
+primeiro) e números maiores para partições mais lentas.  
+
+Caso precise desativar a partição Swap, use o comando: <code class="literal">swapoff /dev/sda?</code>.
+</p>
+
+</div>
+
+
+<div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="disc-swap-criando-a"></a>Criando um sistema de arquivos Swap em um arquivo</h3></div></div></div>
+<p>
+Também é possível criar um arquivo que poderá ser usado como memória virtual.
+Veja passo a passo como fazer isso:
+</p>
+<div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">
+<p>
+Use o comando <code class="literal">dd if=/dev/zero of=/tmp/troca bs=1024
+count=64000</code> para criar um arquivo chamado <code class="filename">troca</code>
+vazio de 64Mb de tamanho em <code class="filename">/tmp</code>.  Você pode modificar os
+parâmetros de <code class="literal">of</code> para escolher onde o arquivo será criado, o
+tamanho do arquivo poderá ser modificado através de <code class="literal">count</code>.
+</p>
+</li><li class="listitem">
+<p>
+Execute <code class="literal">mkswap /tmp/troca</code> para formatar o arquivo.  Após
+concluir este passo, o sistema de arquivos <code class="literal">Swap</code> estará
+criado e pronto para ser usado.
+</p>
+</li><li class="listitem">
+<p>
+Digite <code class="literal">sync</code> para sincronizar os buffers para o disco, assim
+você não terá problemas em um servidor com muito I/O.
+</p>
+</li><li class="listitem">
+<p>
+Ative o arquivo de troca com o comando <code class="literal">swapon /tmp/troca</code>.
+</p>
+</li><li class="listitem">
+<p>
+Confira se o tamanho da memória virtual foi modificado digitando <code class="literal">cat
+/proc/meminfo</code> ou <code class="literal">free</code>.
+</p>
+</li></ol></div>
+
+
+<p>
+Observações:
+</p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+<p>
+Podem ser usadas partições de troca e arquivos de troca juntos, sem problemas.
+</p>
+</li><li class="listitem">
+<p>
+Caso seu sistema já tenha uma partição de <code class="literal">Swap</code>, é
+recomendável deixar o acesso ao arquivo <code class="literal">Swap</code> com uma
+prioridade menor (usando a opção -p NUM com o comando
+<span class="command"><strong>swapon</strong></span>).
+</p>
+</li></ul></div>
+
+</div>
+
+
+<div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="disc-swap-swapxarquivo"></a>Partição Swap ou Arquivo?</h3></div></div></div>
+<p>
+Criar uma partição de Troca ou um arquivo de troca?  Abaixo algumas vantagens e
+desvantagens:
+</p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+<p>
+A partição Swap é mais rápida que o arquivo Swap pois é acessada diretamente
+pelo Kernel.  Se o seu computador tem pouca memória (menos que 512Mb) ou você
+tem certeza que o sistema recorre freqüentemente a memória virtual para
+executar seus programas, é recomendável usar uma partição Swap.
+</p>
+</li><li class="listitem">
+<p>
+O arquivo de troca permite que você crie somente uma partição <code class="literal">Linux
+Native</code> e crie o arquivo de troca na partição <code class="literal">EXT2</code>.
+</p>
+</li><li class="listitem">
+<p>
+Você pode alterar o tamanho do arquivo de troca facilmente apagando e criando
+um novo arquivo como descrito em <a class="xref" href="ch05s07.html#disc-swap-criando-a" title="Criando um sistema de arquivos Swap em um arquivo">“Criando um sistema de arquivos Swap em um arquivo”</a>.
+</p>
+</li><li class="listitem">
+<p>
+É possível criar um arquivo de troca em outros tipos de partições como
+<code class="literal">FAT16</code>, <code class="literal">FAT32</code>, <code class="literal">NTFS</code>,
+etc.
+</p>
+</li><li class="listitem">
+<p>
+O arquivo de troca estará disponível somente após o sistema de arquivos que o
+armazena (<code class="literal">ext2</code>, <code class="literal">fat32</code>, etc) estar
+montado.  Isto é um problema para sistemas com pouca memória que dependem do
+arquivo de troca desde sua inicialização.
+</p>
+</li></ul></div>
+</div>
+
+</div><HR xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format"></HR><p class="copyright">Copyright © 1999-2020 - Gleydson Mazioli da Silva</p><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch05s06.html">Anterior</a> </td><td width="20%" align="center"><a accesskey="u" href="ch05.html">Subir</a></td><td width="40%" align="right"> <a accesskey="n" href="ch05s08.html">Próximo</a></td></tr><tr><td width="40%" align="left" valign="top">Sistema de arquivos reiserfs </td><td width="20%" align="center"><a accesskey="h" href="index.html">Voltar ao Índice</a></td><td width="40%" align="right" valign="top"> O sistema de arquivos <code class="filename">/proc</code></td></tr></table></div></body></html>

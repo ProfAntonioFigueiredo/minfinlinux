@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>LOADLIN</title><meta name="generator" content="DocBook XSL Stylesheets V1.79.1" /><link rel="home" href="index.html" title="Guia Foca Linux" /><link rel="up" href="ch06.html" title="Capítulo 6. Gerenciadores de Partida (boot loaders)" /><link rel="prev" href="ch06s03.html" title="Parâmetros de inicialização passados ao kernel" /><link rel="next" href="ch06s05.html" title="syslinux" /></head><body text="black" link="#0000FF" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">LOADLIN</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch06s03.html">Anterior</a> </td><th width="60%" align="center">Capítulo 6. Gerenciadores de Partida (boot loaders)</th><td width="20%" align="right"> <a accesskey="n" href="ch06s05.html">Próximo</a></td></tr></table><hr /></div><div xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format" class="breadcrumbs"><span class="breadcrumb-link"><a href="index.html">Guia Foca Linux</a></span> &gt; <span class="breadcrumb-link"><a href="ch06.html">Gerenciadores de Partida (boot loaders)</a></span> &gt; <span class="breadcrumb-node">LOADLIN</span></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="boot-loadlin"></a>LOADLIN</h2></div></div></div>
+<p>
+É um gerenciador de partida que permite iniciar o <span class="command"><strong>GNU/Linux</strong></span>
+a partir do <span class="command"><strong>DOS</strong></span>.  A vantagem do uso do
+<span class="command"><strong>Loadlin</strong></span> é não ser preciso reiniciar o computador para se
+entrar no <span class="command"><strong>GNU/Linux</strong></span>.  Ele funciona carregando o
+<span class="command"><strong>kernel</strong></span> (copiado para a partição <span class="command"><strong>DOS</strong></span>) para
+a memória e inicializando o <span class="command"><strong>GNU/Linux</strong></span>.
+</p>
+<p>
+Outro motivo pelo qual é muito usado é quando o <span class="command"><strong>GNU/Linux</strong></span>
+não tem suporte a um certo tipo de dispositivo, mas este tem seu suporte no
+<span class="command"><strong>DOS</strong></span> ou <span class="command"><strong>Windows</strong></span> e funciona corretamente
+com eles.
+</p>
+<p>
+O truque é o seguinte: Você inicia normalmente pelo <span class="command"><strong>DOS</strong></span> e
+após seu dispositivo ser configurado corretamente pelo driver do
+<span class="command"><strong>DOS</strong></span> e funcionando corretamente, você executa o
+<span class="command"><strong>Loadlin</strong></span> e o <span class="command"><strong>GNU/Linux</strong></span> assim poderá
+usa-lo.  Muitos usam o comando <span class="command"><strong>Loadlin</strong></span> dentro do arquivo
+<code class="filename">autoexec.bat</code> para iniciar o <span class="command"><strong>GNU/Linux</strong></span>
+automaticamente após o dispositivo ser configurado pelo <span class="command"><strong>DOS</strong></span>.
+</p>
+<p>
+ATENÇÃO!!!  Não execute o <span class="command"><strong>Loadlin</strong></span> dentro do Windows.
+</p>
+<div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="boot-loadlin-opcoes"></a>Opções do LOADLIN</h3></div></div></div>
+<p>
+Abaixo a lista de opções que podem ser usadas com o programa
+<span class="command"><strong>LOADLIN</strong></span> (note que todas são usadas no
+<span class="command"><strong>DOS</strong></span>):
+</p>
+<p>
+<span class="command"><strong>loadlin</strong></span> [<span class="emphasis"><em>imagem_kernel</em></span>] [<span class="emphasis"><em>argumentos</em></span>] [<span class="emphasis"><em>opções</em></span>]
+</p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+<p>
+<code class="literal">imagem_kernel</code> - Arquivo que contém o kernel.
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">root=dispositivo</code> - Especifica o dispositivo que contém o
+sistema de arquivos raiz.  É especificado de acordo com a identificação de
+dispositivos no <span class="command"><strong>GNU/Linux</strong></span> (<code class="filename">/dev/hda1</code>,
+<code class="filename">/dev/hdb1</code>, etc).
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">ro</code> - Diz ao kernel para montar inicialmente o sistema de
+arquivos raiz como somente leitura.  Os scripts de inicialização normalmente
+modificam o sistema de arquivos para leitura e gravação após sua checagem.
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">rw</code> - Diz ao kernel para montar inicialmente o sistema de
+arquivos raiz como leitura e gravação.
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">initrd=[NUM]</code> - Define o tamanho do disco RAM usado no
+sistema.
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">-v</code> - Mostra detalhes sobre mensagens e configuração
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">-t</code> - Modo de teste, tudo é feito menos a inicialização do
+<span class="command"><strong>GNU/Linux</strong></span>.
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">-d arquivo</code> - Mesma função de <code class="literal">-t</code>, mas
+envia a saída para o arquivo
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">-txmode</code> - Altera o modo de vídeo para 80x25 antes de
+inicializar o kernel.
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">-dskreset</code> - Após carregar a imagem do kernel, reseta todos
+os discos rígidos antes de inicializar o <span class="command"><strong>GNU/Linux</strong></span>.
+</p>
+</li></ul></div>
+</div>
+
+<div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="boot-loadlin-exemplo"></a>Exemplo de inicialização com o LOADLIN</h3></div></div></div>
+<p>
+Abaixo você encontra um exemplo do comando <code class="literal">loadlin</code> que
+poderá ser usado em sua instalação <span class="command"><strong>GNU/Linux</strong></span> (precisando
+apenas ajustar a localização da partição raiz do <span class="command"><strong>GNU/Linux</strong></span>
+de acordo com seu sistema).
+</p>
+<pre class="screen">
+ C:\&gt; LOADLIN vmlinuz root=/dev/hda1 ro
+                |        |            |
+                |        |            +- Montar como somente leitura
+                |        |
+                |        +- Partição raiz
+                |
+                +- Nome do kernel copiado para o DOS
+</pre>
+</div>
+
+</div><HR xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format"></HR><p class="copyright">Copyright © 1999-2020 - Gleydson Mazioli da Silva</p><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch06s03.html">Anterior</a> </td><td width="20%" align="center"><a accesskey="u" href="ch06.html">Subir</a></td><td width="40%" align="right"> <a accesskey="n" href="ch06s05.html">Próximo</a></td></tr><tr><td width="40%" align="left" valign="top">Parâmetros de inicialização passados ao kernel </td><td width="20%" align="center"><a accesskey="h" href="index.html">Voltar ao Índice</a></td><td width="40%" align="right" valign="top"> syslinux</td></tr></table></div></body></html>

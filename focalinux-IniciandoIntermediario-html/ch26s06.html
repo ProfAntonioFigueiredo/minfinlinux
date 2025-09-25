@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Verificando e marcando setores danificados em um HD</title><meta name="generator" content="DocBook XSL Stylesheets V1.79.1" /><link rel="home" href="index.html" title="Guia Foca Linux" /><link rel="up" href="ch26.html" title="Capítulo 26. Manutenção do Sistema" /><link rel="prev" href="ch26s05.html" title="defrag" /><link rel="next" href="ch26s07.html" title="Limpando arquivos de LOGS" /></head><body text="black" link="#0000FF" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Verificando e marcando setores danificados em um HD</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch26s05.html">Anterior</a> </td><th width="60%" align="center">Capítulo 26. Manutenção do Sistema</th><td width="20%" align="right"> <a accesskey="n" href="ch26s07.html">Próximo</a></td></tr></table><hr /></div><div xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format" class="breadcrumbs"><span class="breadcrumb-link"><a href="index.html">Guia Foca Linux</a></span> &gt; <span class="breadcrumb-link"><a href="ch26.html">Manutenção do Sistema</a></span> &gt; <span class="breadcrumb-node">Verificando e marcando setores danificados em um HD</span></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="manut-hdbadblocks"></a>Verificando e marcando setores danificados em um HD</h2></div></div></div>
+<p>
+Um dos sintomas de um disco rígido que contém setores danificados (bad blocks)
+é a mudança repentina do sistema de arquivos para o modo somente leitura, o
+aparecimento de diversas mensagens no syslog indicando falha de leitura do hd,
+uma pausa se segundos no sistema junto com o led de atividade de disco ligado.
+Se isto acontece com você, uma forma de solucionar este inconveniente é
+executar o teste na superfície física do disco para procurar e marcar os blocos
+problemáticos como defeituosos.
+</p>
+<p>
+Em alguns casos, os blocos defeituosos ocorrem isoladamente no disco rígido,
+não aumentando mais sua quantidade, entretanto, se o número de blocos
+danificados em seu disco está crescendo em um curto espaço de tempo, comece a
+pensar na troca do disco rígido por um outro.  Existem empresas que recuperam
+HDs mas pelo valor cobrado por se tratar de um serviço delicado, só compensa
+caso você não tenha o backup e <span class="strong"><strong>realmente</strong></span>
+precisa dos dados do disco.
+</p>
+<p>
+Para fazer uma checagem de HD no sistema de arquivos <code class="filename">ext2</code>
+ou <code class="filename">ext3</code>, proceda da seguinte forma:
+</p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+<p>
+Se possível, faça um backup de todos os dados ou dos dados essenciais da
+partição será checada.
+</p>
+</li><li class="listitem">
+<p>
+Inicie o sistema por um disquete de boot ou CD de recuperação.  Este passo é
+útil pois em alguns casos, pode ocorrer a perda de interrupção do disco rígido
+e seu sistema ficar paralisado.  Só o método de checar o HD usando um disquete
+de boot lhe fará agendar uma parada no sistema e notificar os usuários,
+evitando sérios problemas do que fazendo isto com um sistema em produção.
+</p>
+</li><li class="listitem">
+<p>
+Execute o <span class="command"><strong>badblocks</strong></span> usando a opção <code class="literal">-o</code>
+para gravar os possíveis blocos defeituosos encontrados para um arquivo:
+<code class="literal">badblocks -v -o blocos-defeituosos.lista /dev/hd??</code>.
+</p>
+<p>
+Substitua o dispositivo <code class="filename">/dev/hd??</code> pelo dispositivo que
+deseja verificar.  A checagem do <span class="command"><strong>badblocks</strong></span> deverá ser feita
+para cada partição existente no disco rígido.  O tempo de checagem dependerá da
+velocidade do disco rígido, velocidade do barramento, cabo de dados utilizado,
+velocidade de processamento e é claro, do estado do disco rígido (quantos
+setores defeituosos ele tem).
+</p>
+</li><li class="listitem">
+<p>
+Após concluir o <span class="command"><strong>badblocks</strong></span>, veja se foram encontrados blocos
+defeituosos.  Caso tenha encontrado, siga para o próximo passo.
+</p>
+</li><li class="listitem">
+<p>
+Para marcar os blocos encontrados pelo <span class="command"><strong>badblocks</strong></span> como
+defeituosos, execute o comando: <code class="literal">fsck.ext3 -l blocos-defeituosos.lista
+-f /dev/hd??</code>.
+</p>
+<p>
+Substitua o dispositivo, pelo dispositivo que verificou com o
+<span class="command"><strong>badblocks</strong></span>.  O arquivo
+<code class="filename">blocos-defeituosos.list</code> contém a lista de blocos gerada
+pelo <span class="command"><strong>badblocks</strong></span> que serão marcados como defeituosos.
+</p>
+</li></ul></div>
+<p>
+Para mais detalhes sobre as opções de checagem usada pelos programas, veja
+<a class="xref" href="ch26s04.html" title="badblocks">“badblocks”</a> e <a class="xref" href="ch26.html#manut-checagem-ext2" title="fsck.ext2">“fsck.ext2”</a>.
+</p>
+</div><HR xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format"></HR><p class="copyright">Copyright © 1999-2020 - Gleydson Mazioli da Silva</p><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch26s05.html">Anterior</a> </td><td width="20%" align="center"><a accesskey="u" href="ch26.html">Subir</a></td><td width="40%" align="right"> <a accesskey="n" href="ch26s07.html">Próximo</a></td></tr><tr><td width="40%" align="left" valign="top">defrag </td><td width="20%" align="center"><a accesskey="h" href="index.html">Voltar ao Índice</a></td><td width="40%" align="right" valign="top"> Limpando arquivos de LOGS</td></tr></table></div></body></html>

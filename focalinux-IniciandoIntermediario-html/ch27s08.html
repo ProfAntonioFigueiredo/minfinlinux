@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Arquivo /etc/network/interfaces</title><meta name="generator" content="DocBook XSL Stylesheets V1.79.1" /><link rel="home" href="index.html" title="Guia Foca Linux" /><link rel="up" href="ch27.html" title="Capítulo 27. Principais arquivos de configuração do diretório /etc" /><link rel="prev" href="ch27s07.html" title="Diretório /etc/network" /><link rel="next" href="ch27s09.html" title="Arquivo /etc/networks/options" /></head><body text="black" link="#0000FF" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Arquivo <code class="filename">/etc/network/interfaces</code></th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch27s07.html">Anterior</a> </td><th width="60%" align="center">Capítulo 27. Principais arquivos de configuração do diretório <code class="filename">/etc</code></th><td width="20%" align="right"> <a accesskey="n" href="ch27s09.html">Próximo</a></td></tr></table><hr /></div><div xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format" class="breadcrumbs"><span class="breadcrumb-link"><a href="index.html">Guia Foca Linux</a></span> &gt; <span class="breadcrumb-link"><a href="ch27.html">Principais arquivos de configuração do diretório <code xmlns="http://www.w3.org/1999/xhtml" class="filename">/etc</code></a></span> &gt; <span class="breadcrumb-node">Arquivo <code xmlns="http://www.w3.org/1999/xhtml" class="filename">/etc/network/interfaces</code></span></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="etc-network-interfaces"></a>Arquivo <code class="filename">/etc/network/interfaces</code></h2></div></div></div>
+<p>
+Este é o arquivo de configuração usado pelos programas <span class="command"><strong>ifup</strong></span>
+e <span class="command"><strong>ifdown</strong></span>, respectivamente para ativar e desativas as
+interfaces de rede.
+</p>
+<p>
+O que estes utilitários fazem na realidade é carregar os utilitários
+<span class="command"><strong>ifconfig</strong></span> e <span class="command"><strong>route</strong></span> através dos argumentos
+passados do arquivo <code class="filename">/etc/network/interfaces</code>, permitindo
+que o usuário iniciante configure uma interface de rede com mais facilidade.
+</p>
+<p>
+Abaixo um exemplo do arquivo <code class="filename">interfaces</code> é o seguinte:
+</p>
+<pre class="screen">
+iface eth0 inet static
+   address 192.168.1.1
+   netmask 255.255.255.0 
+   network 192.168.1.0
+   broadcast 192.168.1.255
+</pre>
+<p>
+As interfaces e roteamentos são configurados na ordem que aparecem neste
+arquivo.  Cada configuração de interface inicia com a palavra chave
+<code class="literal">iface</code>.  A próxima palavra é o nome da interface que deseja
+configurar (da mesma forma que é utilizada pelos comandos
+<span class="command"><strong>ifconfig</strong></span> e <span class="command"><strong>route</strong></span>).  Você pode também usar
+<code class="literal">IP aliases</code> especificando <code class="filename">eth0:0</code> mas
+tenha certeza que a interface real (<code class="filename">eth0</code>) é inicializada
+antes.
+</p>
+<p>
+A próxima palavra especifica a familia de endereços da interface; Escolha
+<code class="literal">inet</code> para a rede TCP/IP, <code class="literal">ipx</code> para
+interfaces IPX e <code class="literal">IPv6</code> para interfaces configuradas com o
+protocolo IPV6.
+</p>
+<p>
+A palavra <code class="literal">static</code> especifica o método que a interface será
+configurada, neste caso é uma interface com endereço estático (fixo).
+</p>
+<p>
+Outros métodos e seus parâmetros são especificados abaixo (traduzido da página
+do arquivo <span class="command"><strong>interfaces</strong></span>):
+</p>
+<div class="variablelist"><dl class="variablelist"><dt><span class="term">O método <span class="emphasis"><em>loopback</em></span></span></dt><dd>
+<p>
+É usado para configurar a interface <span class="emphasis"><em>loopback</em></span> (lo) IPv4.
+</p>
+</dd><dt><span class="term">O método <span class="emphasis"><em>static</em></span></span></dt><dd>
+<p>
+É usado para configurar um endereço IPv4 fixo para a interface.  As opções que
+podem ser usadas com o métodos <span class="emphasis"><em>static</em></span> são as seguintes
+(opções marcadas com * no final são requeridas na configuração):
+</p>
+<div class="variablelist"><dl class="variablelist"><dt><span class="term">address <span class="emphasis"><em>endereço</em></span> *</span></dt><dd>
+<p>
+Endereço IP da Interface de rede (por exemplo, 192.168.1.1).
+</p>
+</dd><dt><span class="term">netmask <span class="emphasis"><em>máscara</em></span> *</span></dt><dd>
+<p>
+Máscara de rede da Interface de rede (por exemplo, 255.255.255.0).
+</p>
+</dd><dt><span class="term">broadcast <span class="emphasis"><em>endereço</em></span></span></dt><dd>
+<p>
+Endereço de Broadcast da interface (por exemplo, 192.168.1.255).
+</p>
+</dd><dt><span class="term">network <span class="emphasis"><em>endereço</em></span></span></dt><dd>
+<p>
+Endereço da rede (por exemplo, 192.168.0.0).
+</p>
+</dd><dt><span class="term">gateway <span class="emphasis"><em>endereço</em></span></span></dt><dd>
+<p>
+Endereço do gateway padrão (por exemplo, 192.168.1.10).  O gateway é o endereço
+do computador responsável por conectar o seu computador a outra rede.  Use
+somente se for necessário em sua rede.
+</p>
+</dd></dl></div>
+</dd><dt><span class="term">O método <span class="emphasis"><em>dhcp</em></span></span></dt><dd>
+<p>
+Este método é usado para obter os parâmetros de configuração através de um
+servidor DHCP da rede através das ferramentas: <span class="command"><strong>dhclient</strong></span>,
+<span class="command"><strong>pump</strong></span> (somente Kernels 2.2.x) ou <span class="command"><strong>dpcpcp</strong></span>
+(somente kernels 2.0.x e 2.2.x)
+</p>
+<div class="variablelist"><dl class="variablelist"><dt><span class="term">hostname <span class="emphasis"><em>nome</em></span></span></dt><dd>
+<p>
+Nome da estação de trabalho que será requisitado.  (pump, dhcpcd)
+</p>
+</dd><dt><span class="term">leasehours <span class="emphasis"><em>leasttime</em></span></span></dt><dd>
+<p>
+Lease time preferida em horas (pump)
+</p>
+</dd><dt><span class="term">leasetime <span class="emphasis"><em>leasetime</em></span></span></dt><dd>
+<p>
+Lease time preferida em segundos (dhcpcd)
+</p>
+</dd><dt><span class="term">vendor <span class="emphasis"><em>vendedor</em></span></span></dt><dd>
+<p>
+Identificador do vendedor (dhcpcd)
+</p>
+</dd><dt><span class="term">client <span class="emphasis"><em>identificação</em></span></span></dt><dd>
+<p>
+Identificação do cliente (dhcpcd)
+</p>
+</dd></dl></div>
+<p>
+Exemplo:
+</p>
+<pre class="screen">
+iface eth0 inet dhcp
+ leasehours 6
+ client estacao 10
+</pre>
+</dd><dt><span class="term">O método <span class="emphasis"><em>bootp</em></span></span></dt><dd>
+<p>
+Este método pode ser usado para obter um endereço via <span class="command"><strong>bootp</strong></span>:
+</p>
+<div class="variablelist"><dl class="variablelist"><dt><span class="term">bootfile <code class="filename">arquivo</code></span></dt><dd>
+<p>
+Diz ao servidor para utilizar <code class="filename">arquivo</code> como arquivo de
+inicialização
+</p>
+</dd><dt><span class="term">server <span class="emphasis"><em>endereço</em></span></span></dt><dd>
+<p>
+Especifica o endereço do servidor <span class="command"><strong>bootp</strong></span>.
+</p>
+</dd><dt><span class="term">hwaddr <span class="emphasis"><em>endereço</em></span></span></dt><dd>
+<p>
+Usa <span class="emphasis"><em>endereço</em></span> como endereço de hardware no lugar do
+endereço original.
+</p>
+</dd></dl></div>
+</dd></dl></div>
+<p>
+Algumas opções se aplicam a todas as interfaces e são as seguintes:
+</p>
+<div class="variablelist"><dl class="variablelist"><dt><span class="term">noauto</span></dt><dd>
+<p>
+Não configura automaticamente a interface quando o <span class="command"><strong>ifup</strong></span> ou
+<span class="command"><strong>ifdown</strong></span> são executados com a opção <code class="literal">-a</code>
+(normalmente usada durante a inicialização ou desligamento do sistema).
+</p>
+</dd><dt><span class="term">pre-up <code class="literal">comando</code></span></dt><dd>
+<p>
+Executa o <code class="literal">comando</code> antes da inicialização da interface.
+</p>
+</dd><dt><span class="term">up <code class="literal">comando</code></span></dt><dd>
+<p>
+Executa o <code class="literal">comando</code> após a interface ser iniciada.
+</p>
+</dd><dt><span class="term">down <code class="literal">comando</code></span></dt><dd>
+<p>
+Executa o <code class="literal">comando</code> antes de desativar a interface.
+</p>
+</dd><dt><span class="term">pre-down <code class="literal">comando</code></span></dt><dd>
+<p>
+Executa o <code class="literal">comando</code> após desativar a interface.
+</p>
+</dd></dl></div>
+<p>
+Os comandos que são executados através das opções <span class="emphasis"><em>up</em></span>,
+<span class="emphasis"><em>pre-up</em></span> e <span class="emphasis"><em>down</em></span> podem aparecer várias
+vezes na mesma interface, eles são executados na seqüência que aparecem.  Note
+que se um dos comandos falharem, nenhum dos outros será executado.  Você pode
+ter certeza que os próximos comandos serão executados adicionando <code class="literal">||
+true</code> ao final da linha de comando.
+</p>
+</div><HR xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format"></HR><p class="copyright">Copyright © 1999-2020 - Gleydson Mazioli da Silva</p><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch27s07.html">Anterior</a> </td><td width="20%" align="center"><a accesskey="u" href="ch27.html">Subir</a></td><td width="40%" align="right"> <a accesskey="n" href="ch27s09.html">Próximo</a></td></tr><tr><td width="40%" align="left" valign="top">Diretório <code class="filename">/etc/network</code> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Voltar ao Índice</a></td><td width="40%" align="right" valign="top"> Arquivo <code class="filename">/etc/networks/options</code></td></tr></table></div></body></html>

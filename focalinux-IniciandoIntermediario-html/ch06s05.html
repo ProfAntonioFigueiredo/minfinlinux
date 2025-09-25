@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>syslinux</title><meta name="generator" content="DocBook XSL Stylesheets V1.79.1" /><link rel="home" href="index.html" title="Guia Foca Linux" /><link rel="up" href="ch06.html" title="Capítulo 6. Gerenciadores de Partida (boot loaders)" /><link rel="prev" href="ch06s04.html" title="LOADLIN" /><link rel="next" href="ch07.html" title="Capítulo 7. Execução de programas" /></head><body text="black" link="#0000FF" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">syslinux</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch06s04.html">Anterior</a> </td><th width="60%" align="center">Capítulo 6. Gerenciadores de Partida (boot loaders)</th><td width="20%" align="right"> <a accesskey="n" href="ch07.html">Próximo</a></td></tr></table><hr /></div><div xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format" class="breadcrumbs"><span class="breadcrumb-link"><a href="index.html">Guia Foca Linux</a></span> &gt; <span class="breadcrumb-link"><a href="ch06.html">Gerenciadores de Partida (boot loaders)</a></span> &gt; <span class="breadcrumb-node">syslinux</span></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="boot-syslinux"></a>syslinux</h2></div></div></div>
+<p>
+Outro gerenciador de partida que funciona somente com sistemas de arquivos
+<span class="command"><strong>DOS</strong></span>.  A principal diferença do <span class="command"><strong>syslinux</strong></span>
+em relação ao <span class="command"><strong>LOADLIN</strong></span> é que foi feito especialmente para
+funcionar em disquetes formatados no <span class="command"><strong>DOS</strong></span>, facilitando a
+instalação do <span class="command"><strong>GNU/Linux</strong></span> e para a criação de disquetes de
+recuperação ou de inicialização.  Um disquete gerado pelo
+<span class="command"><strong>syslinux</strong></span> é lido sem problemas pelo
+<span class="command"><strong>DOS</strong></span>/<span class="command"><strong>Windows</strong></span>.
+</p>
+<p>
+<span class="command"><strong>syslinux</strong></span> [-s] [<span class="emphasis"><em>dispositivo</em></span>]
+</p>
+<p>
+A opção <code class="literal">-s</code> instala no disquete uma versão segura, lenta e
+estúpida do <span class="command"><strong>syslinux</strong></span>.  Isto é necessário para algumas
+<code class="literal">BIOS</code> problemáticas.
+</p>
+<div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="boot-syslinux-criando"></a>Criando um disquete de inicialização com o syslinux</h3></div></div></div>
+<p>
+Siga os passos abaixo para criar um disquete de inicialização com o
+<span class="command"><strong>syslinux</strong></span>:
+</p>
+<div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">
+<p>
+Formate o disquete no <span class="command"><strong>DOS</strong></span> ou com alguma ferramenta
+<span class="command"><strong>GNU/Linux</strong></span> que faça a formatação de disquetes para serem
+usados no <span class="command"><strong>DOS</strong></span>.
+</p>
+</li><li class="listitem">
+<p>
+Copie um ou mais arquivos de <span class="command"><strong>kernel</strong></span> para o disquete
+</p>
+</li><li class="listitem">
+<p>
+Digite <code class="literal">syslinux /dev/fd0</code> (lembre-se de usar a opção
+<code class="literal">-s</code> se tiver problemas de inicialização).  Este comando
+modificará o setor de partida do disquete e gravará um arquivo chamado
+<code class="filename">LDLINUX.SYS</code> no diretório raiz do disquete.
+</p>
+<p>
+Lembre-se: O disquete deve estar desmontado antes de usar o comando
+<span class="command"><strong>syslinux</strong></span>, caso o disquete estiver montado uma mensagem será
+mostrada e o <span class="command"><strong>syslinux</strong></span> abortado.
+</p>
+</li></ol></div>
+<p>
+Por padrão é carregado o kernel de nome <code class="filename">GNU/Linux</code>.  Este
+padrão pode ser modificado através do arquivo de configuração
+<code class="filename">SYSLINUX.CFG</code> que também é gravado no diretório raiz do
+disquete.  Veja <a class="xref" href="ch06s05.html#boot-syslinux-opcoes" title="O arquivo SYSLINUX.CFG">“O arquivo SYSLINUX.CFG”</a> para detalhes.
+</p>
+<p>
+Se as teclas Caps Lock ou Scrool Lock estiverem ligadas ou Shift, Alt forem
+pressionadas durante o carregamento do <span class="command"><strong>syslinux</strong></span>, o
+<span class="command"><strong>syslinux</strong></span> mostrará um aviso de <code class="literal">boot:</code> no
+estilo do <span class="command"><strong>LILO</strong></span>.  O usuário pode então digitar o nome do
+kernel seguido de qualquer parâmetro para inicializar o
+<span class="command"><strong>GNU/Linux</strong></span>.
+</p>
+</div>
+
+<div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="boot-syslinux-opcoes"></a>O arquivo SYSLINUX.CFG</h3></div></div></div>
+<p>
+Este arquivo é criado no diretório raiz da unidade de disquete e contém as
+opções que serão usadas para modificar o funcionamento do
+<span class="command"><strong>syslinux</strong></span>.  Abaixo a listagem de opções que podem ser
+especificadas neste arquivo:
+</p>
+<div class="variablelist"><dl class="variablelist"><dt><span class="term">default [kernel] [opções]</span></dt><dd>
+<p>
+Indica o nome do kernel e as opções dele que serão usadas na inicialização,
+caso <span class="command"><strong>syslinux</strong></span> seja iniciado automaticamente.  Caso não for
+especificada, o valor assumido será <span class="emphasis"><em>linux auto</em></span> sem nenhuma
+opção de inicialização.
+</p>
+</dd><dt><span class="term">append [opções]</span></dt><dd>
+<p>
+Passa uma ou mais opções ao kernel na inicialização.  Elas serão adicionadas
+automaticamente para inicializações automáticas e manuais do
+<span class="command"><strong>syslinux</strong></span>.
+</p>
+</dd><dt><span class="term">label [nome], </span><span class="term">kernel [kernel], </span><span class="term">append [opções]</span></dt><dd>
+<p>
+Nome que identificará o kernel no aviso de <code class="literal">boot:</code> (idêntica a
+opção <code class="literal">label=</code> do <span class="command"><strong>LILO</strong></span>).  Se a imagem
+especificada por <code class="literal">nome</code> for selecionada, o kernel usado será o
+especificado pelo parâmetro <code class="literal">kernel</code> e as opções usadas por
+<code class="literal">append</code>.
+</p>
+<p>
+Caso seja passado um hífen <code class="literal">-</code> ao parâmetro
+<code class="literal">append</code>, os parâmetros passados pelo
+<code class="literal">append</code> global serão anulados.
+</p>
+</dd><dt><span class="term">implicit [valor]</span></dt><dd>
+<p>
+Se o [valor] for igual a 0, não carrega a imagem até que seja explicitamente
+especificada na opção <code class="literal">label</code>.
+</p>
+</dd><dt><span class="term">timeout [tempo]</span></dt><dd>
+<p>
+Indica quanto tempo o <span class="command"><strong>syslinux</strong></span> aguardará antes de
+inicializar automaticamente (medido em 1/10 de segundos).  Caso alguma tecla
+seja pressionada, a inicialização automática é interrompida.  Para desativar
+esta característica, use 0 como <code class="literal">timeout</code>.  O valor máximo é
+de 35996.
+</p>
+</dd><dt><span class="term">font [nome]</span></dt><dd>
+<p>
+Especifica uma fonte (em formato <code class="filename">.psf</code>) que será usada para
+mostrar as mensagens do <span class="command"><strong>syslinux</strong></span> (após o aviso de copyright
+do programa).  Ele carrega a fonte para a placa de vídeo, se a fonte conter uma
+tabela unicode, ela será ignorada.  Somente funciona em placas EGA e VGA.
+</p>
+</dd><dt><span class="term">kbdmap [mapa]</span></dt><dd>
+<p>
+Instala um simples mapa de teclado.  O mapa de teclados usado é muito simples:
+somente remapeia códigos conhecidos pela <span class="command"><strong>BIOS</strong></span>, o que
+significa que somente teclas usadas no teclado padrão EUA serão usadas.
+</p>
+<p>
+O utilitário <span class="command"><strong>keytab-lilo.pl</strong></span> da distribuição do
+<span class="command"><strong>lilo</strong></span> pode ser usado para criar tais mapas de teclado.
+</p>
+</dd><dt><span class="term">prompt [valor]</span></dt><dd>
+<p>
+Se [valor] for igual a 1, mostra automaticamente o aviso de
+<code class="literal">boot:</code> assim que o <span class="command"><strong>syslinux</strong></span> for iniciado.
+Caso seja igual a 0, mostra o aviso de <code class="literal">boot:</code> somente se as
+teclas Shift ou Alt forem pressionadas ou Caps Lock e Scrool Lock estiverem
+ativadas.
+</p>
+</dd><dt><span class="term">display [arquivo]</span></dt><dd>
+<p>
+Mostra o conteúdo do [arquivo] durante a inicialização do
+<span class="command"><strong>syslinux</strong></span>.
+</p>
+</dd><dt><span class="term">F1 [arquivo], </span><span class="term">F2 [arquivo], </span><span class="term">..., </span><span class="term">F0 [arquivo]</span></dt><dd>
+<p>
+Especifica que arquivos serão mostrados quando as teclas de F1 até F10 forem
+pressionadas.  Para detalhes, veja <a class="xref" href="ch06s05.html#boot-syslinux-formatacao" title="Formatação dos arquivos de tela do syslinux">“Formatação dos arquivos de tela do syslinux”</a>.
+</p>
+</dd></dl></div>
+</div>
+
+<div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="boot-syslinux-formatacao"></a>Formatação dos arquivos de tela do syslinux</h3></div></div></div>
+<p>
+Os arquivos de texto que são mostrados na tela pelo <span class="command"><strong>syslinux</strong></span>
+podem ter suas cores modificadas usando parâmetros simples, isto causa um bom
+efeito de apresentação.  Abaixo estão os códigos que podem ser usados para
+criar um arquivo texto que será exibido pelo <span class="command"><strong>syslinux</strong></span>:
+</p>
+<pre class="screen">
+CTRL+L - Limpa a tela (semelhante ao que o clear faz). 
+CTRL+O[frente][fundo] - Define a cor de frente e fundo, se somente 
+                 uma cor for especificada, esta será assumida como frente. 
+                 Veja os valores para [frente] e [fundo] abaixo:
+                 00 - preto                      08 - cinza escuro
+                 01 - azul escuro                09 - azul claro
+                 02 - verde escuro               0a - verde claro 
+                 03 - ciano escuro               0b - ciano claro
+                 04 - vermelho escuro            0c - vermelho claro 
+                 05 - purple escuro              0d - purple claro
+                 06 - marrom                     0e - amarelo 
+                 07 - cinza claro                0f - branco
+CTRL+Z       - Equivalente ao fim de arquivo no DOS
+</pre>
+<p>
+O código padrão usado é o 07.  Escolhendo uma cor clara para o fundo (08-0f)
+resultará em uma cor piscante correspondente para a texto (00-07).
+</p>
+</div>
+
+</div><HR xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format"></HR><p class="copyright">Copyright © 1999-2020 - Gleydson Mazioli da Silva</p><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch06s04.html">Anterior</a> </td><td width="20%" align="center"><a accesskey="u" href="ch06.html">Subir</a></td><td width="40%" align="right"> <a accesskey="n" href="ch07.html">Próximo</a></td></tr><tr><td width="40%" align="left" valign="top">LOADLIN </td><td width="20%" align="center"><a accesskey="h" href="index.html">Voltar ao Índice</a></td><td width="40%" align="right" valign="top"> Capítulo 7. Execução de programas</td></tr></table></div></body></html>

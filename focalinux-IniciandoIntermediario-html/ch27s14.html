@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Arquivo /etc/security/limits.conf</title><meta name="generator" content="DocBook XSL Stylesheets V1.79.1" /><link rel="home" href="index.html" title="Guia Foca Linux" /><link rel="up" href="ch27.html" title="Capítulo 27. Principais arquivos de configuração do diretório /etc" /><link rel="prev" href="ch27s13.html" title="Arquivo /etc/security/access.conf" /><link rel="next" href="ch27s15.html" title="Arquivo /etc/crontab" /></head><body text="black" link="#0000FF" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Arquivo <code class="filename">/etc/security/limits.conf</code></th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch27s13.html">Anterior</a> </td><th width="60%" align="center">Capítulo 27. Principais arquivos de configuração do diretório <code class="filename">/etc</code></th><td width="20%" align="right"> <a accesskey="n" href="ch27s15.html">Próximo</a></td></tr></table><hr /></div><div xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format" class="breadcrumbs"><span class="breadcrumb-link"><a href="index.html">Guia Foca Linux</a></span> &gt; <span class="breadcrumb-link"><a href="ch27.html">Principais arquivos de configuração do diretório <code xmlns="http://www.w3.org/1999/xhtml" class="filename">/etc</code></a></span> &gt; <span class="breadcrumb-node">Arquivo <code xmlns="http://www.w3.org/1999/xhtml" class="filename">/etc/security/limits.conf</code></span></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="etc-securith-limits"></a>Arquivo <code class="filename">/etc/security/limits.conf</code></h2></div></div></div>
+<p>
+Defini limites de uso dos recursos do sistema para cada usuário ou grupos de
+usuários.  Os recursos são descritos em linhas da seguinte forma:
+</p>
+<pre class="screen">
+#&lt;dominio&gt;          &lt;tipo&gt;  &lt;item&gt;  &lt;valor&gt;
+</pre>
+<p>
+O <code class="literal">domínio</code> pode ser um nome de usuário, um grupo
+(especificado como <code class="literal">@grupo</code>) ou o coringa
+<code class="literal">*</code>.
+</p>
+<p>
+O <code class="literal">tipo</code> pode ser <code class="literal">soft</code> para o limite
+mínimos e <code class="literal">hard</code> para o limite máximo.  O campo
+<code class="literal">item</code> pode ser um dos seguintes:
+</p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+<p>
+<code class="literal">core</code> - limita o tamanho do arquivo core (KB)
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">data</code> - tamanho máximo de dados (KB)
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">fsize</code> - Tamanho máximo de arquivo (KB)
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">memlock</code> - Espaço máximo de endereços bloqueados na memória
+(KB)
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">nofile</code> - Número máximo de arquivos abertos
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">rss</code> - Tamanho máximo dos programas residentes (KB)
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">stack</code> - Tamanho máximo de pilha (KB)
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">cpu</code> - Tempo máximo usado na CPU (MIN)
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">nproc</code> - Número máximo de processos
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">as</code> - Limite de espaço de endereços
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">maxlogins</code> - Número máximo de logins deste usuário
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">priority</code> - Prioridade que os programas deste usuário serão
+executados
+</p>
+</li></ul></div>
+<p>
+Abaixo um exemplo de arquivo <code class="filename">/etc/security/limits.conf</code>:
+</p>
+<pre class="screen">
+ 
+#&lt;dominio&gt;      &lt;tipo&gt;  &lt;item&gt;         &lt;valor&gt;
+
+*               soft    core            0
+*               hard    rss             10000
+@student        hard    nproc           20
+@faculty        soft    nproc           20
+@faculty        hard    nproc           50
+ftp             hard    nproc           0
+@student        -       maxlogins       4
+</pre>
+</div><HR xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format"></HR><p class="copyright">Copyright © 1999-2020 - Gleydson Mazioli da Silva</p><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch27s13.html">Anterior</a> </td><td width="20%" align="center"><a accesskey="u" href="ch27.html">Subir</a></td><td width="40%" align="right"> <a accesskey="n" href="ch27s15.html">Próximo</a></td></tr><tr><td width="40%" align="left" valign="top">Arquivo <code class="filename">/etc/security/access.conf</code> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Voltar ao Índice</a></td><td width="40%" align="right" valign="top"> Arquivo <code class="filename">/etc/crontab</code></td></tr></table></div></body></html>

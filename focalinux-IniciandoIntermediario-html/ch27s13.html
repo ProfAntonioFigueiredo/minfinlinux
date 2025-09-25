@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Arquivo /etc/security/access.conf</title><meta name="generator" content="DocBook XSL Stylesheets V1.79.1" /><link rel="home" href="index.html" title="Guia Foca Linux" /><link rel="up" href="ch27.html" title="Capítulo 27. Principais arquivos de configuração do diretório /etc" /><link rel="prev" href="ch27s12.html" title="Diretório /etc/security" /><link rel="next" href="ch27s14.html" title="Arquivo /etc/security/limits.conf" /></head><body text="black" link="#0000FF" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Arquivo <code class="filename">/etc/security/access.conf</code></th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch27s12.html">Anterior</a> </td><th width="60%" align="center">Capítulo 27. Principais arquivos de configuração do diretório <code class="filename">/etc</code></th><td width="20%" align="right"> <a accesskey="n" href="ch27s14.html">Próximo</a></td></tr></table><hr /></div><div xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format" class="breadcrumbs"><span class="breadcrumb-link"><a href="index.html">Guia Foca Linux</a></span> &gt; <span class="breadcrumb-link"><a href="ch27.html">Principais arquivos de configuração do diretório <code xmlns="http://www.w3.org/1999/xhtml" class="filename">/etc</code></a></span> &gt; <span class="breadcrumb-node">Arquivo <code xmlns="http://www.w3.org/1999/xhtml" class="filename">/etc/security/access.conf</code></span></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="etc-security-access"></a>Arquivo <code class="filename">/etc/security/access.conf</code></h2></div></div></div>
+<p>
+É lido no momento do login do usuário e permite definir quem terá acesso ao
+sistema e de onde tem permissão de acessar sua conta.  O formato deste arquivo
+são 3 campos separados por <code class="literal">:</code>, cada linha contendo uma regra
+de acesso.
+</p>
+<p>
+O primeiro campo deve conter o caracter <code class="literal">+</code> ou
+<code class="literal">-</code> para definir se aquela regra permitirá (+) ou bloqueará(-)
+o acesso do usuário.
+</p>
+<p>
+O segundo campo deve conter uma lista de logins, grupos, usuário@computador ou
+a palavra <code class="literal">ALL</code> (confere com tudo) e <code class="literal">EXCEPT</code>
+(excessão).
+</p>
+<p>
+O terceiro campo deve conter uma lista de terminais tty (para logins locais),
+nomes de computadores, nomes de domínios (iniciando com um
+<code class="literal">.</code>), endereço IP de computadores ou endereço IP de redes
+(finalizando com <code class="literal">.</code>).  Também pode ser usada a palavra
+<code class="literal">ALL</code>, <code class="literal">LOCAL</code> e <code class="literal">EXCEPT</code>
+(atinge somente máquinas locais conhecidas pelo sistema).
+</p>
+<p>
+Abaixo um exemplo do <code class="filename">access.conf</code>
+</p>
+<pre class="screen">
+# Somente permite o root entrar em tty1
+#
+-:ALL EXCEPT root:tty1
+
+# bloqueia o logins do console a todos exceto whell, shutdown e sync.
+#
+-:ALL EXCEPT wheel shutdown sync:console
+
+# Bloqueia logins remotos de contas privilegiadas (grupo wheel).
+#
+-:wheel:ALL EXCEPT LOCAL .win.tue.nl
+
+# Algumas contas não tem permissão de acessar o sistema de nenhum lugar:
+#
+-:wsbscaro wsbsecr wsbspac wsbsym wscosor wstaiwde:ALL
+
+# Todas as outras contas que não se encaixam nas regras acima, podem acessar de 
+# qualquer lugar
+</pre>
+</div><HR xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format"></HR><p class="copyright">Copyright © 1999-2020 - Gleydson Mazioli da Silva</p><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch27s12.html">Anterior</a> </td><td width="20%" align="center"><a accesskey="u" href="ch27.html">Subir</a></td><td width="40%" align="right"> <a accesskey="n" href="ch27s14.html">Próximo</a></td></tr><tr><td width="40%" align="left" valign="top">Diretório <code class="filename">/etc/security</code> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Voltar ao Índice</a></td><td width="40%" align="right" valign="top"> Arquivo <code class="filename">/etc/security/limits.conf</code></td></tr></table></div></body></html>

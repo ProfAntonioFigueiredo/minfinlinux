@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Capítulo 20. Sistema de gerenciamento de pacotes</title><meta name="generator" content="DocBook XSL Stylesheets V1.79.1" /><link rel="home" href="index.html" title="Guia Foca Linux" /><link rel="up" href="index.html" title="Guia Foca Linux" /><link rel="prev" href="ch19s11.html" title="Lista de pacotes para uma instalação rápida e manual" /><link rel="next" href="ch20s02.html" title="apt" /></head><body text="black" link="#0000FF" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Capítulo 20. Sistema de gerenciamento de pacotes</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch19s11.html">Anterior</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch20s02.html">Próximo</a></td></tr></table><hr /></div><div xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format" class="breadcrumbs"><span class="breadcrumb-link"><a href="index.html">Guia Foca Linux</a></span> &gt; <span class="breadcrumb-node">Sistema de gerenciamento de pacotes</span></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a id="dpkg"></a>Capítulo 20. Sistema de gerenciamento de pacotes</h1></div></div></div><div class="toc"><p><strong>Índice</strong></p><dl class="toc"><dt><span class="section"><a href="ch20.html#dpkg-introducao">dpkg</a></span></dt><dd><dl><dt><span class="section"><a href="ch20.html#dpkg-pacotes">Pacotes</a></span></dt><dt><span class="section"><a href="ch20.html#dpkg-instalar">Instalar pacotes</a></span></dt><dt><span class="section"><a href="ch20.html#dpkg-dependencias">Dependências</a></span></dt><dt><span class="section"><a href="ch20.html#dpkg-l">Listar pacotes existentes no sistema</a></span></dt><dt><span class="section"><a href="ch20.html#dpkg-r">Removendo pacotes do sistema</a></span></dt><dt><span class="section"><a href="ch20.html#dpkg-purge">Removendo completamente um pacote</a></span></dt><dt><span class="section"><a href="ch20.html#dpkg-I">Mostrar descrição do pacote</a></span></dt><dt><span class="section"><a href="ch20.html#dpkg-S-up">Procura de pacotes através do nome de um arquivo</a></span></dt><dt><span class="section"><a href="ch20.html#dpkg-s-lw">Status do pacote</a></span></dt><dt><span class="section"><a href="ch20.html#dpkg-C-up">Procurando pacotes com problemas de instalação</a></span></dt><dt><span class="section"><a href="ch20.html#dpkg-get-selections">Mostrando a lista de pacotes do sistema</a></span></dt><dt><span class="section"><a href="ch20.html#dpkg-set-selections">Instalando pacotes a partir de uma lista externa</a></span></dt><dt><span class="section"><a href="ch20.html#dpkg-configure">Configurando pacotes desconfigurados</a></span></dt><dt><span class="section"><a href="ch20.html#dpkg-c-lw">Listando arquivos de um pacote</a></span></dt></dl></dd><dt><span class="section"><a href="ch20s02.html">apt</a></span></dt><dd><dl><dt><span class="section"><a href="ch20s02.html#s21.2.1">O arquivo <code class="filename">/etc/apt/sources.list</code></a></span></dt><dt><span class="section"><a href="ch20s02.html#s21.2.2">O arquivo <code class="filename">/etc/apt/apt.conf</code></a></span></dt><dt><span class="section"><a href="ch20s02.html#s21.2.3">Copiando a lista de pacotes disponíveis</a></span></dt><dt><span class="section"><a href="ch20s02.html#s21.2.4">Utilizando CDs oficiais/não-oficiais/terceiros com o apt</a></span></dt><dt><span class="section"><a href="ch20s02.html#s21.2.5">Instalando novos pacotes</a></span></dt><dt><span class="section"><a href="ch20s02.html#s21.2.6">Removendo pacotes instalado</a></span></dt><dt><span class="section"><a href="ch20s02.html#s21.2.7">Atualizando sua distribuição</a></span></dt><dt><span class="section"><a href="ch20s02.html#s21.2.8">Removendo pacotes baixados pelo <span class="command"><strong>apt</strong></span></a></span></dt><dt><span class="section"><a href="ch20s02.html#s21.2.9">Procurando por pacotes através da descrição</a></span></dt><dt><span class="section"><a href="ch20s02.html#s21.2.10">Procurando um pacote que contém determinado arquivo</a></span></dt><dt><span class="section"><a href="ch20s02.html#s21.2.11">Modos eficazes de compilação do código fonte para a Debian</a></span></dt><dt><span class="section"><a href="ch20s02.html#s21.2.12">Verificando pacotes corrompidos</a></span></dt><dt><span class="section"><a href="ch20s02.html#s21.2.13">Corrigindo problemas de dependências e outros erros</a></span></dt></dl></dd></dl></div>
+<p>
+Este capítulo ensina a operação básica do programa de manipulação de pacotes
+<span class="command"><strong>Debian</strong></span>, a instalação, remoção, consulta e checagem de
+arquivos <code class="filename">.deb</code>.
+</p>
+
+<div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="dpkg-introducao"></a>dpkg</h2></div></div></div>
+<p>
+O <span class="command"><strong>dpkg</strong></span> (Debian Package) é o programa responsável pelo
+gerenciamento de pacotes em sistemas <span class="command"><strong>Debian</strong></span>.  Sua operação é
+feita em modo texto e funciona através de comandos, assim caso deseje uma
+ferramenta mais amigável para a seleção e instalação de pacotes, prefira o
+<span class="command"><strong>dselect</strong></span> (que é um front-end para o <span class="command"><strong>dpkg</strong></span>)
+ou o <span class="command"><strong>apt</strong></span> (veja <a class="xref" href="ch20s02.html" title="apt">“apt”</a>).
+</p>
+<p>
+<span class="command"><strong>dpkg</strong></span> é muito usado por usuários avançados da
+<span class="command"><strong>Debian</strong></span> e desenvolvedores para fins de instalação, manutenção
+e construção de pacotes.
+</p>
+
+<div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="dpkg-pacotes"></a>Pacotes</h3></div></div></div>
+<p>
+Pacotes <span class="command"><strong>Debian</strong></span> são programas colocados dentro de um arquivo
+identificados pela extensão <code class="filename">.deb</code> incluindo arquivos
+necessários para a instalação do programa, um sistemas de listagem/checagem de
+dependências, scripts de automatização para remoção parcial/total do pacote,
+listagem de arquivos, etc.
+</p>
+<p>
+Um nome de pacote tem a forma 
+</p>
+</div>
+
+<div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="dpkg-instalar"></a>Instalar pacotes</h3></div></div></div>
+<p>
+Use o comando: <code class="literal">dpkg -i []</code> (ou
+<span class="emphasis"><em>--install</em></span>) para instalar um pacote em seu sistema.  Talvez
+ele peça que seja instalado algum pacote que depende para seu funcionamento.
+Para detalhes sobre dependências veja <a class="xref" href="ch20.html#dpkg-dependencias" title="Dependências">“Dependências”</a>.  É
+preciso especificar o nome completo do pacote (com a versão e revisão).
+</p>
+</div>
+
+<div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="dpkg-dependencias"></a>Dependências</h3></div></div></div>
+<p>
+Dependências são pacotes requeridos para a instalação de outro pacote.  Na
+<span class="command"><strong>Debian</strong></span> cada pacote contém um programa com uma certa função.
+Por exemplo, se você tentar instalar o pacote de edição de textos  que usa o programa
+<span class="command"><strong>sed</strong></span>, você precisará verificar se o pacote  está instalado em seu sistema antes de tentar
+instalar o , caso contrário, o
+pacote  pedirá o
+<span class="command"><strong>sed</strong></span> e não funcionará corretamente.  Note que o pacote
+ é apenas um exemplo e não
+existe (pelo menos até agora :-).  O programa <span class="command"><strong>dselect</strong></span> faz o
+trabalho de checagem de dependências automaticamente durante a instalação dos
+pacotes.
+</p>
+<p>
+A colocação de cada programa em seu próprio pacote parece ser uma dificuldade a
+mais para a instalação manual de um certo programa.  Mas para os
+desenvolvedores que mantém os mais de <span class="strong"><strong>25000</strong></span>
+pacotes existentes na distribuição <span class="command"><strong>Debian</strong></span>, é um ponto
+fundamental, porque não é preciso esperar uma nova versão do  ser lançada para instalar a versão mais
+nova do pacote .  Por este motivo
+também é uma vantagem para o usuário.
+</p>
+</div>
+
+<div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="dpkg-l"></a>Listar pacotes existentes no sistema</h3></div></div></div>
+<p>
+Use o comando: <code class="literal">dpkg -l [pacote]</code>
+(<span class="emphasis"><em>--list</em></span>) para isto.
+</p>
+<p>
+Na listagem de pacotes também será mostrado o "status" de cada um na coluna da
+esquerda, acompanhado do nome do pacote, versão e descrição básica.  Caso o
+nome do [pacote] seja omitido, todos os pacotes serão listados.
+</p>
+<p>
+É recomendado usar "dpkg -l|less" para ter um melhor controle da listagem (pode
+ser longa dependendo da quantidade de programas instalados).
+</p>
+</div>
+
+<div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="dpkg-r"></a>Removendo pacotes do sistema</h3></div></div></div>
+<p>
+Use o comando: <code class="literal">dpkg -r </code>
+(<span class="emphasis"><em>--remove</em></span>) para remover um pacote do sistema
+completamente.  Somente é necessário digitar o nome e versão do pacote que
+deseja remover, não sendo necessário a revisão do pacote.
+</p>
+<p>
+O comando <code class="literal">dpkg -r</code> não remove os arquivos de configuração
+criados pelo programa.  Para uma remoção completa do programa veja <a class="xref" href="ch20.html#dpkg-purge" title="Removendo completamente um pacote">“Removendo completamente um pacote”</a>.
+</p>
+</div>
+
+<div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="dpkg-purge"></a>Removendo completamente um pacote</h3></div></div></div>
+<p>
+Use o comando: <code class="literal">dpkg -P [|-a]</code>
+(<span class="emphasis"><em>--purge</em></span>) para remover um pacote e todos os diretórios e
+arquivos de configuração criados.  Não é necessário especificar a revisão do
+pacote.  O comando <code class="literal">dpkg--purge</code> pode ser usado após uma
+remoção normal do pacote (usando <code class="literal">dpkg -r</code>).
+</p>
+<p>
+Caso você usar diretamente o comando <code class="literal">dpkg --purge</code>,
+<span class="command"><strong>dpkg</strong></span> primeiro removerá o pacote normalmente (como explicado
+em <a class="xref" href="ch20.html#dpkg-r" title="Removendo pacotes do sistema">“Removendo pacotes do sistema”</a>) e após removido apagará todos os arquivos de
+configuração.
+</p>
+<p>
+Caso especifique a opção <span class="emphasis"><em>-a</em></span> (ou sua equivalente
+<span class="emphasis"><em>--pending</em></span>) no lugar do nome do pacote, todos os pacotes
+marcados para remoção serão removidos completamente do sistema.
+</p>
+<p>
+Note que o <code class="literal">dpkg --purge</code> somente remove arquivos de
+configuração conhecidos pelo pacote.  Em especial, os arquivos de configuração
+criados para cada usuário do sistema devem ser removidos manualmente.  Seria
+pedir demais que o <span class="command"><strong>dpkg</strong></span> também conhecesse os usuários de
+nosso sistema ;-).
+</p>
+</div>
+
+<div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="dpkg-I"></a>Mostrar descrição do pacote</h3></div></div></div>
+<p>
+Use o comando: <code class="literal">dpkg -I </code>
+(<span class="emphasis"><em>--info</em></span>) para mostrar a descrição do pacote.  Entre a
+descrição são mostradas as dependências do pacote, pacotes sugeridos,
+recomendados, descrição do que o pacote faz, tamanho e número de arquivos que
+contém.
+</p>
+</div>
+
+<div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="dpkg-S-up"></a>Procura de pacotes através do nome de um arquivo</h3></div></div></div>
+<p>
+Use o comando: <code class="literal">dpkg -S <code class="filename">arquivo</code></code>
+(<span class="emphasis"><em>--search</em></span>) para saber de qual  existente no sistema o
+<code class="filename">arquivo</code> pertence.
+</p>
+</div>
+
+<div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="dpkg-s-lw"></a>Status do pacote</h3></div></div></div>
+<p>
+Use o comando: <code class="literal">dpkg -s </code> (<span class="emphasis"><em>--status</em></span>)
+para verificar o status de um pacote em seu sistema, se esta ou não instalado,
+configurado, tamanho, dependências, maintainer, etc.
+</p>
+<p>
+Se o pacote estiver instalado no sistema, o resultado será parecido com o do
+comando <code class="literal">dpkg -c [pacote]</code> (<span class="emphasis"><em>--contents</em></span>).
+</p>
+</div>
+
+<div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="dpkg-C-up"></a>Procurando pacotes com problemas de instalação</h3></div></div></div>
+<p>
+A checagem de pacotes com este tipo de problema pode ser feita através do
+comando:
+</p>
+<p>
+<code class="literal">dpkg -C</code> (<span class="emphasis"><em>--audit</em></span>)
+</p>
+<p>
+Será listado todos os pacotes com algum tipo de problema, verifique os detalhes
+do pacote com <code class="literal">"dpkg -s"</code> para decidir como corrigir o
+problema.
+</p>
+</div>
+
+<div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="dpkg-get-selections"></a>Mostrando a lista de pacotes do sistema</h3></div></div></div>
+<p>
+Use o comando:
+</p>
+<p>
+<code class="literal">dpkg --get-selections</code>
+</p>
+<p>
+para obter uma lista de seleção dos pacotes em seu sistema.  A listagem é
+mostrada na saída padrão, que pode ser facilmente redirecionada para um arquivo
+usando <code class="literal">dpkg --get-selections &gt;dpkg.lista</code>.
+</p>
+<p>
+A listagem obtida com este comando é muito útil para repetir os pacotes usados
+no sistema usando o <code class="literal">dpkg --set-selections</code>.
+</p>
+</div>
+
+<div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="dpkg-set-selections"></a>Instalando pacotes a partir de uma lista externa</h3></div></div></div>
+<p>
+Use o comando:
+</p>
+<p>
+<code class="literal">dpkg --set-selections &lt;arquivo</code>
+</p>
+<p>
+para instalar pacotes usando uma listagem gerada pelo
+<code class="literal">dpkg --get-selections</code>. Este procedimento
+é muito útil durante uma necessidade de reinstalação
+do sistema <span class="command"><strong>GNU/Linux</strong></span> ou repetir a instalação em várias
+máquinas sem precisar selecionar algumas dezenas entre os milhares de pacotes
+no <span class="command"><strong>apt</strong></span>.
+</p>
+<p>
+Para execuar o procedimento: primeiro, gere a lista de pacoes no 
+sistema origem com (<code class="literal">dpkg --get-selections</code>). 
+Em seguida, na máquina de destino, execute primeiro um <code class="literal">dpkg --clear-selections</code>
+para remover qualquer seleção existente, e em seguida execute o 
+<code class="literal">dpkg --set-selections &lt;arquivo</code>. 
+</p>
+<p>
+Com a seleção de pacotes realizada, agora execute os comandos:
+</p><pre class="screen">
+apt-get -f install
+apt dselect-install
+</pre><p>
+E todos pacotes obtidos via <code class="literal">dpkg --set-selections</code> serão
+automaticamente instalados.
+</p>
+</div>
+
+<div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="dpkg-configure"></a>Configurando pacotes desconfigurados</h3></div></div></div>
+<p>
+Pacotes estão desconfigurados quando, por algum motivo, a instalação do mesmo
+não foi concluída com sucesso.  Pode ter faltado alguma dependência, acontecido
+algum erro de leitura do arquivo de pacote, etc.  Quando um erro deste tipo
+acontece, os arquivos necessários pelo pacote podem ter sido instalados, mas os
+scripts de configuração pós-instalação não são executados.
+</p>
+<p>
+Use o comando:
+</p>
+<p>
+<span class="command"><strong>dpkg --configure</strong></span> [<span class="emphasis"><em>NomedoPacote</em></span>]
+</p>
+<p>
+Para configurar um pacote.  O <span class="emphasis"><em>NomedoPacote</em></span> não precisa
+conter a revisão do pacote e extensão.
+</p>
+</div>
+
+<div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="dpkg-c-lw"></a>Listando arquivos de um pacote</h3></div></div></div>
+<p>
+Use o comando: <code class="literal">dpkg -c <code class="filename">arquivo</code></code>
+(<span class="emphasis"><em>--contents</em></span>) para obter a listagem dos arquivos contidos
+no pacote.  É necessário digitar o nome completo do pacote.  O comando
+<code class="literal">dpkg -c</code> é útil para listarmos arquivos de pacotes que não
+estão instalados no sistema.
+</p>
+<p>
+Para obter a listagem de arquivos de pacotes já instalados no sistema, use o
+comando: <code class="literal">dpkg -L <code class="filename">arquivo</code></code>.  É necessário
+digitar somente o nome do pacote (sem a revisão e extensão).
+</p>
+</div>
+
+</div>
+
+
+
+</div><HR xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format"></HR><p class="copyright">Copyright © 1999-2020 - Gleydson Mazioli da Silva</p><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch19s11.html">Anterior</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="ch20s02.html">Próximo</a></td></tr><tr><td width="40%" align="left" valign="top">Lista de pacotes para uma instalação rápida e manual </td><td width="20%" align="center"><a accesskey="h" href="index.html">Voltar ao Índice</a></td><td width="40%" align="right" valign="top"> apt</td></tr></table></div></body></html>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>traceroute</title><meta name="generator" content="DocBook XSL Stylesheets V1.79.1" /><link rel="home" href="index.html" title="Guia Foca Linux" /><link rel="up" href="ch11.html" title="Capítulo 11. Comandos de rede" /><link rel="prev" href="ch11s12.html" title="w" /><link rel="next" href="ch11s14.html" title="netstat" /></head><body text="black" link="#0000FF" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">traceroute</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch11s12.html">Anterior</a> </td><th width="60%" align="center">Capítulo 11. Comandos de rede</th><td width="20%" align="right"> <a accesskey="n" href="ch11s14.html">Próximo</a></td></tr></table><hr /></div><div xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format" class="breadcrumbs"><span class="breadcrumb-link"><a href="index.html">Guia Foca Linux</a></span> &gt; <span class="breadcrumb-link"><a href="ch11.html">Comandos de rede</a></span> &gt; <span class="breadcrumb-node">traceroute</span></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="cmdn-traceroute"></a>traceroute</h2></div></div></div>
+<p>
+Mostra o caminho percorrido por um pacote para chegar ao seu destino.  
+ Este comando mostra na tela o caminho percorrido entre 
+os Gateways da rede e o tempo gasto de retransmissão.  Este comando é útil 
+para encontrar computadores defeituosos na rede caso o pacote não esteja chegando 
+ao seu destino. 
+</p>
+<p>
+<span class="command"><strong>traceroute</strong></span> [<span class="emphasis"><em>opções</em></span>] [<span class="emphasis"><em>host/IP de
+destino</em></span>]
+</p>
+
+<p>
+Onde:
+</p>
+<div class="variablelist"><dl class="variablelist"><dt><span class="term"><span class="emphasis"><em>host/IP destino</em></span></span></dt><dd>
+<p>
+É o endereço para onde o pacote será enviado (por exemplo, www.debian.org).
+Caso o tamanho do pacote não seja especificado, é enviado um pacote de 38
+bytes.
+</p>
+</dd><dt><span class="term"><span class="emphasis"><em>opções</em></span>, </span><span class="term">-l</span></dt><dd>
+<p>
+Mostra o tempo de vida do pacote (ttl)
+</p>
+</dd><dt><span class="term">-m [num]</span></dt><dd>
+<p>
+Ajusta a quantidade máximas de ttl dos pacotes.  O padrão é 30.
+</p>
+</dd><dt><span class="term">-n</span></dt><dd>
+<p>
+Mostra os endereços numericamente ao invés de usar resolução DNS.
+</p>
+</dd><dt><span class="term">-p [porta]</span></dt><dd>
+<p>
+Ajusta a porta que será usada para o teste.  A porta padrão é 33434.
+</p>
+</dd><dt><span class="term">-r</span></dt><dd>
+<p>
+Pula as tabelas de roteamento e envia o pacote diretamente ao computador
+conectado a rede.
+</p>
+</dd><dt><span class="term">-s [end]</span></dt><dd>
+<p>
+Usa o endereço IP/DNS [end] como endereço de origem para computadores com
+múltiplos endereços IPs ou nomes.
+</p>
+</dd><dt><span class="term">-v</span></dt><dd>
+<p>
+Mostra mais detalhes sobre o resultado do <span class="command"><strong>traceroute</strong></span>.
+</p>
+</dd><dt><span class="term">-w [num]</span></dt><dd>
+<p>
+Configura o tempo máximo que aguardará por uma resposta.  O padrão é 3
+segundos.
+</p>
+</dd></dl></div>
+
+<p>
+Exemplos: <code class="literal">traceroute www.debian.org</code>, <code class="literal">traceroute
+https://www.guiafoca.org/</code>.
+</p>
+</div><HR xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format"></HR><p class="copyright">Copyright © 1999-2020 - Gleydson Mazioli da Silva</p><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch11s12.html">Anterior</a> </td><td width="20%" align="center"><a accesskey="u" href="ch11.html">Subir</a></td><td width="40%" align="right"> <a accesskey="n" href="ch11s14.html">Próximo</a></td></tr><tr><td width="40%" align="left" valign="top">w </td><td width="20%" align="center"><a accesskey="h" href="index.html">Voltar ao Índice</a></td><td width="40%" align="right" valign="top"> netstat</td></tr></table></div></body></html>

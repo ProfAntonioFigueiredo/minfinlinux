@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>netstat</title><meta name="generator" content="DocBook XSL Stylesheets V1.79.1" /><link rel="home" href="index.html" title="Guia Foca Linux" /><link rel="up" href="ch11.html" title="Capítulo 11. Comandos de rede" /><link rel="prev" href="ch11s13.html" title="traceroute" /><link rel="next" href="ch11s15.html" title="wall" /></head><body text="black" link="#0000FF" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">netstat</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch11s13.html">Anterior</a> </td><th width="60%" align="center">Capítulo 11. Comandos de rede</th><td width="20%" align="right"> <a accesskey="n" href="ch11s15.html">Próximo</a></td></tr></table><hr /></div><div xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format" class="breadcrumbs"><span class="breadcrumb-link"><a href="index.html">Guia Foca Linux</a></span> &gt; <span class="breadcrumb-link"><a href="ch11.html">Comandos de rede</a></span> &gt; <span class="breadcrumb-node">netstat</span></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="cmdn-netstat"></a>netstat</h2></div></div></div>
+<p>
+Mostra conexões de rede, tabela de roteamento, estatísticas de interfaces,
+conexões masquerade, e mensagens.
+</p>
+<p>
+<span class="command"><strong>netstat</strong></span> [<span class="emphasis"><em>opções</em></span>]
+</p>
+
+<p>
+Onde:
+</p>
+<div class="variablelist"><dl class="variablelist"><dt><span class="term"><span class="emphasis"><em>opções</em></span>, </span><span class="term">-i [interface]</span></dt><dd>
+<p>
+Mostra estatísticas da interface [interface].
+</p>
+</dd><dt><span class="term">-M, --masquerade</span></dt><dd>
+<p>
+Se especificado, também lista conexões masquerade.
+</p>
+</dd><dt><span class="term">-n, --numeric</span></dt><dd>
+<p>
+Usa endereços numéricos ao invés de tentar resolver nomes de hosts, usuários e
+portas.
+</p>
+</dd><dt><span class="term">-c, --continuous</span></dt><dd>
+<p>
+Mostra a listagem a cada segundo até que a
+<code class="literal">CTRL</code>+<code class="literal">C</code> seja pressionado.
+</p>
+</dd><dt><span class="term">-l</span></dt><dd>
+<p>
+Lista sockets aguardando por conexão.
+</p>
+</dd><dt><span class="term">-t, --tcp</span></dt><dd>
+<p>
+Lista conexões TCP.
+</p>
+</dd><dt><span class="term">-u, --udp</span></dt><dd>
+<p>
+Lista conexões UDP.
+</p>
+</dd></dl></div>
+
+<p>
+Se não for especificada nenhuma opção, os detalhes das conexões atuais serão
+mostrados.
+</p>
+
+<p>
+Exemplos: <code class="literal">netstat -n</code>, <code class="literal">netstat -lt</code>,
+<code class="literal">netstat -M</code>.
+</p>
+
+</div><HR xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format"></HR><p class="copyright">Copyright © 1999-2020 - Gleydson Mazioli da Silva</p><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch11s13.html">Anterior</a> </td><td width="20%" align="center"><a accesskey="u" href="ch11.html">Subir</a></td><td width="40%" align="right"> <a accesskey="n" href="ch11s15.html">Próximo</a></td></tr><tr><td width="40%" align="left" valign="top">traceroute </td><td width="20%" align="center"><a accesskey="h" href="index.html">Voltar ao Índice</a></td><td width="40%" align="right" valign="top"> wall</td></tr></table></div></body></html>

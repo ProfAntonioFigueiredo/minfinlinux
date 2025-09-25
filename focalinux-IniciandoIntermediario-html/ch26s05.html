@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>defrag</title><meta name="generator" content="DocBook XSL Stylesheets V1.79.1" /><link rel="home" href="index.html" title="Guia Foca Linux" /><link rel="up" href="ch26.html" title="Capítulo 26. Manutenção do Sistema" /><link rel="prev" href="ch26s04.html" title="badblocks" /><link rel="next" href="ch26s06.html" title="Verificando e marcando setores danificados em um HD" /></head><body text="black" link="#0000FF" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">defrag</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch26s04.html">Anterior</a> </td><th width="60%" align="center">Capítulo 26. Manutenção do Sistema</th><td width="20%" align="right"> <a accesskey="n" href="ch26s06.html">Próximo</a></td></tr></table><hr /></div><div xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format" class="breadcrumbs"><span class="breadcrumb-link"><a href="index.html">Guia Foca Linux</a></span> &gt; <span class="breadcrumb-link"><a href="ch26.html">Manutenção do Sistema</a></span> &gt; <span class="breadcrumb-node">defrag</span></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="manut-defrag"></a>defrag</h2></div></div></div>
+<p>
+Permite desfragmentar uma unidade de disco.  A fragmentação é o armazenamento
+de arquivos em áreas não seqüenciais (uma parte é armazenada no começo a outra
+no final, etc), isto diminui o desempenho da unidade de disco porque a leitura
+deverá ser interrompida e feita a movimentação da cabeça para outra região do
+disco onde o arquivo continua, por este motivo discos fragmentados tendem a
+fazer um grande barulho na leitura e o desempenho menor.
+</p>
+<p>
+A desfragmentação normalmente é desnecessária no <span class="command"><strong>GNU/Linux</strong></span>
+porque o sistema de arquivos <span class="emphasis"><em>ext2</em></span> procura automaticamente
+o melhor local para armazenar o arquivo.  Mesmo assim, é recomendável
+desfragmentar um sistema de arquivos assim que sua taxa de fragmentação subir
+acima de 10%.  A taxa de fragmentação pode ser vista através do
+<span class="command"><strong>fsck.ext2</strong></span>.  Após o <span class="command"><strong>fsck.ext2</strong></span> ser
+executado é mostrada a taxa de fragmentação seguida de
+<code class="literal">non-contiguos</code>.
+</p>
+<p>
+A ferramenta de desfragmentação usada no <span class="command"><strong>GNU/Linux</strong></span> é o
+<span class="command"><strong>defrag</strong></span> que vem com os seguintes programas:
+</p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+<p>
+<code class="literal">e2defrag</code> - Desfragmenta sistemas de arquivos
+<span class="emphasis"><em>Ext2</em></span>.
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">defrag</code> - Desfragmenta sistemas de arquivos
+<span class="emphasis"><em>Minix</em></span>.
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">xdefrag</code> - Desfragmenta sistemas de arquivos
+<span class="emphasis"><em>Xia</em></span>.
+</p>
+</li></ul></div>
+<p>
+O sistema de arquivos deve estar desmontado ao fazer a desfragmentação.  Se
+quiser desfragmentar o sistema de arquivos raíz (<code class="filename">/</code>), você
+precisará inicializar através de um disquete e executar um dos programas de
+desfragmentação apropriado ao seu sistema de arquivos.  A checagem individual
+de fragmentação em arquivos pode ser feita com o programa
+<span class="command"><strong>frag</strong></span>.
+</p>
+<p>
+ATENÇÃO: Retire cópias de segurança de sua unidade antes de fazer a
+desfragmentação.  Se por qualquer motivo o programa de desfragmentação não
+puder ser completado, você poderá perder dados!
+</p>
+<p>
+<span class="command"><strong>e2defrag</strong></span> [<span class="emphasis"><em>opções</em></span>] [<span class="emphasis"><em>dispositivo</em></span>]
+</p>
+<p>
+Onde:
+</p>
+<div class="variablelist"><dl class="variablelist"><dt><span class="term">dispositivo</span></dt><dd>
+<p>
+Partição, arquivo, disquete que contém o sistema de arquivos que será
+desfragmentado.
+</p>
+</dd><dt><span class="term">-d</span></dt><dd>
+<p>
+Debug - serão mostrados detalhes do funcionamento
+</p>
+</dd><dt><span class="term">-n</span></dt><dd>
+<p>
+Não mostra o mapa do disco na desfragmentação.  É útil quando você inicializa
+por disquetes e recebe a mensagem "Failed do open term Linux" ao tentar
+executar o <span class="command"><strong>e2defrag</strong></span>.
+</p>
+</dd><dt><span class="term">-r</span></dt><dd>
+<p>
+Modo somente leitura.  O defrag simulará sua execução no sistema de arquivos
+mas não fará nenhuma gravação.  Esta opção permite que o defrag seja usado com
+sistema de arquivos montado.
+</p>
+</dd><dt><span class="term">-s</span></dt><dd>
+<p>
+Cria um sumário da fragmentação do sistema de arquivos e performance do
+desfragmentador.
+</p>
+</dd><dt><span class="term">-v</span></dt><dd>
+<p>
+Mostra detalhes durante a desfragmentação do sistema de arquivos.  Caso mais de
+uma opção -v seja usada, o nível de detalhes será maior.
+</p>
+</dd><dt><span class="term">-i [arquivo]</span></dt><dd>
+<p>
+Permite definir uma lista de prioridades em que um arquivo será gravado no
+disco, com isto é possível determinar se um arquivo será gravado no começo ou
+final da unidade de disco.  Esta lista é lida do [arquivo] e deve conter uma
+lista de prioridades de -100 a 100 para cada inodo do sistema de arquivos.
+Arquivos com prioridade alta serão gravados no começo do disco.
+</p>
+<p>
+Todos os inodos terão prioridade igual a zero caso a opção
+<code class="literal">-i</code> não seja usada ou o inodo não seja especificado no
+[arquivo].  O [arquivo] deverá conter uma série de linhas com um número (inodo)
+ou um número prefixado por um sinal de igual seguido da prioridade.
+</p>
+</dd><dt><span class="term">-p [numero]</span></dt><dd>
+<p>
+Define o [numero] de buffers que serão usados pela ferramenta de
+desfragmentação na realocação de dados, quanto mais buffers mais eficiente será
+o processo de realocação.  O número depende de quantidade memória RAM e Swap
+você possui.  Por padrão 512 buffers são usados correspondendo a 512Kb de
+buffer (em um sistema de arquivos de blocos com 1Kb).
+</p>
+</dd></dl></div>
+<p>
+Exemplo: <code class="literal">e2defrag -n -v /dev/hdb4</code>, <code class="literal">e2defrag -r
+/dev/hda1</code>
+</p>
+</div><HR xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format"></HR><p class="copyright">Copyright © 1999-2020 - Gleydson Mazioli da Silva</p><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch26s04.html">Anterior</a> </td><td width="20%" align="center"><a accesskey="u" href="ch26.html">Subir</a></td><td width="40%" align="right"> <a accesskey="n" href="ch26s06.html">Próximo</a></td></tr><tr><td width="40%" align="left" valign="top">badblocks </td><td width="20%" align="center"><a accesskey="h" href="index.html">Voltar ao Índice</a></td><td width="40%" align="right" valign="top"> Verificando e marcando setores danificados em um HD</td></tr></table></div></body></html>

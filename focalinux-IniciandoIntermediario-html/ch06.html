@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Capítulo 6. Gerenciadores de Partida (boot loaders)</title><meta name="generator" content="DocBook XSL Stylesheets V1.79.1" /><link rel="home" href="index.html" title="Guia Foca Linux" /><link rel="up" href="index.html" title="Guia Foca Linux" /><link rel="prev" href="ch05s14.html" title="Desmontando uma partição de disco" /><link rel="next" href="ch06s02.html" title="GRUB" /></head><body text="black" link="#0000FF" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Capítulo 6. Gerenciadores de Partida (boot loaders)</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch05s14.html">Anterior</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch06s02.html">Próximo</a></td></tr></table><hr /></div><div xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format" class="breadcrumbs"><span class="breadcrumb-link"><a href="index.html">Guia Foca Linux</a></span> &gt; <span class="breadcrumb-node">Gerenciadores de Partida (boot loaders)</span></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a id="boot"></a>Capítulo 6. Gerenciadores de Partida (boot loaders)</h1></div></div></div><div class="toc"><p><strong>Índice</strong></p><dl class="toc"><dt><span class="section"><a href="ch06.html#boot-lilo">LILO</a></span></dt><dd><dl><dt><span class="section"><a href="ch06.html#boot-lilo-cfg">Criando o arquivo de configuração do LILO</a></span></dt><dt><span class="section"><a href="ch06.html#boot-lilo-opcoes">Opções usadas no LILO</a></span></dt><dt><span class="section"><a href="ch06.html#boot-lilo-exemplo">Um exemplo do arquivo de configuração lilo.conf</a></span></dt></dl></dd><dt><span class="section"><a href="ch06s02.html">GRUB</a></span></dt><dd><dl><dt><span class="section"><a href="ch06s02.html#boot-grub-part">Como o GRUB trabalha com discos e partições</a></span></dt><dt><span class="section"><a href="ch06s02.html#boot-grub-install">Instalando o GRUB</a></span></dt><dt><span class="section"><a href="ch06s02.html#boot-grub-install-fd-cmd">No disco flexível (somente linha de comando)</a></span></dt><dt><span class="section"><a href="ch06s02.html#boot-grub-install-fd-menu">No disco flexível (com interface de menu)</a></span></dt><dt><span class="section"><a href="ch06s02.html#boot-grub-opcoescfg">Opções do arquivo de configuração</a></span></dt><dt><span class="section"><a href="ch06s02.html#boot-grub-exemplo">Um exemplo de arquivo de configuração</a></span></dt><dt><span class="section"><a href="ch06s02.html#boot-grub-cmdline">Usando a linha de comandos do GRUB</a></span></dt><dt><span class="section"><a href="ch06s02.html#boot-grub-removendo">Removendo o GRUB do MBR</a></span></dt><dt><span class="section"><a href="ch06s02.html#boot-grub-detalhes">Como obter informações mais detalhadas</a></span></dt></dl></dd><dt><span class="section"><a href="ch06s03.html">Parâmetros de inicialização passados ao kernel</a></span></dt><dt><span class="section"><a href="ch06s04.html">LOADLIN</a></span></dt><dd><dl><dt><span class="section"><a href="ch06s04.html#boot-loadlin-opcoes">Opções do LOADLIN</a></span></dt><dt><span class="section"><a href="ch06s04.html#boot-loadlin-exemplo">Exemplo de inicialização com o LOADLIN</a></span></dt></dl></dd><dt><span class="section"><a href="ch06s05.html">syslinux</a></span></dt><dd><dl><dt><span class="section"><a href="ch06s05.html#boot-syslinux-criando">Criando um disquete de inicialização com o syslinux</a></span></dt><dt><span class="section"><a href="ch06s05.html#boot-syslinux-opcoes">O arquivo SYSLINUX.CFG</a></span></dt><dt><span class="section"><a href="ch06s05.html#boot-syslinux-formatacao">Formatação dos arquivos de tela do syslinux</a></span></dt></dl></dd></dl></div>
+<p>
+<span class="emphasis"><em>Gerenciadores de Partida</em></span> são programas que carregam um
+sistema operacional e/ou permitem escolher qual será iniciado.  Normalmente
+este programas são gravados no <span class="emphasis"><em>setor de boot</em></span>
+(inicialização) da partição ativa ou no <span class="emphasis"><em>master boot record</em></span>
+(MBR) do disco rígido.
+</p>
+<p>
+Este capitulo explica o funcionamento de cada um dos principais gerenciadores
+de partida usados no <span class="command"><strong>GNU/Linux</strong></span>, em que situações é
+recomendado seu uso, as características, como configura-lo e alguns exemplos de
+configuração.
+</p>
+<div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="boot-lilo"></a>LILO</h2></div></div></div>
+<p>
+O <span class="command"><strong>LILO</strong></span> (<span class="emphasis"><em>Linux Loader</em></span>) é sem dúvida o
+gerenciador de partida padrão para quem deseja iniciar o
+<span class="command"><strong>GNU/Linux</strong></span> através do disco rígido.  Ele permite selecionar
+qual sistema operacional será iniciado (caso você possua mais de um) e funciona
+tanto em discos rígidos <span class="emphasis"><em>IDE</em></span> como
+<span class="emphasis"><em>SCSI</em></span>.
+</p>
+<p>
+A seleção de qual sistema operacional e a passagem de parâmetros ao kernel pode
+ser feita automaticamente ou usando o aviso de <code class="literal">boot:</code> do
+<span class="command"><strong>LILO</strong></span>.
+</p>
+<div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="boot-lilo-cfg"></a>Criando o arquivo de configuração do LILO</h3></div></div></div>
+<p>
+Os dados para a criação do novo <span class="emphasis"><em>setor de boot</em></span> que
+armazenará o gerenciador de partida são lidos do arquivo
+<code class="filename">/etc/lilo.conf</code> Este arquivo pode ser criado em qualquer
+editor de textos (como o <span class="command"><strong>ae</strong></span> ou <span class="command"><strong>vi</strong></span>).
+Normalmente ele é criado durante a instalação de sua distribuição
+<span class="command"><strong>GNU/Linux</strong></span> mas por algum motivo pode ser preciso modifica-lo
+ou personaliza-lo (para incluir novos sistemas operacionais, mensagens, alterar
+o tempo de espera para a partida automática, etc).
+</p>
+<p>
+O arquivo <code class="filename">/etc/lilo.conf</code> é dividido em duas seções:
+<span class="emphasis"><em>Geral</em></span> e <span class="emphasis"><em>Imagens</em></span>.  A seção
+<span class="emphasis"><em>Geral</em></span> vem no inicio do arquivo e contém opções que serão
+usadas na inicialização do <span class="command"><strong>Lilo</strong></span> e parâmetros que serão
+passados ao kernel.  A seção <span class="emphasis"><em>Imagens</em></span> contém opções
+especificas identificando qual a partição que contém o sistema operacional,
+como será montado inicialmente o sistema de arquivos, tabela de partição, o
+arquivo que será carregado na memória para inicializar o sistema, etc.  Abaixo
+um modelo do arquivo <code class="filename">/etc/lilo.conf</code> para sistemas que só
+possuem o <span class="command"><strong>GNU/Linux</strong></span> instalado:
+</p>
+<pre class="screen">
+boot=/dev/hda1
+compact
+install=text
+map=/boot/map
+vga=normal
+delay=20
+lba32
+
+image=/vmlinuz
+    root=/dev/hda1
+    label=Linux
+    read-only
+</pre>
+<p>
+Para criar um novo gerenciador de partida através do arquivo
+<code class="filename">/etc/lilo.conf</code> , execute o comando
+<code class="literal">lilo</code>.
+</p>
+<p>
+No exemplo acima, o gerenciador de partida será instalado em
+<code class="filename">/dev/hda1</code> (veja <a class="xref" href="ch05s12.html" title="Identificação de discos e partições em sistemas Linux">“Identificação de discos e partições em sistemas Linux”</a>) , utilizará um
+setor de boot compacto (compact), modo de vídeo VGA normal (80x25), esperará 2
+segundos antes de processar automaticamente a primeira seção
+<code class="literal">image=</code> e carregará o kernel <code class="filename">/vmlinux</code> de
+<code class="filename">/dev/hda1</code>.  Para detalhes sobre opções que podem ser
+usadas neste arquivo veja <a class="xref" href="ch06.html#boot-lilo-opcoes" title="Opções usadas no LILO">“Opções usadas no LILO”</a>.
+</p>
+<p>
+Para mostrar o aviso de <code class="literal">boot:</code>, você deverá ligar as teclas
+Caps Lock ou Scrool lock na partida ou pressionar a tecla
+<code class="literal">Shift</code> durante os dois segundos de pausa.  Outro método é
+incluir a opção <code class="literal">prompt</code> na seção <span class="emphasis"><em>global</em></span>
+para que o aviso de <code class="literal">boot:</code> seja mostrado automaticamente após
+carregar o <span class="command"><strong>Lilo</strong></span>.
+</p>
+<p>
+Abaixo uma configuração para computadores com mais de um sistema operacional
+(Usando <span class="command"><strong>GNU/Linux</strong></span> e <span class="command"><strong>DOS</strong></span>):
+</p>
+<pre class="screen">
+boot=/dev/hda1
+compact
+lba32
+install=menu
+map=/boot/map
+vga=normal
+delay=20
+prompt
+
+image=/vmlinuz
+    root=/dev/hda1
+    label=linux
+    read-only
+
+other=/dev/hda2
+ table=/dev/hda
+ label=dos
+</pre>
+<p>
+O exemplo acima é idêntico ao anterior, o que foi acrescentado foi a opção
+<code class="literal">prompt</code> na seção <span class="emphasis"><em>geral</em></span> (para que seja
+mostrado imediatamente o aviso de <code class="literal">boot:</code> no momento em que o
+<span class="command"><strong>LILO</strong></span> for carregado), e incluída uma imagem de disco
+<span class="command"><strong>DOS</strong></span> localizado em <code class="filename">/dev/hda2</code>.  No
+momento da inicialização é mostrada a mensagem <code class="literal">boot:</code> e caso
+seja digitado <code class="literal">DOS</code> e pressionado ENTER, o sistema iniciará o
+<span class="command"><strong>DOS</strong></span>.  Caso a tecla Enter seja pressionada sem especificar a
+imagem, a primeira será carregada (neste caso o <span class="command"><strong>GNU/Linux</strong></span>).
+</p>
+<p>
+Você pode substituir a palavra <code class="literal">GNU/Linux</code> da opção
+<code class="literal">label</code> por o número <code class="literal">1</code> e
+<code class="literal">DOS</code> por <code class="literal">2</code>, desta forma o número pode ser
+digitado para iniciar o sistema operacional.  Isto é muito útil para construir
+um menu usando a opção <code class="literal">message</code>.  Para detalhes veja <a class="xref" href="ch06.html#boot-lilo-opcoes" title="Opções usadas no LILO">“Opções usadas no LILO”</a>.
+</p>
+<p>
+A seção <span class="emphasis"><em>Geral</em></span> vem do inicio do arquivo até a palavra
+<code class="literal">delay=20</code>.  A partir do primeiro aparecimento da palavra
+<code class="literal">image</code>, <code class="literal">other</code> ou <code class="literal">range</code>,
+tudo o que vier abaixo será interpretado como imagens de inicialização.
+</p>
+<p>
+Por padrão, a imagem carregada é a especificada por <code class="literal">default=</code>
+ou a primeira que aparece no arquivo (caso <code class="literal">default=</code> não seja
+especificado).  Para carregar o outro sistema (o <span class="command"><strong>DOS</strong></span>),
+digite o nome da imagem de disco no aviso de <code class="literal">boot:</code>
+(especificada em <code class="literal">label=</code>) que será carregada.  Você também
+pode passar parâmetros manualmente ao kernel digitando o nome da imagem de
+disco e uma opção do kernel ou através do arquivo
+<code class="filename">/etc/lilo.conf</code> (veja <a class="xref" href="ch06.html#boot-lilo-opcoes" title="Opções usadas no LILO">“Opções usadas no LILO”</a>).
+</p>
+<p>
+O <span class="command"><strong>LILO</strong></span> pode inicializar o seguintes tipos de imagens:
+</p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+<p>
+Imagens do kernel de um arquivo.  Normalmente usado para iniciar o
+<span class="command"><strong>GNU/Linux</strong></span> pelo disco rígido e especificado pelo parâmetro
+<code class="literal">image=</code>.
+</p>
+</li><li class="listitem">
+<p>
+Imagens do kernel de um dispositivo de bloco (como um disquete).  Neste caso o
+número de setores a serem lidos devem ser especificados na forma
+<span class="emphasis"><em>PRIMEIRO-ÚLTIMO</em></span> ou <span class="emphasis"><em>PRIMEIRO+NÚMERO de setores a
+serem lidos</em></span>.
+</p>
+<p>
+É necessário especificar o parâmetro <code class="literal">image=</code> e
+<code class="literal">range=</code>, por exemplo:
+</p>
+<pre class="screen">
+image=/dev/fd0
+   range=1+512
+</pre>
+<p>
+Todas as opções do kernel podem ser usadas na inicialização por dispositivo.
+</p>
+</li><li class="listitem">
+<p>
+O setor de boot de outro sistema operacional (como o <span class="command"><strong>DOS</strong></span>,
+<span class="command"><strong>OS/2</strong></span>, etc).  O setor de partida é armazenado junto com a
+tabela de partição no arquivo <code class="filename">/boot/map</code>.  É necessário
+especificar o parâmetro <code class="literal">OTHER=dispositivo</code> ou
+<code class="literal">OTHER=arquivo</code> e a inicialização através de um setor de
+partida possui algumas opções especiais como o <code class="literal">TABLE=</code> (para
+especificar a tabela de partição) e o <code class="literal">MAP-DRIVE=</code>
+(identificação da unidade de discos pelo sistema operacional).  Veja o exemplo
+desta configuração abaixo:
+</p>
+<pre class="screen">
+other=/dev/hda2
+  table=/dev/hda
+  label=DOS
+  map-drive=0x80
+   to = 0x81
+  map-drive=0x81
+   to = 0x80
+</pre>
+</li></ul></div>
+<p>
+Observações:
+</p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+<p>
+Caso o gerenciador de partida seja instalado no MBR do disco rígido
+(boot=/dev/hda), o setor de boot do antigo sistema operacional será
+substituído, retire uma cópia do setor de boot para um disquete usando o
+comando <code class="literal">dd if=/dev/hda of=/floppy/mbr bs=512 count=1</code> no
+<span class="command"><strong>GNU/Linux</strong></span> para salvar o setor de boot em um disquete e
+<code class="literal">dd if=/floppy/mbr of=/dev/hda bs=446 count=1</code> para
+restaura-lo.  No <span class="command"><strong>DOS</strong></span> você pode usar o comando <span class="command"><strong>fdisk
+/mbr</strong></span> para criar um novo Master Boot Record.
+</p>
+</li><li class="listitem">
+<p>
+Após qualquer modificação no arquivo <code class="filename">/etc/lilo.conf</code> , o
+comando <code class="literal">lilo</code> deverá ser novamente executado para atualizar o
+setor de partida do disco rígido.  Isto também é válido caso o kernel seja
+atualizado ou a partição que contém a imagem do kernel desfragmentada.
+</p>
+</li><li class="listitem">
+<p>
+A limitação de 1024 cilindros do <span class="command"><strong>Lilo</strong></span> não existe mais a
+partir da versão 21.4.3 (recomendada, por conter muitas correções) e
+superiores.
+</p>
+</li><li class="listitem">
+<p>
+A reinstalação, formatação de sistemas <span class="command"><strong>DOS</strong></span> e
+<span class="command"><strong>Windows</strong></span> pode substituir o setor de partida do HD e assim o
+gerenciador de partida, tornando impossível a inicialização do
+<span class="command"><strong>GNU/Linux</strong></span>.  Antes de reinstalar o <span class="command"><strong>DOS</strong></span> ou
+<span class="command"><strong>Windows</strong></span>, verifique se possui um disquete de partida do
+<span class="command"><strong>GNU/Linux</strong></span>.
+</p>
+<p>
+Para gerar um novo boot loader, coloque o disquete na unidade e após o aviso
+<code class="literal">boot:</code> ser mostrado, digite <code class="literal">linux
+root=/dev/hda1</code> (no lugar de <code class="filename">/dev/hda1</code> você
+coloca a partição raiz do <span class="command"><strong>GNU/Linux</strong></span>), o sistema iniciará.
+Dentro do <span class="command"><strong>GNU/Linux</strong></span>, digite o comando
+<span class="command"><strong>lilo</strong></span> para gerar um novo setor de partida.
+</p>
+<p>
+Agora reinicie o computador, tudo voltará ao normal.
+</p>
+</li></ul></div>
+</div>
+
+<div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="boot-lilo-opcoes"></a>Opções usadas no LILO</h3></div></div></div>
+<p>
+Esta seção traz opções úteis usadas no arquivo <code class="filename">lilo.conf</code>
+com explicações sobre o que cada uma faz.  As opções estão divididas em duas
+partes: As usadas na seção <span class="emphasis"><em>Global</em></span> e as da seção
+<span class="emphasis"><em>Imagens</em></span> do arquivo <code class="filename">lilo.conf</code>.
+</p>
+<p>
+<code class="literal">Global</code>
+</p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+<p>
+<code class="literal">backup=[arquivo/dispositivo]</code> - Copia o setor de partida
+original para o arquivo ou dispositivo especificado.
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">boot=dispositivo</code> - Define o nome do dispositivo onde será
+gravado o setor de partida do <span class="command"><strong>LILO</strong></span> (normalmente é usada a
+partição ativa ou o Master Boot Record - MBR).  Caso não seja especificado, o
+dispositivo montado como a partição raiz será usado.
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">compact</code> - Tenta agrupar requisições de leitura para setores
+seguintes ao sendo lido.  Isto reduz o tempo de inicialização e deixa o mapa
+menor.  É normalmente recomendado em disquetes.
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">default=imagem</code> - Usa a imagem especificada como padrão ao
+invés da primeira encontrada no arquivo <code class="filename">lilo.conf</code>.
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">delay=[num]</code> - Permite ajustar o número de segundos (em
+décimos de segundos) que o gerenciador de partida deve aguardar para carregar a
+primeira imagem de disco (ou a especificada por <code class="literal">default=</code>).
+Esta pausa lhe permite selecionar que sistema operacional será carregado.
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">install=interface</code> - Especifica que interface será usada para
+exibição de menu com as opções de inicialização ao usuário.  As seguintes
+opções são permitidas:
+</p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: circle; "><li class="listitem">
+<p>
+<code class="literal">text</code> - Exibe uma mensagem de texto (exibida através do
+parâmetro <span class="emphasis"><em>message=</em></span>) na tela.  Esta é a recomendada para
+terminais.
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">menu</code> - Exibe um menu que lhe permite selecionar através de
+uma interface de menu a opção de inicialização.  Esta é a padrão.
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">bmp</code> - Exibe um bitmap gráfico com a resolução de 640x480 com
+16 ou 256 cores.
+</p>
+</li></ul></div>
+</li><li class="listitem">
+<p>
+<code class="literal">lba32</code> - Permite que o <span class="command"><strong>LILO</strong></span> quebre o
+limite de 1024 cilindros do disco rígido, inicializando o
+<span class="command"><strong>GNU/Linux</strong></span> em um cilindro acima deste através do acesso .
+Note que isto requer compatibilidade com o BIOS, mais especificamente que tenha
+suporte a chamadas int 0x13 e AH=0x42.  É recomendado o seu uso.
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">map=arquivo-mapa</code> - Especifica a localização do arquivo de
+mapa (<code class="filename">.map</code>).  Se não for especificado,
+<code class="filename">/boot/map</code> é usado.
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">message=arquivo</code> - Especifica um arquivo que contém uma
+mensagem que será mostrada antes do aviso de <code class="literal">boot:</code>.  Nenhuma
+mensagem é mostrada até que seja pressionada a tecla <code class="literal">Shift</code>
+após mostrar a palavra <code class="literal">LILO</code>.  O tamanho da mensagem deve ser
+no máximo 65535 bytes.  O arquivo de mapa deve ser novamente criado caso a
+mensagem seja retirada ou modificada.  Na mensagem, o caracter
+<code class="literal">FF</code> (CTRL+L) limpa a tela.
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">nowarn</code> - Não mostra mensagens de alerta.
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">password=senha</code> - Permite proteger todas as imagens de disco
+com uma única senha.  Caso a senha esteja incorreta, o LILO é novamente
+carregado.
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">prompt</code> - Mostra imediatamente o aviso de
+<code class="literal">boot:</code> ao invés de mostrar somente quando a tecla
+<code class="literal">Shift</code> é pressionada.
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">verbose=[num]</code> - Ativa mensagens sobre o processamento do
+<span class="command"><strong>LILO</strong></span>.  Os números podem ser especificados de 1 a 5, quanto
+maior o número, maior a quantidade de detalhes mostrados.
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">timeout=[num]</code> - Ajusta o tempo máximo de espera (em décimos
+de segundos) de digitação no teclado.  Se nenhuma tecla é pressionada no tempo
+especificado, a primeira imagem é automaticamente carregada.  Igualmente a
+digitação de senha é interrompida se o usuário estiver inativo por este
+período.
+</p>
+</li></ul></div>
+<p>
+Adicionalmente as opções de imagem do kernel <code class="literal">append, ramdisk,
+read-only, read-write, root e vga</code> podem ser especificadas na seção
+<span class="emphasis"><em>global</em></span>.  <code class="literal">Opções por Imagem</code>
+</p>
+<p>
+As opções por imagem iniciam com uma das seguintes opções:
+<code class="literal">image=</code>, <code class="literal">other=</code> ou
+<code class="literal">range=</code>.  Opções usadas por cada imagem:
+</p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+<p>
+<code class="literal">table=dispositivo</code> - Indica o dispositivo que contém a tabela
+de partição para aquele dispositivo.  Necessário apenas para imagens
+especificadas por <code class="literal">other=</code>.
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">unsafe</code> - Não acessa o setor de boot no momento da criação do
+mapa.  Isto desativa algumas checagens, como a checagem da tabela de partição.
+<code class="literal">unsafe</code> e <code class="literal">table=</code> são incompatíveis.
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">label=[nome]</code> - Permite especificar um nome para a imagem.
+Este nome será usado na linha <code class="literal">boot:</code> para inicializar o
+sistema.
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">alias=[nome]</code> - Apelido para a imagem de disco.  É como um
+segundo <code class="literal">label</code>.
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">optional</code> - Ignora a imagem caso não estiver disponível no
+momento da criação do mapa.  É útil para especificar kernels que não estão
+sempre presentes no sistema.
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">password=senha</code> - Protege a imagem atual com a senha.  Caso a
+senha esteja incorreta, o setor de partida do <span class="command"><strong>Lilo</strong></span> é
+novamente carregado.
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">restricted</code> - A senha somente é pedida para iniciar a imagem
+se o sistema for iniciado no modo single.
+</p>
+</li></ul></div>
+<p>
+Também podem ser usados parâmetros de inicialização do kernel no arquivo
+<code class="filename">/etc/lilo.conf</code>, veja a seção <a class="xref" href="ch06s03.html" title="Parâmetros de inicialização passados ao kernel">“Parâmetros de inicialização passados ao kernel”</a> para maiores detalhes.
+</p>
+</div>
+
+<div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="boot-lilo-exemplo"></a>Um exemplo do arquivo de configuração lilo.conf</h3></div></div></div>
+<p>
+Abaixo um exemplo do arquivo <code class="filename">/etc/lilo.conf</code> que poderá ser
+usado em instalações <span class="command"><strong>GNU/Linux</strong></span> com o <span class="command"><strong>DOS</strong></span>.
+</p>
+<pre class="screen">
+boot=/dev/hda1        #Instala o LILO em /dev/hda1
+compact               
+install=menu
+map=/boot/map
+message=/etc/lilo.message  #mensagem que será mostrada na tela
+default=1          #Carrega a Imagem especificada por label=1 como padrão
+vga=normal         #usa o modo de video 80x25 ao iniciar o Linux
+delay=20           #aguarda 2 segundos antes de iniciar a imagem padrão 
+lba32              #permite quebrar o limite de 1024 cilindros na inicialização
+prompt             #mostra o aviso de "boot:" logo que o LILO é carregado
+
+image=/vmlinuz     #especifica o arquivo que contém a primeira imagem
+  root=/dev/hda1   #partição onde a imagem acima esta localizada
+  label=1          #identificação da imagem de disco
+  read-only        #monta inicialmente como somente leitura
+  password=12345   #Usa a senha 12345
+  restricted       #somente quando iniciar com o parâmetro single
+
+other=/dev/hda2    #especifica outro sistema que será carregado
+ table=/dev/hda    #a tabela de partição dele está em /dev/hda
+ label=2           #identificação desta imagem de disco
+ password=12345    #pede a senha antes de iniciar este sistema
+</pre>
+<p>
+Você pode usar o exemplo acima como base para construir sua própria
+configuração personalizada do <code class="filename">/etc/lilo.conf</code> mas não se
+esqueça de modificar as tabelas de partições para seu sistema.  Se você usa o
+<span class="command"><strong>Windows NT 4.0</strong></span>, <span class="command"><strong>Windows NT 5.0 (Windows
+2000)</strong></span> ou o <span class="command"><strong>OS/2</strong></span>, recomendo ler o
+<code class="literal">DOS+Windows+OS/2-HOWTO</code>.
+</p>
+<p>
+Após criar seu arquivo <code class="filename">/etc/lilo.conf</code> , execute o comando
+<code class="literal">lilo</code> e se tudo ocorrer bem, o <span class="command"><strong>LILO</strong></span> será
+instalado.
+</p>
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+</div><HR xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format"></HR><p class="copyright">Copyright © 1999-2020 - Gleydson Mazioli da Silva</p><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch05s14.html">Anterior</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="ch06s02.html">Próximo</a></td></tr><tr><td width="40%" align="left" valign="top">Desmontando uma partição de disco </td><td width="20%" align="center"><a accesskey="h" href="index.html">Voltar ao Índice</a></td><td width="40%" align="right" valign="top"> GRUB</td></tr></table></div></body></html>

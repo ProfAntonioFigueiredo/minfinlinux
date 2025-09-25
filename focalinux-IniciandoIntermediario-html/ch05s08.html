@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>O sistema de arquivos /proc</title><meta name="generator" content="DocBook XSL Stylesheets V1.79.1" /><link rel="home" href="index.html" title="Guia Foca Linux" /><link rel="up" href="ch05.html" title="Capítulo 5. Discos e Partições" /><link rel="prev" href="ch05s07.html" title="Partição Linux Swap (Memória Virtual)" /><link rel="next" href="ch05s09.html" title="LVM - Logical Volume Manager" /></head><body text="black" link="#0000FF" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">O sistema de arquivos <code class="filename">/proc</code></th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch05s07.html">Anterior</a> </td><th width="60%" align="center">Capítulo 5. Discos e Partições</th><td width="20%" align="right"> <a accesskey="n" href="ch05s09.html">Próximo</a></td></tr></table><hr /></div><div xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format" class="breadcrumbs"><span class="breadcrumb-link"><a href="index.html">Guia Foca Linux</a></span> &gt; <span class="breadcrumb-link"><a href="ch05.html">Discos e Partições</a></span> &gt; <span class="breadcrumb-node">O sistema de arquivos <code xmlns="http://www.w3.org/1999/xhtml" class="filename">/proc</code></span></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="disc-proc"></a>O sistema de arquivos <code class="filename">/proc</code></h2></div></div></div>
+<p>
+É o sistema de arquivos do Kernel do <span class="command"><strong>GNU/Linux</strong></span>.  Ele oferece
+um método de ler, gravar e modificar dinamicamente os parâmetros do kernel,
+muito útil para pessoas que gostam de entender como as coisas funcionam (como
+eu) e programas de configuração.  A modificação dos arquivos do diretório
+<code class="filename">/proc</code> é o método mais usado para modificar a configuração
+do sistema e muitos programas também dependem deste diretório para funcionar.
+</p>
+<p>
+Nele você tem todo o controle do que o seus sistema operacional está fazendo, a
+configuração dos hardwares, interrupções, sistema de arquivos montado, execução
+de programas, memória do sistema, rede, etc.
+</p>
+<p>
+Agora entre no diretório <code class="filename">/proc</code> digite
+<code class="literal">ls</code> e veja a quantidade de arquivos e diretórios que ele
+possui, dê uma passeada por eles.  Abaixo a descrição de alguns deles (todos
+podem ser visualizados pelo comando <span class="command"><strong>cat</strong></span>):
+</p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+<p>
+<code class="literal">Diretórios com números</code> - Estes identificam os parâmetros de
+um processo em execução.  Por exemplo, se o PID (identificação do processo) do
+<span class="command"><strong>inetd</strong></span> for <code class="literal">115</code>, você pode entrar no
+diretório <code class="literal">115</code> e verificar as opções usadas para execução
+deste programa através de cada arquivos existente dentro do diretório.  Alguns
+são:
+</p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: circle; "><li class="listitem">
+<p>
+<code class="filename">cmdline</code> - O que foi digitado para iniciar o processo (pode
+também ter sido iniciado através de um programa ou pelo kernel).
+</p>
+</li><li class="listitem">
+<p>
+<code class="filename">environ</code> - Variáveis de Ambiente existentes no momento da
+execução do processo.
+</p>
+</li><li class="listitem">
+<p>
+<code class="filename">status</code> - Dados sobre a execução do Processo (PID, status
+da execução do programa, memória consumida, memória executável, UID, GID, etc).
+</p>
+</li></ul></div>
+</li><li class="listitem">
+<p>
+<code class="filename">apm</code> - Dados sobre o gerenciamento de energia
+</p>
+</li><li class="listitem">
+<p>
+<code class="filename">cmdline</code> - Linha de comando usada para inicializar o Kernel
+<span class="command"><strong>GNU/Linux</strong></span>.  Os parâmetros são passados através do programa
+de inicialização, como o <span class="command"><strong>LILO</strong></span>, <span class="command"><strong>LOADLIN</strong></span>,
+<span class="command"><strong>SYSLINUX</strong></span>.
+</p>
+</li><li class="listitem">
+<p>
+<code class="filename">cpuinfo</code> - Detalhes sobre a CPU do sistema
+</p>
+</li><li class="listitem">
+<p>
+<code class="filename">devices</code> - Dispositivos usados no sistema
+</p>
+</li><li class="listitem">
+<p>
+<code class="filename">dma</code> - Canais de DMA usados por dispositivos
+</p>
+</li><li class="listitem">
+<p>
+<code class="filename">filesystems</code> - Sistemas de arquivos em uso atualmente
+</p>
+</li><li class="listitem">
+<p>
+<code class="filename">interrupts</code> - Interrupções usadas por dispositivos
+</p>
+</li><li class="listitem">
+<p>
+<code class="filename">ioports</code> - Portas de Entrada e Saída usadas pelos
+dispositivos do sistema
+</p>
+</li><li class="listitem">
+<p>
+<code class="filename">kcore</code> - Este arquivo corresponde a toda a memória RAM em
+seu sistema.  Seu tamanho é correspondente a memória RAM do micro
+</p>
+</li><li class="listitem">
+<p>
+<code class="filename">kmsg</code> - Permite visualizar mensagens do Kernel (use o
+comando <code class="literal">cat &lt; kmsg</code> para visualiza-lo e pressione CTRL+C
+para cancelar
+</p>
+</li><li class="listitem">
+<p>
+<code class="filename">loadavg</code> - Média de Carga do sistema
+</p>
+</li><li class="listitem">
+<p>
+<code class="filename">meminfo</code> - Dados de utilização da memória do sistema
+</p>
+</li><li class="listitem">
+<p>
+<code class="filename">misc</code> - Outras configurações
+</p>
+</li><li class="listitem">
+<p>
+<code class="filename">modules</code> - Módulos atualmente carregados no kernel
+</p>
+</li><li class="listitem">
+<p>
+<code class="filename">mounts</code> - Sistemas de Arquivos atualmente montados
+</p>
+</li><li class="listitem">
+<p>
+<code class="filename">pci</code> - Detalhes sobre dispositivos PCI do sistema
+</p>
+</li><li class="listitem">
+<p>
+<code class="filename">rtc</code> - Relógio em Tempo real do sistema
+</p>
+</li><li class="listitem">
+<p>
+<code class="filename">uptime</code> - Tempo de execução do sistema
+</p>
+</li><li class="listitem">
+<p>
+<code class="filename">version</code> - Versão atual do Kernel, programa usado na
+compilação, etc
+</p>
+</li><li class="listitem">
+<p>
+Diretório <code class="filename">net</code> - Dados sobre a rede do sistema
+</p>
+</li><li class="listitem">
+<p>
+Diretório <code class="filename">sys</code> - Dados sobre outras áreas do sistema
+</p>
+</li><li class="listitem">
+<p>
+Diretório <code class="filename">scsi</code> - Detalhes sobre dispositivos SCSI do
+sistema
+</p>
+</li></ul></div>
+<p>
+Note que o diretório <code class="filename">proc</code> e os arquivos existentes dentro
+dele estão localizados no diretório raiz (<code class="filename">/</code>), mas não
+ocupa nenhum espaço no disco rígido.
+</p>
+</div><HR xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format"></HR><p class="copyright">Copyright © 1999-2020 - Gleydson Mazioli da Silva</p><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch05s07.html">Anterior</a> </td><td width="20%" align="center"><a accesskey="u" href="ch05.html">Subir</a></td><td width="40%" align="right"> <a accesskey="n" href="ch05s09.html">Próximo</a></td></tr><tr><td width="40%" align="left" valign="top">Partição Linux Swap (Memória Virtual) </td><td width="20%" align="center"><a accesskey="h" href="index.html">Voltar ao Índice</a></td><td width="40%" align="right" valign="top"> LVM - Logical Volume Manager</td></tr></table></div></body></html>

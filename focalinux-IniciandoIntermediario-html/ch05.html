@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Capítulo 5. Discos e Partições</title><meta name="generator" content="DocBook XSL Stylesheets V1.79.1" /><link rel="home" href="index.html" title="Guia Foca Linux" /><link rel="up" href="index.html" title="Guia Foca Linux" /><link rel="prev" href="ch04s04.html" title="Programas equivalentes entre Windows/DOS e o Linux" /><link rel="next" href="ch05s02.html" title="Sistema de Arquivos" /></head><body text="black" link="#0000FF" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Capítulo 5. Discos e Partições</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch04s04.html">Anterior</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch05s02.html">Próximo</a></td></tr></table><hr /></div><div xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format" class="breadcrumbs"><span class="breadcrumb-link"><a href="index.html">Guia Foca Linux</a></span> &gt; <span class="breadcrumb-node">Discos e Partições</span></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a id="disc"></a>Capítulo 5. Discos e Partições</h1></div></div></div><div class="toc"><p><strong>Índice</strong></p><dl class="toc"><dt><span class="section"><a href="ch05.html#disc-particoes">Partições</a></span></dt><dt><span class="section"><a href="ch05s02.html">Sistema de Arquivos</a></span></dt><dt><span class="section"><a href="ch05s03.html">Partição EXT2 (Linux Native)</a></span></dt><dd><dl><dt><span class="section"><a href="ch05s03.html#disc-ext2-criando-p">Criando um sistema de arquivos EXT2 em uma partição</a></span></dt><dt><span class="section"><a href="ch05s03.html#disc-ext2-criando-a">Criando um sistema de arquivos EXT2 em um arquivo</a></span></dt></dl></dd><dt><span class="section"><a href="ch05s04.html">Journaling</a></span></dt><dt><span class="section"><a href="ch05s05.html">Partição EXT3 (Linux Native)</a></span></dt><dd><dl><dt><span class="section"><a href="ch05s05.html#disc-ext3-criando-p">Criando um sistema de arquivos EXT3 em uma partição</a></span></dt><dt><span class="section"><a href="ch05s05.html#disc-ext3-criando-a">Criando um sistema de arquivos EXT3 em um arquivo</a></span></dt><dt><span class="section"><a href="ch05s05.html#disc-ext3-conv2-3">Fazendo a conversão do sistema de arquivos EXT2 para EXT3</a></span></dt><dt><span class="section"><a href="ch05s05.html#disc-ext3-conv3-2">Convertendo de EXT3 para EXT2</a></span></dt><dt><span class="section"><a href="ch05s05.html#disc-e2label">Nomeando uma partição de disco ext2/ext3</a></span></dt><dt><span class="section"><a href="ch05s05.html#disc-mklost-found">Criando o diretório especial <code class="filename">lost+found</code></a></span></dt><dt><span class="section"><a href="ch05s05.html#disc-dumpe2fs">dumpe2fs</a></span></dt><dt><span class="section"><a href="ch05s05.html#disc-ext2xarquivo">Partição EXT2 ou Arquivo?</a></span></dt></dl></dd><dt><span class="section"><a href="ch05s06.html">Sistema de arquivos reiserfs</a></span></dt><dd><dl><dt><span class="section"><a href="ch05s06.html#disc-reiserfs-criando-p">Criando um sistema de arquivos reiserfs em uma partição</a></span></dt><dt><span class="section"><a href="ch05s06.html#disc-reiserfs-criando-a">Criando um sistema de arquivos reiserfs em um arquivo</a></span></dt></dl></dd><dt><span class="section"><a href="ch05s07.html">Partição Linux Swap (Memória Virtual)</a></span></dt><dd><dl><dt><span class="section"><a href="ch05s07.html#disc-swap-criando-p">Criando sistema de arquivos Swap em uma partição</a></span></dt><dt><span class="section"><a href="ch05s07.html#disc-swap-criando-a">Criando um sistema de arquivos Swap em um arquivo</a></span></dt><dt><span class="section"><a href="ch05s07.html#disc-swap-swapxarquivo">Partição Swap ou Arquivo?</a></span></dt></dl></dd><dt><span class="section"><a href="ch05s08.html">O sistema de arquivos <code class="filename">/proc</code></a></span></dt><dt><span class="section"><a href="ch05s09.html">LVM - Logical Volume Manager</a></span></dt><dd><dl><dt><span class="section"><a href="ch05s09.html#disc-lvm-graph">Representação gráfica do LVM</a></span></dt><dt><span class="section"><a href="ch05s09.html#disc-lvm-perf">Performance do LVM</a></span></dt><dt><span class="section"><a href="ch05s09.html#disc-lvm-install">Instalando LVM em seu sistema</a></span></dt><dt><span class="section"><a href="ch05s09.html#disc-lvm-grow">Aumentando o tamanho de um volume lógico</a></span></dt><dt><span class="section"><a href="ch05s09.html#disc-lvm-shrink">Diminuindo um volume lógico</a></span></dt></dl></dd><dt><span class="section"><a href="ch05s10.html">Formatando Pen-drives/Disquetes</a></span></dt><dd><dl><dt><span class="section"><a href="ch05s10.html#disc-formatando-l">Formatando pen-drives para serem usados no Linux</a></span></dt><dt><span class="section"><a href="ch05s10.html#disc-formatando-d">Formatando pen-drives compatíveis com o Windows</a></span></dt><dt><span class="section"><a href="ch05s10.html#disc-formatando-g">Programas de Formatação Gráficos</a></span></dt></dl></dd><dt><span class="section"><a href="ch05s11.html">Pontos de Montagem</a></span></dt><dt><span class="section"><a href="ch05s12.html">Identificação de discos e partições em sistemas Linux</a></span></dt><dt><span class="section"><a href="ch05s13.html">Montando (acessando) uma partição de disco</a></span></dt><dd><dl><dt><span class="section"><a href="ch05s13.html#disc-fstab">fstab</a></span></dt></dl></dd><dt><span class="section"><a href="ch05s14.html">Desmontando uma partição de disco</a></span></dt></dl></div>
+<p>
+Este capítulo traz explicações de como manipular discos rígidos e partições no
+sistema <span class="command"><strong>GNU/Linux</strong></span> e como acessar seus discos de CD-ROM e
+partições <span class="command"><strong>DOS</strong></span>, <span class="command"><strong>Windows 9X/XP/Vista/Seven/Oito/10</strong></span>
+no <span class="command"><strong>GNU/Linux</strong></span>.
+</p>
+<p>
+Também será ensinado como formatar uma partição ou arquivo em formato
+<code class="literal">EXT2</code>, <code class="literal">EXT3</code>, <code class="literal">reiserfs</code>,
+<code class="literal">xfs</code> e usar a ferramenta <span class="command"><strong>mkswap</strong></span> (para
+criar uma partição ou arquivo de memória virtual).
+</p>
+
+<div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="disc-particoes"></a>Partições</h2></div></div></div>
+<p>
+São divisões existentes no disco rígido que marcam onde começa onde termina um
+sistema de arquivos.  As partições nos permitem usar mais de um sistema
+operacional no mesmo computador (como o <span class="command"><strong>GNU/Linux</strong></span>,
+<span class="command"><strong>Windows</strong></span> e <span class="command"><strong>DOS</strong></span>), ou dividir o disco rígido
+em uma ou mais partes para ser usado por um único sistema operacional ou até
+mesmo por diferentes arquiteturas (32 e 64 bits).
+</p>
+
+
+<p>
+Para gravar os dados, o disco rígido deve ser primeiro particionado (usando o
+<span class="command"><strong>cfdisk</strong></span>, <span class="command"><strong>parted</strong></span>,
+<span class="command"><strong>diskdruid</strong></span>, <span class="command"><strong>fdisk</strong></span>), escolher o tipo da
+partição (<span class="emphasis"><em>Linux Native</em></span>, <span class="emphasis"><em>Linux Swap</em></span>,
+etc) e depois aquela partição deve ser formatada com o
+<span class="command"><strong>mkfs.ext3</strong></span> (veja <a class="xref" href="ch05s05.html" title="Partição EXT3 (Linux Native)">“Partição EXT3 (Linux Native)”</a>).
+</p>
+<p>
+Após criada e formatada, a partição será automaticamente identificada como um
+dispositivo no diretório <code class="filename">/dev</code> 
+(veja <a class="xref" href="ch05s12.html" title="Identificação de discos e partições em sistemas Linux">“Identificação de discos e partições em sistemas Linux”</a>) .  e deverá ser montada 
+(<a class="xref" href="ch05s13.html" title="Montando (acessando) uma partição de disco">“Montando (acessando) uma partição de disco”</a>) para permitir seu uso no sistema. 
+</p>
+<p>
+Uma partição de disco não interfere em outras partições existentes, por este
+motivo é possível usar o <span class="command"><strong>Windows</strong></span>,
+<span class="command"><strong>GNU/Linux</strong></span> e qualquer outro sistema operacional no mesmo
+disco.  Para escolher qual deles será inicializado, veja <a class="xref" href="ch06.html" title="Capítulo 6. Gerenciadores de Partida (boot loaders)">Capítulo 6, <em>Gerenciadores de Partida (boot loaders)</em></a>.
+</p>
+<p>
+Para particionar (dividir) o disco rígido em uma ou mais partes é necessário o
+uso de um programa de particionamento.  Os programas mais conhecidos para
+particionamento de discos no <span class="command"><strong>GNU/Linux</strong></span> são
+<span class="command"><strong>fdisk</strong></span>, <span class="command"><strong>cfdisk</strong></span> e o <span class="command"><strong>Disk
+Druid</strong></span>.
+</p>
+
+<p>
+Lembre-se:
+</p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+<p>
+Quando se apaga uma partição, você estará apagando TODOS os arquivos existentes
+nela!
+</p>
+</li><li class="listitem">
+<p>
+A partição do tipo <span class="emphasis"><em>Linux Native</em></span> (Tipo 83) é a usada para
+armazenar arquivos no <span class="command"><strong>GNU/Linux</strong></span>, tanto ext2, ext3, ext4,
+reiserfs, xfs, etc.  Para detalhes veja <a class="xref" href="ch05s03.html" title="Partição EXT2 (Linux Native)">“Partição EXT2 (Linux Native)”</a>.
+</p>
+</li><li class="listitem">
+<p>
+A partição do tipo <span class="emphasis"><em>Linux Swap</em></span> (Tipo 82) é usada como
+memória virtual.  Para detalhes veja <a class="xref" href="ch05s07.html" title="Partição Linux Swap (Memória Virtual)">“Partição Linux Swap (Memória Virtual)”</a>.
+</p>
+</li><li class="listitem">
+<p>
+Em sistemas novos, é comum encontrar o <span class="command"><strong>Windows</strong></span> instalado em
+uma partição que consome TODO o espaço do disco rígido.  Uma solução para
+instalar o <span class="command"><strong>GNU/Linux</strong></span> é apagar a partição
+<span class="command"><strong>Windows</strong></span> e criar três com tamanhos menores (uma para o
+<span class="command"><strong>Windows</strong></span>, uma para o <span class="command"><strong>GNU/Linux</strong></span> e outra
+para a <span class="emphasis"><em>Memória Virtual do Linux (SWAP)</em></span>.  Ou criar apenas 2
+se você não quiser mais saber mais do <span class="command"><strong>Windows</strong></span> ;-)
+</p>
+<p>
+A outra solução é usar o <span class="command"><strong>parted</strong></span> (e
+<span class="command"><strong>gparted</strong></span> sua versão gráfica), que trabalha com
+<code class="literal">FAT16</code>, <code class="literal">FAT32</code>, <code class="literal">NTFS</code>.
+Esta técnica também é chamada de <code class="literal">Reparticionamento não
+destrutivo</code> (e o outro obviamente <code class="literal">Reparticionamento
+destrutivo</code>).  Para sistemas que foram formatados em <span class="command"><strong>Windows
+XP</strong></span> e superiores, é possível que o <span class="command"><strong>parted</strong></span> não
+consiga redimensionar o sistema, neste caso você pode reparticionar usando
+ferramentas como o <span class="command"><strong>ntfsresize</strong></span> ou <code class="literal">Partition
+Magic</code> (para <span class="command"><strong>Windows</strong></span>).
+</p>
+</li></ul></div>
+
+<p>
+Para mais detalhes sobre discos, partições ou como particionar seu disco, veja
+algum bom documento sobre particionamento (como a página de manual e
+documentação do <span class="command"><strong>fdisk</strong></span>, <span class="command"><strong>cfdisk</strong></span>,
+<span class="command"><strong>parted</strong></span> ou <span class="command"><strong>Disk Druid</strong></span>).
+</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div><HR xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format"></HR><p class="copyright">Copyright © 1999-2020 - Gleydson Mazioli da Silva</p><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch04s04.html">Anterior</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="ch05s02.html">Próximo</a></td></tr><tr><td width="40%" align="left" valign="top">Programas equivalentes entre Windows/DOS e o Linux </td><td width="20%" align="center"><a accesskey="h" href="index.html">Voltar ao Índice</a></td><td width="40%" align="right" valign="top"> Sistema de Arquivos</td></tr></table></div></body></html>

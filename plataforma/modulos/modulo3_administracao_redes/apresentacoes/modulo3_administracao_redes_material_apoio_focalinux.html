@@ -1,0 +1,272 @@
+
+        <div class="slide">
+            <h2><i class="fas fa-plus-circle"></i> Material de Apoio FOCA Linux - Modulo3 Administracao Redes</h2>
+            <div class="info-box">
+                <strong>📚 Conteúdo Complementar:</strong> Material adicional extraído do FOCA Linux 
+                para enriquecer o aprendizado.
+            </div>
+        
+        <div class="focalinux-content">
+            <div class="content-header">
+                <h3><i class="fas fa-file-alt"></i> Servidor ssh</h3>
+                <div class="content-meta">
+                    <span class="score">Score: 18</span>
+                    <span class="comandos">15 comandos</span>
+                </div>
+            </div>
+            
+            <div class="content-body">
+                <h4>Conceitos Principais:</h4>
+                <ul>
+        <li>Servidor ssh</li><li>sshd</li><li>Controle de acesso</li><li>Usando autenticação RSA/DSA - chave pública/privada</li><li>Execução de comandos específicos usando chaves</li>
+                </ul>
+                
+                <h4>Comandos Relacionados:</h4>
+                <div class="comandos-section">
+        <code class="comando">Ativa o subsistema de ftp seguro. Para desabilitar comente a linha</code><code class="comando">Quando n</code><code class="comando">Verifica se o usu</code><code class="comando">no-port-forwarding,no-X11-forwarding,no-agent-forwarding,command="ls / -la" ssh-dss ABCAB3NzaC1kc55355MAADBBYLp...</code><code class="comando">de usu</code><code class="comando">Ignora</code><code class="comando">Modelo personalizado para o guia Foca GNU/Linux baseado na configura</code><code class="comando">cliente responde. Isto</code><code class="comando">Especifica se o servidor sshd far</code><code class="comando">pelo daemon sshd. O valor padr</code>
+                </div>
+                
+                <h4>Conteúdo Detalhado:</h4>
+                <div class="conteudo-detalhado">
+        <p>Servidor sshServidor sshAnterior Capítulo 15. Servidor ssh PróximoGuia Foca Linux &gt; Servidor ssh &gt; Servidor sshServidor sshsshd Este é o daemon de controle da conexão encriptada via protocolo ssh, transferência de arquivos e shell interativo. As opções de linha de comando estão disponíveis em “Opções de linha de comando”. Seu arquivo de configuração principal é /etc/ssh/sshd_config, um exemplo e descrição das opções deste arquivo é encontrada em “Exemplo de sshd_config com explicações das ...</p>
+                </div>
+                
+                <div class="content-actions">
+                    <button class="btn btn-primary" onclick="abrirArquivoOriginal('/Users/imac/LinuxAvançado/focalinux-Avancado-html/ch15s03.html')">
+                        <i class="fas fa-external-link-alt"></i> Ver Arquivo Original
+                    </button>
+                    <button class="btn btn-outline" onclick="copiarComandos()">
+                        <i class="fas fa-copy"></i> Copiar Comandos
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="focalinux-content">
+            <div class="content-header">
+                <h3><i class="fas fa-file-alt"></i> Uso de criptografia SSL</h3>
+                <div class="content-meta">
+                    <span class="score">Score: 17</span>
+                    <span class="comandos">15 comandos</span>
+                </div>
+            </div>
+            
+            <div class="content-body">
+                <h4>Conceitos Principais:</h4>
+                <ul>
+        <li>Uso de criptografia SSL</li><li>Servidor apache com suporte a ssl</li><li>Instalando o suporte a módulo SSL no Apache</li><li>Gerando um certificado digital</li><li>Exemplo de configuração do módulo mod-ssl</li>
+                </ul>
+                
+                <h4>Comandos Relacionados:</h4>
+                <div class="comandos-section">
+        <code class="comando">de conex</code><code class="comando">conex</code><code class="comando">programa que gera n</code><code class="comando">&lt;Directory /var/www/secure/clientes&gt;
+ Options Indexes 
+ Order deny,allow
+ Deny from evil.cracker.com
+ SSLRequireSSL
+&lt;/Directory&gt;</code><code class="comando">entre no diret</code><code class="comando">o comportamento da se</code><code class="comando">carregado pela diretiva LoadModule</code><code class="comando">Localiza</code><code class="comando">Vers</code><code class="comando">A linha abaixo for</code>
+                </div>
+                
+                <h4>Conteúdo Detalhado:</h4>
+                <div class="conteudo-detalhado">
+        <p>Uso de criptografia SSLUso de criptografia SSLAnterior Capítulo 12. Apache PróximoGuia Foca Linux &gt; Apache &gt; Uso de criptografia SSLUso de criptografia SSL Esta seção é uma referência rápida para configuração e uso do módulo apache-ssl com o servidor Apache. Este módulo realiza a comunicação segura de dados (criptografada) via porta 443 (que é usada como padrão quando especificamos uma url iniciando com https://). A transmissão criptografada de dados é importante quanto temos dados confide...</p>
+                </div>
+                
+                <div class="content-actions">
+                    <button class="btn btn-primary" onclick="abrirArquivoOriginal('/Users/imac/LinuxAvançado/focalinux-Avancado-html/ch12s09.html')">
+                        <i class="fas fa-external-link-alt"></i> Ver Arquivo Original
+                    </button>
+                    <button class="btn btn-outline" onclick="copiarComandos()">
+                        <i class="fas fa-copy"></i> Copiar Comandos
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="focalinux-content">
+            <div class="content-header">
+                <h3><i class="fas fa-file-alt"></i> Configurando o Apache como servidor proxy</h3>
+                <div class="content-meta">
+                    <span class="score">Score: 17</span>
+                    <span class="comandos">14 comandos</span>
+                </div>
+            </div>
+            
+            <div class="content-body">
+                <h4>Conceitos Principais:</h4>
+                <ul>
+        <li>Configurando o Apache como servidor proxy</li><li>Controlando o acesso ao servidor proxy</li><li>Redirecionamento de conexões no Apache</li>
+                </ul>
+                
+                <h4>Comandos Relacionados:</h4>
+                <div class="comandos-section">
+        <code class="comando"># LoadModule proxy_module /usr/lib/apache/1.3/libproxy.so</code><code class="comando">Escolha uma das op</code><code class="comando">Ativa/Desativa a manipula</code><code class="comando"># Acesso aos serviços proxy do apache
+&lt;Directory proxy:*&gt;
+    Order deny,allow
+    Deny from all
+    Allow from .seudominio.com.br
+&lt;/Directory&gt;</code><code class="comando">Suporte a Proxy</code><code class="comando">de sa</code><code class="comando">Acesso aos servi</code><code class="comando">ProxyPass /download http://192.168.1.54</code><code class="comando">LoadModule proxy_module /usr/lib/apache/1.3/libproxy.so</code><code class="comando">ProxyPass        /download http://192.168.1.54
+ProxyPassReverse /download http://192.168.1.54</code>
+                </div>
+                
+                <h4>Conteúdo Detalhado:</h4>
+                <div class="conteudo-detalhado">
+        <p>Configurando o Apache como servidor proxyConfigurando o Apache como servidor proxyAnterior Capítulo 12. Apache PróximoGuia Foca Linux &gt; Apache &gt; Configurando o Apache como servidor proxyConfigurando o Apache como servidor proxy O Apache pode ser configurado para funcionar como servidor proxy transparente para sua rede interna, possibilitando inclusive o uso de cache de disco. É possível se fazer conexões HTTP (incluindo SSL) e FTP. Através desta característica também é possível usar uma da...</p>
+                </div>
+                
+                <div class="content-actions">
+                    <button class="btn btn-primary" onclick="abrirArquivoOriginal('/Users/imac/LinuxAvançado/focalinux-Avancado-html/ch12s07.html')">
+                        <i class="fas fa-external-link-alt"></i> Ver Arquivo Original
+                    </button>
+                    <button class="btn btn-outline" onclick="copiarComandos()">
+                        <i class="fas fa-copy"></i> Copiar Comandos
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="focalinux-content">
+            <div class="content-header">
+                <h3><i class="fas fa-file-alt"></i> Restrições de Acesso</h3>
+                <div class="content-meta">
+                    <span class="score">Score: 15</span>
+                    <span class="comandos">15 comandos</span>
+                </div>
+            </div>
+            
+            <div class="content-body">
+                <h4>Conceitos Principais:</h4>
+                <ul>
+        <li>Restrições de Acesso</li><li>Especificando opções/permissões para as páginas</li><li>Autorização</li><li>Autenticação</li><li>Usando autorização e autenticação juntos</li>
+                </ul>
+                
+                <h4>Comandos Relacionados:</h4>
+                <div class="comandos-section">
+        <code class="comando">&lt;DirectoryMatch "^/www/.*"&gt;
+     Order deny,allow
+     deny from all
+    &lt;DirectoryMatch&gt;</code><code class="comando">SetEnvIf User-Agent ".*MSIE*." EXPLODER
+&lt;Directory /var/www&gt;
+ Order deny,allow
+ allow from all
+ deny from env=EXPLODER
+&lt;/Directory&gt;</code><code class="comando">&lt;Directory /var/www&gt;
+ Options Indexes
+ Order deny,allow
+ deny from all
+&lt;/Directory&gt;</code><code class="comando">&lt;Files ~ "\.(gif|jpe?g|bmp|png)$"&gt;
+     Order deny,allow
+    &lt;/Files&gt;</code><code class="comando">&lt;Directory /var/www&gt;
+ Options Indexes
+ Order mutual-failure
+ allow from .dominio.com.br
+ deny from lammer.dominio.com.br
+&lt;/Directory&gt;</code><code class="comando">&lt;Directory /var/www&gt;
+ Options Indexes
+ Order deny,allow
+ allow from .dominiolocal.com.br
+ deny from all
+ AuthName "Acesso ao diretório do servidor Web"
+ AuthType basic
+ AuthUserFile /var/cache/apache/senhas
+ Require valid-user
+&lt;/Directory&gt;</code><code class="comando">&lt;Directory /var/www&gt;
+ Options Indexes
+ Order mutual-failure
+ allow from .dominiolocal.com.br
+ deny from lammer.dominiolocal.com.br
+ AuthName "Acesso ao diretório do servidor Web"
+ AuthType basic
+ AuthUserFile /var/cache/apache/senhas
+ AuthGroupFile /var/cache/apache/grupos
+ Require group admins
+ Satisfy any
+&lt;/Directory&gt;</code><code class="comando">&lt;Directory /var/www&gt;
+ Options Indexes
+ AuthName "Acesso ao diretório do servidor Web"
+ AuthType basic
+ AuthUserFile /var/cache/apache/senhas
+ AuthGroupFile /var/cache/apache/grupos
+ Require group admins
+ Satisfy any
+&lt;/Directory&gt;</code><code class="comando">&lt;Directory /var/www&gt;
+ Option Indexes
+  &lt;Limit POST PUT DELETE&gt;
+     Order deny,allow
+     allow from 192.168.1.0/24
+     deny from all
+   &lt;/Limit&gt;
+&lt;/Directory&gt;</code><code class="comando">&lt;Directory /var/www&gt;
+ Options None
+ Order allow,deny
+ allow from 192.168.1. .cipsga.org.br .debian.org
+ deny from 200.200.123.
+&lt;/Directory&gt;</code>
+                </div>
+                
+                <h4>Conteúdo Detalhado:</h4>
+                <div class="conteudo-detalhado">
+        <p>Restrições de AcessoRestrições de AcessoAnterior Capítulo 12. Apache PróximoGuia Foca Linux &gt; Apache &gt; Restrições de AcessoRestrições de Acesso A restrição de acesso do Apache é feita através de Autorização (“Autorização”) e Autenticação (“Autenticação”). Através da autorização, é checado se o endereço/rede especificada tem ou não permissão para acessar a página. A autenticação requer que seja passado nome e senha para garantir acesso a página. Os métodos de Autorização e Autenticação pode...</p>
+                </div>
+                
+                <div class="content-actions">
+                    <button class="btn btn-primary" onclick="abrirArquivoOriginal('/Users/imac/LinuxAvançado/focalinux-Avancado-html/ch12s03.html')">
+                        <i class="fas fa-external-link-alt"></i> Ver Arquivo Original
+                    </button>
+                    <button class="btn btn-outline" onclick="copiarComandos()">
+                        <i class="fas fa-copy"></i> Copiar Comandos
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="focalinux-content">
+            <div class="content-header">
+                <h3><i class="fas fa-file-alt"></i> Resolução de nomes de máquinas no samba</h3>
+                <div class="content-meta">
+                    <span class="score">Score: 6</span>
+                    <span class="comandos">4 comandos</span>
+                </div>
+            </div>
+            
+            <div class="content-body">
+                <h4>Conceitos Principais:</h4>
+                <ul>
+        <li>Resolução de nomes de máquinas no samba</li><li>Arquivo /etc/samba/lmhosts</li><li>WINS</li><li>Exemplo de lmhosts do UNIX</li><li>Exemplo de lmhosts do Windows</li>
+                </ul>
+                
+                <h4>Comandos Relacionados:</h4>
+                <div class="comandos-section">
+        <code class="comando">[global]
+wins support = yes
+wins proxy = no
+dns proxy = no
+max wins ttl = 518400</code><code class="comando">192.168.0.5 servarq
+192.168.0.1 serverpdc #PRE #DOM:dominio
+192.168.0.2 "serverwins    \0x1e" #PRE
+#INCLUDE \\serverpdc\lmhosts</code><code class="comando">172.16.0.34 servarq
+172.16.0.30 serverdom
+192.168.5.2 servwins
+172.16.0.3 servpdc
+172.16.0.1 gateway</code><code class="comando">[global]
+wins server = 192.168.1.1</code>
+                </div>
+                
+                <h4>Conteúdo Detalhado:</h4>
+                <div class="conteudo-detalhado">
+        <p>Resolução de nomes de máquinas no sambaResolução de nomes de máquinas no sambaAnterior Capítulo 18. SAMBA PróximoGuia Foca Linux &gt; SAMBA &gt; Resolução de nomes de máquinas no sambaResolução de nomes de máquinas no samba O Samba pode utiliza os seguintes métodos para resolução de nomes de máquinas na rede (“Nome de máquina (nome NetBios)”). Eles estão listados em ordem de prioridade do mais para o menos recomendável: lmhosts - Pesquisa primeiro o arquivo /etc/samba/lmhosts (veja “Arquivo /etc...</p>
+                </div>
+                
+                <div class="content-actions">
+                    <button class="btn btn-primary" onclick="abrirArquivoOriginal('/Users/imac/LinuxAvançado/focalinux-Avancado-html/ch18s05.html')">
+                        <i class="fas fa-external-link-alt"></i> Ver Arquivo Original
+                    </button>
+                    <button class="btn btn-outline" onclick="copiarComandos()">
+                        <i class="fas fa-copy"></i> Copiar Comandos
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        </div>
+        

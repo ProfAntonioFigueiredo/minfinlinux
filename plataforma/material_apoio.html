@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Material de Apoio - FOCA Linux</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="assets/css/ppt-integration.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .material-apoio-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .material-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .material-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .material-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .modulo-section {
+            margin-bottom: 4rem;
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border: 1px solid #e9ecef;
+        }
+        
+        .modulo-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid #3498db;
+        }
+        
+        .modulo-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1.5rem;
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        .modulo-title {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin: 0;
+        }
+        
+        .modulo-stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            background: #f8f9fa;
+            padding: 0.8rem 1.2rem;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+            color: #495057;
+        }
+        
+        .stat-item i {
+            color: #3498db;
+        }
+        
+        .conteudo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .conteudo-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 1.5rem;
+            border-left: 4px solid #3498db;
+            transition: all 0.3s ease;
+        }
+        
+        .conteudo-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border-left-color: #e74c3c;
+        }
+        
+        .conteudo-card h4 {
+            color: #2c3e50;
+            margin: 0 0 1rem 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        .conteudo-card p {
+            color: #6c757d;
+            margin: 0 0 1rem 0;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .comandos-preview {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            margin: 1rem 0;
+            overflow-x: auto;
+        }
+        
+        .comandos-preview code {
+            color: #2ecc71;
+        }
+        
+        .nivel-badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+        
+        .nivel-basico { background: #d4edda; color: #155724; }
+        .nivel-intermediario { background: #fff3cd; color: #856404; }
+        .nivel-avancado { background: #f8d7da; color: #721c24; }
+        .nivel-seguranca { background: #d1ecf1; color: #0c5460; }
+        
+        .acoes-card {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .btn-sm {
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+            border-radius: 6px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: #3498db;
+            color: white;
+            border: none;
+        }
+        
+        .btn-primary:hover {
+            background: #2980b9;
+            transform: translateY(-1px);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: #3498db;
+            border: 1px solid #3498db;
+        }
+        
+        .btn-outline:hover {
+            background: #3498db;
+            color: white;
+        }
+        
+        .search-box {
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .search-box input:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+        
+        .search-box i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6c757d;
+        }
+        
+        .filtros {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .filtro-btn {
+            padding: 0.5rem 1rem;
+            border: 2px solid #e9ecef;
+            background: white;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .filtro-btn.active {
+            background: #3498db;
+            color: white;
+            border-color: #3498db;
+        }
+        
+        .filtro-btn:hover {
+            border-color: #3498db;
+            color: #3498db;
+        }
+        
+        .filtro-btn.active:hover {
+            background: #2980b9;
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .material-header h1 {
+                font-size: 2rem;
+            }
+            
+            .modulo-stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .conteudo-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .filtros {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="material-apoio-container">
+        <!-- Header -->
+        <div class="material-header">
+            <h1><i class="fas fa-book-open"></i> Material de Apoio FOCA Linux</h1>
+            <p>Conteúdo complementar extraído do material FOCA Linux para enriquecer o treinamento do Ministério das Finanças de Angola</p>
+        </div>
+
+        <!-- Busca e Filtros -->
+        <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" id="searchInput" placeholder="Buscar por tópicos, comandos ou conceitos...">
+        </div>
+
+        <div class="filtros">
+            <button class="filtro-btn active" data-filtro="todos">Todos</button>
+            <button class="filtro-btn" data-filtro="basico">Básico</button>
+            <button class="filtro-btn" data-filtro="intermediario">Intermediário</button>
+            <button class="filtro-btn" data-filtro="avancado">Avançado</button>
+            <button class="filtro-btn" data-filtro="seguranca">Segurança</button>
+        </div>
+
+        <!-- Módulo 1: Fundamentos Linux -->
+        <div class="modulo-section" data-modulo="modulo1">
+            <div class="modulo-header">
+                <div class="modulo-icon">
+                    <i class="fas fa-terminal"></i>
+                </div>
+                <div>
+                    <h2 class="modulo-title">Módulo 1: Fundamentos Linux</h2>
+                    <div class="modulo-stats">
+                        <div class="stat-item">
+                            <i class="fas fa-file-alt"></i>
+                            <span>560 arquivos</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-code"></i>
+                            <span>432 comandos</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-star"></i>
+                            <span>Score: 865</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="conteudo-grid">
+                <div class="conteudo-card" data-nivel="avancado">
+                    <span class="nivel-badge nivel-avancado">Avançado</span>
+                    <h4>Limitação de recursos usando PAM</h4>
+                    <p>Controle avançado de acesso e recursos do sistema usando Pluggable Authentication Modules (PAM).</p>
+                    <div class="comandos-preview">
+                        <code># Bloqueia login em horários específicos<br>
+login;tty*;user1|user2;!Al0000-0630<br>
+# Restringe acesso a grupos<br>
+login;tty*;*;SaSu0000-2400;sound games</code>
+                    </div>
+                    <div class="acoes-card">
+                        <a href="#" class="btn-sm btn-primary">
+                            <i class="fas fa-eye"></i> Ver Detalhes
+                        </a>
+                        <a href="#" class="btn-sm btn-outline">
+                            <i class="fas fa-download"></i> Baixar
+                        </a>
+                    </div>
+                </div>
+
+                <div class="conteudo-card" data-nivel="avancado">
+                    <span class="nivel-badge nivel-avancado">Avançado</span>
+                    <h4>Restrições de acesso e recursos</h4>
+                    <p>Configuração de restrições avançadas no bash e controle de recursos do sistema.</p>
+                    <div class="comandos-preview">
+                        <code># Restrições no bash<br>
+SHELLOPTS="restricted"<br>
+# Limitação de recursos<br>
+* soft core 0<br>
+* hard rss 10000</code>
+                    </div>
+                    <div class="acoes-card">
+                        <a href="#" class="btn-sm btn-primary">
+                            <i class="fas fa-eye"></i> Ver Detalhes
+                        </a>
+                        <a href="#" class="btn-sm btn-outline">
+                            <i class="fas fa-download"></i> Baixar
+                        </a>
+                    </div>
+                </div>
+
+                <div class="conteudo-card" data-nivel="intermediario">
+                    <span class="nivel-badge nivel-intermediario">Intermediário</span>
+                    <h4>Gerenciamento de processos avançado</h4>
+                    <p>Técnicas avançadas para gerenciamento e monitoramento de processos no Linux.</p>
+                    <div class="comandos-preview">
+                        <code># Monitoramento de processos<br>
+ps aux --sort=-%cpu<br>
+# Controle de prioridades<br>
+nice -n 10 comando<br>
+renice 15 -p PID</code>
+                    </div>
+                    <div class="acoes-card">
+                        <a href="#" class="btn-sm btn-primary">
+                            <i class="fas fa-eye"></i> Ver Detalhes
+                        </a>
+                        <a href="#" class="btn-sm btn-outline">
+                            <i class="fas fa-download"></i> Baixar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Módulo 2: Redes e Segurança -->
+        <div class="modulo-section" data-modulo="modulo2">
+            <div class="modulo-header">
+                <div class="modulo-icon">
+                    <i class="fas fa-network-wired"></i>
+                </div>
+                <div>
+                    <h2 class="modulo-title">Módulo 2: Redes e Segurança</h2>
+                    <div class="modulo-stats">
+                        <div class="stat-item">
+                            <i class="fas fa-file-alt"></i>
+                            <span>142 arquivos</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-code"></i>
+                            <span>306 comandos</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-star"></i>
+                            <span>Score: 662</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="conteudo-grid">
+                <div class="conteudo-card" data-nivel="avancado">
+                    <span class="nivel-badge nivel-avancado">Avançado</span>
+                    <h4>Configuração avançada de rede</h4>
+                    <p>Configuração de interfaces de rede, VLANs e roteamento avançado.</p>
+                    <div class="comandos-preview">
+                        <code># Configuração de VLAN<br>
+ip link add link eth0 name eth0.100 type vlan id 100<br>
+# Roteamento estático<br>
+ip route add 192.168.1.0/24 via 192.168.0.1</code>
+                    </div>
+                    <div class="acoes-card">
+                        <a href="#" class="btn-sm btn-primary">
+                            <i class="fas fa-eye"></i> Ver Detalhes
+                        </a>
+                        <a href="#" class="btn-sm btn-outline">
+                            <i class="fas fa-download"></i> Baixar
+                        </a>
+                    </div>
+                </div>
+
+                <div class="conteudo-card" data-nivel="seguranca">
+                    <span class="nivel-badge nivel-seguranca">Segurança</span>
+                    <h4>Firewall e segurança de rede</h4>
+                    <p>Configuração de firewalls, iptables e políticas de segurança de rede.</p>
+                    <div class="comandos-preview">
+                        <code># Regras iptables<br>
+iptables -A INPUT -p tcp --dport 22 -j ACCEPT<br>
+iptables -A INPUT -p tcp --dport 80 -j ACCEPT<br>
+iptables -P INPUT DROP</code>
+                    </div>
+                    <div class="acoes-card">
+                        <a href="#" class="btn-sm btn-primary">
+                            <i class="fas fa-eye"></i> Ver Detalhes
+                        </a>
+                        <a href="#" class="btn-sm btn-outline">
+                            <i class="fas fa-download"></i> Baixar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Módulo 5: Segurança de Redes (FRACO - PRECISA REFORÇO) -->
+        <div class="modulo-section" data-modulo="modulo5">
+            <div class="modulo-header">
+                <div class="modulo-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div>
+                    <h2 class="modulo-title">Módulo 5: Segurança de Redes</h2>
+                    <div class="modulo-stats">
+                        <div class="stat-item">
+                            <i class="fas fa-file-alt"></i>
+                            <span>3 arquivos ⚠️</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-code"></i>
+                            <span>0 comandos ⚠️</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-star"></i>
+                            <span>Score: 3 ⚠️</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="conteudo-grid">
+                <div class="conteudo-card" data-nivel="seguranca">
+                    <span class="nivel-badge nivel-seguranca">Segurança</span>
+                    <h4>⚠️ CONTEÚDO INSUFICIENTE</h4>
+                    <p>Este módulo precisa de mais conteúdo de segurança. Recomendamos adicionar material sobre:</p>
+                    <ul style="margin: 1rem 0; padding-left: 1.5rem;">
+                        <li>Hardening de sistemas</li>
+                        <li>Auditoria de segurança</li>
+                        <li>Detecção de intrusões</li>
+                        <li>Análise forense</li>
+                        <li>Políticas de segurança</li>
+                    </ul>
+                    <div class="acoes-card">
+                        <a href="#" class="btn-sm btn-primary">
+                            <i class="fas fa-plus"></i> Adicionar Conteúdo
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Módulo 6: Observabilidade (VAZIO - CRÍTICO) -->
+        <div class="modulo-section" data-modulo="modulo6">
+            <div class="modulo-header">
+                <div class="modulo-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div>
+                    <h2 class="modulo-title">Módulo 6: Observabilidade</h2>
+                    <div class="modulo-stats">
+                        <div class="stat-item">
+                            <i class="fas fa-file-alt"></i>
+                            <span>0 arquivos 🚨</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-code"></i>
+                            <span>0 comandos 🚨</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-star"></i>
+                            <span>Score: 0 🚨</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="conteudo-grid">
+                <div class="conteudo-card" data-nivel="avancado">
+                    <span class="nivel-badge nivel-avancado">Crítico</span>
+                    <h4>🚨 MÓDULO COMPLETAMENTE VAZIO</h4>
+                    <p>Este módulo não possui nenhum conteúdo identificado. É necessário adicionar material sobre:</p>
+                    <ul style="margin: 1rem 0; padding-left: 1.5rem;">
+                        <li>ELK Stack (Elasticsearch, Logstash, Kibana)</li>
+                        <li>Prometheus e Grafana</li>
+                        <li>Monitoramento de sistemas</li>
+                        <li>Análise de logs</li>
+                        <li>Dashboards e alertas</li>
+                        <li>Métricas e traces</li>
+                    </ul>
+                    <div class="acoes-card">
+                        <a href="#" class="btn-sm btn-primary">
+                            <i class="fas fa-plus"></i> Adicionar Conteúdo Urgente
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Funcionalidade de busca
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const cards = document.querySelectorAll('.conteudo-card');
+            
+            cards.forEach(card => {
+                const text = card.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+
+        // Funcionalidade de filtros
+        document.querySelectorAll('.filtro-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remover active de todos
+                document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('active'));
+                // Adicionar active ao clicado
+                this.classList.add('active');
+                
+                const filtro = this.dataset.filtro;
+                const cards = document.querySelectorAll('.conteudo-card');
+                
+                cards.forEach(card => {
+                    if (filtro === 'todos' || card.dataset.nivel === filtro) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Animação de entrada
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.modulo-section');
+            sections.forEach((section, index) => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(30px)';
+                
+                setTimeout(() => {
+                    section.style.transition = 'all 0.6s ease';
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+        });
+    </script>
+</body>
+</html>

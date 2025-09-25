@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>LVM - Logical Volume Manager</title><meta name="generator" content="DocBook XSL Stylesheets V1.79.1" /><link rel="home" href="index.html" title="Guia Foca Linux" /><link rel="up" href="ch05.html" title="Capítulo 5. Discos e Partições" /><link rel="prev" href="ch05s08.html" title="O sistema de arquivos /proc" /><link rel="next" href="ch05s10.html" title="Formatando Pen-drives/Disquetes" /></head><body text="black" link="#0000FF" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">LVM - Logical Volume Manager</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch05s08.html">Anterior</a> </td><th width="60%" align="center">Capítulo 5. Discos e Partições</th><td width="20%" align="right"> <a accesskey="n" href="ch05s10.html">Próximo</a></td></tr></table><hr /></div><div xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format" class="breadcrumbs"><span class="breadcrumb-link"><a href="index.html">Guia Foca Linux</a></span> &gt; <span class="breadcrumb-link"><a href="ch05.html">Discos e Partições</a></span> &gt; <span class="breadcrumb-node">LVM - Logical Volume Manager</span></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="disc-lvm"></a>LVM - Logical Volume Manager</h2></div></div></div>
+<p>
+O <span class="command"><strong>lvm</strong></span> (<span class="emphasis"><em>Logical Volume Manager</em></span>) faz a
+associação entre dispositivos/partições físicas (incluindo discos RAID, MO,
+mass storages diversos, MD, e loop) e dispositivos lógicos.  O método
+tradicional faz a alocação de todo espaço físico ao tamanho da partição do
+disco (o método tradicional), o que traz muito trabalho quando o espaço esgota,
+cópia de dados ou planejamento de uso de máquina (que pode mudar com o passar
+do tempo).  O sistema de <span class="command"><strong>lvm</strong></span> soluciona os seguintes
+problemas:
+</p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+<p>
+Uso eficaz de disco, principalmente quando há pouco espaço para criação de
+partições independentes.
+</p>
+</li><li class="listitem">
+<p>
+Permite aumentar/diminuir dinamicamente o tamanho das partições sem
+reparticionamento do disco rígido usando o espaço livre em outras partições ou
+utilizando o espaço livre reservado para o uso do LVM.
+</p>
+</li><li class="listitem">
+<p>
+Uma partição de disco é identificada por um nome de volume e não pelo
+dispositivo.  Você pode então se referir aos volumes como: usuários, vendas,
+diretoria, etc.
+</p>
+</li><li class="listitem">
+<p>
+Sua divisão em 3 camadas possibilita a adição/remoção de mais discos de um
+conjunto caso seja necessário mais espaço em volumes, etc.
+</p>
+</li><li class="listitem">
+<p>
+Permite selecionar o tamanho do cluster de armazenamento e a forma que eles são
+acessados entre os discos, possibilitando garantir a escolha da melhor opção
+dependendo da forma que os dados serão manipulados pelo servidor.
+</p>
+</li><li class="listitem">
+<p>
+Permite snapshots dos volumes do disco rígido.
+</p>
+</li></ul></div>
+<p>
+As 3 camadas do LVM são agrupadas da seguinte forma:
+</p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+<p>
+<code class="literal">PV (Phisical Volume)</code> - Corresponde a todo o disco
+rígido/partição ou dispositivo de bloco que será adicionado ao LVM.  Os
+aplicativos que manipulam o volume físico, começam com as letras
+<code class="filename">pv*</code>.  O espaço disponível no PV é dividido em PE (Phisical
+Extends, ou extensões físicas).  O valor padrão do PE é de 4MB, possibilitando
+a criação de um VG de 256Gb.
+</p>
+<p>
+Por exemplo: <code class="filename">/dev/hda1</code>
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">VG (Volume Group)</code> - Corresponde ao grupo de volumes físicos
+que fazem parte do LVM.  Do grupo de volume são alocados os espaços para
+criação dos volumes lógicos.  Os aplicativos que manipulam o o grupo de volume,
+começam com as letras <code class="filename">vg*</code>.
+</p>
+<p>
+Por exemplo: <code class="filename">/dev/lvmdisk0</code> <code class="literal">LV (Logical
+Volume)</code> - Corresponde a partição lógica criada pelo LVM para gravação
+de dados.  ao invés de ser identificada por nomes de dispositivos, podem ser
+usados nomes comuns para se referir as partições (tmp,usr,etc.).  O Volume
+lógico é a área onde o sistema de arquivo é criado para gravação de dados,
+seria equivalente a partição em um sistema <span class="emphasis"><em>SEM LVM</em></span> só que
+lógica ao invés de física.  O volume lógico tem seu espaço dividido em LE
+(Logical Extends, ou extensões lógicas) que correspondem aos PE's alocados.
+</p>
+<p>
+Exemplos: <code class="filename">/dev/lvmdisk/usr</code>,
+<code class="filename">/dev/lvmdisk/tmp</code>, etc.
+</p>
+</li></ul></div>
+
+
+<div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="disc-lvm-graph"></a>Representação gráfica do LVM</h3></div></div></div>
+<p>
+Desenvolvi este desenho para representar a idéia de organização de um sistema
+LVM para o guia Foca GNU/Linux e apresentar a descrição prática da coisa:
+</p>
+<pre class="screen">
++------[ Grupo de Volume (VG) - lvmdsk ]------+
+| +--[ PV - hda1 ]---+ +--[ PV - hdb1 ]--+    |
+| | PE PE PE PE PE PE| | PE PE PE PE PE  |    |
+| +------------------+ +-----------------+    |
+|    |  |                   |        |        |
+|    |  | +-----------------+        |        |
+|    |  +----------------+           |        |
+|    |    |              |           |        |
+|  +-[ LV - var ]-+    +-[ LV - home ]-+      |
+|  | LE LE LE LE  |    | LE LE LE LE   |      |
+|  +--------------+    +---------------+      |
++---------------------------------------------+
+</pre>
+<p>
+O gráfico acima representa a seguinte situação:
+</p>
+<div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">
+<p>
+Nós temos dois volumes físicos representados por <code class="filename">hda1</code> e
+<code class="filename">hdb1</code>.  Cada um desses volumes físicos tem um Phisical
+Extend (PE) de 4M (o padrão).
+</p>
+</li><li class="listitem">
+<p>
+Estes dois volumes físicos acima representam o espaço total do grupo de volume
+<span class="emphasis"><em>lvmdisk</em></span> em <code class="filename">/dev/lvmdisk</code>.
+</p>
+</li><li class="listitem">
+<p>
+Do grupo de volume <span class="emphasis"><em>lvmdisk</em></span> são criados dois volumes
+lógicos chamados <span class="emphasis"><em>var</em></span> e <span class="emphasis"><em>home</em></span>, estando
+disponíveis para particionamento através de
+<code class="filename">/dev/lvmdisk/var</code> e <code class="filename">/var/lvmdisk/home</code>.
+</p>
+</li></ol></div>
+<p>
+Na prática, o espaço do volume lógico é definido alocando-se alguns Phisical
+Extends (PE) dos volumes físicos como logical extends (LE) dos volumes lógicos.
+Desta forma, o tamanho de todos os PEs e LEs existentes dentro de um mesmo
+grupo de volume devem ser iguais.
+</p>
+</div>
+
+
+<div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="disc-lvm-perf"></a>Performance do LVM</h3></div></div></div>
+<p>
+Um sistema com LVM tem sua performance um pouco reduzida quanto ao acesso a
+disco, devido as camadas adicionais de acesso aos dados, sendo afetadas
+operações em caracteres e inteligentes de acesso a dados.
+</p>
+<p>
+Entretanto, a performance de leitura/gravação de blocos é melhorada
+consideravelmente após a adoção do LVM.  O LVM também garante que o sistema não
+mostre sintomas de paradas durante o esvaziamento de cache de disco, mantendo
+sempre uma certa constância na transferência de dados mesmo em operações
+pesadas de I/O no disco.  Depende de você avaliar estes pontos e considerar sua
+adoção.
+</p>
+</div>
+
+
+<div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="disc-lvm-install"></a>Instalando LVM em seu sistema</h3></div></div></div>
+<p>
+Nesta seção não tenho a intenção de cobrir todos os detalhes técnicos da
+implantação do LVM, a idéia aqui é fornecer uma referência básica e prática
+para uso em qualquer sistema normal (desconsiderando usos críticos).  A idéia
+aqui é mostrar de forma prática como implantar LVM em sua máquina e preparar
+seu uso nos discos.
+</p>
+<p>
+Antes de começar, retire QUALQUER CD que estiver inserido na unidade de CD-ROM,
+pois eles podem causar erro no <code class="filename">pvscan</code>,
+<code class="filename">pvdisplay</code>, etc.
+</p>
+<div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">
+<p>
+No particionamento, defina as partições do tipo 8E (Linux LVM).  A partição
+Linux LVM é exatamente igual a Linux Native (82), a única vantagem é que o LVM
+utilizará auto detecção para saber quais partições ele deve utilizar no
+<code class="filename">pvscan</code>.
+</p>
+</li><li class="listitem">
+<p>
+Instale o pacote  e uma imagem de
+kernel 4.x ou 5.x que tenha suporte a LVM, ou compile seu próprio kernel (caso
+goste de máquinas turbinadas :-)
+</p>
+</li><li class="listitem">
+<p>
+Execute o <span class="command"><strong>pvscan</strong></span> para detectar as partições marcadas como
+LVM e criar sua configuração em <code class="filename">/etc/lvmtab.d</code>.
+</p>
+<p>
+<span class="strong"><strong>OBS:</strong></span> É normal o sistema procurar
+dispositivos de CD-ROM durante a execução do <span class="command"><strong>pvscan</strong></span>, apenas
+não deixe um CD na unidade para evitar grandes sustos se estiver desatento com
+os passos :-)
+</p>
+</li><li class="listitem">
+<p>
+Rode o <span class="command"><strong>pvcreate</strong></span> no disco ou partição para dizer que ela será
+um volume físico do LVM: <code class="literal">pvcreate /dev/sda1</code> ou
+<code class="literal">pvcreate /dev/sda</code>
+</p>
+<p>
+Em caso de dúvida sobre qual é a partição LVM, digite: <code class="literal">fdisk -l
+/dev/sda</code> (supondo que <code class="filename">/dev/sda</code> é o disco rígido
+que está configurando o LVM).
+</p>
+</li><li class="listitem">
+<p>
+Rode o pvdisplay /dev/hda1 para verificar se o volume físico foi criado.
+Recomendo que deixe a partição raíz (<code class="literal">/</code>) de fora do LVM para
+não ter futuros problemas com a manutenção do seu sistema, a menos que tenha
+muitas opções de inicialização com suporte a LVM em mãos :-)
+</p>
+</li><li class="listitem">
+<p>
+Crie o grupo de volume na partição <code class="literal">vgcreate lvmdisk /dev/sda1
+/dev/sdb7</code>.  Note que partições de discos diferentes podem fazer parte
+de um mesmo grupo de volume (VG) do LVM.  Caso use o <code class="literal">devfs</code>
+ou em algumas versões do <code class="literal">udev</code>, será preciso usar o caminho
+completo do dispositivo ao invés do link: <code class="literal">vgcreate lvmdisk
+/dev/ide/host0/bus0/target0/lun0/part1</code>
+</p>
+<p>
+O valor padrão do "Phisical Extend" é de 4MB mas pode ser alterado pelo
+parâmetro "-s tamanho", assim o tamanho máximo do grupo de volume será de 256GB
+(4MB * 64.000 extends que são suportados por volume lógico).  Os valores do
+Phisical Extend (PE) pode ser de 8k a 16GB.  Não é possível modificar o tamanho
+do PE após ele ser definido.
+</p>
+</li><li class="listitem">
+<p>
+Verifique o grupo de volume (VG) recém criado com o comando:
+<span class="command"><strong>vgdisplay</strong></span> ou <span class="command"><strong>vgdisplay /dev/sda7</strong></span>.  Atente
+para a linha "Free PE / tamanho", que indica o espaço livre restante para criar
+os volumes lógicos (LV).
+</p>
+</li><li class="listitem">
+<p>
+Crie o volume lógico (LV) com o comando: <code class="literal">lvcreate -L1500 -ntmp
+lvmdisk</code> Que vai criar uma partição LVM de 1500MB (1,5GB) com o nome
+<span class="emphasis"><em>tmp</em></span> (acessível por <code class="filename">/var/lvmdisk/tmp</code>)
+dentro do grupo <span class="emphasis"><em>lvmdisk</em></span>.  Você deverá fazer isso com as
+outra partições.
+</p>
+</li><li class="listitem">
+<p>
+Agora resta criar um sistema de arquivos (<span class="emphasis"><em>ext3</em></span>,
+<span class="emphasis"><em>reiserfs</em></span>, <span class="emphasis"><em>xfs</em></span>,
+<span class="emphasis"><em>jfs</em></span>, etc) como faria com qualquer partição física normal:
+</p>
+<p>
+<code class="literal">mkfs.ext3 /dev/lvmdisk/tmp</code> ou <code class="literal">mkfs.reiserfs
+/dev/lvmdisk/tmp</code>
+</p>
+</li></ol></div>
+
+<p>
+<span class="strong"><strong>OBS:</strong></span> Caso  deseje montar automaticamente o
+volume LVM, coloque o caminho completo do LVM ao invés do volume físico no
+<code class="filename">/etc/fstab</code>: <code class="filename">/dev/lvmdisk/tmp</code>.
+</p>
+
+</div>
+
+
+<div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="disc-lvm-grow"></a>Aumentando o tamanho de um volume lógico</h3></div></div></div>
+<p>
+O processo para aumentar o tamanho do volume lógico consiste em primeiro
+aumentar o tamanho do VG com o <span class="command"><strong>lvextend</strong></span> e depois ajustar o
+tamanho do sistema de arquivos:
+</p>
+<pre class="screen">
+# Aumenta o espaço do volume lógico tmp para 1G
+lvextend -L1G /dev/lvmdisk/tmp
+
+# Aumenta em 200MB o espaço no volume lógico tmp
+lvextend -L+200M /dev/lvmdisk/tmp
+</pre>
+<p>
+As unidades <code class="literal">Kk,Mm,Gg,Tt</code> podem ser usadas para especificar o
+espaço.  Após modificar o volume lógico, será preciso aumentar o tamanho do
+sistema de arquivos para ser exatamente igual ao tamanho do LV.  Isto depende
+do seu sistema de arquivos:
+</p>
+<div class="variablelist"><dl class="variablelist"><dt><span class="term">ext2/3</span></dt><dd>
+<p>
+resize2fs /dev/lvmdisk/tmp
+</p>
+<p>
+O <span class="emphasis"><em>ext2/3</em></span> ainda vem com o utilitário
+<span class="command"><strong>e2fsadm</strong></span> que executa os dois comandos
+(<span class="command"><strong>lvextend</strong></span> e <span class="command"><strong>resize2fs</strong></span>) de uma só vez:
+<code class="literal">e2fsadm -L+1G /dev/lvmdisk/tmp</code>
+</p>
+<p>
+<span class="strong"><strong>OBS:</strong></span> Você deverá desmontar o sistema de
+arquivos antes de alterar o tamanho de um sistema de arquivos
+<span class="emphasis"><em>ext2</em></span> ou <span class="emphasis"><em>ext3</em></span>.  Em kernels da serie
+2.6.17 e superiores, a alteração pode ser feita on-line (devido ao patch
+ext2online incorporado ao kernel).
+</p>
+</dd><dt><span class="term">reiserfs</span></dt><dd>
+<p>
+resize_reiserfs -f /dev/lvmdisk/tmp
+</p>
+<p>
+O tamanho do sistema de arquivos <span class="command"><strong>reiserfs</strong></span> poderá ser
+modificado on-line, assim não precisa parar seu servidor para esta operação.
+</p>
+</dd><dt><span class="term">xfs</span></dt><dd>
+<p>
+xfs_growfs /tmp
+</p>
+<p>
+Note que deve ser especificado o ponto de montagem ao invés do dispositivo.  O
+sistema de arquivos deverá ser montado antes de ser modificado e incluido no
+<code class="filename">/etc/fstab</code>.
+</p>
+</dd></dl></div>
+</div>
+
+<div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="disc-lvm-shrink"></a>Diminuindo um volume lógico</h3></div></div></div>
+<p>
+Para diminuir o tamanho de um volume lógico, certifique-se de ter calculado o
+espaço corretamente para acomodar todos os dados que já existem na partição.  A
+diferença para o processo de aumentar o LV é que primeiramente o sistema de
+arquivos é reduzido primeiro e depois o LV (pois o LV que acomoda o sistema de
+arquivos):
+</p>
+<div class="variablelist"><dl class="variablelist"><dt><span class="term">ext2/3/4</span></dt><dd>
+<p>
+<code class="literal">resize2fs /dev/lvmdisk/tmp 4G</code> e depois <code class="literal">lvreduce
+-L-1G /dev/lvmdisk/tmp</code>
+</p>
+<p>
+Podem ser usados K, M ou G para especificar o novo tamanho.  Caso esteja usando
+um kernel 2.6.17 ou superior, o tamanho poderá ser ajustado com o sistema de
+arquivos on-line (sem desmontar).
+</p>
+</dd><dt><span class="term">reiserfs</span></dt><dd>
+<p>
+<code class="literal">resize_reiserfs -s-1G /dev/lvmdisk/tmp</code> e depois
+<code class="literal">lvreduce -L-1G /dev/lvmdisk/tmp</code>
+</p>
+<p>
+O tamanho do sistema de arquivos <span class="command"><strong>reiserfs</strong></span> poderá ser
+modificado on-line, assim não precisa parar seu servidor para a modificação.
+</p>
+</dd><dt><span class="term">xfs</span></dt><dd>
+<p>
+Não é possível diminuir o tamanho de um sistema de arquivos XFS em sua versão
+atual (12/2006).
+</p>
+</dd></dl></div>
+</div>
+
+</div><HR xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format"></HR><p class="copyright">Copyright © 1999-2020 - Gleydson Mazioli da Silva</p><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch05s08.html">Anterior</a> </td><td width="20%" align="center"><a accesskey="u" href="ch05.html">Subir</a></td><td width="40%" align="right"> <a accesskey="n" href="ch05s10.html">Próximo</a></td></tr><tr><td width="40%" align="left" valign="top">O sistema de arquivos <code class="filename">/proc</code> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Voltar ao Índice</a></td><td width="40%" align="right" valign="top"> Formatando Pen-drives/Disquetes</td></tr></table></div></body></html>

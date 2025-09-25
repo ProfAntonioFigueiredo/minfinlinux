@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Sistema de arquivos reiserfs</title><meta name="generator" content="DocBook XSL Stylesheets V1.79.1" /><link rel="home" href="index.html" title="Guia Foca Linux" /><link rel="up" href="ch05.html" title="Capítulo 5. Discos e Partições" /><link rel="prev" href="ch05s05.html" title="Partição EXT3 (Linux Native)" /><link rel="next" href="ch05s07.html" title="Partição Linux Swap (Memória Virtual)" /></head><body text="black" link="#0000FF" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Sistema de arquivos reiserfs</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch05s05.html">Anterior</a> </td><th width="60%" align="center">Capítulo 5. Discos e Partições</th><td width="20%" align="right"> <a accesskey="n" href="ch05s07.html">Próximo</a></td></tr></table><hr /></div><div xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format" class="breadcrumbs"><span class="breadcrumb-link"><a href="index.html">Guia Foca Linux</a></span> &gt; <span class="breadcrumb-link"><a href="ch05.html">Discos e Partições</a></span> &gt; <span class="breadcrumb-node">Sistema de arquivos reiserfs</span></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="disc-reiserfs"></a>Sistema de arquivos reiserfs</h2></div></div></div>
+<p>
+Este é um sistema de arquivos alternativo ao <span class="emphasis"><em>ext2/3/4</em></span> que
+também possui suporte a journaling.  Entre suas principais características,
+estão que ele possui tamanho de blocos variáveis, suporte a arquivos maiores
+que 2 Gigabytes e o acesso mhash a árvore de diretórios é um pouco mais rápida
+que o <span class="emphasis"><em>ext3</em></span>.
+</p>
+<p>
+Para utilizar <span class="command"><strong>reiserfs</strong></span>, tenha certeza que seu kernel possui
+o suporta habilitado (na seção <code class="literal">File Systems</code>) e instale o
+pacote <span class="command"><strong>reiserfsprogs</strong></span> que contém utilitários para formatar,
+verificar este tipo de partição.
+</p>
+
+
+<div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="disc-reiserfs-criando-p"></a>Criando um sistema de arquivos reiserfs em uma partição</h3></div></div></div>
+<p>
+Para criar uma partição <span class="emphasis"><em>reiserfs</em></span>, primeiro instale o
+pacote  (<code class="literal">apt-get
+install reiserfsprogs</code>).
+</p>
+<p>
+Para criar uma partição <span class="emphasis"><em>reiserfs</em></span>, primeiro crie uma
+partição <span class="emphasis"><em>ext2</em></span> normal, e então use o comando:
+</p>
+<p>
+<code class="literal">mkreiserfs /dev/sda?</code>
+</p>
+<p>
+Onde a "?"  em <code class="literal">sda?</code> significa o número da partição que será
+formatada com o sistema de arquivos <span class="emphasis"><em>reiserfs</em></span>.  A
+identificação da partição é mostrada durante o particionamento do disco, anote
+se for o caso.  <code class="literal">sda</code> é o primeiro disco rígido SATA,
+<code class="literal">sdb</code> é o segundo disco rígido SATA.  Discos IDE são
+identificados por <code class="literal">hda?</code>, <code class="literal">hdb?</code>, etc.  
+ Para detalhes sobre a identificação de discos, veja <a class="xref" href="ch05s12.html" title="Identificação de discos e partições em sistemas Linux">“Identificação de discos e partições em sistemas Linux”</a>. 
+</p>
+<p>
+Algumas opções são úteis ao <span class="command"><strong>mkreiserfs</strong></span>:
+</p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+<p>
+<code class="literal">-s [num]</code> - Especifica o tamanho do arquivo de journal em
+blocos.  O valor mínimo é 513 e o máximo 32749 Kb.  O valor padrão é 8193.
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">-l [NOME]</code> - Coloca um nome (label) no sistema de arquivos.
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">-f</code> - Força a execução do <span class="command"><strong>mkreiserfs</strong></span>.
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">-d</code> - Ativa a depuração durante a execução do
+<span class="command"><strong>mkreiserfs</strong></span>.
+</p>
+</li></ul></div>
+<p>
+Agora para acessar a partição deverá ser usado o comando: <code class="literal">mount
+/dev/sda?  /mnt -t reiserfs</code>
+</p>
+
+<p>
+Para mais detalhes veja <a class="xref" href="ch05s13.html" title="Montando (acessando) uma partição de disco">“Montando (acessando) uma partição de disco”</a>.
+</p>
+
+
+<p>
+Note que é possível criar um sistema de arquivos no disco rígido sem criar uma
+partição usando <code class="filename">/dev/sda</code>, <code class="filename">/dev/sdb</code>,
+etc.  usando a opção <code class="literal">-f</code> <span class="strong"><strong>EVITE FAZER
+ISSO!</strong></span> Como não estará criando uma partição, o disco estará preparado
+para uso de maneira incorreta, você não poderá apagar o sistema de arquivos
+completamente do disco caso precise (lembre-se que você não criou uma
+partição), e a partição possui uma assinatura apropriada que identifica o
+sistema de arquivos.
+</p>
+
+
+</div>
+
+
+<div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="disc-reiserfs-criando-a"></a>Criando um sistema de arquivos reiserfs em um arquivo</h3></div></div></div>
+<p>
+O sistema de arquivos <span class="command"><strong>reiserfs</strong></span> também poderá ser criado em
+um arquivo, usando os mesmos benefícios descritos em <a class="xref" href="ch05s03.html#disc-ext2-criando-a" title="Criando um sistema de arquivos EXT2 em um arquivo">“Criando um sistema de arquivos EXT2 em um arquivo”</a>.  Para fazer isso execute os seguintes passos
+em seqüência:
+</p>
+<div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">
+<p>
+Use o comando <code class="literal">dd if=/dev/zero of=/tmp/arquivo-reiserfs bs=1024
+count=33000</code> para criar um arquivo
+<code class="filename">arquivo-reiserfs</code> vazio de 33Mb de tamanho em
+<code class="filename">/tmp</code>.  Você pode modificar os parâmetros de
+<code class="literal">of</code> para escolher onde o arquivo será criado, o tamanho do
+arquivo poderá ser modificado através de <code class="literal">count</code>.  Note que o
+tamanho mínimo do arquivo deve ser de 32Mb, devido aos requerimentos do
+<span class="command"><strong>reiserfs</strong></span>.
+</p>
+</li><li class="listitem">
+<p>
+Formate o arquivo com <code class="literal">mkreiserfs -f /tmp/arquivo-reiserfs</code>.
+Ele primeiro dirá que o arquivo <code class="filename">arquivo-reiserfs</code> não é um
+dispositivo de bloco especial (uma partição de disco) e perguntará se deve
+continuar, responda com <code class="literal">y</code>.
+</p>
+<p>
+O sistema de arquivos ReiserFS será criado em
+<code class="filename">/tmp/arquivo-reiserfs</code> e estará pronto para ser usado.
+</p>
+</li><li class="listitem">
+<p>
+Monte o arquivo <code class="filename">arquivo-reiserfs</code> com o comando:
+<code class="literal">mount /tmp/arquivo-reiserfs /mnt -t reiserfs -o
+loop=/dev/loop1</code>.  Note que foi usado o parâmetro <code class="literal">-o
+loop</code> para dizer ao comando <span class="command"><strong>mount</strong></span> para usar os
+recursos de <code class="literal">loop do kernel</code> para montar o sistema de
+arquivos.  O parâmetro <code class="literal">-t reiserfs</code> poderá ser omitido, se
+desejar.
+</p>
+</li><li class="listitem">
+<p>
+Confira se o sistema de arquivos <code class="literal">ReiserFS</code> em
+<code class="filename">arquivo-reiserfs</code> foi realmente montado no sistema de
+arquivos digitando <code class="literal">df -T</code>.  
+ Para detalhes, veja <a class="xref" href="ch10s03.html" title="df">“df”</a>. 
+</p>
+</li></ol></div>
+
+<p>
+Pronto!  o que você gravar para <code class="filename">/mnt</code> será gravado dentro
+do arquivo <code class="filename">/tmp/arquivo-reiserfs</code>.  Você poderá usar todos
+os recursos de um sistema de arquivos <code class="literal">reiserfs</code> como
+permissões de arquivos e diretórios, links simbólicos, etc.
+</p>
+<p>
+O uso da opção <code class="literal">loop=/dev/loop1</code> permite que o dispositivo
+<code class="filename">/dev/loop1</code> seja associado ao arquivo
+<code class="filename">/arquivo-reiserfs</code> e assim permitir sua montagem e uso no
+sistema.
+</p>
+
+
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+<p>
+Você poderá usar apenas <code class="literal">-o loop</code> com o comando
+<span class="command"><strong>mount</strong></span>, assim o kernel gerenciará automaticamente os
+dispositivos de <code class="literal">loop</code>.
+</p>
+</li><li class="listitem">
+<p>
+Caso faça isto manualmente, lembre-se de usar dispositivos
+<code class="literal">/dev/loop?</code> diferentes para cada arquivo que montar no
+sistema.  Pois cada um faz referência a um único arquivo.
+</p>
+</li></ul></div>
+
+</div>
+
+</div><HR xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format"></HR><p class="copyright">Copyright © 1999-2020 - Gleydson Mazioli da Silva</p><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch05s05.html">Anterior</a> </td><td width="20%" align="center"><a accesskey="u" href="ch05.html">Subir</a></td><td width="40%" align="right"> <a accesskey="n" href="ch05s07.html">Próximo</a></td></tr><tr><td width="40%" align="left" valign="top">Partição EXT3 (Linux Native) </td><td width="20%" align="center"><a accesskey="h" href="index.html">Voltar ao Índice</a></td><td width="40%" align="right" valign="top"> Partição Linux Swap (Memória Virtual)</td></tr></table></div></body></html>

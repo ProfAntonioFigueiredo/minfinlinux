@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Capítulo 26. Manutenção do Sistema</title><meta name="generator" content="DocBook XSL Stylesheets V1.79.1" /><link rel="home" href="index.html" title="Guia Foca Linux" /><link rel="up" href="index.html" title="Guia Foca Linux" /><link rel="prev" href="ch25s02.html" title="Compilador" /><link rel="next" href="ch26s02.html" title="reiserfsck" /></head><body text="black" link="#0000FF" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Capítulo 26. Manutenção do Sistema</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch25s02.html">Anterior</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch26s02.html">Próximo</a></td></tr></table><hr /></div><div xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format" class="breadcrumbs"><span class="breadcrumb-link"><a href="index.html">Guia Foca Linux</a></span> &gt; <span class="breadcrumb-node">Manutenção do Sistema</span></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a id="manut"></a>Capítulo 26. Manutenção do Sistema</h1></div></div></div><div class="toc"><p><strong>Índice</strong></p><dl class="toc"><dt><span class="section"><a href="ch26.html#manut-checagem">Checagem dos sistemas de arquivos</a></span></dt><dd><dl><dt><span class="section"><a href="ch26.html#manut-checagem-ext2">fsck.ext2</a></span></dt></dl></dd><dt><span class="section"><a href="ch26s02.html">reiserfsck</a></span></dt><dt><span class="section"><a href="ch26s03.html">fsck.minix</a></span></dt><dt><span class="section"><a href="ch26s04.html">badblocks</a></span></dt><dt><span class="section"><a href="ch26s05.html">defrag</a></span></dt><dt><span class="section"><a href="ch26s06.html">Verificando e marcando setores danificados em um HD</a></span></dt><dt><span class="section"><a href="ch26s07.html">Limpando arquivos de LOGS</a></span></dt><dt><span class="section"><a href="ch26s08.html">Recuperando partições apagadas</a></span></dt><dt><span class="section"><a href="ch26s09.html">Recuperando a senha de root perdida</a></span></dt><dt><span class="section"><a href="ch26s10.html">Tarefas automáticas de manutenção do sistema</a></span></dt><dt><span class="section"><a href="ch26s11.html">cron</a></span></dt><dd><dl><dt><span class="section"><a href="ch26s11.html#manut-cron-formato">O formato de um arquivo crontab</a></span></dt></dl></dd><dt><span class="section"><a href="ch26s12.html">at</a></span></dt></dl></div>
+<p>
+Este capítulo descreve como fazer a manutenção de seu sistema de arquivos e os
+programas de manutenção automática que são executados periodicamente pelo
+sistema.
+</p>
+
+<div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="manut-checagem"></a>Checagem dos sistemas de arquivos</h2></div></div></div>
+<p>
+A checagem do sistema de arquivos permite verificar se toda a estrutura para
+armazenamento de arquivos, diretórios, permissões, conectividade e superfície
+do disco estão funcionando corretamente.  Caso algum problema exista, ele
+poderá ser corrigido com o uso da ferramenta de checagem apropriada.  As
+ferramentas de checagem de sistemas de arquivos costumam ter seu nome iniciado
+por <code class="literal">fsck</code> e terminados com o nome do sistema de arquivos que
+verifica, separados por um ponto:
+</p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+<p>
+<code class="literal">fsck.ext2</code> - Verifica o sistema de arquivos
+<code class="literal">EXT2</code> ou <code class="literal">EXT3</code>.  Pode também ser encontrado
+com o nome <span class="command"><strong>e2fsck</strong></span>.
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">fsck.ext3</code> - Um alias para <span class="command"><strong>fsck.ext3</strong></span>.
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">fsck.minix</code> - Verifica o sistema de arquivos
+<code class="literal">Minix</code>.
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">fsck.msdos</code> - Verifica o sistema de arquivos
+<code class="literal">Msdos</code>.  Pode também ser encontrado com o nome
+<span class="command"><strong>dosfsck</strong></span>.
+</p>
+</li></ul></div>
+<p>
+Para verificar um sistema de arquivos é necessário que ele esteja desmontado
+caso contrário poderá ocorrer danos em sua estrutura.  Para verificar o sistema
+de arquivos raíz (que não pode ser desmontado enquanto o sistema estiver sendo
+executado) você precisará inicializar através de um disquete e executar o
+<span class="command"><strong>fsck.ext2</strong></span>.
+</p>
+
+<div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="manut-checagem-ext2"></a>fsck.ext2</h3></div></div></div>
+<p>
+Este utilitário permite verificar erros em sistemas de arquivos
+<code class="literal">EXT2</code> e <code class="literal">EXT3</code> (<span class="emphasis"><em>Linux
+Native</em></span>).
+</p>
+<p>
+<span class="command"><strong>fsck.ext2</strong></span> [<span class="emphasis"><em>opções</em></span>]
+[<span class="emphasis"><em>dispositivo</em></span>]
+</p>
+<p>
+Onde:
+</p>
+<div class="variablelist"><dl class="variablelist"><dt><span class="term">dispositivo</span></dt><dd>
+<p>
+É o local que contém o sistema de arquivos <code class="literal">EXT2/EXT3</code> que
+será verificado (partições, disquetes, arquivos).
+</p>
+</dd><dt><span class="term">opções, </span><span class="term">-c</span></dt><dd>
+<p>
+Faz o <span class="command"><strong>fsck.ext2</strong></span> verificar se existem agrupamentos
+danificados na unidade de disco durante a checagem.
+</p>
+</dd><dt><span class="term">-d</span></dt><dd>
+<p>
+Debug - Mostra detalhes de processamento do <span class="command"><strong>fsck.ext2</strong></span>.
+</p>
+</dd><dt><span class="term">-f</span></dt><dd>
+<p>
+Força a checagem mesmo se o sistema de arquivos aparenta estar em bom estado.
+Por padrão, um sistema de arquivos que aparentar estar em bom estado não são
+verificados.
+</p>
+</dd><dt><span class="term">-F</span></dt><dd>
+<p>
+Grava os dados do cache no disco antes de iniciar.
+</p>
+</dd><dt><span class="term">-l [arquivo]</span></dt><dd>
+<p>
+Inclui os blocos listados no [arquivo] como blocos defeituosos no sistema de
+arquivos.  O formato deste arquivo é o mesmo gerado pelo programa
+<span class="command"><strong>badblocks</strong></span>.
+</p>
+</dd><dt><span class="term">-L [arquivo]</span></dt><dd>
+<p>
+Faz o mesmo que a opção <code class="literal">-l</code>, só que a lista de blocos
+defeituosos do dispositivo é completamente limpa e depois a lista do [arquivo]
+é adicionada.
+</p>
+</dd><dt><span class="term">-n</span></dt><dd>
+<p>
+Faz uma verificação de <code class="literal">somente leitura</code> no sistema de
+arquivos.  Com esta opção é possível verificar o sistema de arquivos montado.
+Será assumido <code class="literal">não</code> para todas as perguntas e nenhuma
+modificação será feita no sistema de arquivos.
+</p>
+<p>
+Caso a opção <code class="literal">-c</code> seja usada junto com <code class="literal">-n</code>,
+<code class="literal">-l</code> ou <code class="literal">-L</code>, o sistema de arquivos será
+verificado e permitirá somente a atualização dos setores danificados não
+alterando qualquer outra área.
+</p>
+</dd><dt><span class="term">-p</span></dt><dd>
+<p>
+Corrige automaticamente o sistema de arquivos sem perguntar.  É recomendável
+fazer isto manualmente para entender o que aconteceu, em caso de problemas com
+o sistema de arquivos.
+</p>
+</dd><dt><span class="term">-v</span></dt><dd>
+<p>
+Ativa o modo verbose (mais mensagens são mostradas durante a execução do
+programa).
+</p>
+</dd><dt><span class="term">-y</span></dt><dd>
+<p>
+Assume <code class="literal">sim</code> para todas as questões.
+</p>
+</dd></dl></div>
+<p>
+Caso sejam encontrados arquivos problemáticos e estes não possam ser
+recuperados, o <span class="command"><strong>fsck.ext2</strong></span> perguntará se deseja salva-los no
+diretório <code class="filename">lost+found</code>.  Este diretório é encontrado em
+todas as partições <span class="emphasis"><em>ext2</em></span>.  Não há risco de usar o
+<span class="command"><strong>fsck.ext3</strong></span> em uma partição <code class="literal">EXT2</code>.
+</p>
+<p>
+Após sua execução é mostrado detalhes sobre o sistema de arquivos verificado
+como quantidade de blocos livres/ocupados e taxa de fragmentação.
+</p>
+<p>
+Exemplos: <code class="literal">fsck.ext2 /dev/hda2</code>, <code class="literal">fsck.ext2 -f
+/dev/hda2</code>, <code class="literal">fsck.ext2 -vrf /dev/hda1</code>.
+</p>
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div><HR xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format"></HR><p class="copyright">Copyright © 1999-2020 - Gleydson Mazioli da Silva</p><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch25s02.html">Anterior</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="ch26s02.html">Próximo</a></td></tr><tr><td width="40%" align="left" valign="top">Compilador </td><td width="20%" align="center"><a accesskey="h" href="index.html">Voltar ao Índice</a></td><td width="40%" align="right" valign="top"> reiserfsck</td></tr></table></div></body></html>

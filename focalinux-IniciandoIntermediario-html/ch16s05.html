@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>lsmod</title><meta name="generator" content="DocBook XSL Stylesheets V1.79.1" /><link rel="home" href="index.html" title="Guia Foca Linux" /><link rel="up" href="ch16.html" title="Capítulo 16. Kernel e Módulos" /><link rel="prev" href="ch16s04.html" title="kmod" /><link rel="next" href="ch16s06.html" title="insmod" /></head><body text="black" link="#0000FF" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">lsmod</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch16s04.html">Anterior</a> </td><th width="60%" align="center">Capítulo 16. Kernel e Módulos</th><td width="20%" align="right"> <a accesskey="n" href="ch16s06.html">Próximo</a></td></tr></table><hr /></div><div xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format" class="breadcrumbs"><span class="breadcrumb-link"><a href="index.html">Guia Foca Linux</a></span> &gt; <span class="breadcrumb-link"><a href="ch16.html">Kernel e Módulos</a></span> &gt; <span class="breadcrumb-node">lsmod</span></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="kern-lsmod"></a>lsmod</h2></div></div></div>
+<p>
+Lista quais módulos estão carregados atualmente pelo kernel.  O nome
+<code class="literal">lsmod</code> é uma contração de
+<code class="literal">ls</code>+<code class="literal">módulos</code> - Listar Módulos.  A listagem
+feita pelo <span class="command"><strong>lsmod</strong></span> é uma alternativa ao uso do comando
+<code class="literal">cat /proc/modules</code>.
+</p>
+<p>
+A saída deste comando tem a seguinte forma:
+</p>
+<pre class="screen">
+Module            Size  Pages    Used by
+nls_iso8859_1     8000      1          1 (autoclean)
+nls_cp437         3744      1          1 (autoclean)
+ne                6156      2          1
+8390              8390      2     [ne] 0
+</pre>
+<p>
+A coluna <span class="emphasis"><em>Module</em></span> indica o nome do módulo que está
+carregado, a coluna <span class="emphasis"><em>Used</em></span> mostra qual módulos está usando
+aquele recurso.  O parâmetro <span class="emphasis"><em>(autoclean)</em></span> no final da
+coluna indica que o módulo foi carregado manualmente (pelo
+<span class="command"><strong>insmod</strong></span> ou <span class="command"><strong>modprobe</strong></span>) ou através do
+<span class="command"><strong>kmod</strong></span> e será automaticamente removido da memória quando não
+for mais usado.
+</p>
+<p>
+No exemplo acima os módulos <span class="emphasis"><em>ne</em></span> e <span class="emphasis"><em>8390</em></span>
+não tem o parâmetro <span class="emphasis"><em>(autoclean)</em></span> porque foram carregados
+pelo arquivo <code class="filename">/etc/modules</code> (veja <a class="xref" href="ch16s12.html#kern-arquivos-modules" title="/etc/modules">“/etc/modules”</a>).  Isto significa que não serão removidos da
+memória caso estiverem sem uso.
+</p>
+<p>
+Qualquer módulo carregado pode ser removido manualmente através do comandos
+<span class="command"><strong>rmmod</strong></span>.
+</p>
+</div><HR xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format"></HR><p class="copyright">Copyright © 1999-2020 - Gleydson Mazioli da Silva</p><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch16s04.html">Anterior</a> </td><td width="20%" align="center"><a accesskey="u" href="ch16.html">Subir</a></td><td width="40%" align="right"> <a accesskey="n" href="ch16s06.html">Próximo</a></td></tr><tr><td width="40%" align="left" valign="top">kmod </td><td width="20%" align="center"><a accesskey="h" href="index.html">Voltar ao Índice</a></td><td width="40%" align="right" valign="top"> insmod</td></tr></table></div></body></html>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Capítulo 16. Kernel e Módulos</title><meta name="generator" content="DocBook XSL Stylesheets V1.79.1" /><link rel="home" href="index.html" title="Guia Foca Linux" /><link rel="up" href="index.html" title="Guia Foca Linux" /><link rel="prev" href="ch15s11.html" title="RFCs de referência sobre protocolos de rede" /><link rel="next" href="ch16s02.html" title="Módulos" /></head><body text="black" link="#0000FF" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Capítulo 16. Kernel e Módulos</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch15s11.html">Anterior</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch16s02.html">Próximo</a></td></tr></table><hr /></div><div xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format" class="breadcrumbs"><span class="breadcrumb-link"><a href="index.html">Guia Foca Linux</a></span> &gt; <span class="breadcrumb-node">Kernel e Módulos</span></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a id="kern"></a>Capítulo 16. Kernel e Módulos</h1></div></div></div><div class="toc"><p><strong>Índice</strong></p><dl class="toc"><dt><span class="section"><a href="ch16.html#kern-kernel">O Kernel</a></span></dt><dt><span class="section"><a href="ch16s02.html">Módulos</a></span></dt><dt><span class="section"><a href="ch16s03.html">Como adicionar suporte a Hardwares e outros dispositivos no kernel</a></span></dt><dt><span class="section"><a href="ch16s04.html">kmod</a></span></dt><dt><span class="section"><a href="ch16s05.html">lsmod</a></span></dt><dt><span class="section"><a href="ch16s06.html">insmod</a></span></dt><dt><span class="section"><a href="ch16s07.html">rmmod</a></span></dt><dt><span class="section"><a href="ch16s08.html">modprobe</a></span></dt><dt><span class="section"><a href="ch16s09.html">depmod</a></span></dt><dt><span class="section"><a href="ch16s10.html">modconf</a></span></dt><dt><span class="section"><a href="ch16s11.html">Recompilando o Kernel</a></span></dt><dt><span class="section"><a href="ch16s12.html">Arquivos relacionados com o Kernel e Módulos</a></span></dt><dd><dl><dt><span class="section"><a href="ch16s12.html#kern-arquivos-modules">/etc/modules</a></span></dt><dt><span class="section"><a href="ch16s12.html#kern-arquivos-modulesconf">modules.conf</a></span></dt></dl></dd><dt><span class="section"><a href="ch16s13.html">Aplicando Patches no kernel</a></span></dt></dl></div>
+<p>
+Este capítulo descreve em detalhes o que é o kernel, módulos, sua configuração
+e programas relacionados.
+</p>
+
+<div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="kern-kernel"></a>O Kernel</h2></div></div></div>
+<p>
+É a peça central do sistema operacional (o <span class="command"><strong>Linux</strong></span>), é ele que
+controla os dispositivos e demais periféricos do sistema (como memória, placas
+de som, vídeo, discos rígidos, disquetes, sistemas de arquivos, redes e outros
+recursos disponíveis).  Muitos confundem isto e chamam a distribuição de
+sistema operacional.  Isto é errado!
+</p>
+<p>
+O <span class="emphasis"><em>kernel</em></span> faz o controle dos periféricos do sistema e para
+isto ele deve ter o seu suporte incluído.  Para fazer uma placa de som
+<span class="emphasis"><em>Sound Blaster</em></span> funcionar, por exemplo, é necessário que o
+kernel ofereça suporte a este placa e você deve configurar seus parâmetros
+(como interrupção, I/O e DMA) com comandos específicos para ativar a placa e
+faze-la funcionar corretamente.  Existe um documento que contém quais são os
+periféricos suportados/ não suportados pelo <span class="command"><strong>GNU/Linux</strong></span>, ele
+se chama <code class="literal">Hardware-HOWTO</code>.
+</p>
+<p>
+Suas versões são identificadas por números como 2.2.30, 2.4.33, 2.6.23.6, as
+versões que contém um número par entre o primeiro e segundo ponto são versões
+estáveis e que contém números ímpares neste mesmo local são versões instáveis
+(em desenvolvimento).  Usar versões instáveis não quer dizer que ocorrerá
+travamentos ou coisas do tipo, mas algumas partes do kernel podem não estar
+testadas o suficiente ou alguns controladores podem ainda estar incompletos
+para obter pleno funcionamento.  Se opera sua máquina em um ambiente crítico,
+prefira pegar versões estáveis do kernel.
+</p>
+<p>
+Após inicializar o sistema, o kernel e seus arquivos podem ser acessados ou
+modificados através do ponto de montagem <code class="filename">/proc</code>.  Para
+detalhes veja <a class="xref" href="ch05s08.html" title="O sistema de arquivos /proc">“O sistema de arquivos <code class="filename">/proc</code>”</a>.
+</p>
+<p>
+Caso você tenha um dispositivo (como uma placa de som) que tem suporte no
+<span class="command"><strong>GNU/Linux</strong></span> mas não funciona veja <a class="xref" href="ch16s03.html" title="Como adicionar suporte a Hardwares e outros dispositivos no kernel">“Como adicionar suporte a Hardwares e outros dispositivos no kernel”</a>.
+</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div><HR xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format"></HR><p class="copyright">Copyright © 1999-2020 - Gleydson Mazioli da Silva</p><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch15s11.html">Anterior</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="ch16s02.html">Próximo</a></td></tr><tr><td width="40%" align="left" valign="top">RFCs de referência sobre protocolos de rede </td><td width="20%" align="center"><a accesskey="h" href="index.html">Voltar ao Índice</a></td><td width="40%" align="right" valign="top"> Módulos</td></tr></table></div></body></html>

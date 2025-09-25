@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>unzip</title><meta name="generator" content="DocBook XSL Stylesheets V1.79.1" /><link rel="home" href="index.html" title="Guia Foca Linux" /><link rel="up" href="ch18.html" title="Capítulo 18. Compactadores" /><link rel="prev" href="ch18s04.html" title="zip" /><link rel="next" href="ch18s06.html" title="tar" /></head><body text="black" link="#0000FF" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">unzip</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch18s04.html">Anterior</a> </td><th width="60%" align="center">Capítulo 18. Compactadores</th><td width="20%" align="right"> <a accesskey="n" href="ch18s06.html">Próximo</a></td></tr></table><hr /></div><div xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format" class="breadcrumbs"><span class="breadcrumb-link"><a href="index.html">Guia Foca Linux</a></span> &gt; <span class="breadcrumb-link"><a href="ch18.html">Compactadores</a></span> &gt; <span class="breadcrumb-node">unzip</span></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="cpctd-unzip"></a>unzip</h2></div></div></div>
+<p>
+Descompacta arquivos <code class="filename">.zip</code> criados com o programa
+<span class="command"><strong>zip</strong></span>.  Este programa também é compatível com arquivos
+compactados pelo <span class="command"><strong>pkzip</strong></span> do <span class="command"><strong>DOS</strong></span>.
+</p>
+<p>
+<span class="command"><strong>unzip</strong></span> [<span class="emphasis"><em>opções</em></span>] [<span class="emphasis"><em>arquivo.zip</em></span>]
+[<span class="emphasis"><em>arquivos-extrair</em></span>] [<span class="emphasis"><em>-d
+diretório</em></span>]
+</p>
+<p>
+Onde:
+</p>
+<div class="variablelist"><dl class="variablelist"><dt><span class="term">arquivo.zip</span></dt><dd>
+<p>
+Nome do arquivo que deseja descompactar.  Podem ser usados coringas para
+especificar mais de um arquivo para ser descompactado.
+</p>
+</dd><dt><span class="term">arquivos-extrair</span></dt><dd>
+<p>
+Nome dos arquivos (separados por espaço) que serão descompactados do arquivo
+<code class="filename">.zip</code>.  Caso não seja especificado, é assumido
+<code class="literal">*</code> (todos os arquivos serão descompactados).
+</p>
+<p>
+Se for usado <code class="literal">-x arquivos</code>, os arquivos especificados não
+serão descompactados.  O uso de coringas é permitido.
+</p>
+</dd><dt><span class="term">-d diretório</span></dt><dd>
+<p>
+Diretório onde os arquivos serão descompactados.  Caso não for especificado, os
+arquivos serão descompactados no diretório atual.
+</p>
+</dd><dt><span class="term">opções, </span><span class="term">-c</span></dt><dd>
+<p>
+Descompacta os arquivos para stdout (saída padrão) ao invés de criar arquivos.
+Os nomes dos arquivos também são mostrados (veja a opção
+<code class="literal">-p</code>).
+</p>
+</dd><dt><span class="term">-f</span></dt><dd>
+<p>
+Descompacta somente arquivos que existam no disco e mais novos que os atuais.
+</p>
+</dd><dt><span class="term">-l</span></dt><dd>
+<p>
+Lista os arquivos existentes dentro do arquivo <code class="filename">.zip</code>.
+</p>
+</dd><dt><span class="term">-M</span></dt><dd>
+<p>
+Efetua uma pausa a cada tela de dados durante o processamento (a mesma função
+do comando <span class="command"><strong>more</strong></span>).
+</p>
+</dd><dt><span class="term">-n</span></dt><dd>
+<p>
+Nunca substitui arquivos já existentes.  Se um arquivo existe ele é pulado.
+</p>
+</dd><dt><span class="term">-o</span></dt><dd>
+<p>
+Substitui arquivos existentes sem perguntar.  Tem a função contrária a opção
+<code class="literal">-n</code>.
+</p>
+</dd><dt><span class="term">-P [SENHA]</span></dt><dd>
+<p>
+Permite descompactar arquivos <code class="filename">.zip</code> usando a [SENHA].
+CUIDADO!  qualquer usuário conectado em seu sistema pode ver a senha digitada
+na linha de comando digitada.
+</p>
+</dd><dt><span class="term">-p</span></dt><dd>
+<p>
+Descompacta os arquivos para stdout (saída padrão) ao invés de criar arquivos.
+Os nomes dos arquivos não são mostrados (veja a opção <code class="literal">-c</code>).
+</p>
+</dd><dt><span class="term">-q</span></dt><dd>
+<p>
+Não mostra mensagens.
+</p>
+</dd><dt><span class="term">-t</span></dt><dd>
+<p>
+Verifica o arquivo <code class="filename">.zip</code> em busca de erros.
+</p>
+</dd><dt><span class="term">-u</span></dt><dd>
+<p>
+Idêntico a opção <code class="literal">-f</code> só que também cria arquivos que não
+existem no diretório.
+</p>
+</dd><dt><span class="term">-v</span></dt><dd>
+<p>
+Mostra mais detalhes sobre o processamento do <span class="command"><strong>unzip</strong></span>.
+</p>
+</dd><dt><span class="term">-z</span></dt><dd>
+<p>
+Mostra somente o comentário existente no arquivo.
+</p>
+</dd></dl></div>
+<p>
+Por padrão o <span class="command"><strong>unzip</strong></span> também descompacta sub-diretórios caso o
+arquivo <code class="filename">.zip</code> tenha sido gerado com <span class="command"><strong>zip
+-r</strong></span>.
+</p>
+<p>
+Exemplos:
+</p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+<p>
+<code class="literal">unzip texto.zip</code> - Descompacta o conteúdo do arquivo
+<code class="filename">texto.zip</code> no diretório atual.
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">unzip texto.zip carta.txt</code> - Descompacta somente o arquivo
+<code class="filename">carta.txt</code> do arquivo <code class="filename">texto.zip</code>.
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">unzip texto.zip -d /tmp/texto</code> - Descompacta o conteúdo do
+arquivo <code class="filename">texto.zip</code> para o diretório
+<code class="filename">/tmp/texto</code>.
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">unzip -l texto.zip</code> - Lista o conteúdo do arquivo
+<code class="filename">texto.zip</code>.
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">unzip -t texto.zip</code> - Verifica o arquivo
+<code class="filename">texto.zip</code>.
+</p>
+</li></ul></div>
+</div><HR xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format"></HR><p class="copyright">Copyright © 1999-2020 - Gleydson Mazioli da Silva</p><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch18s04.html">Anterior</a> </td><td width="20%" align="center"><a accesskey="u" href="ch18.html">Subir</a></td><td width="40%" align="right"> <a accesskey="n" href="ch18s06.html">Próximo</a></td></tr><tr><td width="40%" align="left" valign="top">zip </td><td width="20%" align="center"><a accesskey="h" href="index.html">Voltar ao Índice</a></td><td width="40%" align="right" valign="top"> tar</td></tr></table></div></body></html>

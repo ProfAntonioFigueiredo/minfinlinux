@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Arquivos relacionados com o Kernel e Módulos</title><meta name="generator" content="DocBook XSL Stylesheets V1.79.1" /><link rel="home" href="index.html" title="Guia Foca Linux" /><link rel="up" href="ch16.html" title="Capítulo 16. Kernel e Módulos" /><link rel="prev" href="ch16s11.html" title="Recompilando o Kernel" /><link rel="next" href="ch16s13.html" title="Aplicando Patches no kernel" /></head><body text="black" link="#0000FF" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Arquivos relacionados com o Kernel e Módulos</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch16s11.html">Anterior</a> </td><th width="60%" align="center">Capítulo 16. Kernel e Módulos</th><td width="20%" align="right"> <a accesskey="n" href="ch16s13.html">Próximo</a></td></tr></table><hr /></div><div xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format" class="breadcrumbs"><span class="breadcrumb-link"><a href="index.html">Guia Foca Linux</a></span> &gt; <span class="breadcrumb-link"><a href="ch16.html">Kernel e Módulos</a></span> &gt; <span class="breadcrumb-node">Arquivos relacionados com o Kernel e Módulos</span></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="kern-arquivos"></a>Arquivos relacionados com o Kernel e Módulos</h2></div></div></div>
+<p>
+Esta seção descreve os arquivos usados pelo kernel e módulos, a função de cada
+um no sistema, a sintaxe, etc.
+</p>
+<div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="kern-arquivos-modules"></a>/etc/modules</h3></div></div></div>
+<p>
+A função deste arquivo é carregar módulos especificados na inicialização do
+sistema e mantê-los carregado todo o tempo.  É útil para módulos de placas de
+rede que precisam ser carregados antes da configuração de rede feita pela
+distribuição e não podem ser removidos quando a placa de rede estiver sem uso
+(isto retiraria seu computador da rede).
+</p>
+<p>
+Seu conteúdo é uma lista de módulos (um por linha) que serão carregados na
+inicialização do sistema.  Os módulos carregados pelo arquivo
+<code class="filename">/etc/modules</code> pode ser listados usando o comando
+<span class="command"><strong>lsmod</strong></span> (veja <a class="xref" href="ch16s05.html" title="lsmod">“lsmod”</a>.
+</p>
+<p>
+Se o parâmetro <code class="literal">auto</code> estiver especificado como um módulo, o
+<span class="command"><strong>kmod</strong></span> será ativado e carregará os módulos somente em demanda,
+caso seja especificado <code class="literal">noauto</code> o programa
+<span class="command"><strong>kmod</strong></span> será desativado.  O <span class="command"><strong>kmod</strong></span> é ativado
+por padrão nos níveis de execução 2 ao 5.
+</p>
+<p>
+Ele pode ser editado em qualquer editor de textos comum ou modificado
+automaticamente através do utilitário <span class="command"><strong>modconf</strong></span>.
+</p>
+</div>
+
+<div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="kern-arquivos-modulesconf"></a>modules.conf</h3></div></div></div>
+<p>
+O arquivo <code class="filename">/etc/modules.conf</code> permite controlar as opções de
+todos os módulos do sistema.  Ele é consultado pelos programas
+<span class="command"><strong>modprobe</strong></span> e <span class="command"><strong>depmod</strong></span>.  As opções
+especificadas neste arquivo facilita o gerenciamento de módulos, evitando a
+digitação de opções através da linha de comando.
+</p>
+<p>
+Note que é recomendado o uso do utilitário <span class="command"><strong>modconf</strong></span> para
+configurar quaisquer módulos em seu sistema e o utilitário
+<span class="command"><strong>update-modules</strong></span> para sincronização dos arquivos gerados pelo
+<span class="command"><strong>modconf</strong></span> em <code class="filename">/etc/modutils</code> com o
+<code class="filename">/etc/modules.conf</code> (geralmente isto é feito automaticamente
+após o uso do <span class="command"><strong>modconf</strong></span>).  Por este motivo não é recomendável
+modifica-lo manualmente, a não ser que seja um usuário experiente e saiba o que
+está fazendo.  Veja <a class="xref" href="ch16s10.html" title="modconf">“modconf”</a>
+</p>
+<p>
+Por exemplo: adicionando as linhas:
+</p>
+<pre class="screen">
+alias sound sb 
+options sb io=0x220 irq=5 dma=1 dma16=5 mpuio=0x330
+</pre>
+<p>
+permitirá que seja usado somente o comando <code class="literal">modprobe sb</code> para
+ativar a placa de som.
+</p>
+</div>
+
+</div><HR xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format"></HR><p class="copyright">Copyright © 1999-2020 - Gleydson Mazioli da Silva</p><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch16s11.html">Anterior</a> </td><td width="20%" align="center"><a accesskey="u" href="ch16.html">Subir</a></td><td width="40%" align="right"> <a accesskey="n" href="ch16s13.html">Próximo</a></td></tr><tr><td width="40%" align="left" valign="top">Recompilando o Kernel </td><td width="20%" align="center"><a accesskey="h" href="index.html">Voltar ao Índice</a></td><td width="40%" align="right" valign="top"> Aplicando Patches no kernel</td></tr></table></div></body></html>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>vmstat</title><meta name="generator" content="DocBook XSL Stylesheets V1.79.1" /><link rel="home" href="index.html" title="Guia Foca Linux" /><link rel="up" href="ch07.html" title="Capítulo 7. Execução de programas" /><link rel="prev" href="ch07s11.html" title="tload" /><link rel="next" href="ch07s13.html" title="pidof" /></head><body text="black" link="#0000FF" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">vmstat</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch07s11.html">Anterior</a> </td><th width="60%" align="center">Capítulo 7. Execução de programas</th><td width="20%" align="right"> <a accesskey="n" href="ch07s13.html">Próximo</a></td></tr></table><hr /></div><div xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format" class="breadcrumbs"><span class="breadcrumb-link"><a href="index.html">Guia Foca Linux</a></span> &gt; <span class="breadcrumb-link"><a href="ch07.html">Execução de programas</a></span> &gt; <span class="breadcrumb-node">vmstat</span></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="run-vmstat"></a>vmstat</h2></div></div></div>
+<p>
+Mostra estatísticas sobre o uso da memória virtual do sistema.
+</p>
+<p>
+<span class="command"><strong>vmstat</strong></span> [<span class="emphasis"><em>intervalo</em></span>] [<span class="emphasis"><em>contagem</em></span>]
+</p>
+
+<p>
+Onde:
+</p>
+<div class="variablelist"><dl class="variablelist"><dt><span class="term"><span class="emphasis"><em>intervalo</em></span></span></dt><dd>
+<p>
+Número especificado em segundos entre atualizações.
+</p>
+</dd><dt><span class="term"><span class="emphasis"><em>contagem</em></span></span></dt><dd>
+<p>
+Número de vezes que será mostrado.
+</p>
+</dd></dl></div>
+
+<p>
+Se não for especificado nenhum parâmetro, o <span class="command"><strong>vmstat</strong></span> mostra o
+status da memória virtual e volta imediatamente para a linha de comando.  A
+descrição dos campos do <span class="command"><strong>vmstat</strong></span> são as seguintes:
+</p>
+<div class="variablelist"><dl class="variablelist"><dt><span class="term"><span class="emphasis"><em>Processos</em></span>, </span><span class="term">r</span></dt><dd>
+<p>
+Número de processos aguardando execução.
+</p>
+</dd><dt><span class="term">b</span></dt><dd>
+<p>
+Número de processos em espera não interrompíveis.
+</p>
+</dd><dt><span class="term">w</span></dt><dd>
+<p>
+Número de processos extraídos do arquivo de troca ou caso contrário em
+execução.
+</p>
+</dd><dt><span class="term">, </span><span class="term"><span class="emphasis"><em>Memória</em></span>, </span><span class="term">swpd</span></dt><dd>
+<p>
+A quantidade de memória virtual usada em Kb.
+</p>
+</dd><dt><span class="term">free</span></dt><dd>
+<p>
+Quantidade de memória livre em Kb.
+</p>
+</dd><dt><span class="term">buff</span></dt><dd>
+<p>
+Quantidade de memória usada como buffer em Kb.
+</p>
+</dd><dt><span class="term">, </span><span class="term"><span class="emphasis"><em>Memória Virtual</em></span>, </span><span class="term">si</span></dt><dd>
+<p>
+Quantidade de memória gravada para o disco Kb/s.
+</p>
+</dd><dt><span class="term">so</span></dt><dd>
+<p>
+Quantidade de memória retirada do disco em Kb/s.
+</p>
+</dd><dt><span class="term">, </span><span class="term"><span class="emphasis"><em>Entrada/Saída</em></span>, </span><span class="term">bi</span></dt><dd>
+<p>
+Blocos enviados para um dispositivo de bloco (medido em blocos por segundo).
+</p>
+</dd><dt><span class="term">bo</span></dt><dd>
+<p>
+Blocos recebidos de um dispositivo de bloco (em blocos por segundo).
+</p>
+</dd><dt><span class="term">, </span><span class="term"><span class="emphasis"><em>Sistema</em></span>, </span><span class="term">in</span></dt><dd>
+<p>
+Número de interrupções por segundo, incluindo o clock.
+</p>
+</dd><dt><span class="term">cs</span></dt><dd>
+<p>
+Número de mudanças de contexto por segundo.
+</p>
+</dd><dt><span class="term">, </span><span class="term"><span class="emphasis"><em>Porcentagem do total de tempo da CPU</em></span>, </span><span class="term">us</span></dt><dd>
+<p>
+Tempo do usuário
+</p>
+</dd><dt><span class="term">sy</span></dt><dd>
+<p>
+Tempo do sistema
+</p>
+</dd><dt><span class="term">id</span></dt><dd>
+<p>
+Tempo ocioso
+</p>
+</dd></dl></div>
+</div><HR xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format"></HR><p class="copyright">Copyright © 1999-2020 - Gleydson Mazioli da Silva</p><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch07s11.html">Anterior</a> </td><td width="20%" align="center"><a accesskey="u" href="ch07.html">Subir</a></td><td width="40%" align="right"> <a accesskey="n" href="ch07s13.html">Próximo</a></td></tr><tr><td width="40%" align="left" valign="top">tload </td><td width="20%" align="center"><a accesskey="h" href="index.html">Voltar ao Índice</a></td><td width="40%" align="right" valign="top"> pidof</td></tr></table></div></body></html>

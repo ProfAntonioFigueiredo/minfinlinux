@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>pidof</title><meta name="generator" content="DocBook XSL Stylesheets V1.79.1" /><link rel="home" href="index.html" title="Guia Foca Linux" /><link rel="up" href="ch07.html" title="Capítulo 7. Execução de programas" /><link rel="prev" href="ch07s12.html" title="vmstat" /><link rel="next" href="ch07s14.html" title="pstree" /></head><body text="black" link="#0000FF" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">pidof</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch07s12.html">Anterior</a> </td><th width="60%" align="center">Capítulo 7. Execução de programas</th><td width="20%" align="right"> <a accesskey="n" href="ch07s14.html">Próximo</a></td></tr></table><hr /></div><div xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format" class="breadcrumbs"><span class="breadcrumb-link"><a href="index.html">Guia Foca Linux</a></span> &gt; <span class="breadcrumb-link"><a href="ch07.html">Execução de programas</a></span> &gt; <span class="breadcrumb-node">pidof</span></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="run-pidof"></a>pidof</h2></div></div></div>
+<p>
+Retorna o PID do processo especificado
+</p>
+<p>
+<span class="command"><strong>pidof</strong></span> [<span class="emphasis"><em>opções</em></span>] [<span class="emphasis"><em>nome</em></span>]
+</p>
+
+<p>
+Onde:
+</p>
+<div class="variablelist"><dl class="variablelist"><dt><span class="term"><span class="emphasis"><em>nome</em></span></span></dt><dd>
+<p>
+Nome do processo que seja obter o número PID
+</p>
+</dd><dt><span class="term"><span class="emphasis"><em>opções</em></span>, </span><span class="term">-s</span></dt><dd>
+<p>
+Retorna somente o primeiro PID encontrado.
+</p>
+</dd><dt><span class="term">-x</span></dt><dd>
+<p>
+Retorna o PID do do shell que está executando o script
+</p>
+</dd><dt><span class="term">-o [PID]</span></dt><dd>
+<p>
+Ignora o processo com aquele PID.  O PID especial %PPID pode ser usado para
+nomear o processo pai do programa <span class="command"><strong>pidof</strong></span>, em outras palavras
+</p>
+</dd></dl></div>
+
+
+<p>
+OBS: O programa <span class="command"><strong>pidof</strong></span> é um link simbólico ao programa
+<span class="command"><strong>killall5</strong></span>.  Cuidado ao executar o <span class="command"><strong>killall5</strong></span>
+as funções e opções são completamente diferentes dependendo da forma como é
+chamado na linha de comando!  (veja <a class="xref" href="ch07s07.html#run-killall5" title="killall5">“killall5”</a> para
+detalhes.)
+</p>
+
+
+<p>
+Exemplo: <code class="literal">pidof -s init</code>
+</p>
+
+</div><HR xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format"></HR><p class="copyright">Copyright © 1999-2020 - Gleydson Mazioli da Silva</p><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch07s12.html">Anterior</a> </td><td width="20%" align="center"><a accesskey="u" href="ch07.html">Subir</a></td><td width="40%" align="right"> <a accesskey="n" href="ch07s14.html">Próximo</a></td></tr><tr><td width="40%" align="left" valign="top">vmstat </td><td width="20%" align="center"><a accesskey="h" href="index.html">Voltar ao Índice</a></td><td width="40%" align="right" valign="top"> pstree</td></tr></table></div></body></html>

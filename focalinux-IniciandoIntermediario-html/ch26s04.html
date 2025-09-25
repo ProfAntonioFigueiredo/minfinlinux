@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>badblocks</title><meta name="generator" content="DocBook XSL Stylesheets V1.79.1" /><link rel="home" href="index.html" title="Guia Foca Linux" /><link rel="up" href="ch26.html" title="Capítulo 26. Manutenção do Sistema" /><link rel="prev" href="ch26s03.html" title="fsck.minix" /><link rel="next" href="ch26s05.html" title="defrag" /></head><body text="black" link="#0000FF" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">badblocks</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch26s03.html">Anterior</a> </td><th width="60%" align="center">Capítulo 26. Manutenção do Sistema</th><td width="20%" align="right"> <a accesskey="n" href="ch26s05.html">Próximo</a></td></tr></table><hr /></div><div xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format" class="breadcrumbs"><span class="breadcrumb-link"><a href="index.html">Guia Foca Linux</a></span> &gt; <span class="breadcrumb-link"><a href="ch26.html">Manutenção do Sistema</a></span> &gt; <span class="breadcrumb-node">badblocks</span></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="manut-badblocks"></a>badblocks</h2></div></div></div>
+<p>
+Procura blocos defeituosos em um dispositivo.  Note que este <span class="strong"><strong>apenas</strong></span> pesquisa por blocos defeituosos, sem alterar a
+configuração do disco.  Para marcar os blocos defeituosos para não serem mais
+usados, utilize a opção <code class="literal">-l</code> do <span class="command"><strong>fsck</strong></span> (veja
+<a class="xref" href="ch26.html#manut-checagem-ext2" title="fsck.ext2">“fsck.ext2”</a>).
+</p>
+<p>
+<span class="command"><strong>badblocks</strong></span> [<span class="emphasis"><em>opções</em></span>] [<span class="emphasis"><em>dispositivo</em></span>]
+</p>
+<p>
+Onde:
+</p>
+<div class="variablelist"><dl class="variablelist"><dt><span class="term">dispositivo</span></dt><dd>
+<p>
+Partição, disquete ou arquivo que contém o sistema de arquivos que será
+verificado.
+</p>
+</dd><dt><span class="term">opções, </span><span class="term">-b [tamanho]</span></dt><dd>
+<p>
+Especifica o [tamanho] do bloco do dispositivo em bytes
+</p>
+</dd><dt><span class="term">-o [arquivo]</span></dt><dd>
+<p>
+Gera uma lista dos blocos defeituosos do disco no [arquivo].  Este lista pode
+ser usada com o programa <span class="command"><strong>fsck.ext2</strong></span> junto com a opção
+<code class="literal">-l</code>.
+</p>
+</dd><dt><span class="term">-s</span></dt><dd>
+<p>
+Mostra o número de blocos checados durante a execução do
+<span class="command"><strong>badblocks</strong></span>.
+</p>
+</dd><dt><span class="term">-v</span></dt><dd>
+<p>
+Modo verbose - São mostrados mais detalhes.
+</p>
+</dd><dt><span class="term">-w</span></dt><dd>
+<p>
+Usa o modo leitura/gravação.  Usando esta opção o <span class="command"><strong>badblocks</strong></span>
+procura por blocos defeituosos gravando alguns padrões (0xaa, 0x55, 0xff, 0x00)
+em cada bloco do dispositivo e comparando seu conteúdo.
+</p>
+<p>
+Nunca use a opção <code class="literal">-w</code> em um dispositivo que contém arquivos
+pois eles serão apagados!
+</p>
+</dd></dl></div>
+<p>
+Exemplo: <code class="literal">badblocks -s /dev/hda6</code>, <code class="literal">badblocks -s -o
+bad /dev/hda6</code>
+</p>
+</div><HR xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format"></HR><p class="copyright">Copyright © 1999-2020 - Gleydson Mazioli da Silva</p><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch26s03.html">Anterior</a> </td><td width="20%" align="center"><a accesskey="u" href="ch26.html">Subir</a></td><td width="40%" align="right"> <a accesskey="n" href="ch26s05.html">Próximo</a></td></tr><tr><td width="40%" align="left" valign="top">fsck.minix </td><td width="20%" align="center"><a accesskey="h" href="index.html">Voltar ao Índice</a></td><td width="40%" align="right" valign="top"> defrag</td></tr></table></div></body></html>

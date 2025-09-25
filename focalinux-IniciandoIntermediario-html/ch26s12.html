@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>at</title><meta name="generator" content="DocBook XSL Stylesheets V1.79.1" /><link rel="home" href="index.html" title="Guia Foca Linux" /><link rel="up" href="ch26.html" title="Capítulo 26. Manutenção do Sistema" /><link rel="prev" href="ch26s11.html" title="cron" /><link rel="next" href="ch27.html" title="Capítulo 27. Principais arquivos de configuração do diretório /etc" /></head><body text="black" link="#0000FF" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">at</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch26s11.html">Anterior</a> </td><th width="60%" align="center">Capítulo 26. Manutenção do Sistema</th><td width="20%" align="right"> <a accesskey="n" href="ch27.html">Próximo</a></td></tr></table><hr /></div><div xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format" class="breadcrumbs"><span class="breadcrumb-link"><a href="index.html">Guia Foca Linux</a></span> &gt; <span class="breadcrumb-link"><a href="ch26.html">Manutenção do Sistema</a></span> &gt; <span class="breadcrumb-node">at</span></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="manut-at"></a>at</h2></div></div></div>
+<p>
+O <span class="command"><strong>at</strong></span> agenda tarefas de forma semelhante ao
+<span class="command"><strong>cron</strong></span> com uma interface que permite a utilização de linguagem
+natural nos agendamentos.  Sua principal aplicação é no uso de tarefas que
+sejam disparadas somente uma vez.  Uma característica deste programa é a
+execução de aplicativos que tenham passado de seu horário de execução, muito
+útil se o computador é desligado com freqüência ou quando ocorre uma
+interrupção no fornecimento de energia.
+</p>
+<p>
+Para utilizar o <span class="command"><strong>at</strong></span>, instale-o com o comando:
+<code class="literal">apt-get install at</code>.  O próximo passo é criar os arquivos
+<code class="filename">/etc/at.allow</code> e <code class="filename">at.deny</code>.  Estes
+arquivos são organizados no formato de um usuário por linha.  Durante o
+agendamento, é verificado primeiro o arquivo <code class="filename">at.allow</code>
+(lista de quem pode executar comandos) e depois o <code class="filename">at.deny</code>
+(lista de quem NÃO pode executar comandos).  Caso eles não existam, o
+agendamento de comandos é permitido a todos os usuários.
+</p>
+<p>
+Abaixo seguem exemplos do agendamento através do comando <span class="command"><strong>at</strong></span>:
+</p>
+<div class="variablelist"><dl class="variablelist"><dt><span class="term">echo ls | at 10am today</span></dt><dd>
+<p>
+Executa as 10 da manha de hoje
+</p>
+</dd><dt><span class="term">echo ls | at 10:05 today</span></dt><dd>
+<p>
+Executa as 10:05 da manha de hoje
+</p>
+</dd><dt><span class="term">echo ls | at 10:05pm today</span></dt><dd>
+<p>
+Executa as 10:05 da noite de hoje
+</p>
+</dd><dt><span class="term">echo ls | at 22:05 today</span></dt><dd>
+<p>
+Executa as 22:05 da noite de hoje
+</p>
+</dd><dt><span class="term">echo ls | at 14:50 tomorrow</span></dt><dd>
+<p>
+Executa o comando amanhã as 14:50 da tarde
+</p>
+</dd><dt><span class="term">echo ls | at midnight</span></dt><dd>
+<p>
+Executa o comando a meia noite de hoje
+</p>
+</dd><dt><span class="term">echo ls | at midnight tomorrow</span></dt><dd>
+<p>
+Executa o comando a meia noite de amanhã
+</p>
+</dd><dt><span class="term">echo ls | at noon</span></dt><dd>
+<p>
+Executa o comando de tarde (meio dia).
+</p>
+</dd><dt><span class="term">at -f comandos.txt teatime</span></dt><dd>
+<p>
+Executa os comandos especificados no arquivo "comandos.txt" no horário do café
+da tarde (as 16:00 horas).
+</p>
+</dd><dt><span class="term">at -f comandos.txt +3 minutes</span></dt><dd>
+<p>
+Executa os comandos especificados no arquivo "comandos.txt" daqui a 3 minutos.
+Também pode ser especificado "hours" ou "days".
+</p>
+</dd><dt><span class="term">at -f comandos.txt tomorrow +3 hours</span></dt><dd>
+<p>
+Executa os comandos especificados no arquivo "comandos.txt" daqui a 3 horas no
+dia de amanhã.  (se agora são 10:00, ela será executada amanhã as 13:00 da
+tarde).
+</p>
+</dd></dl></div>
+<p>
+Todas as tarefas agendadas são armazenadas em arquivos dentro do diretório
+<code class="filename">/var/spool/cron/atjobs</code>.  A sintaxe de comandos para
+gerenciar as tarefas é semelhante aos utilitários do <span class="command"><strong>lpd</strong></span>:
+Para ver as tarefas, digite <code class="literal">atq</code>.  Para remover uma tarefa,
+use o comando <code class="literal">atrm</code> seguido do número da tarefa obtida pelo
+<code class="literal">atq</code>.
+</p>
+</div><HR xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format"></HR><p class="copyright">Copyright © 1999-2020 - Gleydson Mazioli da Silva</p><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch26s11.html">Anterior</a> </td><td width="20%" align="center"><a accesskey="u" href="ch26.html">Subir</a></td><td width="40%" align="right"> <a accesskey="n" href="ch27.html">Próximo</a></td></tr><tr><td width="40%" align="left" valign="top">cron </td><td width="20%" align="center"><a accesskey="h" href="index.html">Voltar ao Índice</a></td><td width="40%" align="right" valign="top"> Capítulo 27. Principais arquivos de configuração do diretório <code class="filename">/etc</code></td></tr></table></div></body></html>

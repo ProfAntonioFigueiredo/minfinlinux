@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Capítulo 24. Executando tarefas diversas no Linux</title><meta name="generator" content="DocBook XSL Stylesheets V1.79.1" /><link rel="home" href="index.html" title="Guia Foca Linux" /><link rel="up" href="index.html" title="Guia Foca Linux" /><link rel="prev" href="ch23s02.html" title="Número de Cores do ambiente gráfico" /><link rel="next" href="ch24s02.html" title="Executando vídeos DIVX" /></head><body text="black" link="#0000FF" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Capítulo 24. Executando tarefas diversas no Linux</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch23s02.html">Anterior</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch24s02.html">Próximo</a></td></tr></table><hr /></div><div xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format" class="breadcrumbs"><span class="breadcrumb-link"><a href="index.html">Guia Foca Linux</a></span> &gt; <span class="breadcrumb-node">Executando tarefas diversas no Linux</span></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a id="tasks"></a>Capítulo 24. Executando tarefas diversas no Linux</h1></div></div></div><div class="toc"><p><strong>Índice</strong></p><dl class="toc"><dt><span class="section"><a href="ch24.html#tasks-cdwriting">Gravando CDs e DVDs no Linux</a></span></dt><dd><dl><dt><span class="section"><a href="ch24.html#tasks-cdwriting-data">Gravando CDs / DVDs de dados</a></span></dt><dt><span class="section"><a href="ch24.html#tasks-cdwriting-audio">Gravando um CD de audio</a></span></dt><dt><span class="section"><a href="ch24.html#tasks-cdwriting-cdcd">Cópia de CD para CD no mesmo gravador</a></span></dt><dt><span class="section"><a href="ch24.html#tasks-cdwriting-massivewrite">Gravação massiva de CDs</a></span></dt><dt><span class="section"><a href="ch24.html#tasks-cdwriting-cdfrommp3">Gravação de CDs diretamente através de arquivos mp3 ou Ogg</a></span></dt><dt><span class="section"><a href="ch24.html#tasks-cdwriting-backupcd">Backup de dados para 1 ou mais CDs</a></span></dt><dt><span class="section"><a href="ch24.html#tasks-cdwriting-graphicapps">Aplicações gráficas para gravação de CDs</a></span></dt><dt><span class="section"><a href="ch24.html#tasks-cdwriting-cover">Criar a capa de frente e verso do CD/DVD</a></span></dt></dl></dd><dt><span class="section"><a href="ch24s02.html">Executando vídeos DIVX</a></span></dt><dt><span class="section"><a href="ch24s03.html">Assistindo DVDs</a></span></dt><dt><span class="section"><a href="ch24s04.html">Convertendo músicas no formato wav para mp3</a></span></dt><dt><span class="section"><a href="ch24s05.html">Convertendo músicas do formato mp3 para cdr</a></span></dt></dl></div>
+<p>
+Este capítulo explica como realizar tarefas específicas no sistema, como gravar
+um CD, assistir filmes, etc.  Ele também contém nomes de programas recomendados
+tanto em modo texto como modo gráfico.
+</p>
+
+<div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="tasks-cdwriting"></a>Gravando CDs e DVDs no Linux</h2></div></div></div>
+<p>
+A gravação de CDs no <span class="command"><strong>Linux</strong></span> pode ser feita através dos
+programas <span class="command"><strong>cdrecord</strong></span> ou <span class="command"><strong>CDRDAO</strong></span> e a gravação
+de DVDs usando o <span class="command"><strong>dvd+rw-tools</strong></span>.  Neste capítulo vou explicar
+a gravação usando o <span class="command"><strong>cdrecord</strong></span> para gravar um CD de dados e
+audio e o <span class="command"><strong>growisofs</strong></span> para a gravação de DVDs de dados.
+Primeiro instale o <span class="command"><strong>cdrecord</strong></span>, <span class="command"><strong>mkisofs</strong></span>,
+<span class="command"><strong>dvd+rw-tools</strong></span> e <span class="command"><strong>cdda2wav</strong></span> em sua máquina
+(<code class="literal">apt-get install cdrecord dvd+rw-tools mkisofs cdda2wav</code>).
+</p>
+
+<div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="tasks-cdwriting-data"></a>Gravando CDs / DVDs de dados</h3></div></div></div>
+<p>
+O processo de gravação de um CD/DVD de dados é feito em 2 etapas: primeiro é
+gerado um arquivo ISO com o programa <span class="command"><strong>mkisofs</strong></span> que será a
+imagem exata do CD que será gravado e a gravação usando o
+<span class="command"><strong>cdrecord</strong></span> ou <span class="command"><strong>growisofs</strong></span> (DVD).  Caso ainda
+não tenha configurado seu gravador no <span class="command"><strong>Linux</strong></span> ou não tem
+certeza do seu funcionamento, veja <a class="xref" href="ch03s11.html#hardw-cfgdisp-cdwritter" title="Configurando um gravador de CD/DVD no Linux">“Configurando um gravador de CD/DVD no Linux”</a>.
+</p>
+<p>
+Vou assumir que os dados que deseja gravar estão no diretório
+<code class="filename">/dados</code>.  Primeiro gere o arquivo ISO:
+</p>
+<pre class="screen">
+cd /dados
+mkisofs -r -o dados.iso -J -V"CD_DADOS" .
+</pre>
+<p>
+Na linha acima, você permite que todos possam ler o CD alterando as permissões
+(<code class="literal">-r</code>), o arquivo de saída será <code class="filename">dados.iso</code>
+(<code class="literal">-o <code class="filename">dados.iso</code></code>), os nomes também terão o
+índice no formato Joliet (<span class="command"><strong>Windows</strong></span>) (<code class="literal">-J</code>),
+o nome de volume será <span class="emphasis"><em>CD_DADOS</em></span>
+(<code class="literal">-V"CD_DADOS"</code>).  Foi colocado <code class="literal">.</code> para o
+diretório raíz porque estamos dentro do diretório que queremos gravar dados.
+Não us e "*" para especificar os arquivos, a não ser que queira que todos os
+arquivos do seus subdiretórios fiquem dentro do raíz do CD :-)
+</p>
+<p>
+Antes de gravar você pode testar se o conteúdo do CD está OK montando a imagem
+ISO:
+</p>
+<pre class="screen">
+mkdir /tmp/iso
+mount /dados/dados.iso /tmp/iso -o loop -t iso9660
+</pre>
+<p>
+Você poderá entrar no diretório <code class="filename">/tmp/iso</code> e ver como está o
+conteúdo do seu CD antes da gravação.  Qualquer modificação deverá ser feita no
+diretório <code class="filename">/dados</code> e depois gerar novamente o iso com
+<span class="command"><strong>mkisofs</strong></span>.  Desmonte o arquivo ISO antes de gravar o CD.
+</p>
+<p>
+Agora, para gravar um CD (750Mb) execute o comando:
+</p>
+<pre class="screen">
+cdrecord -v -dev=/dev/hdc -data /dados/dados.iso
+</pre>
+<p>
+O <code class="literal">-v</code> mostra a progressão da gravação.  Caso seu gravador de
+CD esteja configurado com emulação SCSI ou SCSI, o número passado como
+argumento a <code class="literal">-dev</code> deverá ser obtido pelo comando
+<code class="literal">cdrecord -scanbus</code> (por ex.  <code class="literal">0,0,0</code>).  A
+opção <code class="literal">-data</code> especifica o arquivo iso que contém os dados que
+serão gravados.
+</p>
+<p>
+Para gravar um DVD, execute o comando:
+</p>
+<pre class="screen">
+growisofs -Z /dev/hdc=/dados/dados.iso
+</pre>
+<p>
+Após isto seu CD ou DVD estará gravado e pronto para uso.
+</p>
+</div>
+
+<div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="tasks-cdwriting-audio"></a>Gravando um CD de audio</h3></div></div></div>
+<p>
+A gravação de um CD de audio se divide em 2 etapas: Extração das trilhas de
+audio para um diretório em formato <em class="replaceable"><code>wav</code></em> e a gravação.
+Após inserir o CD de audio na unidade, a extração é feita pelo programa
+<span class="command"><strong>cdda2wav</strong></span> da seguinte forma:
+</p>
+<pre class="screen">
+mkdir /audio
+cd /audio
+cdda2wav -x -D/dev/cdrom -d99999 -S4 -Owav -B audio
+</pre>
+<p>
+A opção <code class="literal">-x</code> extrai usando máxima qualidade,
+<code class="literal">-D/dev/cdrom</code> diz qual é o dispositivo onde o CD de audio
+está inserido, <code class="literal">-d99999</code> diz a duração total da extração
+(99999 é um valor que garante a extração de TODO o CD), <code class="literal">-S4</code>
+diz que a velocidade de extração será de 4X, a <code class="literal">-B audio</code> diz
+para criar arquivos contendo as faixas seqüencialmente como
+<code class="filename">audio01.wav</code>, <code class="filename">audio02.wav</code>, etc.
+</p>
+<p>
+Após extrair, você deverá executar o comando:
+</p>
+<pre class="screen">
+cdrecord -v -dev=/dev/hdc -dao -useinfo *.wav
+</pre>
+<p>
+O comando acima usa o dispositivo gravador /dev/hdc para fazer a gravação do CD
+de audio.  O formato usado é o DAO (<code class="literal">-dao</code>), o que garante que
+não haverá intervalo entre as faixas de CD, útil em CDs ao vivo e que os
+arquivos <code class="filename">*.inf</code> contendo os dados das faixas serão usados
+para controlar a duração de cada uma (-useinfo *.wav).
+</p>
+<p>
+Se você quer gravar uma seleção de arquivos <code class="filename">.wav</code> ou
+<code class="filename">.cdr</code>, será preciso faze-lo em modo TAO (track at once),
+mantendo a pausa de 2 segundos entre as músicas.  Isto é feito pelo comando:
+</p>
+<pre class="screen">
+cdrecord -v -dev=/dev/hdc -pad -audio *.wav
+</pre>
+<p>
+Estamos dizendo para o <span class="command"><strong>cdrecord</strong></span> gravar diversos arquivos de
+audio (<code class="literal">-audio *.wav</code>) e preencher os intervalos dos arquivos
+de audio com zeros (<code class="literal">-pad</code>) pois nem sempre os arquivos tem o
+múltiplo de setores requeridos para a gravação de arquivos de audio.
+</p>
+</div>
+
+<div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="tasks-cdwriting-cdcd"></a>Cópia de CD para CD no mesmo gravador</h3></div></div></div>
+<p>
+A cópia de CD/DVD de dados para outro é feita em duas etapas: A extração do
+arquivo ISO e a gravação do CD.  Esse recurso é útil pela economia de tempo que
+proporciona e porque mantém características especiais do CD como setor de boot.
+</p>
+<p>
+Primeiro, extraia o conteúdo do CD/DVD em format raw com o comando:
+</p>
+<pre class="screen">
+dd if=/dev/cdrom of=/dados/arquivo.iso
+</pre>
+<p>
+Confira se no final o número de bytes conferem, isso diz que a extração foi
+feita com sucesso.  O parâmetro <code class="literal">if=</code> indica o arquivo de
+entrada e <code class="literal">of=</code> o arquivo de saída.  Depois disso grave o CD
+ou DVD com o comando:
+</p>
+<pre class="screen">
+(Para gravação de CD (750Mb)
+cdrecord -v -dev=/dev/hdc -data /dados/dados.iso
+
+(Para gravação de DVD)
+groisofs -Z /dev/hdc=/dados/dados.iso
+</pre>
+<p>
+Veja a explicação dos parâmetros em <a class="xref" href="ch24.html#tasks-cdwriting-data" title="Gravando CDs / DVDs de dados">“Gravando CDs / DVDs de dados”</a>.
+Note que você também poderá gravar o CD usando o comando <span class="command"><strong>dd</strong></span>:
+</p>
+<pre class="screen">
+dd if=/dados/arquivo.iso of=/dev/sr0
+</pre>
+</div>
+
+<div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="tasks-cdwriting-massivewrite"></a>Gravação massiva de CDs</h3></div></div></div>
+<p>
+Isso é feito pelo programa <span class="command"><strong>cdcontrol</strong></span> que permite a gravação
+de CDs paralelamente, sendo bastante útil para gerar CDs para install fests,
+distribuições comerciais em massa.  Ele mantém um relatório de CDs totais por
+unidade de disco e também de falhas, também permite a cópia de CDs de
+inicialização.  Ele está disponível em <a class="ulink" href="http://cdcontrol.sourceforge.net/" target="_top">http://cdcontrol.sourceforge.net/</a>.
+Ele também está disponível como pacote <code class="filename">.deb</code>
+(<code class="literal">apt-get install cdcontrol</code>).
+</p>
+</div>
+
+<div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="tasks-cdwriting-cdfrommp3"></a>Gravação de CDs diretamente através de arquivos mp3 ou Ogg</h3></div></div></div>
+<p>
+Utilize o aplicativo <span class="command"><strong>mp3burn</strong></span> para fazer isto.  Por exemplo:
+</p>
+<pre class="screen">
+mp3burn -o "-v -dev=/dev/hdc" *.mp3
+</pre>
+<p>
+A opção <code class="literal">-o</code> indica as opções que devem ser passadas ao
+<span class="command"><strong>cdrecord</strong></span>.  A opção <code class="literal">-audio</code> e
+<code class="literal">-pad</code> são adicionadas automaticamente.
+</p>
+</div>
+
+<div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="tasks-cdwriting-backupcd"></a>Backup de dados para 1 ou mais CDs</h3></div></div></div>
+<p>
+O programa <span class="command"><strong>multicd</strong></span> é a ferramenta que permite esta função.
+</p>
+</div>
+
+<div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="tasks-cdwriting-graphicapps"></a>Aplicações gráficas para gravação de CDs</h3></div></div></div>
+<p>
+Os seguintes aplicativos são interfaces gráficas e amigáveis que usam o
+<span class="command"><strong>cdrecord</strong></span>, <span class="command"><strong>cdda2wav</strong></span> e
+<span class="command"><strong>mkisofs</strong></span> para fazer a gravação de seus CDs.  Normalmente eles
+acrescentam uma carga maior para a máquina, mas se você gosta de uma interface
+amigável para fazer as coisas, ter animações, etc.  o preço que paga é a
+performance :-)
+</p>
+<p>
+Entre os principais programas, destaco os seguintes:
+<span class="command"><strong>cdrtoaster</strong></span>, <span class="command"><strong>cdbakeoven</strong></span>,
+<span class="command"><strong>kreatecd</strong></span>, <span class="command"><strong>gcombust</strong></span>.
+</p>
+</div>
+
+<div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="tasks-cdwriting-cover"></a>Criar a capa de frente e verso do CD/DVD</h3></div></div></div>
+<p>
+Capas de frente e verso podem ser produzidas com o
+<span class="command"><strong>cdlabelgen</strong></span>.
+</p>
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+</div><HR xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format"></HR><p class="copyright">Copyright © 1999-2020 - Gleydson Mazioli da Silva</p><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch23s02.html">Anterior</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="ch24s02.html">Próximo</a></td></tr><tr><td width="40%" align="left" valign="top">Número de Cores do ambiente gráfico </td><td width="20%" align="center"><a accesskey="h" href="index.html">Voltar ao Índice</a></td><td width="40%" align="right" valign="top"> Executando vídeos DIVX</td></tr></table></div></body></html>

@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Partição EXT3 (Linux Native)</title><meta name="generator" content="DocBook XSL Stylesheets V1.79.1" /><link rel="home" href="index.html" title="Guia Foca Linux" /><link rel="up" href="ch05.html" title="Capítulo 5. Discos e Partições" /><link rel="prev" href="ch05s04.html" title="Journaling" /><link rel="next" href="ch05s06.html" title="Sistema de arquivos reiserfs" /></head><body text="black" link="#0000FF" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Partição EXT3 (Linux Native)</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch05s04.html">Anterior</a> </td><th width="60%" align="center">Capítulo 5. Discos e Partições</th><td width="20%" align="right"> <a accesskey="n" href="ch05s06.html">Próximo</a></td></tr></table><hr /></div><div xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format" class="breadcrumbs"><span class="breadcrumb-link"><a href="index.html">Guia Foca Linux</a></span> &gt; <span class="breadcrumb-link"><a href="ch05.html">Discos e Partições</a></span> &gt; <span class="breadcrumb-node">Partição EXT3 (Linux Native)</span></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="disc-ext3"></a>Partição EXT3 (Linux Native)</h2></div></div></div>
+<p>
+O sistema de arquivos <span class="emphasis"><em>ext3</em></span> faz parte da nova geração
+extended file system do <span class="command"><strong>Linux</strong></span>, sendo o padrão atual e tem
+como seu maior benefício o suporte a journaling e armazenamento eficiente de
+arquivos com até 16Gb de tamanho.
+</p>
+<p>
+O uso deste sistema de arquivos comparado ao <span class="emphasis"><em>ext2</em></span>, na
+maioria dos casos, melhora o desempenho do sistema de arquivos através da
+gravação seqüencial dos dados na área de metadados e acesso mhash a sua árvore
+de diretórios.  Mas pode trazer impactos na performance no caso de dispositivos
+de memória flash e quando utiliza arquivos para armazenar o sistema de
+arquivos.
+</p>
+<p>
+A estrutura da partição <span class="command"><strong>ext3</strong></span> é semelhante a
+<span class="command"><strong>ext2</strong></span>, o journaling é feito em um arquivo chamado
+<code class="filename">.journal</code> que fica oculto pelo código
+<span class="emphasis"><em>ext3</em></span> na raiz da partição (desta forma ele não poderá ser
+apagado, comprometendo o funcionamento do sistema).  A estrutura idêntica da
+partição <span class="emphasis"><em>ext3</em></span> com a <span class="emphasis"><em>ext2</em></span> torna mais
+fácil a manutenção do sistema, já que todas as ferramentas para recuperação
+<span class="emphasis"><em>ext2</em></span> funcionarão sem problemas.
+</p>
+
+<div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="disc-ext3-criando-p"></a>Criando um sistema de arquivos EXT3 em uma partição</h3></div></div></div>
+<p>
+Para criar uma partição <span class="emphasis"><em>ext3</em></span>, utilize o comando
+<span class="command"><strong>mkfs.ext3</strong></span> ou o <span class="command"><strong>mkfs.ext2</strong></span> junto com a
+opção <span class="emphasis"><em>-j</em></span>.  
+
+ As opções usadas pelo
+<span class="command"><strong>mkfs.ext3</strong></span> são idênticas a do <span class="command"><strong>mkfs.ext2</strong></span>
+(documentado em <a class="xref" href="ch05s03.html#disc-ext2-criando-p" title="Criando um sistema de arquivos EXT2 em uma partição">“Criando um sistema de arquivos EXT2 em uma partição”</a>).  A única vantagem desta
+ferramenta comparada ao <span class="command"><strong>mkfs.ext2</strong></span> é que a opção
+<span class="emphasis"><em>-j</em></span> é automaticamente adicionada a linha de comando para
+criar um sistema de arquivos com journal.  Se você é daqueles que querem ter um
+controle maior sobre o tamanho do arquivo de journal, use a opção <span class="emphasis"><em>-J
+[tam]</em></span> (onde tamanho é o tamanho em Megabytes). 
+</p>
+<p>
+Quando uma partição <span class="emphasis"><em>ext3</em></span> é criada, o arquivo
+<code class="filename">.journal</code> é criado no raíz da partição, sendo usado para
+gravar os metadados das transações de journaling.  A estrutura da partição ext2
+não difere em nada da ext3, a não ser este arquivo e a opção "has_journal" que
+é passada a partição.
+</p>
+<p>
+Por exemplo, para criar uma partição ext3 em <code class="filename">/dev/sda1</code>:
+</p>
+<pre class="screen">
+ mkfs.ext3 /dev/sda1
+
+ou
+
+ mkfs.ext2 -j /dev/sda1
+</pre>
+<p>
+Basta agora montar a partição com o comando <code class="literal">mount /dev/sda1 /teste -t
+ext3</code> (para montar a partição em <code class="filename">/teste</code>.  Após
+isto, modifique o <code class="filename">/etc/fstab</code> para montar a partição como
+<span class="emphasis"><em>ext3</em></span> quando o <span class="command"><strong>Linux</strong></span> for iniciado.  
+ Para mais detalhes veja <a class="xref" href="ch05s13.html" title="Montando (acessando) uma partição de disco">“Montando (acessando) uma partição de disco”</a>.  ). 
+Caso o suporte a <span class="emphasis"><em>ext3</em></span> tenha sido compilado no kernel, ele tentará detectar
+e montar a partição como <span class="emphasis"><em>ext3</em></span>, caso contrário, ele usará
+<span class="emphasis"><em>ext2</em></span>.
+</p>
+<p>
+Sua partição agora está montada como <span class="emphasis"><em>ext3</em></span>, para conferir
+digite: <code class="literal">df -T</code>.
+</p>
+
+<p>
+<span class="strong"><strong>OBS:</strong></span> Quando criar um sistema de arquivos
+<span class="emphasis"><em>ext3</em></span> em uma partição raíz (<code class="literal">/</code>), tenha
+certeza de incluir o suporte a <span class="emphasis"><em>ext3</em></span> embutido no kernel,
+caso contrário a partição será montada como <span class="emphasis"><em>ext2</em></span>.
+</p>
+
+</div>
+
+
+<div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="disc-ext3-criando-a"></a>Criando um sistema de arquivos EXT3 em um arquivo</h3></div></div></div>
+<p>
+As instruções para criar um sistema de arquivos <code class="literal">ext3</code> em um
+arquivo não difere muito das instruções de <a class="xref" href="ch05s03.html#disc-ext2-criando-a" title="Criando um sistema de arquivos EXT2 em um arquivo">“Criando um sistema de arquivos EXT2 em um arquivo”</a>, apenas utilize a opção <span class="emphasis"><em>-j</em></span>
+ou <span class="emphasis"><em>-J [tamanho_em_mb]</em></span> (como explicado em <a class="xref" href="ch05s05.html#disc-ext3-criando-p" title="Criando um sistema de arquivos EXT3 em uma partição">“Criando um sistema de arquivos EXT3 em uma partição”</a>).
+</p>
+</div>
+
+
+<div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="disc-ext3-conv2-3"></a>Fazendo a conversão do sistema de arquivos EXT2 para EXT3</h3></div></div></div>
+<p>
+Se você já possui um uma partição <span class="emphasis"><em>ext2</em></span> e deseja
+converte-la para <span class="emphasis"><em>ext3</em></span> isto poderá ser feito facilmente, de
+forma segura (sem qualquer risco de perda de dados) e você poderá voltar para o
+sistema ext2 caso deseje (veja <a class="xref" href="ch05s05.html#disc-ext3-conv3-2" title="Convertendo de EXT3 para EXT2">“Convertendo de EXT3 para EXT2”</a>).
+</p>
+<p>
+Primeiro, execute o comando <span class="command"><strong>tune2fs</strong></span> na partição que deseja
+converter com a opção <span class="emphasis"><em>-j</em></span> ou <span class="emphasis"><em>-J
+[tamanho_journal]</em></span> para adicionar o suporte a Journaling na partição.
+Este comando poderá ser executado com segurança em uma partição
+<span class="emphasis"><em>ext2</em></span> montada, após converter remontar a partição usando os
+comandos <code class="literal">umount /particao</code> e <code class="literal">mount
+/particao</code>.
+</p>
+<p>
+Após a conversão para <span class="emphasis"><em>ext3</em></span> é desnecessária a checagem
+periódica do sistema de arquivos (que por padrão é após 20 montagens e a cada
+30 dias).  Você pode desativar a checagem após o número máximo de montagens com
+a opção <span class="emphasis"><em>-c [num_vezes]</em></span>, e o número de dias máximos antes
+de verificar novamente com a opção <span class="emphasis"><em>-i [num_dias]</em></span> (o uso de
+0 desativa).  Por exemplo:
+</p>
+<pre class="screen">
+tune2fs -c 0 -i 90 /dev/sda2
+</pre>
+<p>
+Desativa a checagem após número máximo de montagens (<code class="literal">-c 0</code>) e
+diz para a partição ser verificada a cada 90 dias (<code class="literal">-i 90</code>).
+</p>
+<p>
+O último passo é modificar o <code class="filename">/etc/fstab</code> para que a
+partição seja montada como <span class="emphasis"><em>ext3</em></span> na inicialização e depois
+desmontar (<code class="literal">umount /dev/sda2</code> e remonta-la (mount /dev/sda2)
+para usar o suporte <span class="emphasis"><em>ext3</em></span>.  Confira se ela está usando
+<span class="emphasis"><em>ext3</em></span> usando o comando <code class="literal">df -T</code>.
+</p>
+
+<p>
+<span class="strong"><strong>OBS:</strong></span> Caso a partição convertida para
+<span class="emphasis"><em>ext3</em></span> seja a raíz (<code class="literal">/</code>), tenha certeza de
+incluir o suporte a <span class="emphasis"><em>ext3</em></span> embutido no kernel, caso
+contrário, a partição será montada como <span class="emphasis"><em>ext2</em></span>.
+</p>
+
+</div>
+
+
+<div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="disc-ext3-conv3-2"></a>Convertendo de EXT3 para EXT2</h3></div></div></div>
+<p>
+Remover o suporte a <span class="emphasis"><em>ext3</em></span> de uma partição é simples, rápido
+e seguro.  Execute os seguintes passos:
+</p>
+<div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">
+<p>
+Execute o comando <code class="literal">tune2fs -O^has_journal /dev/sdxx</code> na
+partição que deseja remover o Journal.  Este comando poderá ser executado em
+uma partição montada.
+</p>
+</li><li class="listitem">
+<p>
+Modifique o <code class="filename">/etc/fstab</code> e altere a partição para
+<span class="emphasis"><em>ext2</em></span>.
+</p>
+</li><li class="listitem">
+<p>
+Desmonte e monte novamente a partição com os comandos: <code class="literal">umount
+/dev/hdxx</code> e <code class="literal">mount /dev/sdxx</code>.
+</p>
+</li><li class="listitem">
+<p>
+Pronto!  a partição agora é novamente uma partição <span class="emphasis"><em>ext2</em></span>
+normal, confira digitando <code class="literal">df -T</code>.
+</p>
+</li></ol></div>
+<p>
+Pronto, o suporte a <span class="emphasis"><em>ext3</em></span> foi removido do seu sistema e
+agora poderá usar a partição como <span class="emphasis"><em>ext2</em></span> normalmente
+(confira digitando <code class="literal">df -T</code>).
+</p>
+</div>
+
+
+<div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="disc-e2label"></a>Nomeando uma partição de disco ext2/ext3</h3></div></div></div>
+<p>
+O comando <span class="command"><strong>e2label</strong></span> é usado para esta função.
+</p>
+<p>
+<span class="command"><strong>e2label</strong></span> [<span class="emphasis"><em>dispositivo</em></span>][<span class="emphasis"><em>nome</em></span>]
+</p>
+ 
+<p>
+Onde:
+</p>
+<div class="variablelist"><dl class="variablelist"><dt><span class="term"><span class="emphasis"><em>dispositivo</em></span></span></dt><dd>
+<p>
+Partição que terá o nome modificado
+</p>
+</dd><dt><span class="term"><span class="emphasis"><em>nome</em></span></span></dt><dd>
+<p>
+Nome que será dado a partição (máximo de 16 caracteres).  Caso seja usado um
+nome de volume com espaços, ele deverá ser colocado entre "aspas".
+</p>
+</dd></dl></div>
+
+<p>
+Se não for especificado um nome, o nome atual da partição será mostrado.  O
+nome da partição também pode ser visualizado através do comando
+<span class="command"><strong>dumpe2fs</strong></span> (veja <a class="xref" href="ch05s05.html#disc-dumpe2fs" title="dumpe2fs">“dumpe2fs”</a>).
+</p>
+
+<p>
+Exemplo: <code class="literal">e2label /dev/sda1 FocaLinux</code>, <code class="literal">e2label
+/dev/sda1 "Foca Linux"</code>
+</p>
+
+</div>
+
+
+<div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="disc-mklost-found"></a>Criando o diretório especial <code class="filename">lost+found</code></h3></div></div></div>
+<p>
+O utilitário <span class="command"><strong>mklost+found</strong></span> cria o diretório especial
+<code class="filename">lost+found</code> no diretório atual.  
+ O diretório
+<code class="filename">lost+found</code> é criado automaticamente após a formatação da
+partição com o <span class="command"><strong>mkfs.ext2</strong></span>, a função deste diretório é
+pré-alocar os blocos de arquivos/diretório durante a execução do programa
+<span class="command"><strong>fsck.ext2</strong></span> na recuperação de um sistema de arquivos (veja
+<a class="xref" href="ch26.html#manut-checagem" title="Checagem dos sistemas de arquivos">“Checagem dos sistemas de arquivos”</a>).  Isto garante que os blocos de disco não
+precisarão ser diretamente alocados durante a checagem.
+</p> 
+<p>
+<code class="literal">mklost+found</code>
+</p>
+
+<p>
+OBS: Este comando só funciona em sistemas de arquivos ext2/3/4 
+</p>
+
+<p>
+Exemplo: <code class="literal">cd /tmp;mklost+found;ls -a</code>
+</p>
+
+</div>
+
+
+<div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="disc-dumpe2fs"></a>dumpe2fs</h3></div></div></div>
+<p>
+Mostra detalhes sobre uma partição <span class="command"><strong>Linux</strong></span>.
+</p>
+<p>
+<span class="command"><strong>dumpe2fs</strong></span> [<span class="emphasis"><em>opções</em></span>] [<span class="emphasis"><em>partição</em></span>]
+</p>
+ 
+<p>
+Onde:
+</p>
+<div class="variablelist"><dl class="variablelist"><dt><span class="term"><span class="emphasis"><em>partição</em></span></span></dt><dd>
+<p>
+Identificação da partição que será usada.
+</p>
+</dd><dt><span class="term"><span class="emphasis"><em>opções</em></span>, </span><span class="term">-b</span></dt><dd>
+<p>
+Mostra somente os blocos marcado como defeituosos no sistema de arquivos
+especificado.
+</p>
+</dd></dl></div>
+
+<p>
+Este comando lista diversas opções úteis do sistema de arquivos como o tipo do
+sistema de arquivos, características especiais, número de inodos, blocos
+livres, tamanho do bloco, intervalo entre checagens automáticas, etc.
+</p>
+ 
+<p>
+Exemplo: <code class="literal">dumpe2fs /dev/sda1</code>, <code class="literal">dumpe2fs -b
+/dev/sda1</code>
+</p>
+
+</div>
+
+
+<div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="disc-ext2xarquivo"></a>Partição EXT2 ou Arquivo?</h3></div></div></div>
+<p>
+Criar uma partição <code class="literal">EXT2</code> ou um arquivo usando o
+<code class="literal">loop</code>?  Abaixo estão algumas considerações:
+</p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+<p>
+A partição <code class="literal">EXT2</code> é o método recomendado para a instalação do
+<span class="command"><strong>GNU/Linux</strong></span>.
+</p>
+</li><li class="listitem">
+<p>
+O desempenho da partição <code class="literal">EXT2</code> é bem melhor se comparado ao
+arquivo porque é acessada diretamente pelo Kernel (SO).
+</p>
+</li><li class="listitem">
+<p>
+O arquivo <code class="literal">EXT2</code> é útil para guardarmos dados confidenciais em
+disquetes ou em qualquer outro lugar no sistema.  Você pode perfeitamente
+gravar seus arquivos confidenciais em um arquivo chamado
+<code class="filename">libBlaBlaBla-2.0</code> no diretório <code class="filename">/lib</code> e
+ninguém nunca suspeitará deste arquivo (acho que não...).  Também é possível
+criptografa-lo para que mesmo alguém descobrindo que aquilo não é uma lib, não
+poder abri-lo a não ser que tenha a senha (isto é coberto no documento
+<code class="filename">Loopback-encripted-filesystem.HOWTO</code>).
+</p>
+</li><li class="listitem">
+<p>
+O uso do arquivo <code class="literal">EXT2</code> é útil quando você está perdendo
+espaço na sua partição <code class="literal">EXT2</code> e não quer re-particionar seu
+disco pois teria que ser feita uma re-instalação completa e tem muito espaço em
+um partição de outro SO (como o Windows).
+</p>
+<p>
+Você poderia facilmente copiar o conteúdo de <code class="filename">/var</code>, por
+exemplo, para o arquivo <code class="literal">EXT2</code> <code class="filename">ext2-l</code>
+criado no diretório Raíz do Windows, apagar o conteúdo de
+<code class="filename">/var</code> (liberando muito espaço em disco) e então montar
+<code class="filename">ext2-l</code> como <code class="filename">/var</code>.  A partir de agora,
+tudo o que for gravado em <code class="filename">/var</code> será na realidade gravado
+no arquivo <code class="filename">ext2-l</code>.
+</p>
+<p>
+Para o sistema acessar o arquivo, deve passar pelo sistema de arquivos
+<code class="literal">loop</code> e <code class="literal">FAT32</code>, isto causa um desempenho
+menor.
+</p>
+</li></ul></div>
+</div>
+
+</div><HR xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format"></HR><p class="copyright">Copyright © 1999-2020 - Gleydson Mazioli da Silva</p><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch05s04.html">Anterior</a> </td><td width="20%" align="center"><a accesskey="u" href="ch05.html">Subir</a></td><td width="40%" align="right"> <a accesskey="n" href="ch05s06.html">Próximo</a></td></tr><tr><td width="40%" align="left" valign="top">Journaling </td><td width="20%" align="center"><a accesskey="h" href="index.html">Voltar ao Índice</a></td><td width="40%" align="right" valign="top"> Sistema de arquivos reiserfs</td></tr></table></div></body></html>

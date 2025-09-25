@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>modconf</title><meta name="generator" content="DocBook XSL Stylesheets V1.79.1" /><link rel="home" href="index.html" title="Guia Foca Linux" /><link rel="up" href="ch16.html" title="Capítulo 16. Kernel e Módulos" /><link rel="prev" href="ch16s09.html" title="depmod" /><link rel="next" href="ch16s11.html" title="Recompilando o Kernel" /></head><body text="black" link="#0000FF" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">modconf</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch16s09.html">Anterior</a> </td><th width="60%" align="center">Capítulo 16. Kernel e Módulos</th><td width="20%" align="right"> <a accesskey="n" href="ch16s11.html">Próximo</a></td></tr></table><hr /></div><div xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format" class="breadcrumbs"><span class="breadcrumb-link"><a href="index.html">Guia Foca Linux</a></span> &gt; <span class="breadcrumb-link"><a href="ch16.html">Kernel e Módulos</a></span> &gt; <span class="breadcrumb-node">modconf</span></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="kern-modconf"></a>modconf</h2></div></div></div>
+<p>
+Este programa permite um meio mais fácil de configurar a ativação de módulos e
+opções através de uma interface através de menus.  Selecione a categoria de
+módulos através das setas acima e abaixo e pressione enter para selecionar os
+módulos existentes.  Serão pedidas as opções do módulo (como DMA, IRQ, I/O)
+para que sua inicialização seja possível, estes parâmetros são específicos de
+cada módulo e devem ser vistos na documentação do código fonte do kernel no
+diretório <code class="filename">/usr/src/linux/Documentation</code>.  Note que também
+existem módulos com auto-detecção mas isto deixa o sistema um pouco mais lento,
+porque ele fará uma varredura na faixa de endereços especificados pelo módulo
+para achar o dispositivo.  As opções são desnecessárias em alguns tipos de
+módulos.
+</p>
+<p>
+As modificações feitas por este programa são gravadas no diretório
+<code class="filename">/etc/modutils</code> em arquivos separados como
+<code class="filename">/etc/modutils/alias</code> - alias de módulos,
+<code class="filename">/etc/modutils/modconf</code> - opções usadas por módulos,
+<code class="filename">/etc/modutils/paths</code> - Caminho onde os módulos do sistema
+são encontrados.  Dentro de <code class="filename">/etc/modutils</code> é ainda
+encontrado um sub-diretório chamado <code class="filename">arch</code> que contém opções
+específicas por arquiteturas.
+</p>
+<p>
+A sincronização dos arquivos gerados pelo <span class="command"><strong>modconf</strong></span> com o
+<code class="filename">/etc/modules.conf</code> é feita através do utilitário
+<span class="command"><strong>update-modules</strong></span>.  Ele é normalmente executado após
+modificações nos módulos feitas pelo <span class="command"><strong>modconf</strong></span>.
+</p>
+</div><HR xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format"></HR><p class="copyright">Copyright © 1999-2020 - Gleydson Mazioli da Silva</p><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch16s09.html">Anterior</a> </td><td width="20%" align="center"><a accesskey="u" href="ch16.html">Subir</a></td><td width="40%" align="right"> <a accesskey="n" href="ch16s11.html">Próximo</a></td></tr><tr><td width="40%" align="left" valign="top">depmod </td><td width="20%" align="center"><a accesskey="h" href="index.html">Voltar ao Índice</a></td><td width="40%" align="right" valign="top"> Recompilando o Kernel</td></tr></table></div></body></html>

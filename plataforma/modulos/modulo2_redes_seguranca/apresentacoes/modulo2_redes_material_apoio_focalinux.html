@@ -1,0 +1,268 @@
+
+        <div class="slide">
+            <h2><i class="fas fa-plus-circle"></i> Material de Apoio FOCA Linux - Modulo2 Redes</h2>
+            <div class="info-box">
+                <strong>📚 Conteúdo Complementar:</strong> Material adicional extraído do FOCA Linux 
+                para enriquecer o aprendizado.
+            </div>
+        
+        <div class="focalinux-content">
+            <div class="content-header">
+                <h3><i class="fas fa-file-alt"></i> Outras opções do iptables</h3>
+                <div class="content-meta">
+                    <span class="score">Score: 19</span>
+                    <span class="comandos">15 comandos</span>
+                </div>
+            </div>
+            
+            <div class="content-body">
+                <h4>Conceitos Principais:</h4>
+                <ul>
+        <li>Outras opções do iptables</li><li>Especificando um endereço de origem/destino</li><li>Especificando a interface de origem/destino</li><li>Especificando um protocolo</li><li>Especificando fragmentos</li>
+                </ul>
+                
+                <h4>Comandos Relacionados:</h4>
+                <div class="comandos-section">
+        <code class="comando">iptables-restore &lt;/dir/iptables-regras</code><code class="comando">iptables -t filter -A INPUT ! -s 200.200.200.10 -j DROP</code><code class="comando">+---------------------+--------------------------------+
+  TABELA  |      CHAIN          |            INTERFACE           |
+          |                     +----------------+---------------+
+          |                     |  ENTRADA (-i)  |    SAÍDA (-o) |
++---------+---------------------+----------------+---------------+
+|         |  INPUT              |      SIM       |      NÃO      |
+| filter  |  OUTPUT             |      NÃO       |      SIM      |
+|         |  FORWARD            |      SIM       |      SIM      |
++---------+---------------------+----------------+---------------+
+|         | PREROUTING          |      SIM       |      NÃO      |
+| nat     | OUTPUT              |      NÃO       |      SIM      |
+|         | POSTROUTING         |      NÃO       |      SIM      |
++---------+---------------------+----------------+---------------+
+|         | PREROUTING          |      SIM       |      NÃO      |
+| mangle  |                     |                |               |
+|         | OUTPUT              |      NÃO       |      SIM      |
++---------+---------------------+----------------+---------------+</code><code class="comando">iptables -A INPUT -s 200.200.200.1 -f -j DROP</code><code class="comando">nossa m</code><code class="comando"># Bloqueia o tráfego vindo da rede 200.200.200.*:
+ iptables -A INPUT -s 200.200.200.0/24 -j DROP
+
+# Bloqueia conexões com o destino 10.1.2.3:
+iptables -A OUTPUT -d 10.1.2.3 -j DROP
+
+# Bloqueia o tráfego da máquina www.dominio.teste.org a rede 210.21.1.3
+# nossa máquina possui o endereço 210.21.1.3
+iptables -A INPUT -s www.dominio.teste.org -d 210.21.1.3 -j DROP</code><code class="comando">Para registrar o bloqueio de pacotes vindos de 200.200.200.1 pela interface ppp0
+iptables -A INPUT -s 200.200.200.1 -i ppp</code><code class="comando">iptables -A INPUT -p tcp ! --syn -s 200.200.200.10 ! -i eth0 -j DROP</code><code class="comando">iptables -A INPUT -s 200.123.123.10 -p icmp --icmp-type time-exceeded -i ppp+ -j DROP</code><code class="comando"># Rejeita pacotes vindos de 200.200.200.1 pela interface ppp0: 
+iptables -A INPUT -s 200.200.200.1 -i ppp+ -j REJECT</code>
+                </div>
+                
+                <h4>Conteúdo Detalhado:</h4>
+                <div class="conteudo-detalhado">
+        <p>Outras opções do iptablesOutras opções do iptablesAnterior Capítulo 10. Firewall iptables PróximoGuia Foca Linux &gt; Firewall iptables &gt; Outras opções do iptablesOutras opções do iptablesEspecificando um endereço de origem/destino As opções -s (ou --src/--source)e -d (ou --dst/--destination) servem para especificar endereços de origem e destino respectivamente. É permitido usar um endereço IP completo (como 192.168.1.1), um hostname (debian), um endereço fqdn (www.debian.org) ou um par rede/...</p>
+                </div>
+                
+                <div class="content-actions">
+                    <button class="btn btn-primary" onclick="abrirArquivoOriginal('/Users/imac/LinuxAvançado/focalinux-Avancado-html/ch10s03.html')">
+                        <i class="fas fa-external-link-alt"></i> Ver Arquivo Original
+                    </button>
+                    <button class="btn btn-outline" onclick="copiarComandos()">
+                        <i class="fas fa-copy"></i> Copiar Comandos
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="focalinux-content">
+            <div class="content-header">
+                <h3><i class="fas fa-file-alt"></i> Outros módulos do iptables</h3>
+                <div class="content-meta">
+                    <span class="score">Score: 19</span>
+                    <span class="comandos">15 comandos</span>
+                </div>
+            </div>
+            
+            <div class="content-body">
+                <h4>Conceitos Principais:</h4>
+                <ul>
+        <li>Outros módulos do iptables</li><li>Conferindo de acordo com o estado da conexão</li><li>Limitando o número de vezes que a regra confere</li><li>Proteção contra ping da morte</li><li>Proteção contra syn flood</li>
+                </ul>
+                
+                <h4>Comandos Relacionados:</h4>
+                <div class="comandos-section">
+        <code class="comando">iptables -t filter -A ping-chain -i ppp0 -p icmp --icmp-type echo-reply -m limit --limit 1/s -j RETURN
+iptables -t filter -A ping-chain -j DROP</code><code class="comando">iptables -A OUTPUT -m owner --gid-owner 100 -p udp -j DROP</code><code class="comando">Confere com todos os pacotes que tem o TTL maior que 100
+iptables -A INPUT -m ttl --ttl-gt 100 -j LOG --log-prefix</code><code class="comando"># Bloqueia a passagem de pacotes multicast de uma rede para outra
+iptables -A FORWARD -i eth0 -o eth0 -m pkttype --pkt-type multicast -j DROP 
+
+# Como deve ter notado, é possível fazer a associação com diversas especificações
+# de módulos, bastando apenas especificar uma opção "-m" para cada módulo
+# adicional:
+# Permite a passagem de pacotes broadcast de uma rede para outra com
+# limitação de 5/s.
+iptables -A FORWARD -i eth0 -o eth0 -m pkttype --pkt-type broadcast -m limit --limit 5/s -j ACCEPT</code><code class="comando">Permite a passagem de pacotes broadcast de uma rede para outra com</code><code class="comando">Somente permite a passagem de pacotes que n</code><code class="comando">iptables -A INPUT -p tcp -i ppp0 -m multiport --destination-port 21,23,25,80,110,113,6667 -j DROP</code><code class="comando">iptables -t filter -A INPUT -m mac --mac-source 00:80:AD:B2:60:0B -j DROP</code><code class="comando">adicional</code><code class="comando">e registra o ocorrido.
+iptables -A OUTPUT -m string --string</code>
+                </div>
+                
+                <h4>Conteúdo Detalhado:</h4>
+                <div class="conteudo-detalhado">
+        <p>Outros módulos do iptablesOutros módulos do iptablesAnterior Capítulo 10. Firewall iptables PróximoGuia Foca Linux &gt; Firewall iptables &gt; Outros módulos do iptablesOutros módulos do iptables Os módulos do iptables são especificados com a opção -m módulo ou --match módulo e permitem expandir a funcionalidade do firewall através de novas conferências e recursos de filtragem adicionais, como limitar a conferência de regras do firewall (um método útil de limitar ping floods, syn floods, etc). C...</p>
+                </div>
+                
+                <div class="content-actions">
+                    <button class="btn btn-primary" onclick="abrirArquivoOriginal('/Users/imac/LinuxAvançado/focalinux-Avancado-html/ch10s06.html')">
+                        <i class="fas fa-external-link-alt"></i> Ver Arquivo Original
+                    </button>
+                    <button class="btn btn-outline" onclick="copiarComandos()">
+                        <i class="fas fa-copy"></i> Copiar Comandos
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="focalinux-content">
+            <div class="content-header">
+                <h3><i class="fas fa-file-alt"></i> Outros módulos do iptables</h3>
+                <div class="content-meta">
+                    <span class="score">Score: 19</span>
+                    <span class="comandos">15 comandos</span>
+                </div>
+            </div>
+            
+            <div class="content-body">
+                <h4>Conceitos Principais:</h4>
+                <ul>
+        <li>Outros módulos do iptables</li><li>Conferindo de acordo com o estado da conexão</li><li>Limitando o número de vezes que a regra confere</li><li>Proteção contra ping da morte</li><li>Proteção contra syn flood</li>
+                </ul>
+                
+                <h4>Comandos Relacionados:</h4>
+                <div class="comandos-section">
+        <code class="comando">iptables -t filter -A ping-chain -i ppp0 -p icmp --icmp-type echo-reply -m limit --limit 1/s -j RETURN
+iptables -t filter -A ping-chain -j DROP</code><code class="comando">iptables -A OUTPUT -m owner --gid-owner 100 -p udp -j DROP</code><code class="comando">Confere com todos os pacotes que tem o TTL maior que 100
+iptables -A INPUT -m ttl --ttl-gt 100 -j LOG --log-prefix</code><code class="comando"># Bloqueia a passagem de pacotes multicast de uma rede para outra
+iptables -A FORWARD -i eth0 -o eth0 -m pkttype --pkt-type multicast -j DROP 
+
+# Como deve ter notado, é possível fazer a associação com diversas especificações
+# de módulos, bastando apenas especificar uma opção "-m" para cada módulo
+# adicional:
+# Permite a passagem de pacotes broadcast de uma rede para outra com
+# limitação de 5/s.
+iptables -A FORWARD -i eth0 -o eth0 -m pkttype --pkt-type broadcast -m limit --limit 5/s -j ACCEPT</code><code class="comando">Permite a passagem de pacotes broadcast de uma rede para outra com</code><code class="comando">Somente permite a passagem de pacotes que n</code><code class="comando">iptables -A INPUT -p tcp -i ppp0 -m multiport --destination-port 21,23,25,80,110,113,6667 -j DROP</code><code class="comando">iptables -t filter -A INPUT -m mac --mac-source 00:80:AD:B2:60:0B -j DROP</code><code class="comando">adicional</code><code class="comando">e registra o ocorrido.
+iptables -A OUTPUT -m string --string</code>
+                </div>
+                
+                <h4>Conteúdo Detalhado:</h4>
+                <div class="conteudo-detalhado">
+        <p>Outros módulos do iptablesOutros módulos do iptablesAnterior Capítulo 5. Firewall iptables PróximoGuia Foca - Segurança &gt; Firewall iptables &gt; Outros módulos do iptablesOutros módulos do iptables Os módulos do iptables são especificados com a opção -m módulo ou --match módulo e permitem expandir a funcionalidade do firewall através de novas conferências e recursos de filtragem adicionais, como limitar a conferência de regras do firewall (um método útil de limitar ping floods, syn floods, et...</p>
+                </div>
+                
+                <div class="content-actions">
+                    <button class="btn btn-primary" onclick="abrirArquivoOriginal('/Users/imac/LinuxAvançado/focalinux-Segurança-html/ch05s06.html')">
+                        <i class="fas fa-external-link-alt"></i> Ver Arquivo Original
+                    </button>
+                    <button class="btn btn-outline" onclick="copiarComandos()">
+                        <i class="fas fa-copy"></i> Copiar Comandos
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="focalinux-content">
+            <div class="content-header">
+                <h3><i class="fas fa-file-alt"></i> Outras opções do iptables</h3>
+                <div class="content-meta">
+                    <span class="score">Score: 19</span>
+                    <span class="comandos">15 comandos</span>
+                </div>
+            </div>
+            
+            <div class="content-body">
+                <h4>Conceitos Principais:</h4>
+                <ul>
+        <li>Outras opções do iptables</li><li>Especificando um endereço de origem/destino</li><li>Especificando a interface de origem/destino</li><li>Especificando um protocolo</li><li>Especificando fragmentos</li>
+                </ul>
+                
+                <h4>Comandos Relacionados:</h4>
+                <div class="comandos-section">
+        <code class="comando">iptables-restore &lt;/dir/iptables-regras</code><code class="comando">iptables -t filter -A INPUT ! -s 200.200.200.10 -j DROP</code><code class="comando">+---------------------+--------------------------------+
+  TABELA  |      CHAIN          |            INTERFACE           |
+          |                     +----------------+---------------+
+          |                     |  ENTRADA (-i)  |    SAÍDA (-o) |
++---------+---------------------+----------------+---------------+
+|         |  INPUT              |      SIM       |      NÃO      |
+| filter  |  OUTPUT             |      NÃO       |      SIM      |
+|         |  FORWARD            |      SIM       |      SIM      |
++---------+---------------------+----------------+---------------+
+|         | PREROUTING          |      SIM       |      NÃO      |
+| nat     | OUTPUT              |      NÃO       |      SIM      |
+|         | POSTROUTING         |      NÃO       |      SIM      |
++---------+---------------------+----------------+---------------+
+|         | PREROUTING          |      SIM       |      NÃO      |
+| mangle  |                     |                |               |
+|         | OUTPUT              |      NÃO       |      SIM      |
++---------+---------------------+----------------+---------------+</code><code class="comando">iptables -A INPUT -s 200.200.200.1 -f -j DROP</code><code class="comando">nossa m</code><code class="comando"># Bloqueia o tráfego vindo da rede 200.200.200.*:
+ iptables -A INPUT -s 200.200.200.0/24 -j DROP
+
+# Bloqueia conexões com o destino 10.1.2.3:
+iptables -A OUTPUT -d 10.1.2.3 -j DROP
+
+# Bloqueia o tráfego da máquina www.dominio.teste.org a rede 210.21.1.3
+# nossa máquina possui o endereço 210.21.1.3
+iptables -A INPUT -s www.dominio.teste.org -d 210.21.1.3 -j DROP</code><code class="comando">Para registrar o bloqueio de pacotes vindos de 200.200.200.1 pela interface ppp0
+iptables -A INPUT -s 200.200.200.1 -i ppp</code><code class="comando">iptables -A INPUT -p tcp ! --syn -s 200.200.200.10 ! -i eth0 -j DROP</code><code class="comando">iptables -A INPUT -s 200.123.123.10 -p icmp --icmp-type time-exceeded -i ppp+ -j DROP</code><code class="comando"># Rejeita pacotes vindos de 200.200.200.1 pela interface ppp0: 
+iptables -A INPUT -s 200.200.200.1 -i ppp+ -j REJECT</code>
+                </div>
+                
+                <h4>Conteúdo Detalhado:</h4>
+                <div class="conteudo-detalhado">
+        <p>Outras opções do iptablesOutras opções do iptablesAnterior Capítulo 5. Firewall iptables PróximoGuia Foca - Segurança &gt; Firewall iptables &gt; Outras opções do iptablesOutras opções do iptablesEspecificando um endereço de origem/destino As opções -s (ou --src/--source)e -d (ou --dst/--destination) servem para especificar endereços de origem e destino respectivamente. É permitido usar um endereço IP completo (como 192.168.1.1), um hostname (debian), um endereço fqdn (www.debian.org) ou um par ...</p>
+                </div>
+                
+                <div class="content-actions">
+                    <button class="btn btn-primary" onclick="abrirArquivoOriginal('/Users/imac/LinuxAvançado/focalinux-Segurança-html/ch05s03.html')">
+                        <i class="fas fa-external-link-alt"></i> Ver Arquivo Original
+                    </button>
+                    <button class="btn btn-outline" onclick="copiarComandos()">
+                        <i class="fas fa-copy"></i> Copiar Comandos
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="focalinux-content">
+            <div class="content-header">
+                <h3><i class="fas fa-file-alt"></i> A tabela nat (Network Address Translation) - fazendo nat</h3>
+                <div class="content-meta">
+                    <span class="score">Score: 18</span>
+                    <span class="comandos">15 comandos</span>
+                </div>
+            </div>
+            
+            <div class="content-body">
+                <h4>Conceitos Principais:</h4>
+                <ul>
+        <li>A tabela nat (Network Address Translation) - fazendo nat</li><li>Criando um novo chain na tabela NAT</li><li>Fazendo IP masquerading (para os apressados)</li><li>Fazendo SNAT</li><li>Fazendo DNAT</li>
+                </ul>
+                
+                <h4>Comandos Relacionados:</h4>
+                <div class="comandos-section">
+        <code class="comando">iptables -t nat -A POSTROUTING -s 192.168.1.0/24 -o eth0 -j SNAT --to 200.200.217.40-200.200.217.50:1-1023</code><code class="comando">que tem como destino a interface eth1 para 200.200.217.40</code><code class="comando">iptables -t nat -A POSTROUTING -s 192.168.1.0/24 -j MASQUERADE
+echo "1" &gt;/proc/sys/net/ipv4/ip_forward</code><code class="comando"># Modifica o endereço IP dos pacotes vindos da máquina 192.168.1.2 da rede interna 
+# que tem como destino a interface eth1 para 200.200.217.40 (que é o nosso endereço 
+# IP da interface ligada a Internet). 
+iptables -t nat -A POSTROUTING -s 192.168.1.2 -o eth1 -j SNAT --to 200.200.217.40</code><code class="comando">iptables -t nat -A POSTROUTING -s 192.168.1.0/24 -o eth0 -j SNAT --to 200.200.217.40-200.200.217.50 --to 200.200.217.70-200.200.217.73</code><code class="comando">iptables -t nat -A PREROUTING -i eth0 -s 192.168.1.0/24 -j DNAT --to 200.200.217.40-200.200.217.50</code><code class="comando">iptables -t nat -A POSTROUTING -s 192.168.1.0/24 -o ppp0 -j MASQUERADE</code><code class="comando">iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 81</code><code class="comando">iptables -t nat -A POSTROUTING -s 192.168.1.0/24 -o eth0 -j SNAT --to 200.200.217.40-200.200.217.50</code><code class="comando">iptables -t nat -N intra-inter</code>
+                </div>
+                
+                <h4>Conteúdo Detalhado:</h4>
+                <div class="conteudo-detalhado">
+        <p>A tabela nat (Network Address Translation) - fazendo natA tabela nat (Network Address Translation) - fazendo natAnterior Capítulo 10. Firewall iptables PróximoGuia Foca Linux &gt; Firewall iptables &gt; A tabela nat (Network Address Translation) - fazendo natA tabela nat (Network Address Translation) - fazendo nat A tabela nat serve para controlar a tradução dos endereços que atravessam o código de roteamento da máquina Linux. Existem 3 chains na tabela nat: PREROUTING, OUTPUT e POSTROUTING (vej...</p>
+                </div>
+                
+                <div class="content-actions">
+                    <button class="btn btn-primary" onclick="abrirArquivoOriginal('/Users/imac/LinuxAvançado/focalinux-Avancado-html/ch10s04.html')">
+                        <i class="fas fa-external-link-alt"></i> Ver Arquivo Original
+                    </button>
+                    <button class="btn btn-outline" onclick="copiarComandos()">
+                        <i class="fas fa-copy"></i> Copiar Comandos
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        </div>
+        

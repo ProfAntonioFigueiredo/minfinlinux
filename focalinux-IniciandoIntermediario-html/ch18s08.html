@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>rar</title><meta name="generator" content="DocBook XSL Stylesheets V1.79.1" /><link rel="home" href="index.html" title="Guia Foca Linux" /><link rel="up" href="ch18.html" title="Capítulo 18. Compactadores" /><link rel="prev" href="ch18s07.html" title="bzip2" /><link rel="next" href="ch19.html" title="Capítulo 19. A distribuição Debian GNU/Linux" /></head><body text="black" link="#0000FF" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">rar</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch18s07.html">Anterior</a> </td><th width="60%" align="center">Capítulo 18. Compactadores</th><td width="20%" align="right"> <a accesskey="n" href="ch19.html">Próximo</a></td></tr></table><hr /></div><div xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format" class="breadcrumbs"><span class="breadcrumb-link"><a href="index.html">Guia Foca Linux</a></span> &gt; <span class="breadcrumb-link"><a href="ch18.html">Compactadores</a></span> &gt; <span class="breadcrumb-node">rar</span></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="cpctd-rar"></a>rar</h2></div></div></div>
+<p>
+<span class="command"><strong>rar</strong></span> é um compactador desenvolvido por <code class="literal">Eugene
+Roshal</code> e possui versões para <span class="command"><strong>GNU/Linux</strong></span>,
+<span class="command"><strong>DOS</strong></span>, <span class="command"><strong>Windows</strong></span>, <span class="command"><strong>OS/2</strong></span> e
+<span class="command"><strong>Macintosh</strong></span>.  Trabalha com arquivos de extensão
+<code class="filename">.rar</code> e permite armazenar arquivos compactados em vários
+disquetes (múltiplos volumes).  Se trata de um produto comercial, mas decidi
+coloca-lo aqui porque possui boas versões Shareware e pode ser muito útil em
+algumas situações.
+</p>
+<p>
+<span class="command"><strong>rar</strong></span> [<span class="emphasis"><em>ações</em></span>] [<span class="emphasis"><em>opções</em></span>]
+[<span class="emphasis"><em>arquivo-destino.rar</em></span>]
+[<span class="emphasis"><em>arquivos-origem</em></span>]
+</p>
+<p>
+Onde:
+</p>
+<div class="variablelist"><dl class="variablelist"><dt><span class="term">arquivo-destino.rar</span></dt><dd>
+<p>
+É o nome do arquivo de destino
+</p>
+</dd><dt><span class="term">arquivos-origem</span></dt><dd>
+<p>
+Arquivos que serão compactados.  Podem ser usados coringas para especificar
+mais de um arquivo.
+</p>
+</dd><dt><span class="term">ações, </span><span class="term">a</span></dt><dd>
+<p>
+Compacta arquivos
+</p>
+</dd><dt><span class="term">x</span></dt><dd>
+<p>
+Descompacta arquivos
+</p>
+</dd><dt><span class="term">d</span></dt><dd>
+<p>
+Apaga arquivos especificados
+</p>
+</dd><dt><span class="term">t</span></dt><dd>
+<p>
+Verifica o arquivo compactado em busca de erros.
+</p>
+</dd><dt><span class="term">c</span></dt><dd>
+<p>
+Inclui comentário no arquivo compactado
+</p>
+</dd><dt><span class="term">r</span></dt><dd>
+<p>
+Repara um arquivo <code class="filename">.rar</code> danificado
+</p>
+</dd><dt><span class="term">l</span></dt><dd>
+<p>
+Lista arquivos armazenados no arquivo compactado
+</p>
+</dd><dt><span class="term">u</span></dt><dd>
+<p>
+Atualiza arquivos existentes no arquivo compactado.
+</p>
+</dd><dt><span class="term">m</span></dt><dd>
+<p>
+Compacta e apaga os arquivos de origem (move).
+</p>
+</dd><dt><span class="term">e</span></dt><dd>
+<p>
+Descompacta arquivos para o diretório atual
+</p>
+</dd><dt><span class="term">p</span></dt><dd>
+<p>
+Mostra o conteúdo do arquivo na saída padrão
+</p>
+</dd><dt><span class="term">rr</span></dt><dd>
+<p>
+Adiciona um registro de verificação no arquivo
+</p>
+</dd><dt><span class="term">s</span></dt><dd>
+<p>
+Converte um arquivo <code class="filename">.rar</code> normal em arquivo auto-extráctil.
+Arquivos auto-extrácteis são úteis para enviar arquivos a pessoas que não tem o
+programa <span class="command"><strong>rar</strong></span>.  Basta executar o arquivo e ele será
+automaticamente descompactado (usando o sistema operacional que foi criado).
+Note que esta opção requer que o arquivo <code class="filename">default.sfx</code>
+esteja presente no diretório home do usuário.  Use o comando
+<span class="command"><strong>find</strong></span> para localiza-lo em seu sistema.
+</p>
+</dd><dt><span class="term">opções, </span><span class="term">o+</span></dt><dd>
+<p>
+Substitui arquivos já existentes sem perguntar
+</p>
+</dd><dt><span class="term">o-</span></dt><dd>
+<p>
+Não substitui arquivos existentes
+</p>
+</dd><dt><span class="term">sfx</span></dt><dd>
+<p>
+Cria arquivos auto-extrácteis.  Arquivos auto-extrácteis são úteis para enviar
+arquivos a pessoas que não tem o programa <span class="command"><strong>rar</strong></span>.  Basta
+executar o arquivo e ele será automaticamente descompactado.  Note que este
+processo requer que o arquivo <code class="filename">default.sfx</code> esteja presente
+no diretório home do usuário.  Use o comando <span class="command"><strong>find</strong></span> para
+localiza-lo em seu sistema.
+</p>
+</dd><dt><span class="term">y</span></dt><dd>
+<p>
+Assume <code class="literal">sim</code> para todas as perguntas
+</p>
+</dd><dt><span class="term">r</span></dt><dd>
+<p>
+Inclui sub-diretórios no arquivo compactado
+</p>
+</dd><dt><span class="term">x [ARQUIVO]</span></dt><dd>
+<p>
+Processa tudo menos o [ARQUIVO].  Pode ser usados coringas
+</p>
+</dd><dt><span class="term">v[TAMANHO]</span></dt><dd>
+<p>
+Cria arquivos com um limite de tamanho.  Por padrão, o tamanho é especificado
+em bytes, mas o número pode ser seguido de <code class="literal">k</code> (kilobytes) ou
+<code class="literal">m</code>(megabytes).
+</p>
+<p>
+Exemplo: <code class="literal">rar a -v1440k ...</code> ou <code class="literal">rar a -v10m
+...</code>
+</p>
+</dd><dt><span class="term">p [SENHA]</span></dt><dd>
+<p>
+Inclui senha no arquivo.  CUIDADO, pessoas conectadas em seu sistema podem
+capturar a linha de comando facilmente e descobrir sua senha.
+</p>
+</dd><dt><span class="term">m [0-5]</span></dt><dd>
+<p>
+Ajusta a taxa de compactação/velocidade de compactação.  0 não faz compactação
+alguma (mais rápido) somente armazena os arquivos, 5 é o nível que usa mais
+compactação (mais lento).
+</p>
+</dd><dt><span class="term">ed</span></dt><dd>
+<p>
+Não inclui diretórios vazios no arquivo
+</p>
+</dd><dt><span class="term">isnd</span></dt><dd>
+<p>
+Ativa emissão de sons de alerta pelo programa
+</p>
+</dd><dt><span class="term">ierr</span></dt><dd>
+<p>
+Envia mensagens de erro para stderr
+</p>
+</dd><dt><span class="term">inul</span></dt><dd>
+<p>
+Desativa todas as mensagens
+</p>
+</dd><dt><span class="term">ow</span></dt><dd>
+<p>
+Salva o dono e grupo dos arquivos.
+</p>
+</dd><dt><span class="term">ol</span></dt><dd>
+<p>
+Salva links simbólicos no arquivo ao invés do arquivo físico que o link faz
+referência.
+</p>
+</dd><dt><span class="term">mm[f]</span></dt><dd>
+<p>
+Usa um método especial de compactação para arquivos multimídia (sons, vídeos,
+etc).  Caso for usado <code class="literal">mmf</code>, força o uso do método multimídia
+mesmo que o arquivo compactado não seja deste tipo.
+</p>
+</dd></dl></div>
+<p>
+Os arquivos gerados pelo <span class="command"><strong>rar</strong></span> do <span class="command"><strong>GNU/Linux</strong></span>
+podem ser usados em outros sistemas operacionais, basta ter o
+<span class="command"><strong>rar</strong></span> instalado.  Quando é usada a opção <code class="literal">-v</code>
+para a criação de múltiplos volumes, a numeração dos arquivos é feita na forma:
+<code class="filename">arquivo.rar</code>, <code class="filename">arquivo.r00</code>,
+<code class="filename">arquivo.r01</code>, etc, durante a descompactação os arquivos
+serão pedidos em ordem.  Se você receber a mensagem <code class="literal">cannot modify
+volume</code> durante a criação de um arquivo <code class="filename">.rar</code>,
+provavelmente o arquivo já existe.  Apague o arquivo existente e tente
+novamente.
+</p>
+<p>
+Exemplos:
+</p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+<p>
+<code class="literal">rar a texto.rar texto.txt</code> - Compacta o arquivo
+<code class="filename">texto.txt</code> em um arquivo com o nome
+<code class="filename">texto.rar</code>
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">rar x texto.rar</code> - Descompacta o arquivo
+<code class="filename">texto.rar</code>
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">rar a -m5 -v1400k textos.rar *</code> - Compacta todos os arquivos
+do diretório atual, usando a compactação máxima no arquivo
+<code class="filename">textos.rar</code>.  Note que o tamanho máximo de cada arquivo é
+1440 para ser possível grava-lo em partes para disquetes.
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">rar x -v -y textos.rar</code> - Restaura os arquivos em múltiplos
+volumes criados com o processo anterior.  Todos os arquivos devem ter sido
+copiados dos disquetes para o diretório atual antes de prosseguir.  A opção
+<code class="literal">-y</code> é útil para não precisar-mos responder
+<code class="literal">yes</code> a toda pergunta que o <span class="command"><strong>rar</strong></span> fizer.
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">rar t textos.rar</code> - Verifica se o arquivo
+<code class="filename">textos.rar</code> possui erros.
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">rar r textos.rar</code> - Repara um arquivo
+<code class="filename">.rar</code> danificado.
+</p>
+</li></ul></div>
+</div><HR xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format"></HR><p class="copyright">Copyright © 1999-2020 - Gleydson Mazioli da Silva</p><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch18s07.html">Anterior</a> </td><td width="20%" align="center"><a accesskey="u" href="ch18.html">Subir</a></td><td width="40%" align="right"> <a accesskey="n" href="ch19.html">Próximo</a></td></tr><tr><td width="40%" align="left" valign="top">bzip2 </td><td width="20%" align="center"><a accesskey="h" href="index.html">Voltar ao Índice</a></td><td width="40%" align="right" valign="top"> Capítulo 19. A distribuição Debian GNU/Linux</td></tr></table></div></body></html>

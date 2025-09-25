@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Recebimento de E-Mails através do fetchmail</title><meta name="generator" content="DocBook XSL Stylesheets V1.79.1" /><link rel="home" href="index.html" title="Guia Foca Linux" /><link rel="up" href="ch28.html" title="Capítulo 28. Conectando seu computador a Internet" /><link rel="prev" href="ch28s02.html" title="Navegando na Internet" /><link rel="next" href="ch29.html" title="Capítulo 29. X Window (ambiente gráfico)" /></head><body text="black" link="#0000FF" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Recebimento de E-Mails através do <span class="command"><strong>fetchmail</strong></span></th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch28s02.html">Anterior</a> </td><th width="60%" align="center">Capítulo 28. Conectando seu computador a Internet</th><td width="20%" align="right"> <a accesskey="n" href="ch29.html">Próximo</a></td></tr></table><hr /></div><div xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format" class="breadcrumbs"><span class="breadcrumb-link"><a href="index.html">Guia Foca Linux</a></span> &gt; <span class="breadcrumb-link"><a href="ch28.html">Conectando seu computador a Internet</a></span> &gt; <span class="breadcrumb-node">Recebimento de E-Mails através do <span xmlns="http://www.w3.org/1999/xhtml" class="command"><strong>fetchmail</strong></span></span></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="inter-emails-r"></a>Recebimento de E-Mails através do <span class="command"><strong>fetchmail</strong></span></h2></div></div></div>
+<p>
+É o programa mais tradicional no recebimento de mensagens através dos serviços
+<span class="emphasis"><em>pop3</em></span>, <span class="emphasis"><em>imap</em></span>,
+<span class="emphasis"><em>pop2</em></span>, etc.  no <span class="command"><strong>GNU/Linux</strong></span>.  Ele pega as
+mensagens de seu servidor <span class="emphasis"><em>pop3</em></span> e as entrega ao MDA local
+ou nos arquivos de e-mails dos usuários do sistema em
+<code class="filename">/var/mail</code>
+</p>
+<p>
+Todo o funcionamento do <span class="command"><strong>fetchmail</strong></span> é controlado pelo arquivo
+<code class="filename">~/.fetchmailrc</code>.  Segue abaixo um modelo padrão deste
+arquivo:
+</p>
+<pre class="screen">
+ poll pop3.seuprovedor.com.br protocol pop3
+   user gleydson password sua_senha keep fetchall is gleydson here
+</pre>
+<p>
+Este arquivo é lido pelo <span class="command"><strong>fetchmail</strong></span> na ordem que foi escrito.
+Veja a explicação abaixo sobre o arquivo exemplo:
+</p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+<p>
+A palavra <code class="literal">poll</code> especifica o servidor de onde suas mensagens
+serão baixadas, o servidor especificado no exemplo é
+<code class="literal">pop3.seuprovedor.com.bt</code>.  A palavra <code class="literal">skip</code>
+pode ser especificada, mas as mensagens no servidor especificado por
+<code class="literal">skip</code> somente serão baixadas caso o nome do servidor de
+mensagens for especificado através da linha de comando do
+<span class="command"><strong>fetchmail</strong></span>.
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">protocol</code> é o protocolo que será usado para a transferência
+de mensagens do servidor.  O <span class="command"><strong>fetchmail</strong></span> utilizará a
+auto-detecção de protocolo caso este não seja especificado.
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">user</code> define o nome do usuário no servidor
+pop3.seuprovedor.com.br, que no exemplo acima é <code class="literal">gleydson</code>.
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">password</code> define a senha do usuário
+<code class="literal">gleydson</code> (acima), especificada como
+<code class="literal">sua_senha</code> no exemplo.
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">keep</code> é opcional e serve para não apagar as mensagens do
+servidor após baixa-las (útil para testes e acesso a uma única conta de e-mail
+através de vários locais, como na empresa e sua casa por exemplo).
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">fetchall</code> baixa todas as mensagens do provedor marcadas como
+lidas e não lidas.
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">is gleydson here</code> é um modo de especificar que as mensagens
+obtidas de <code class="literal">pop3.seuprovedor.com.br</code> do usuário
+<code class="literal">gleydson</code> com a senha <code class="literal">sua_senha</code> serão
+entregues para o usuário local <code class="literal">gleydson</code> no diretório
+<code class="filename">/var/mail/gleydson</code>.
+</p>
+<p>
+As palavras <code class="literal">is</code> e <code class="literal">here</code> são completamente
+ignoradas pelo <span class="command"><strong>fetchmail</strong></span>, servem somente para dar um tom de
+linguagem natural na configuração do programa e da mesma forma facilitar a
+compreensão da configuração.
+</p>
+</li></ul></div>
+<p>
+Se possuir várias contas no servidor
+<code class="literal">pop3.seuprovedor.com.br</code>, não é necessário repetir toda a
+configuração para cada conta, ao invés disso especifique somente os outros
+usuários do mesmo servidor:
+</p>
+<pre class="screen">
+poll pop3.seuprovedor.com.br protocol pop3
+ user gleydson password sua_senha keep fetchall is gleydson here
+ user conta2 password sua_senha2 fetchall is gleydson here
+ user conta3 password sua_senha3 fetchall is gleydson here
+</pre>
+<p>
+Note que todos os e-mails das contas <code class="literal">gleydson</code>,
+<code class="literal">conta2</code> e <code class="literal">conta3</code> do servidor de mensagens
+<code class="literal">pop3.seuprovedor.com.br</code> são entregues ao usuário local
+<code class="literal">gleydson</code> (arquivo <code class="filename">/var/mail/gleydson</code>).
+</p>
+<p>
+Agora você pode usar um programa MUA como o <span class="command"><strong>mutt</strong></span> ou
+<span class="command"><strong>pine</strong></span> para ler localmente as mensagens.  O armazenamento de
+mensagens no diretório <code class="filename">/var/mail</code> é preferido pois permite
+a utilização de programas de notificação de novos e-mais como o
+<span class="command"><strong>comsat</strong></span>, <span class="command"><strong>mailleds</strong></span>,
+<span class="command"><strong>biff</strong></span>, etc.
+</p>
+<p>
+Também é possível utilizar um processador de mensagens ao invés do MTA para a
+entrega de mensagens.  O programa <span class="command"><strong>procmail</strong></span> é um exemplo de
+processador de mensagens rápido e funcional que pode separar as mensagens em
+arquivos de acordo com sua origem, destino, assunto, enviar respostas
+automáticas, listas de discussão, envio de arquivos através de requisição, etc.
+Veja <a class="xref" href="ch28s03.html#inter-procmail" title="Processamento de mensagens através do procmail">“Processamento de mensagens através do procmail”</a> para detalhes.
+</p>
+<p>
+Para mais detalhes sobre outras opções específicas de outros protocolos,
+checagem de mensagens, criptografia, etc, veja a página de manual do
+<span class="command"><strong>fetchmail</strong></span>.
+</p>
+
+<div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="inter-procmail"></a>Processamento de mensagens através do procmail</h3></div></div></div>
+<p>
+O processamento de mensagens pode ser usado para inúmeras finalidades, dentre
+elas a mais comum é separar uma mensagem em arquivos/diretórios de acordo com
+sua origem, prioridade, assuntos, destinatário, conteúdo, etc., programar
+auto-respostas, programa de férias, servidor de arquivos, listas de discussão,
+etc.
+</p>
+<p>
+O <span class="command"><strong>procmail</strong></span> é um programa que reúne estas funções e permitem
+muito mais, dependendo da habilidades e conhecimento das ferramentas
+<span class="command"><strong>GNU/Linux</strong></span> para saber integra-las corretamente.  Toda a
+operação do <span class="command"><strong>procmail</strong></span> é controlada pelo arquivo
+<code class="filename">/etc/procmailrc</code> e <code class="filename">~/.procmailrc</code>.
+Abaixo um modelo do arquivo <code class="filename">~/.procmailrc</code> usado para
+enviar todas as mensagens contendo a palavra <code class="literal">GNU/Linux</code> no
+assunto para o arquivo <code class="filename">mensagens-linux</code>:
+</p>
+<pre class="screen">
+PATH=/usr/bin:/bin:/usr/local/bin:
+MAILDIR=$HOME/Mail
+DEFAULT=$MAILDIR/mbox
+LOGFILE=$MAILDIR/log
+
+:0: 
+* ^Subject:.*Linux
+mensagens-linux
+</pre>
+<p>
+A variável de ambiente <code class="filename">MAILDIR</code> especifica o diretório que
+serão armazenadas as mensagens e logs das operações do
+<span class="command"><strong>procmail</strong></span>.  A variável <code class="filename">DEFAULT</code>
+especifica a caixa de correio padrão onde todas as mensagens que não se
+encaixam nas descrições do filtro do <code class="filename">procmailrc</code> serão
+enviadas.  A variável <code class="filename">LOGFILE</code> especifica o arquivo que
+registrará todas as operações realizadas durante o processamento de mensagens
+do <span class="command"><strong>procmail</strong></span>.
+</p>
+<p>
+O arquivo <code class="filename">mensagens-linux</code> é criado dentro do diretório
+especificado por <code class="filename">MAILDIR</code>.
+</p>
+<p>
+Para que o <span class="command"><strong>procmail</strong></span> entre em ação toda vez que as mensagens
+forem baixadas via <span class="command"><strong>fetchmail</strong></span>, é preciso modificar o arquivo
+<code class="filename">.fechmailrc</code> e incluir a linha <code class="literal">mda
+/usr/bin/procmail -d %T</code> no final do arquivo e retirar as linhas
+<code class="literal">is [usuáriolocal] here</code> para que o processamento das
+mensagens seja feita pelo MDA local (neste caso, o
+<span class="command"><strong>procmail</strong></span>).
+</p>
+<p>
+Se quiser que o <span class="command"><strong>procmail</strong></span> seja executado pelo MDA local,
+basta criar um arquivo <code class="filename">~/.forward</code> no diretório do usuário
+e incluir a linha <code class="literal">exec /usr/bin/procmail</code> (note que em
+algumas implementações do <span class="command"><strong>exim</strong></span>, o
+<span class="command"><strong>procmail</strong></span> é executado automaticamente caso um arquivo
+<code class="filename">~/.procmailrc</code> seja encontrado, caso contrário será
+necessário adicionar a linha "/usr/bin/procmail" ao arquivo
+<code class="filename">~/.forward</code> (somente <span class="command"><strong>exim</strong></span>).
+</p>
+<p>
+Para mais detalhes, veja a página de manual do <span class="command"><strong>procmail</strong></span>,
+<span class="command"><strong>procmailrc</strong></span> e HOWTOs relacionados com e-mails no
+<span class="command"><strong>GNU/Linux</strong></span>.
+</p>
+</div>
+
+</div><HR xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format"></HR><p class="copyright">Copyright © 1999-2020 - Gleydson Mazioli da Silva</p><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch28s02.html">Anterior</a> </td><td width="20%" align="center"><a accesskey="u" href="ch28.html">Subir</a></td><td width="40%" align="right"> <a accesskey="n" href="ch29.html">Próximo</a></td></tr><tr><td width="40%" align="left" valign="top">Navegando na Internet </td><td width="20%" align="center"><a accesskey="h" href="index.html">Voltar ao Índice</a></td><td width="40%" align="right" valign="top"> Capítulo 29. X Window (ambiente gráfico)</td></tr></table></div></body></html>

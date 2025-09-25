@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>cron</title><meta name="generator" content="DocBook XSL Stylesheets V1.79.1" /><link rel="home" href="index.html" title="Guia Foca Linux" /><link rel="up" href="ch26.html" title="Capítulo 26. Manutenção do Sistema" /><link rel="prev" href="ch26s10.html" title="Tarefas automáticas de manutenção do sistema" /><link rel="next" href="ch26s12.html" title="at" /></head><body text="black" link="#0000FF" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">cron</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch26s10.html">Anterior</a> </td><th width="60%" align="center">Capítulo 26. Manutenção do Sistema</th><td width="20%" align="right"> <a accesskey="n" href="ch26s12.html">Próximo</a></td></tr></table><hr /></div><div xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format" class="breadcrumbs"><span class="breadcrumb-link"><a href="index.html">Guia Foca Linux</a></span> &gt; <span class="breadcrumb-link"><a href="ch26.html">Manutenção do Sistema</a></span> &gt; <span class="breadcrumb-node">cron</span></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="manut-cron"></a>cron</h2></div></div></div>
+<p>
+O <span class="command"><strong>cron</strong></span> é um daemon que permite o agendamento da execução de
+um comando/programa para um determinado dia/mês/ano/hora.  É muito usado em
+tarefas de arquivamento de logs, checagem da integridade do sistema e execução
+de programas/comandos em horários determinados.
+</p>
+<p>
+As tarefas são definidas no arquivo <code class="filename">/etc/crontab</code> e por
+arquivos individuais de usuários em
+<code class="filename">/var/spool/cron/crontabs/[usuário]</code> (criados através do
+programa <span class="command"><strong>crontab</strong></span>).  Adicionalmente a distribuição
+<span class="command"><strong>Debian</strong></span> utiliza os arquivos no diretório
+<code class="filename">/etc/cron.d</code> como uma extensão para o
+<code class="filename">/etc/crontab</code>.
+</p>
+<p>
+Para agendar uma nova tarefa, basta editar o arquivo
+<code class="filename">/etc/crontab</code> com qualquer editor de texto (como o
+<span class="command"><strong>ae</strong></span> e o <span class="command"><strong>vi</strong></span>) e definir o mês/dia/hora que a
+tarefa será executada.  Não é necessário reiniciar o daemon do
+<span class="command"><strong>cron</strong></span> porque ele verifica seus arquivos a cada minuto.  Veja
+a seção <a class="xref" href="ch26s11.html#manut-cron-formato" title="O formato de um arquivo crontab">“O formato de um arquivo crontab”</a> para entender o formato de arquivo
+<span class="command"><strong>cron</strong></span> usado no agendamento de tarefas.
+</p>
+<div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="manut-cron-formato"></a>O formato de um arquivo crontab</h3></div></div></div>
+<p>
+O arquivo <code class="filename">/etc/crontab</code> tem o seguinte formato:
+</p>
+<pre class="screen">
+52  18    1   *   *    root     run-parts --report /etc/cron.montly
+|   |     |   |   |      |      |
+|   |     |   |   |      |      \_Comando que será executado
+|   |     |   |   |      |      
+|   |     |   |   |      \_ UID que executará o comando
+|   |     |   |   |            
+|   |     |   |   \_ Dia da semana (0-7)
+|   |     |   |
+|   |     |   \_ Mês (1-12)
+|   |     |
+|   |     \_ Dia do Mês (1-31)
+|   |
+|   \_ Hora
+|
+\_ Minuto
+</pre>
+<p>
+Onde:
+</p>
+<div class="variablelist"><dl class="variablelist"><dt><span class="term">Minuto</span></dt><dd>
+<p>
+Valor entre 0 e 59
+</p>
+</dd><dt><span class="term">Hora</span></dt><dd>
+<p>
+Valor entre 0 e 23
+</p>
+</dd><dt><span class="term">Dia do Mês</span></dt><dd>
+<p>
+Valor entre 0 e 31
+</p>
+</dd><dt><span class="term">Mês</span></dt><dd>
+<p>
+Valor entre 1 e 12 (identificando os meses de Janeiro a Dezembro)
+</p>
+</dd><dt><span class="term">Dia da Semana</span></dt><dd>
+<p>
+Valor entre 0 e 7 (identificando os dias de Domingo a Sábado).  Note que tanto
+0 e 7 equivalem a Domingo.
+</p>
+</dd><dt><span class="term">usuário</span></dt><dd>
+<p>
+O usuário especificado será usado para executar o comando (o usuário deverá
+existir).
+</p>
+</dd><dt><span class="term">comando</span></dt><dd>
+<p>
+Comando que será executado.  Podem ser usados parâmetros normais usados na
+linha de comando.
+</p>
+</dd></dl></div>
+<p>
+Os campos do arquivo são separados por um ou mais espaços ou tabulações.  Um
+asterisco <code class="literal">*</code> pode ser usado nos campos de data e hora para
+especificar todo o intervalo disponível.  O hífen <code class="literal">-</code> serve
+para especificar períodos de execução (incluindo a o número inicial/final).  A
+vírgula serve para especificar lista de números.  Passos podem ser
+especificados através de uma <code class="literal">/</code>.  Veja os exemplos no final
+desta seção.
+</p>
+<p>
+O arquivo gerado em <code class="filename">/var/spool/cron/crontabs/[usuário]</code>
+pelo <span class="command"><strong>crontab</strong></span> tem o mesmo formato do
+<code class="filename">/etc/crontab</code> exceto por não possuir o campo
+<code class="literal">usuário (UID)</code>, pois o nome do arquivo já identifica o
+usuário no sistema.
+</p>
+<p>
+Para editar um arquivo de usuário em
+<code class="filename">/var/spool/cron/crontabs</code> ao invés de editar o
+<code class="filename">/etc/crontab</code> use <code class="literal">crontab -e</code>, para
+listar as tarefas daquele usuário <code class="literal">crontab -l</code> e para apagar o
+arquivo de tarefas do usuário <code class="literal">crontab -r</code> (adicionalmente
+você pode remover somente uma tarefa através do <code class="literal">crontab -e</code> e
+apagando a linha correspondente).
+</p>
+<p>
+OBS: Não esqueça de incluir uma linha em branco no final do arquivo, caso
+contrário o último comando não será executado.
+</p>
+<p>
+O <span class="command"><strong>cron</strong></span> define o valor de algumas variáveis automaticamente
+durante sua execução; a variável <code class="filename">SHELL</code> é definida como
+<code class="literal">/bin/sh</code>, <code class="filename">PATH</code> como
+<code class="literal">/usr/bin:/bin</code>, <code class="filename">LOGNAME</code>,
+<code class="filename">MAILTO</code> e <code class="filename">HOME</code> são definidas através
+do arquivo <code class="filename">/etc/passwd</code>.  Os valores padrões destas
+variáveis podem ser substituídos especificando um novo valor nos arquivos do
+<span class="command"><strong>cron</strong></span>.
+</p>
+<p>
+Exemplos de um arquivo <code class="filename">/etc/crontab</code>:
+</p>
+<pre class="screen">
+SHELL=/bin/sh
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+
+00 10  * * *  root sync
+# Executa o comando sync todo o dia as 10:00
+00 06  * * 1  root updatedb
+# Executa o comando updatedb toda segunda-feira as 06:00.
+10,20,40 *  * * *  root runq
+# Executa o comando runq todos os dias e a toda a hora em 10, 20 e 40 minutos. 
+*/10 *  * * *  root fetchmail
+# Executa o comando fetchmail de 10 em 10 minutos todos os dias
+15 0  25 12 * root echo "Feliz Natal"|mail john
+# Envia um e-mail as 0:15 todo o dia 25/12 para john desejando um feliz natal. 
+30 5  * * 1-6   root  poff
+# Executa o comando poff automaticamente as 5:30 de segunda-feira a sábado.
+</pre>
+</div>
+
+</div><HR xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format"></HR><p class="copyright">Copyright © 1999-2020 - Gleydson Mazioli da Silva</p><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch26s10.html">Anterior</a> </td><td width="20%" align="center"><a accesskey="u" href="ch26.html">Subir</a></td><td width="40%" align="right"> <a accesskey="n" href="ch26s12.html">Próximo</a></td></tr><tr><td width="40%" align="left" valign="top">Tarefas automáticas de manutenção do sistema </td><td width="20%" align="center"><a accesskey="h" href="index.html">Voltar ao Índice</a></td><td width="40%" align="right" valign="top"> at</td></tr></table></div></body></html>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>modprobe</title><meta name="generator" content="DocBook XSL Stylesheets V1.79.1" /><link rel="home" href="index.html" title="Guia Foca Linux" /><link rel="up" href="ch16.html" title="Capítulo 16. Kernel e Módulos" /><link rel="prev" href="ch16s07.html" title="rmmod" /><link rel="next" href="ch16s09.html" title="depmod" /></head><body text="black" link="#0000FF" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">modprobe</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch16s07.html">Anterior</a> </td><th width="60%" align="center">Capítulo 16. Kernel e Módulos</th><td width="20%" align="right"> <a accesskey="n" href="ch16s09.html">Próximo</a></td></tr></table><hr /></div><div xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format" class="breadcrumbs"><span class="breadcrumb-link"><a href="index.html">Guia Foca Linux</a></span> &gt; <span class="breadcrumb-link"><a href="ch16.html">Kernel e Módulos</a></span> &gt; <span class="breadcrumb-node">modprobe</span></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="kern-modprobe"></a>modprobe</h2></div></div></div>
+<p>
+Carrega um módulo e suas dependências manualmente.  Este comando permite
+carregar diversos módulos e dependências de uma só vez.  O comportamento do
+<span class="command"><strong>modprobe</strong></span> é modificado pelo arquivo
+<code class="filename">/etc/modules.conf</code> .
+</p>
+<p>
+A sintaxe deste comando é: <span class="command"><strong>modprobe</strong></span> [<span class="emphasis"><em>módulo</em></span>]
+[<span class="emphasis"><em>opções_módulo</em></span>]
+</p>
+<p>
+Onde:
+</p>
+<div class="variablelist"><dl class="variablelist"><dt><span class="term">módulo</span></dt><dd>
+<p>
+É o nome do módulo que será carregado.
+</p>
+</dd><dt><span class="term">opções_módulo</span></dt><dd>
+<p>
+Opções que serão usadas pelo módulo.  Variam de módulo para módulo, alguns
+precisam de opções outros não, tente primeiro carregar sem opções, caso seja
+mostrada uma mensagem de erro verifique as opções usadas por ele.  Para
+detalhes sobre que opções são suportadas por cada módulo, veja a sua
+documentação no código fonte do kernel em
+<code class="filename">/usr/src/linux/Documentation</code>
+</p>
+</dd></dl></div>
+<p>
+Nem todos os módulos são carregados corretamente pelo
+<span class="command"><strong>modprobe</strong></span>, o <code class="filename">plip</code>, por exemplo, mostra
+uma mensagem sobre porta I/O inválida mas não caso seja carregado pelo
+<span class="command"><strong>insmod</strong></span>.
+</p>
+<p>
+Exemplo: <code class="literal">modprobe ne io=0x300 irq=10</code>, <code class="literal">modprobe sb
+io=0x220 irq=5 dma=1 dma16=5 mpuio=0x330</code>
+</p>
+</div><HR xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format"></HR><p class="copyright">Copyright © 1999-2020 - Gleydson Mazioli da Silva</p><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch16s07.html">Anterior</a> </td><td width="20%" align="center"><a accesskey="u" href="ch16.html">Subir</a></td><td width="40%" align="right"> <a accesskey="n" href="ch16s09.html">Próximo</a></td></tr><tr><td width="40%" align="left" valign="top">rmmod </td><td width="20%" align="center"><a accesskey="h" href="index.html">Voltar ao Índice</a></td><td width="40%" align="right" valign="top"> depmod</td></tr></table></div></body></html>

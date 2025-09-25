@@ -1,0 +1,260 @@
+
+        <div class="slide">
+            <h2><i class="fas fa-plus-circle"></i> Material de Apoio FOCA Linux - Modulo1 Fundamentos</h2>
+            <div class="info-box">
+                <strong>📚 Conteúdo Complementar:</strong> Material adicional extraído do FOCA Linux 
+                para enriquecer o aprendizado.
+            </div>
+        
+        <div class="focalinux-content">
+            <div class="content-header">
+                <h3><i class="fas fa-file-alt"></i> Limitação de recursos usando PAM</h3>
+                <div class="content-meta">
+                    <span class="score">Score: 18</span>
+                    <span class="comandos">15 comandos</span>
+                </div>
+            </div>
+            
+            <div class="content-body">
+                <h4>Conceitos Principais:</h4>
+                <ul>
+        <li>Limitação de recursos usando PAM</li><li>Descobrindo se um determinado programa tem suporte a PAM</li><li>Definindo uma política padrão restritiva</li><li>Restringindo/Bloqueando o login</li><li>Restringindo o acesso a root no su</li>
+                </ul>
+                
+                <h4>Comandos Relacionados:</h4>
+                <div class="comandos-section">
+        <code class="comando"># Bloqueia o login do usuário user1 ou user2 em qualquer tty, a restrição 
+# durante todos os dias de 00:00 as 06:30
+login;tty*;user1|user2;!Al0000-0630
+
+# Bloqueia o acesso do usuário root ao serviço login nos terminais tty* 
+# (e não nos terminais ttyp*) nos finais de semana.
+login;tty* &amp; !ttyp*;root;!Wd0000-2400
+
+# O usuário 1 não poderá efetuar o login as terças feiras de 00:00 as 06:00
+login;!tty*;user1;Tu0000-0600</code><code class="comando">Permite o login no console de todos os usu</code><code class="comando">Qualquer outra tentativa de acesso n</code><code class="comando">Todos os usu</code><code class="comando">ldd [programa]</code><code class="comando">entre 08</code><code class="comando">ldd /bin/login
+
+libcrypt.so.1 =&gt; /lib/libcrypt.so.1 (0x4001c000)
+libpam.so.0 =&gt; /lib/libpam.so.0 (0x40049000)
+libpam_misc.so.0 =&gt; /lib/libpam_misc.so.0 (0x40051000)
+libdl.so.2 =&gt; /lib/libdl.so.2 (0x40054000)
+libc.so.6 =&gt; /lib/libc.so.6 (0x40058000)
+/lib/ld-linux.so.2 =&gt; /lib/ld-linux.so.2 (0x40000000)</code><code class="comando">ngroup</code><code class="comando"># Permite que o usuário gleydson tenha acesso ao grupo floppy efetuando o login
+# entre 08:00 da manha e 19:00 da noite
+login;tty*;gleydson;Al0800-1900;floppy
+
+# Todos os usuários podem ter acesso ao grupo games e sound aos sábados e domingos
+login;tty*;*;SaSu0000-2400;sound games
+
+# Todos os usuários podem ter acesso ao grupo games e sound todos os dias 
+# de 18:00 as 05:00 da manhã (fora do horário de expediente ;-)
+login;tty*;*;Al1800-0500;sound,games
+
+# Backups são permitidos fora do horário de expediente (para não sobrecarregar 
+# a CPU e evitar o uso excessivo de disco). 
+login;tty*;gleydson;Al1830-2400;backup</code><code class="comando">Bloqueia o login do usu</code>
+                </div>
+                
+                <h4>Conteúdo Detalhado:</h4>
+                <div class="conteudo-detalhado">
+        <p>Limitação de recursos usando PAMLimitação de recursos usando PAMAnterior Capítulo 19. Restrições de acesso, recursos e serviços PróximoGuia Foca Linux &gt; Restrições de acesso, recursos e serviços &gt; Limitação de recursos usando PAMLimitação de recursos usando PAM Plugglable Autentication Modules (Módulos de autenticação plugáveis) são um conjunto de bibliotecas usadas para fazer autenticação, gerenciamento de contas, controle de recursos dos usuários no sistema, em adição ao tradicional sist...</p>
+                </div>
+                
+                <div class="content-actions">
+                    <button class="btn btn-primary" onclick="abrirArquivoOriginal('/Users/imac/LinuxAvançado/focalinux-Avancado-html/ch19s02.html')">
+                        <i class="fas fa-external-link-alt"></i> Ver Arquivo Original
+                    </button>
+                    <button class="btn btn-outline" onclick="copiarComandos()">
+                        <i class="fas fa-copy"></i> Copiar Comandos
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="focalinux-content">
+            <div class="content-header">
+                <h3><i class="fas fa-file-alt"></i> Capítulo 19. Restrições de acesso, recursos e serviços</h3>
+                <div class="content-meta">
+                    <span class="score">Score: 18</span>
+                    <span class="comandos">15 comandos</span>
+                </div>
+            </div>
+            
+            <div class="content-body">
+                <h4>Conceitos Principais:</h4>
+                <ul>
+        <li>Capítulo 19. Restrições de acesso, recursos e serviços</li><li>Limitando recursos no bash</li><li>Uso do comando readonly para exportar variáveis</li><li>Restrições nos diretórios de usuários e root</li><li>Restrições básicas do shell bash com bash -r/--restricted, rbash</li>
+                </ul>
+                
+                <h4>Comandos Relacionados:</h4>
+                <div class="comandos-section">
+        <code class="comando">SHELLOPTS</code><code class="comando">PATH</code><code class="comando">HISTFILE</code><code class="comando">chmod 2750 /root
+chmod 2750 /home/usuario</code><code class="comando">readonly TESTE="123"</code><code class="comando">adduser www-data usuario</code><code class="comando">EUID</code><code class="comando">HISTSIZE</code><code class="comando">export TMOUT=600</code><code class="comando">SHELL</code>
+                </div>
+                
+                <h4>Conteúdo Detalhado:</h4>
+                <div class="conteudo-detalhado">
+        <p>Capítulo 19. Restrições de acesso, recursos e serviçosCapítulo 19. Restrições de acesso, recursos e serviçosAnterior PróximoGuia Foca Linux &gt; Restrições de acesso, recursos e serviçosCapítulo 19. Restrições de acesso, recursos e serviçosÍndiceLimitando recursos no bashUso do comando readonly para exportar variáveisRestrições nos diretórios de usuários e rootRestrições básicas do shell bash com bash -r/--restricted, rbashFinalizando consoles inativosDesabilitando o registro de comandos digitad...</p>
+                </div>
+                
+                <div class="content-actions">
+                    <button class="btn btn-primary" onclick="abrirArquivoOriginal('/Users/imac/LinuxAvançado/focalinux-Avancado-html/ch19.html')">
+                        <i class="fas fa-external-link-alt"></i> Ver Arquivo Original
+                    </button>
+                    <button class="btn btn-outline" onclick="copiarComandos()">
+                        <i class="fas fa-copy"></i> Copiar Comandos
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="focalinux-content">
+            <div class="content-header">
+                <h3><i class="fas fa-file-alt"></i> Capítulo 6. Restrições de acesso, recursos e serviços</h3>
+                <div class="content-meta">
+                    <span class="score">Score: 18</span>
+                    <span class="comandos">15 comandos</span>
+                </div>
+            </div>
+            
+            <div class="content-body">
+                <h4>Conceitos Principais:</h4>
+                <ul>
+        <li>Capítulo 6. Restrições de acesso, recursos e serviços</li><li>Limitando recursos no bash</li><li>Uso do comando readonly para exportar variáveis</li><li>Restrições nos diretórios de usuários e root</li><li>Restrições básicas do shell bash com bash -r/--restricted, rbash</li>
+                </ul>
+                
+                <h4>Comandos Relacionados:</h4>
+                <div class="comandos-section">
+        <code class="comando">SHELLOPTS</code><code class="comando">PATH</code><code class="comando">HISTFILE</code><code class="comando">chmod 2750 /root
+chmod 2750 /home/usuario</code><code class="comando">readonly TESTE="123"</code><code class="comando">adduser www-data usuario</code><code class="comando">EUID</code><code class="comando">HISTSIZE</code><code class="comando">export TMOUT=600</code><code class="comando">SHELL</code>
+                </div>
+                
+                <h4>Conteúdo Detalhado:</h4>
+                <div class="conteudo-detalhado">
+        <p>Capítulo 6. Restrições de acesso, recursos e serviçosCapítulo 6. Restrições de acesso, recursos e serviçosAnterior PróximoGuia Foca - Segurança &gt; Restrições de acesso, recursos e serviçosCapítulo 6. Restrições de acesso, recursos e serviçosÍndiceLimitando recursos no bashUso do comando readonly para exportar variáveisRestrições nos diretórios de usuários e rootRestrições básicas do shell bash com bash -r/--restricted, rbashFinalizando consoles inativosDesabilitando o registro de comandos digi...</p>
+                </div>
+                
+                <div class="content-actions">
+                    <button class="btn btn-primary" onclick="abrirArquivoOriginal('/Users/imac/LinuxAvançado/focalinux-Segurança-html/ch06.html')">
+                        <i class="fas fa-external-link-alt"></i> Ver Arquivo Original
+                    </button>
+                    <button class="btn btn-outline" onclick="copiarComandos()">
+                        <i class="fas fa-copy"></i> Copiar Comandos
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="focalinux-content">
+            <div class="content-header">
+                <h3><i class="fas fa-file-alt"></i> Limitação de recursos usando PAM</h3>
+                <div class="content-meta">
+                    <span class="score">Score: 18</span>
+                    <span class="comandos">15 comandos</span>
+                </div>
+            </div>
+            
+            <div class="content-body">
+                <h4>Conceitos Principais:</h4>
+                <ul>
+        <li>Limitação de recursos usando PAM</li><li>Descobrindo se um determinado programa tem suporte a PAM</li><li>Definindo uma política padrão restritiva</li><li>Restringindo/Bloqueando o login</li><li>Restringindo o acesso a root no su</li>
+                </ul>
+                
+                <h4>Comandos Relacionados:</h4>
+                <div class="comandos-section">
+        <code class="comando"># Bloqueia o login do usuário user1 ou user2 em qualquer tty, a restrição 
+# durante todos os dias de 00:00 as 06:30
+login;tty*;user1|user2;!Al0000-0630
+
+# Bloqueia o acesso do usuário root ao serviço login nos terminais tty* 
+# (e não nos terminais ttyp*) nos finais de semana.
+login;tty* &amp; !ttyp*;root;!Wd0000-2400
+
+# O usuário 1 não poderá efetuar o login as terças feiras de 00:00 as 06:00
+login;!tty*;user1;Tu0000-0600</code><code class="comando">Permite o login no console de todos os usu</code><code class="comando">Qualquer outra tentativa de acesso n</code><code class="comando">Todos os usu</code><code class="comando">ldd [programa]</code><code class="comando">entre 08</code><code class="comando">ldd /bin/login
+
+libcrypt.so.1 =&gt; /lib/libcrypt.so.1 (0x4001c000)
+libpam.so.0 =&gt; /lib/libpam.so.0 (0x40049000)
+libpam_misc.so.0 =&gt; /lib/libpam_misc.so.0 (0x40051000)
+libdl.so.2 =&gt; /lib/libdl.so.2 (0x40054000)
+libc.so.6 =&gt; /lib/libc.so.6 (0x40058000)
+/lib/ld-linux.so.2 =&gt; /lib/ld-linux.so.2 (0x40000000)</code><code class="comando">ngroup</code><code class="comando"># Permite que o usuário gleydson tenha acesso ao grupo floppy efetuando o login
+# entre 08:00 da manha e 19:00 da noite
+login;tty*;gleydson;Al0800-1900;floppy
+
+# Todos os usuários podem ter acesso ao grupo games e sound aos sábados e domingos
+login;tty*;*;SaSu0000-2400;sound games
+
+# Todos os usuários podem ter acesso ao grupo games e sound todos os dias 
+# de 18:00 as 05:00 da manhã (fora do horário de expediente ;-)
+login;tty*;*;Al1800-0500;sound,games
+
+# Backups são permitidos fora do horário de expediente (para não sobrecarregar 
+# a CPU e evitar o uso excessivo de disco). 
+login;tty*;gleydson;Al1830-2400;backup</code><code class="comando">Bloqueia o login do usu</code>
+                </div>
+                
+                <h4>Conteúdo Detalhado:</h4>
+                <div class="conteudo-detalhado">
+        <p>Limitação de recursos usando PAMLimitação de recursos usando PAMAnterior Capítulo 6. Restrições de acesso, recursos e serviços PróximoGuia Foca - Segurança &gt; Restrições de acesso, recursos e serviços &gt; Limitação de recursos usando PAMLimitação de recursos usando PAM Plugglable Autentication Modules (Módulos de autenticação plugáveis) são um conjunto de bibliotecas usadas para fazer autenticação, gerenciamento de contas, controle de recursos dos usuários no sistema, em adição ao tradicional...</p>
+                </div>
+                
+                <div class="content-actions">
+                    <button class="btn btn-primary" onclick="abrirArquivoOriginal('/Users/imac/LinuxAvançado/focalinux-Segurança-html/ch06s02.html')">
+                        <i class="fas fa-external-link-alt"></i> Ver Arquivo Original
+                    </button>
+                    <button class="btn btn-outline" onclick="copiarComandos()">
+                        <i class="fas fa-copy"></i> Copiar Comandos
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="focalinux-content">
+            <div class="content-header">
+                <h3><i class="fas fa-file-alt"></i> Segurança da Rede e controle de Acesso</h3>
+                <div class="content-meta">
+                    <span class="score">Score: 17</span>
+                    <span class="comandos">15 comandos</span>
+                </div>
+            </div>
+            
+            <div class="content-body">
+                <h4>Conceitos Principais:</h4>
+                <ul>
+        <li>Segurança da Rede e controle de Acesso</li><li>/etc/ftpusers</li><li>/etc/securetty</li><li>O mecanismo de controle de acessos tcpd</li><li>Firewall</li>
+                </ul>
+                
+                <h4>Comandos Relacionados:</h4>
+                <div class="comandos-section">
+        <code class="comando">client:   address  192.168.1.30
+server:   process  in.fingerd
+matched:  /etc/hosts.deny line 1
+access:   denied</code><code class="comando">/etc/hosts.deny</code><code class="comando">Permitir telnet e ftp somente para hosts locais e myhost.athome.org.au
+in.telnetd</code><code class="comando">Bloqueia o acesso de computadores com endere</code><code class="comando">/etc/hosts.allow</code><code class="comando">/etc/ftpusers - login de usu</code><code class="comando">lista de servi</code><code class="comando">client:   address  127.0.0.1
+server:   process  in.fingerd
+matched:  /etc/hosts.allow line 1
+access:   granted</code><code class="comando">Permite que qualquer um envie e-mails
+in.smtpd</code><code class="comando"># /etc/hosts.allow
+#
+# lista de serviços: lista de hosts : comando</code>
+                </div>
+                
+                <h4>Conteúdo Detalhado:</h4>
+                <div class="conteudo-detalhado">
+        <p>Segurança da Rede e controle de AcessoSegurança da Rede e controle de AcessoAnterior Capítulo 4. Rede PróximoGuia Foca Linux &gt; Rede &gt; Segurança da Rede e controle de AcessoSegurança da Rede e controle de Acesso Deixe-me iniciar esta seção lhe alertando que a segurança da rede em sua máquina e ataques maliciosos são uma arte complexa. Uma regra importante é: "Não ofereça serviços de rede que não deseja utilizar". Muitas distribuições vem configuradas com vários tipos de serviços que são ini...</p>
+                </div>
+                
+                <div class="content-actions">
+                    <button class="btn btn-primary" onclick="abrirArquivoOriginal('/Users/imac/LinuxAvançado/focalinux-Avancado-html/ch04s08.html')">
+                        <i class="fas fa-external-link-alt"></i> Ver Arquivo Original
+                    </button>
+                    <button class="btn btn-outline" onclick="copiarComandos()">
+                        <i class="fas fa-copy"></i> Copiar Comandos
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        </div>
+        

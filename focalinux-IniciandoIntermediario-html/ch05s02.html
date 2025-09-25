@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Sistema de Arquivos</title><meta name="generator" content="DocBook XSL Stylesheets V1.79.1" /><link rel="home" href="index.html" title="Guia Foca Linux" /><link rel="up" href="ch05.html" title="Capítulo 5. Discos e Partições" /><link rel="prev" href="ch05.html" title="Capítulo 5. Discos e Partições" /><link rel="next" href="ch05s03.html" title="Partição EXT2 (Linux Native)" /></head><body text="black" link="#0000FF" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Sistema de Arquivos</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch05.html">Anterior</a> </td><th width="60%" align="center">Capítulo 5. Discos e Partições</th><td width="20%" align="right"> <a accesskey="n" href="ch05s03.html">Próximo</a></td></tr></table><hr /></div><div xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format" class="breadcrumbs"><span class="breadcrumb-link"><a href="index.html">Guia Foca Linux</a></span> &gt; <span class="breadcrumb-link"><a href="ch05.html">Discos e Partições</a></span> &gt; <span class="breadcrumb-node">Sistema de Arquivos</span></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="disc-sistarq"></a>Sistema de Arquivos</h2></div></div></div>
+<p>
+É criado durante a "formatação" da partição de disco (quando se usa o comando
+<span class="command"><strong>mkfs.ext3</strong></span>).  Após a formatação toda a estrutura para
+leitura/gravação/permissões de arquivos e diretórios pelo sistema operacional
+estará pronta para ser usada.  Normalmente este passo é feito durante a
+instalação de sua distribuição <span class="command"><strong>GNU/Linux</strong></span>.
+</p>
+<p>
+Cada sistema de arquivos tem uma característica em particular mas seu propósito
+é o mesmo: Oferecer ao sistema operacional a estrutura necessária para
+ler/gravar os arquivos/diretórios.
+</p>
+<p>
+Entre os sistemas de arquivos existentes posso citar:
+</p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+<p>
+<code class="literal">Ext2</code> - Usado em partições <span class="emphasis"><em>Linux Nativas</em></span>
+para o armazenamento de arquivos.  É identificado pelo código 83.  Seu tamanho
+deve ser o suficiente para acomodar todo os arquivos e programas que deseja
+instalar no <span class="command"><strong>GNU/Linux</strong></span> (você encontra isto no manual de sua
+distribuição).  Você deverá usar preferencialmente o <code class="literal">ext3</code>
+para a instalação de seu sistema operacional.  Para detalhes veja <a class="xref" href="ch05s03.html" title="Partição EXT2 (Linux Native)">“Partição EXT2 (Linux Native)”</a>.
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">Ext3</code> - Este sistema de arquivos possui melhorias em relação
+ao ext2, como destaque o recurso de jornaling e suporte a arquivos de até 16Gb.
+Ele também é identificado pelo tipo 83 e totalmente compatível com o ext2 em
+estrutura.  O journal mantém um log de todas as operações no sistema de
+arquivos, caso aconteça uma queda de energia elétrica (ou qualquer outra
+anormalidade que interrompa o funcionamento do sistema), o
+<span class="command"><strong>fsck</strong></span> verifica o sistema de arquivos no ponto em que estava
+quando houve a interrupção, evitando a demora para checar todo um sistema de
+arquivos (que pode levar minutos em sistemas de arquivos muito grandes).  Para
+detalhes veja <a class="xref" href="ch05s05.html" title="Partição EXT3 (Linux Native)">“Partição EXT3 (Linux Native)”</a>.
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">Reiserfs</code> - Possui os mesmos recursos do ext3, mas seu design
+é bastante diferente.  Bastante recomendavel para sistemas que possuem muitos
+arquivos pequenos (servidor web, etc).  Possui o tempo de recuperação em caso
+de queda de energia menor que o ext3.  Para detalhes veja <a class="xref" href="ch05s06.html" title="Sistema de arquivos reiserfs">“Sistema de arquivos reiserfs”</a>.
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">Swap</code> - Usado em partições <span class="emphasis"><em>Linux Swap</em></span>
+para oferecer memória virtual ao sistema.  Note que é altamente recomendado o
+uso de uma partição Swap no sistema (principalmente se você tiver menos que
+16MB de memória RAM).  Este tipo de partição é identificado pelo código 82.
+Para detalhes veja <a class="xref" href="ch05s07.html" title="Partição Linux Swap (Memória Virtual)">“Partição Linux Swap (Memória Virtual)”</a>.
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">proc</code> - Sistema de arquivos do kernel (veja <a class="xref" href="ch05s08.html" title="O sistema de arquivos /proc">“O sistema de arquivos <code class="filename">/proc</code>”</a>).
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">FAT12</code> - Usado em disquetes no <span class="command"><strong>DOS</strong></span>.  Não
+possui suporte a permissões, journaling.
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">FAT16</code> - Usado no <span class="command"><strong>DOS</strong></span> e oferece suporte
+até discos de 2GB.  Não possui suporte a permissões e journaling.
+</p>
+</li><li class="listitem">
+<p>
+<code class="literal">FAT32</code> - Também usado no <span class="command"><strong>DOS</strong></span> e oferece
+suporte a discos de até 2 Terabytes.  Não possui suporte a permissões e
+journaling.  <code class="literal">NTFS</code> - Formato nativo de discos de sistemas
+operacionais Windows XP e superiores.  Possui suporte a permissões de acesso e
+compactação nativa.
+</p>
+</li></ul></div>
+</div><HR xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format"></HR><p class="copyright">Copyright © 1999-2020 - Gleydson Mazioli da Silva</p><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch05.html">Anterior</a> </td><td width="20%" align="center"><a accesskey="u" href="ch05.html">Subir</a></td><td width="40%" align="right"> <a accesskey="n" href="ch05s03.html">Próximo</a></td></tr><tr><td width="40%" align="left" valign="top">Capítulo 5. Discos e Partições </td><td width="20%" align="center"><a accesskey="h" href="index.html">Voltar ao Índice</a></td><td width="40%" align="right" valign="top"> Partição EXT2 (Linux Native)</td></tr></table></div></body></html>

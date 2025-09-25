@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Como adicionar suporte a Hardwares e outros dispositivos no kernel</title><meta name="generator" content="DocBook XSL Stylesheets V1.79.1" /><link rel="home" href="index.html" title="Guia Foca Linux" /><link rel="up" href="ch16.html" title="Capítulo 16. Kernel e Módulos" /><link rel="prev" href="ch16s02.html" title="Módulos" /><link rel="next" href="ch16s04.html" title="kmod" /></head><body text="black" link="#0000FF" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Como adicionar suporte a Hardwares e outros dispositivos no kernel</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch16s02.html">Anterior</a> </td><th width="60%" align="center">Capítulo 16. Kernel e Módulos</th><td width="20%" align="right"> <a accesskey="n" href="ch16s04.html">Próximo</a></td></tr></table><hr /></div><div xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format" class="breadcrumbs"><span class="breadcrumb-link"><a href="index.html">Guia Foca Linux</a></span> &gt; <span class="breadcrumb-link"><a href="ch16.html">Kernel e Módulos</a></span> &gt; <span class="breadcrumb-node">Como adicionar suporte a Hardwares e outros dispositivos no kernel</span></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="kern-suporte"></a>Como adicionar suporte a Hardwares e outros dispositivos no kernel</h2></div></div></div>
+<p>
+Quando seu hardware não funciona mas você tem certeza que é suportado pelo
+<span class="command"><strong>GNU/Linux</strong></span>, é preciso seguir alguns passos para faze-lo
+funcionar corretamente:
+</p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+<p>
+Verifique se o kernel atual foi compilado com suporte ao seu dispositivo.
+Também é possível que o suporte ao dispositivo esteja compilado como módulo.
+Dê o comando <code class="literal">dmesg</code> para ver as mensagens do kernel durante a
+inicialização e verifique se aparece alguma coisa referente ao dispositivo que
+deseja instalar (alguma mensagem de erro, etc).  Caso não aparecer nada é
+possível que o driver esteja compilado como módulo, para verificar isto entre
+no diretório <code class="filename">/lib/modules/versao_do_kernel</code> e veja se
+encontra o módulo correspondente ao seu dispositivo (o módulo da placa
+<span class="emphasis"><em>NE 2000</em></span> tem o nome de <code class="filename">ne.ko</code> e o da
+placa <span class="emphasis"><em>Sound Blaster</em></span> de <code class="filename">sb.ko</code>, por
+exemplo).
+</p>
+<p>
+<span class="emphasis"><em>OBS:</em></span> Nos kernel 2.4 e anteriores, a extensão dos módulos
+era <code class="filename">.o</code>.
+</p>
+<p>
+Caso o kernel não tiver o suporte ao seu dispositivo, você precisará recompilar
+seu kernel ativando seu suporte.  Veja <a class="xref" href="ch16s11.html" title="Recompilando o Kernel">“Recompilando o Kernel”</a>.
+</p>
+</li><li class="listitem">
+<p>
+Caso seu hardware esteja compilado no kernel, verifique se o módulo
+correspondente está carregado (com o comando <span class="command"><strong>lsmod</strong></span>).  Caso
+não estiver, carregue-o com o <span class="command"><strong>modprobe</strong></span> (por exemplo,
+<code class="literal">modprobe sb io=0x220 irq=5 dma=1 dma16=5 mpuio=0x330</code>), para
+detalhes veja <a class="xref" href="ch16s08.html" title="modprobe">“modprobe”</a>.
+</p>
+<p>
+O uso deste comando deverá ativar seu hardware imediatamente, neste caso
+configure o módulo para ser carregado automaticamente através do programa
+<span class="command"><strong>modconf</strong></span> ou edite os arquivos relacionados com os módulos
+(veja <a class="xref" href="ch16s12.html" title="Arquivos relacionados com o Kernel e Módulos">“Arquivos relacionados com o Kernel e Módulos”</a>).  Caso não tenha sucesso, será retornada
+uma mensagem de erro.
+</p>
+</li></ul></div>
+</div><HR xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format"></HR><p class="copyright">Copyright © 1999-2020 - Gleydson Mazioli da Silva</p><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch16s02.html">Anterior</a> </td><td width="20%" align="center"><a accesskey="u" href="ch16.html">Subir</a></td><td width="40%" align="right"> <a accesskey="n" href="ch16s04.html">Próximo</a></td></tr><tr><td width="40%" align="left" valign="top">Módulos </td><td width="20%" align="center"><a accesskey="h" href="index.html">Voltar ao Índice</a></td><td width="40%" align="right" valign="top"> kmod</td></tr></table></div></body></html>

@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Capítulo 28. Conectando seu computador a Internet</title><meta name="generator" content="DocBook XSL Stylesheets V1.79.1" /><link rel="home" href="index.html" title="Guia Foca Linux" /><link rel="up" href="index.html" title="Guia Foca Linux" /><link rel="prev" href="ch27s46.html" title="Arquivo /etc/timezone" /><link rel="next" href="ch28s02.html" title="Navegando na Internet" /></head><body text="black" link="#0000FF" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Capítulo 28. Conectando seu computador a Internet</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch27s46.html">Anterior</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch28s02.html">Próximo</a></td></tr></table><hr /></div><div xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format" class="breadcrumbs"><span class="breadcrumb-link"><a href="index.html">Guia Foca Linux</a></span> &gt; <span class="breadcrumb-node">Conectando seu computador a Internet</span></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a id="inter"></a>Capítulo 28. Conectando seu computador a Internet</h1></div></div></div><div class="toc"><p><strong>Índice</strong></p><dl class="toc"><dt><span class="section"><a href="ch28.html#inter-conectando">Conectando-se a Internet</a></span></dt><dd><dl><dt><span class="section"><a href="ch28.html#inter-conectando-adsl">Conectando através de ADSL</a></span></dt><dt><span class="section"><a href="ch28.html#inter-conectando-ppp">Conectando através de Internet Discada</a></span></dt></dl></dd><dt><span class="section"><a href="ch28s02.html">Navegando na Internet</a></span></dt><dt><span class="section"><a href="ch28s03.html">Recebimento de E-Mails através do <span class="command"><strong>fetchmail</strong></span></a></span></dt><dd><dl><dt><span class="section"><a href="ch28s03.html#inter-procmail">Processamento de mensagens através do procmail</a></span></dt></dl></dd></dl></div>
+<p>
+Este capítulo descreve como configurar seu sistema para se conectar a Internet,
+navegar, enviar/receber mensagens, etc.
+</p>
+
+<div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="inter-conectando"></a>Conectando-se a Internet</h2></div></div></div>
+
+<div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="inter-conectando-adsl"></a>Conectando através de ADSL</h3></div></div></div>
+<p>
+A conexão através de banda larga em sistemas <span class="command"><strong>Debian</strong></span> é
+realizada através do programa <span class="command"><strong>pppoeconf</strong></span> ou modificando
+manualmente os arquivos de configuração em <code class="filename">/etc/ppp</code>.  Esta
+seção explicará como configurar a conexão em modo bridge e assume que você já
+tem o modem conectado e sua placa de rede configurada.  Para criar uma conexão
+internet através do <span class="command"><strong>pppoeconf</strong></span> entre como usuário root no
+sistema, digite <code class="literal">pppoeconf</code> e siga os passos de configuração:
+</p>
+<div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">
+<p>
+Na primeira tela, ele perguntará se deseja que o modem seja detectado
+automaticamente.  Selecione sim.  O sistema procurará e detectará o modem no
+sistema (assegure-se que ele esteja ligado durante essa etapa).
+</p>
+</li><li class="listitem">
+<p>
+Ao detectar o modem siga adiante e informe o nome de usuário para conexão
+</p>
+</li><li class="listitem">
+<p>
+Em seguida informe a senha usada para autenticação
+</p>
+</li><li class="listitem">
+<p>
+Nas próximas telas, selecione o valor padrão para MTU e MSS (a não ser que seu
+provedor DSL solicite a alteração).
+</p>
+</li><li class="listitem">
+<p>
+Na tela sobre se a conexão deve ser iniciada na inicialização do sistema,
+selecione "Sim".
+</p>
+</li></ol></div>
+</div>
+
+<div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="inter-conectando-ppp"></a>Conectando através de Internet Discada</h3></div></div></div>
+<p>
+Para conectar usando internet discada é utilizada a placa de Fax-Modem.  A
+conexão através de sistemas <span class="command"><strong>Debian</strong></span> é fácil, e todo o
+trabalho de configuração pode ser feito através do programa
+<span class="command"><strong>pppconfig</strong></span> ou modificando manualmente os arquivos em
+<code class="filename">/etc/ppp</code>.  Para criar uma conexão internet através do
+<span class="command"><strong>pppconfig</strong></span>, entre como usuário root no sistema, digite
+<code class="literal">pppconfig</code> e siga os passos de configuração (esta
+configuração serve para usuários domésticos e assume que você possui o kernel
+com suporte a PPP):
+</p>
+<div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">
+<p>
+No primeiro menu, escolha a opção <code class="literal">Create</code> para criar uma nova
+conexão.  As outras opções disponíveis são <code class="literal">Change</code> para
+modificar uma conexão a Internet criada anteriormente,
+<code class="literal">Delete</code> para apagar uma conexão.  A opção
+<code class="literal">Quit</code> sai do programa.
+</p>
+</li><li class="listitem">
+<p>
+Agora o sistema perguntará qual será o nome da conexão que será criada.  O nome
+<code class="literal">provider</code> é o padrão, e será usado caso digite
+<code class="literal">pon</code> para iniciar uma conexão internet sem nenhum argumento.
+</p>
+</li><li class="listitem">
+<p>
+O próximo passo é especificar como os servidores de nomes serão acessados.
+Escolha <code class="literal">Static</code> se não tiver nenhum tipo de rede local ou
+<code class="literal">None</code> para usar os servidores especificados no arquivo
+<code class="filename">/etc/resolv.conf</code>.
+</p>
+<p>
+Aperte a tecla <code class="literal">TAB</code> e tecle <code class="literal">ENTER</code> para
+seguir para o próximo passo.
+</p>
+</li><li class="listitem">
+<p>
+Agora digite o endereço do servidor DNS especificado pelo seu provedor de
+acesso.  Um servidor DNS converte os nomes como
+<code class="literal">www.blablabla.com.br</code> para o endereço IP correspondente para
+que seu computador possa fazer conexão.
+</p>
+<p>
+Tecle <code class="literal">ENTER</code> para seguir para o próximo passo.
+</p>
+</li><li class="listitem">
+<p>
+Você pode digitar um endereço de um segundo computador que será usado na
+resolução de nomes DNS.  Siga as instruções anteriores caso tiver um segundo
+servidor de nomes ou <code class="literal">ENTER</code> para continuar.
+</p>
+</li><li class="listitem">
+<p>
+Agora você precisará especificar qual é o método de autenticação usado pelo seu
+provedor de acesso.  O <span class="emphasis"><em>Password Autentication Protocol</em></span> é
+usado pela maioria dos provedores de acesso.  Desta forma escolha a opção
+<code class="literal">PAP</code>
+</p>
+</li><li class="listitem">
+<p>
+Agora entre com o seu login no provedor de acesso, ou seja, o nome para acesso
+ao sistema que escolheu no momento que fez sua assinatura.
+</p>
+</li><li class="listitem">
+<p>
+Agora especifique a sua senha.
+</p>
+</li><li class="listitem">
+<p>
+O próximo passo será especificar a taxa de transmissão da porta serial do
+micro.  O valor de 115200 deve funcionar com todas as configurações mais
+recentes.
+</p>
+<p>
+Uma configuração serial DTE detalhada pode ser feita com a ferramenta
+<span class="command"><strong>setserial</strong></span>.
+</p>
+</li><li class="listitem">
+<p>
+Agora será necessário selecionar o modo de discagem usado pelo seu fax-modem.
+Escolha <code class="literal">tone</code> para linha digital e <code class="literal">pulse</code>
+se possuir uma linha telefônica analógica.
+</p>
+<p>
+Pressione <code class="literal">TAB</code> e tecle <code class="literal">ENTER</code> para
+prosseguir.
+</p>
+</li><li class="listitem">
+<p>
+Agora digite o número do telefone para fazer conexão com o seu provedor de
+acesso.
+</p>
+</li><li class="listitem">
+<p>
+O próximo passo será a identificação do seu fax-modem, escolha
+<code class="literal">YES</code> para que seja utilizada a auto-detecção ou
+<code class="literal">NO</code> para especificar a localização do seu fax-modem
+manualmente.
+</p>
+</li><li class="listitem">
+<p>
+Se você quiser especificar mais detalhes sobre sua configuração, como strings
+de discagem, tempo de desconexão, auto-discagem, etc., faça isto através do
+menu <code class="literal">Advanced</code>.
+</p>
+<p>
+Escolha a opção <code class="literal">Finished</code> para salvar a sua configuração e
+retornar ao menu principal.  Escolha a opção <code class="literal">Quit</code> para sair
+do programa.
+</p>
+</li></ol></div>
+<p>
+Pronto!  todos os passos para você se conectar a Internet estão concluídos,
+basta digitar <code class="literal">pon</code> para se conectar e <code class="literal">poff</code>
+para se desconectar da Internet.  Caso tenha criado uma conexão com o nome
+diferente de <code class="literal">provider</code> você terá que especifica-la no comando
+<span class="command"><strong>pon</strong></span> (por exemplo, <code class="literal">pon provedor2</code>).
+</p>
+<p>
+A conexão pode ser monitorada através do comando <span class="command"><strong>plog</strong></span> e os
+pacotes enviados/recebidos através do <span class="command"><strong>pppconfig</strong></span>.
+</p>
+<p>
+Para uma navegação mais segura, é recomendável que leia e compreenda alguns
+ítens que podem aumentar consideravelmente a segurança do seu sistema em <a class="xref" href="ch15s08.html" title="Segurança da Rede e controle de Acesso">“Segurança da Rede e controle de Acesso”</a>, <a class="xref" href="ch15s08.html#rede-seg-tcpd-a" title="/etc/hosts.allow">“/etc/hosts.allow”</a>, <a class="xref" href="ch15s08.html#rede-seg-tcpd-d" title="/etc/hosts.deny">“/etc/hosts.deny”</a>.  A seção <a class="xref" href="ch15s06.html#rede-dns-a-resolv" title="/etc/resolv.conf">“/etc/resolv.conf”</a> pode
+ser também útil.
+</p>
+</div>
+
+</div>
+
+
+
+
+
+
+</div><HR xmlns="" xmlns:fo="http://www.w3.org/1999/XSL/Format"></HR><p class="copyright">Copyright © 1999-2020 - Gleydson Mazioli da Silva</p><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch27s46.html">Anterior</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="ch28s02.html">Próximo</a></td></tr><tr><td width="40%" align="left" valign="top">Arquivo <code class="filename">/etc/timezone</code> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Voltar ao Índice</a></td><td width="40%" align="right" valign="top"> Navegando na Internet</td></tr></table></div></body></html>
